@@ -32,7 +32,7 @@ public abstract class Employee {
 		return id;
 	}
 	public abstract String getJobTitle();
-	
+
 	public void setDepartment(String department) {
 		this.department = department;
 	}
@@ -45,5 +45,10 @@ public abstract class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	@Override
+	public String toString() {
+		return "Employee [department=" + department + ", nameSurname=" + nameSurname + ", telephone=" + telephone
+				+ ", email=" + email + ", id=" + id + "]";
+	}
+
 }

@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 public abstract class Employee {
-	private String department;
+	private Department department;
 	private String nameSurname;
 	private String telephone;
 	private String email;
@@ -9,10 +9,11 @@ public abstract class Employee {
 	public Random rdm = new Random();
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
 
-	public Employee(String nameSurname , String telephone, String email) {
+	public Employee(String nameSurname , String telephone, String email, Department department) {
 		this.nameSurname = nameSurname;
 		this.telephone = telephone;
 		this.email = email;
+		this.department = department;
 		this.id=rdm.nextInt(10000);
 		employees.add(this);
 	}
@@ -33,7 +34,7 @@ public abstract class Employee {
 	}
 	public abstract String getJobTitle();
 
-	public void setDepartment(String department) {
+	public void setDepartment(Department department) {
 		this.department = department;
 	}
 	public void setNameSurname(String nameSurname) {

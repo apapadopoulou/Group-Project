@@ -8,7 +8,6 @@ public class Department {
 	public Department(String name, ArrayList<Employee> employeesOfDepartment) {
 		id = num_dep++;
 		this.name = name;
-		num_dep++;
 		this.employeesOfDepartment = employeesOfDepartment;
 		departments.add(this);
 	}
@@ -38,6 +37,6 @@ public class Department {
 		return "Department [id=" + id + ", name=" + name + "]";
 	}
 
-	
+
 
 }

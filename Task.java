@@ -1,5 +1,5 @@
 import java.util.Date;
-public abstract class Task {
+public class Task {
 	private Date dueDate;
 	private boolean done;
 	public Task(Date dueDate) {
@@ -18,5 +18,6 @@ public abstract class Task {
 	public void setStatus(boolean status) {
 		done = status;
 	}
-	public abstract void newTask();
+	public void newTask() {
+	}
 }

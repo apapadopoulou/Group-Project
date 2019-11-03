@@ -2,7 +2,8 @@ import java.util.Random;
 import java.util.ArrayList;
 public abstract class Employee {
 	private Department department;
-	private String nameSurname;
+	private String name;
+	private String surname;
 	private String telephone;
 	private String email;
 	private String password;
@@ -10,8 +11,9 @@ public abstract class Employee {
 	public Random rdm = new Random();
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
 
-	public Employee(String nameSurname ,String password, String telephone, String email, Department department) {
-		this.nameSurname = nameSurname;
+	public Employee(String name, String surname ,String password, String telephone, String email, Department department) {
+		this.name = name;
+		this.surname = surname;
 		this.password = password;
 		this.telephone = telephone;
 		this.email = email;
@@ -25,8 +27,11 @@ public abstract class Employee {
 	public String getDepartment() {
 		return department;
 	}
-	public String getNameSurname() {
-		return nameSurname;
+	public String getName() {
+		return name;
+	}
+	public String getSurname() {
+		return surname;
 	}
 	public String getTelephone() {
 		return telephone;
@@ -45,8 +50,11 @@ public abstract class Employee {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
-	public void setNameSurname(String nameSurname) {
-		this.nameSurname = nameSurname;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setSurname(String surname) {
+			this.surname = surname;
 	}
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
@@ -59,7 +67,7 @@ public abstract class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [department=" + department + ", nameSurname=" + nameSurname + ", telephone=" + telephone
+		return "Employee [department=" + department + ", name=" + name + "surname=" + surname + ", telephone=" + telephone
 				+ ", email=" + email + ", id=" + id + "]";
 	}
 

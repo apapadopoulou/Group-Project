@@ -26,6 +26,48 @@ public class Department {
 	public void addEmployee(Employee employee) {
 		employeesOfDepartment.add(employee);
 	}
+	public Employee searchEmployeeByName(String name) {
+		for (int i = 0; i < employeesOfDepartment.size(); i++) {
+			if (employeesOfDepartment.get(i).getNameSurname() == name) {
+				System.out.println("The employee was found");
+				return employeesOfDepartment.get(i);
+			} else {
+				System.out.println("This employee doesn't work in this department");
+			}
+		}
+		return null;
+	}
+	public Employee searchEmployeeById(int id) {
+		for (int i = 0; i < employeesOfDepartment.size(); i++) {
+			if (employeesOfDepartment.get(i).getId() == id) {
+				System.out.println("The employee was found");
+				return employeesOfDepartment.get(i);
+			} else {
+				System.out.println("This employee doesn't work in this department");
+			}
+		}
+		return null;
+	}
+	public void deleteEmployeeByName(String name) {
+		for (int i = 0; i < employeesOfDepartment.size(); i++) {
+			if (employeesOfDepartment.get(i).getNameSurname() == name) {
+				employeesOfDepartment.remove(i);
+				System.out.println("Employee was removed");
+			} else { 
+				System.out.println("This employee couldn't be removed because he wasn't found in this department");			
+			}
+		}
+	}
+	public void deleteEmployeeById(int id) {
+		for (int i = 0; i < employeesOfDepartment.size(); i++) {
+			if (employeesOfDepartment.get(i).getId() == id) {
+				employeesOfDepartment.remove(i);
+				System.out.println("Employee was removed");
+			} else { 
+				System.out.println("This employee couldn't be removed because he wasn't found in this department");			
+			}
+		}
+	}
 	public String getName() {
 		return name;
 	}
@@ -36,7 +78,4 @@ public class Department {
 	public String toString() {
 		return "Department [id=" + id + ", name=" + name + "]";
 	}
-
-
-
 }

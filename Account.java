@@ -6,13 +6,13 @@ public class Account {
  private String email;
  private String password;
  private int id;
- public Account(Department department, String name, String surname, String telephone, String email, String password, int id) {
-	 department = Employee.getDepartment();
-	 name = Employee.getName();
-	 surname = Employee.getSurname();
-	 telephone = Employee.getTelephone();
-	 email = Employee.getEmail();
-	 password = Employee.getPassword();
-	 id = Employee.getId();
+ public Account(Employee e) {
+	 department = e.getDepartment();
+	 name = e.getName();
+	 surname = e.getSurname();
+	 telephone = e.getTelephone();
+	 email = e.getEmail();
+	 password = e.getPassword();
+	 id = e.getId();
  }
 }

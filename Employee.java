@@ -5,25 +5,23 @@ public abstract class Employee {
 	private String surname;
 	private String telephone;
 	private String email;
-	private String password;
 	private int id;
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
 
-	public Employee(String name, String surname ,String password, String telephone, String email, Department department) {
+	public Employee(String name, String surname, String telephone, String email, Department department) {
 		this.name = name;
 		this.surname = surname;
-		this.password = password;
 		this.telephone = telephone;
 		this.email = email;
 		this.department = department;
 		this.id=Integer.parseInt("1234");
 		employees.add(this);
 	}
-	public Employee(String nameSurname ,String password, Department department) {
+	/*public Employee(String nameSurname, Department department) {
 		super(nameSurname,password,null.null.department);
-	}
+	}*/
 	public String getDepartment() {
-		return department;
+		return department.getName();
 	}
 	public String getName() {
 		return name;
@@ -39,9 +37,6 @@ public abstract class Employee {
 	}
 	public int getId() {
 		return id;
-	}
-	public String getPassword() {
-		return password;
 	}
 	public abstract String getJobTitle();
 
@@ -63,13 +58,12 @@ public abstract class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	@Override
 	public String toString() {
-		return "Employee [department=" + department + ", name=" + name + "surname=" + surname + ", telephone=" + telephone
+		return "Employee [department=" + department.getName() + ", name=" + name + "surname=" + surname + ", telephone=" + telephone
 				+ ", email=" + email + ", id=" + id + "]";
 	}
 
 }
+
+

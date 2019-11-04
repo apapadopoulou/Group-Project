@@ -1,4 +1,3 @@
-import java.util.Random;
 import java.util.ArrayList;
 public abstract class Employee {
 	private Department department;
@@ -8,7 +7,6 @@ public abstract class Employee {
 	private String email;
 	private String password;
 	private int id;
-	public Random rdm = new Random();
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
 
 	public Employee(String name, String surname ,String password, String telephone, String email, Department department) {
@@ -18,7 +16,7 @@ public abstract class Employee {
 		this.telephone = telephone;
 		this.email = email;
 		this.department = department;
-		this.id=rdm.nextInt(10000);
+		this.id=Integer.parseInt("1234");
 		employees.add(this);
 	}
 	public Employee(String nameSurname ,String password, Department department) {

@@ -54,6 +54,9 @@ public abstract class Employee {
 	public void setSurname(String surname) {
 			this.surname = surname;
 	}
+	public String getNameSurname() {
+			return getName() + getSurname();
+	}
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}

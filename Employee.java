@@ -38,8 +38,6 @@ public abstract class Employee {
 	public int getId() {
 		return id;
 	}
-	public abstract String getJobTitle();
-
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
@@ -65,5 +63,3 @@ public abstract class Employee {
 	}
 
 }
-
-

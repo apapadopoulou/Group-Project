@@ -6,7 +6,7 @@ public class Account {
  private String email;
  private String password;
  private int id;
- public Account(Department department , String name , String surname , String telephone , String email , String password , int id) {
+ public Account(Department department, String name, String surname, String telephone, String email, String password, int id) {
 	 department = Employee.getDepartment();
 	 name = Employee.getName();
 	 surname = Employee.getSurname();

@@ -7,6 +7,7 @@ public abstract class Employee {
 	private String email;
 	private String password;
 	private int id;
+	private static int counter = 1;
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
 
 	public Employee(String name, String surname ,String password, String telephone, String email, Department department) {
@@ -16,13 +17,14 @@ public abstract class Employee {
 		this.telephone = telephone;
 		this.email = email;
 		this.department = department;
-		this.id=Integer.parseInt("1234");
+		this.id =counter;
+		counter++;
 		employees.add(this);
 	}
-	public Employee(String nameSurname ,String password, Department department) {
-		super(nameSurname,password,null.null.department);
+	public Employee(String name,String surname ,String password, Department department) {
+		this(name,surname,password,null,null,department);
 	}
-	public String getDepartment() {
+	public Department getDepartment() {
 		return department;
 	}
 	public String getName() {
@@ -65,8 +67,8 @@ public abstract class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [department=" + department + ", name=" + name + "surname=" + surname + ", telephone=" + telephone
-				+ ", email=" + email + ", id=" + id + "]";
+		return "********************\nEmployee #" + id + "\nname : " + name + "\nsurname : " + surname + "\ntelephone : " + telephone
+				+ "\nemail :" + email +"\n********************";
 	}
 
 }

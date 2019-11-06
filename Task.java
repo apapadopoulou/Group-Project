@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.util.Calendar;
 public class Task {
 	private Date dueDate;
 	private boolean done;

@@ -6,9 +6,11 @@ public abstract class Employee {
 	private String telephone;
 	private String email;
 	private int id;
+	/*Μεταβλητή που βοηθάει για το ID*/
 	private static int counter = 1;
+	/*Λίστα για την αποθήκευση των αντικειμένων Employee*/
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
-
+	/* Πλήρης Constructor για την κλάση Employee*/
 	public Employee(String name, String surname, String telephone, String email, Department department) {
 		this.name = name;
 		this.surname = surname;
@@ -19,19 +21,15 @@ public abstract class Employee {
 		counter++;
 		employees.add(this);
 	}
-<<<<<<< HEAD
+	/*Απλός Constructor για την Employee (WIP)*/
 	public Employee(String name,String surname ,String password, Department department) {
 		this(name,surname,password,null,null,department);
 	}
 	public Department getDepartment() {
 		return department;
-=======
-	/*public Employee(String nameSurname, Department department) {
-		super(nameSurname,password,null.null.department);
-	}*/
+
 	public String getDepartment() {
 		return department.getName();
->>>>>>> 584fe8e21f1a9ba07cd5a07ca82ff1513ff595e8
 	}
 	public String getName() {
 		return name;
@@ -68,13 +66,9 @@ public abstract class Employee {
 	}
 	@Override
 	public String toString() {
-<<<<<<< HEAD
+
 		return "********************\nEmployee #" + id + "\nname : " + name + "\nsurname : " + surname + "\ntelephone : " + telephone
 				+ "\nemail :" + email +"\n********************";
-=======
-		return "Employee [department=" + department.getName() + ", name=" + name + "surname=" + surname + ", telephone=" + telephone
-				+ ", email=" + email + ", id=" + id + "]";
->>>>>>> 584fe8e21f1a9ba07cd5a07ca82ff1513ff595e8
 	}
 
 }

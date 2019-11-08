@@ -5,7 +5,7 @@ public abstract class Employee {
 	private String surname;
 	private String telephone;
 	private String email;
-	private int id;
+	private String id;
 	/*Μεταβλητή που βοηθάει για το ID*/
 	private static int counter = 1;
 	/*Λίστα για την αποθήκευση των αντικειμένων Employee*/
@@ -17,17 +17,13 @@ public abstract class Employee {
 		this.telephone = telephone;
 		this.email = email;
 		this.department = department;
-		this.id =counter;
-		counter++;
+		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + counter++;
 		employees.add(this);
 	}
 	/*Απλός Constructor για την Employee (WIP)*/
 	public Employee(String name,String surname ,String password, Department department) {
-		this(name,surname,password,null,null,department);
+		this(name,surname,password,null,department);
 	}
-	public Department getDepartment() {
-		return department;
-
 	public String getDepartment() {
 		return department.getName();
 	}
@@ -43,7 +39,7 @@ public abstract class Employee {
 	public String getEmail() {
 		return email;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public void setDepartment(Department department) {
@@ -70,5 +66,6 @@ public abstract class Employee {
 		return "********************\nEmployee #" + id + "\nname : " + name + "\nsurname : " + surname + "\ntelephone : " + telephone
 				+ "\nemail :" + email +"\n********************";
 	}
+	public abstract String getJobTitle();
 
 }

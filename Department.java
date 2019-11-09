@@ -76,6 +76,10 @@ public class Department {
 	}
 	@Override
 	public String toString() {
-		return "Department [id=" + id + ", name=" + name + "]";
+		String str_1 = "";
+        /*str_1 = String.format("|%-20d|", id) +
+         String.format("%30s" + name); */
+		String.format("%30s%30s", id, name);
+		return str_1;
 	}
 }

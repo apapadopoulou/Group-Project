@@ -1,5 +1,5 @@
 import java.util.Calendar;
-public class Task {
+public class Task extends Program{
 	private Date dueDate;
 	private boolean done;
 	public Task(Date dueDate) {
@@ -20,7 +20,7 @@ public class Task {
 	}
 	public void newTask() {
 	}
-	
-	
-	
+
+
+
 }

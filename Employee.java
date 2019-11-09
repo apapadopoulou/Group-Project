@@ -6,11 +6,11 @@ public abstract class Employee {
 	private String telephone;
 	private String email;
 	private String id;
-	/*Μεταβλητή που βοηθάει για το ID*/
+	/*οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½ ID*/
 	private static int counter = 1;
-	/*Λίστα για την αποθήκευση των αντικειμένων Employee*/
+	/*οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ Employee*/
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
-	/* Πλήρης Constructor για την κλάση Employee*/
+	/* οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ Constructor οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½ Employee*/
 	public Employee(String name, String surname, String telephone, String email, Department department) {
 		this.name = name;
 		this.surname = surname;
@@ -20,7 +20,7 @@ public abstract class Employee {
 		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + counter++;
 		employees.add(this);
 	}
-	/*Απλός Constructor για την Employee (WIP)*/
+	/*οΏ½οΏ½οΏ½οΏ½οΏ½ Constructor οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½ Employee (WIP)*/
 	public Employee(String name,String surname ,String password, Department department) {
 		this(name,surname,password,null,department);
 	}
@@ -62,9 +62,14 @@ public abstract class Employee {
 	}
 	@Override
 	public String toString() {
-
-		return "********************\nEmployee #" + id + "\nname : " + name + "\nsurname : " + surname + "\ntelephone : " + telephone
-				+ "\nemail :" + email +"\n********************";
+        str_2 = "";
+        /*str_1 = String.format("%30s", name ) +
+        String.format("%30s", surname) +
+        String.format("%30s", telephone) +
+        String.format("%30s", email) +
+        String.format("%30s", id); */
+        String.format("%30s%30s%30s%30s%30s", name, surname, telephone, email, id );
+        return str_2;
 	}
 	public abstract String getJobTitle();
 

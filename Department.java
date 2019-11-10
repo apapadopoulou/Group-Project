@@ -2,15 +2,16 @@ import java.util.ArrayList;
 public class Department {
 	private int id;
 	private String name;
-	private static int num_dep = 1;
-	private ArrayList <Employee> employeesOfDepartment = new ArrayList <Employee>();
-	public static ArrayList <Department> departments = new ArrayList <Department>();
+	private static int num_dep = 1; // counter
+	private ArrayList <Employee> employeesOfDepartment = new ArrayList <Employee>(); /* a list that contains the employees
+	of each department separately*/
+	public static ArrayList <Department> departments = new ArrayList <Department>(); // a list that contains all the departments
 	public Department(String name, ArrayList<Employee> employeesOfDepartment) {
 		id = num_dep++;
 		this.name = name;
 		this.employeesOfDepartment = employeesOfDepartment;
 		departments.add(this);
-	}
+	} // constructor of departments
 	public static ArrayList<Department> getDepartments() {
 		return departments;
 	}
@@ -36,7 +37,7 @@ public class Department {
 			}
 		}
 		return null;
-	}
+	} // a search method that search the employee list of the department to find a specific employee using his name
 	public Employee searchEmployeeById(int id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
 			if (employeesOfDepartment.get(i).getId() == id) {
@@ -47,7 +48,7 @@ public class Department {
 			}
 		}
 		return null;
-	}
+	}// a search method that search the employee list of the department to find a specific employee using his id
 	public void deleteEmployeeByName(String name) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
 			if (employeesOfDepartment.get(i).getNameSurname() == name) {
@@ -57,7 +58,7 @@ public class Department {
 				System.out.println("This employee couldn't be removed because he wasn't found in this department");			
 			}
 		}
-	}
+	}// a method that deletes a specific employee from a department's arraylist using his name to find him
 	public void deleteEmployeeById(int id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
 			if (employeesOfDepartment.get(i).getId() == id) {
@@ -67,7 +68,7 @@ public class Department {
 				System.out.println("This employee couldn't be removed because he wasn't found in this department");			
 			}
 		}
-	}
+	}// a method that deletes a specific employee from a department's arraylist using his id to find him
 	public String getName() {
 		return name;
 	}

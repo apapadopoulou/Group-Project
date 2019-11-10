@@ -30,6 +30,31 @@ public class Checkers {
 			//validating phone number with -, . or spaces
 			else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
 			else return false;
+			public static void ValidPassword() {
+			      //Input from user
+			      String password;
+			      Scanner input = new Scanner(System.in);
+			      System.out.print("Please create your password: ");
+			      password = input.nextLine();
+		
+			      //Checking password length
+			      while( (password.length() < 6) || (password.length() > 15) )
+			      {
+			         System.out.print("This password must be between 6 and 15 characters. Try again: ");
+			         password = input.nextLine();
+			      }
+			      //Confirming if passwords match   
+			      String password2;   
+			      System.out.print("\nPlease type your password again to confirm: ");
+			      password2 = input.nextLine();
+
+			      while( !password2.equals(password) )
+			      {
+			         System.out.print("Those passwords do not match. Try again: ");
+			         password2 = input.nextLine();
+			      }
+
+			   }
 	   }
 
 

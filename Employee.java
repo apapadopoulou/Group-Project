@@ -5,21 +5,25 @@ public abstract class Employee {
 	private String surname;
 	private String telephone;
 	private String email;
-	private int id;
+	private String id;
+	/*��������� ��� ������� ��� �� ID*/
+	private static int counter = 1;
+	/*����� ��� ��� ���������� ��� ������������ Employee*/
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
-
+	/* ������ Constructor ��� ��� ����� Employee*/
 	public Employee(String name, String surname, String telephone, String email, Department department) {
 		this.name = name;
 		this.surname = surname;
 		this.telephone = telephone;
 		this.email = email;
 		this.department = department;
-		this.id=Integer.parseInt("1234");
+		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + counter++;
 		employees.add(this);
 	}
-	/*public Employee(String nameSurname, Department department) {
-		super(nameSurname,password,null.null.department);
-	}*/
+	/*����� Constructor ��� ��� Employee (WIP)*/
+	public Employee(String name,String surname ,String password, Department department) {
+		this(name,surname,password,null,department);
+	}
 	public String getDepartment() {
 		return department.getName();
 	}
@@ -35,7 +39,7 @@ public abstract class Employee {
 	public String getEmail() {
 		return email;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	public void setDepartment(Department department) {
@@ -58,8 +62,15 @@ public abstract class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [department=" + department.getName() + ", name=" + name + "surname=" + surname + ", telephone=" + telephone
-				+ ", email=" + email + ", id=" + id + "]";
+        str_2 = "";
+        /*str_1 = String.format("%30s", name ) +
+        String.format("%30s", surname) +
+        String.format("%30s", telephone) +
+        String.format("%30s", email) +
+        String.format("%30s", id); */
+        String.format("%30s%30s%30s%30s%30s", name, surname, telephone, email, id );
+        return str_2;
 	}
+	public abstract String getJobTitle();
 
 }

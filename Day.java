@@ -1,4 +1,9 @@
+import java.util.ArrayList;
 public class Day {
-  private Program dailyProgram;
+  private ArrayList <Program> dailyProgram = new ArrayList <Program>();
+  public Day() {
+	  
+  }
+  
   
 }

@@ -17,7 +17,8 @@ public abstract class Employee {
 		this.telephone = telephone;
 		this.email = email;
 		this.department = department;
-		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + counter++;
+		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + department.employeesOfDepartment.size();
+		department.employeesOfDepartment.add(this);
 		employees.add(this);
 	}
 	/*����� Constructor ��� ��� Employee (WIP)*/

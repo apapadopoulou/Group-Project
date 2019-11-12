@@ -62,7 +62,7 @@ public abstract class Employee {
 	}
 	@Override
 	public String toString() {
-        str_2 = "";
+        String str_2 = "";
         /*str_1 = String.format("%30s", name ) +
         String.format("%30s", surname) +
         String.format("%30s", telephone) +

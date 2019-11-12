@@ -17,8 +17,8 @@ public abstract class Employee {
 		this.telephone = telephone;
 		this.email = email;
 		this.department = department;
-		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + department.employeesOfDepartment.size();
 		department.employeesOfDepartment.add(this);
+		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + department.employeesOfDepartment.size();
 		employees.add(this);
 	}
 	/*����� Constructor ��� ��� Employee (WIP)*/
@@ -63,7 +63,7 @@ public abstract class Employee {
 	}
 	@Override
 	public String toString() {
-        String str_2 = "";
+        str_2 = "";
         /*str_1 = String.format("%30s", name ) +
         String.format("%30s", surname) +
         String.format("%30s", telephone) +

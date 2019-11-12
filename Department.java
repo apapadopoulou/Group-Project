@@ -18,9 +18,7 @@ public class Department {
 	public int getId() {
 		return id;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public ArrayList<Employee> getEmployeesOfDepartment() {
 		return employeesOfDepartment;
 	}
@@ -29,7 +27,7 @@ public class Department {
 	}
 	public Employee searchEmployeeByName(String name) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
-			if (employeesOfDepartment.get(i).getNameSurname() == name) {
+			if (employeesOfDepartment.get(i).getNameSurname().equals(name)) {
 				System.out.println("The employee was found");
 				return employeesOfDepartment.get(i);
 			} else {
@@ -38,9 +36,9 @@ public class Department {
 		}
 		return null;
 	} // a search method that search the employee list of the department to find a specific employee using his name
-	public Employee searchEmployeeById(int id) {
+	public Employee searchEmployeeById(String id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
-			if (employeesOfDepartment.get(i).getId() == id) {
+			if (employeesOfDepartment.get(i).getId().equals(id)) {
 				System.out.println("The employee was found");
 				return employeesOfDepartment.get(i);
 			} else {
@@ -51,7 +49,7 @@ public class Department {
 	}// a search method that search the employee list of the department to find a specific employee using his id
 	public void deleteEmployeeByName(String name) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
-			if (employeesOfDepartment.get(i).getNameSurname() == name) {
+			if (employeesOfDepartment.get(i).getNameSurname().contentEquals(name)) {
 				employeesOfDepartment.remove(i);
 				System.out.println("Employee was removed");
 			} else { 
@@ -59,9 +57,9 @@ public class Department {
 			}
 		}
 	}// a method that deletes a specific employee from a department's arraylist using his name to find him
-	public void deleteEmployeeById(int id) {
+	public void deleteEmployeeById(String id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
-			if (employeesOfDepartment.get(i).getId() == id) {
+			if (employeesOfDepartment.get(i).getId().equals(id)) {
 				employeesOfDepartment.remove(i);
 				System.out.println("Employee was removed");
 			} else { 

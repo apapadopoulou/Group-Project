@@ -3,7 +3,7 @@ public abstract class Employee {
 	private Department department;
 	private String name;
 	private String surname;
-	private String telephone;
+	private int telephone;
 	private String email;
 	private String id;
 	/*��������� ��� ������� ��� �� ID*/
@@ -11,20 +11,17 @@ public abstract class Employee {
 	/*����� ��� ��� ���������� ��� ������������ Employee*/
 	public ArrayList<Employee> employees = new ArrayList<Employee>();
 	/* ������ Constructor ��� ��� ����� Employee*/
-	public Employee(String name, String surname, String telephone, String email, Department department) {
+	public Employee(String name, String surname, int telephone, String email, Department department) {
 		this.name = name;
 		this.surname = surname;
 		this.telephone = telephone;
 		this.email = email;
 		this.department = department;
-		department.employeesOfDepartment.add(this);
-		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + department.employeesOfDepartment.size();
+		department.getEmployeesOfDepartment().add(this);
+		id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + String.valueOf(department.getEmployeesOfDepartment().size());
 		employees.add(this);
 	}
-	/*����� Constructor ��� ��� Employee (WIP)*/
-	public Employee(String name,String surname ,String password, Department department) {
-		this(name,surname,password,null,department);
-	}
+	
 	public String getDepartment() {
 		return department.getName();
 	}
@@ -34,9 +31,7 @@ public abstract class Employee {
 	public String getSurname() {
 		return surname;
 	}
-	public String getTelephone() {
-		return telephone;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -55,7 +50,11 @@ public abstract class Employee {
 	public String getNameSurname() {
 			return getName() + getSurname();
 	}
-	public void setTelephone(String telephone) {
+	
+	public int getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(int telephone) {
 		this.telephone = telephone;
 	}
 	public void setEmail(String email) {
@@ -63,7 +62,7 @@ public abstract class Employee {
 	}
 	@Override
 	public String toString() {
-        str_2 = "";
+        String str_2 = "";
         /*str_1 = String.format("%30s", name ) +
         String.format("%30s", surname) +
         String.format("%30s", telephone) +

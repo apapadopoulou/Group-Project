@@ -3,13 +3,12 @@ import java.util.Calendar;
 import java.text.ParseException;
  public class TimeOff {
 	 private String oldDate;
-	 private String newDate;
+	 
 	
-	 public TimeOff(String oldDate, String newDate, int days) {
+	 public TimeOff(String oldDate, int days) {
 	 //Given Date in String format
 		 	this.oldDate = oldDate;
-		 	this.newDate = newDate;
-			System.out.println("Starting day is: "+oldDate);
+		 	System.out.println("Starting day is: "+oldDate);
 			//Specifying date format that matches the given date
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			Calendar c = Calendar.getInstance();

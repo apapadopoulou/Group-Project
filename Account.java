@@ -1,25 +1,26 @@
 public class Account {
- private Department department;
+ private String department;
  private String name;
  private String surname;
- private String telephone;
+ private int telephone;
  private String email;
+ private String id;
  private String password;
- private int id;
+ 
  public Account(Employee e) {
 	 department = e.getDepartment();
 	 name = e.getName();
 	 surname = e.getSurname();
 	 telephone = e.getTelephone();
 	 email = e.getEmail();
-	 password = e.getPassword();
 	 id = e.getId();
+	 password = Checkers.ValidPassword();
 	 /*
 	 if (isValidEmail(email)) 
          System.out.print("Valid Email"); 
      else
          System.out.print("Invalid Email"); 
-     	System.out.print("Please retype your Email");	
+         System.out.print("Please retype your Email");
      if (isValidFirstName(firstName)) 
          System.out.print("Valid First Name"); 
      else

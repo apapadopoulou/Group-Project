@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.regex.Pattern; 
 
 public class Checkers {
@@ -26,17 +27,21 @@ public class Checkers {
 	   // validate phone number
 	   private static boolean isValidPhoneNumber(String phoneNo) {
 			//validate phone numbers of format "1234567890"
-			if (phoneNo.matches("\\d{10}")) return true;
+			if (phoneNo.matches("\\d{10}")) 
+				return true;
 			//validating phone number with -, . or spaces
-			else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) return true;
-			else return false;
-			public static void ValidPassword() {
+			else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}"))
+				return true;
+			else 
+				return false;
+	   }
+			public static String ValidPassword() {
 			      //Input from user
 			      String password;
 			      Scanner input = new Scanner(System.in);
-			      System.out.print("Please create your password: ");
+			      System.out.printf("Please create your password:\n");
 			      password = input.nextLine();
-		
+			      
 			      //Checking password length
 			      while( (password.length() < 6) || (password.length() > 15) )
 			      {
@@ -53,6 +58,7 @@ public class Checkers {
 			         System.out.print("Those passwords do not match. Try again: ");
 			         password2 = input.nextLine();
 			      }
+			      return password;
 
 			   }
 	   }

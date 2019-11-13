@@ -80,6 +80,7 @@ public abstract class Employee {
               if (Department.departments.get(i).getName().equals(depname)) {
                     System.out.println("The id of department you want to get included is : " + Department.departments.get(i).getId());
                     departments[i].addEmployee(getName());
+                    department = Department.departments.get(i);
                     id = String.valueOf(Department.departments.get(i).getId()) + name.substring(1,2) + surname.substring(1,2) + String.valueOf(Department.getEmployeesOfDepartment().size()); /* change employee's id based on his new department*/
               } 
        }

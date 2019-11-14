@@ -72,17 +72,13 @@ public abstract class Employee {
         return str_2;
   }
   public abstract String getJobTitle();
-  public void changeDepartmentandId(String empName, String depName) {
+  public void changeDepartmentandId(String empName, String depId) {
        /* System.out.println('Insert the name of department in which you want to get included');
         String depname = sc.nextLine(); -> for main*/
-       deleteEmployeeByName(empName); /* remove employee from his department*/
-       for (int i = 0 ; i < Department.departments.size() ; i++) {
-              if (Department.departments.get(i).getName().equals(depname)) {
-                    System.out.println("The id of department you want to get included is : " + Department.departments.get(i).getId());
-                    departments[i].addEmployee(getName());
-                    department = Department.departments.get(i);
-                    id = String.valueOf(Department.departments.get(i).getId()) + name.substring(1,2) + surname.substring(1,2) + String.valueOf(Department.getEmployeesOfDepartment().size()); /* change employee's id based on his new department*/
-              } 
-       }
+       Department.deleteEmployeeByName(empName); /* remove employee from his department*/
+       Department.searchDepartmentById(depId).addEmployee();
+       department = Department.searchDepartmentById(depId);
+       id = String.valueOf(Department.searchDepartmentById.getId()) + name.substring(1,2) + surname.substring(1,2) + String.valueOf(Department.getEmployeesOfDepartment().size()); /* change employee's id based on his new department */
+  
   }
   }

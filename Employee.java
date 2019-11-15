@@ -9,7 +9,7 @@ public abstract class Employee {
   /*????????? ??? ??????? ??? ?? ID*/
   private static int counter = 1;
   /*????? ??? ??? ?????????? ??? ???????????? Employee*/
-  public ArrayList<Employee> employees = new ArrayList<Employee>();
+  public static ArrayList<Employee> employees = new ArrayList<Employee>();
   /* ?????? Constructor ??? ??? ????? Employee*/
   public Employee(String name, String surname, int telephone, String email, Department department) {
     this.name = name;
@@ -22,8 +22,11 @@ public abstract class Employee {
     employees.add(this);
   }
   
-  public String getDepartment() {
+  public String getDepartmentName() {
     return department.getName();
+  }
+  public Department getDepartment() {
+	  return department;
   }
   public String getName() {
     return name;
@@ -60,6 +63,9 @@ public abstract class Employee {
   public void setEmail(String email) {
     this.email = email;
   }
+  public void setId(String id) {
+		this.id = id;
+	}
   @Override
   public String toString() {
         String str_2 = "";
@@ -72,13 +78,39 @@ public abstract class Employee {
         return str_2;
   }
   public abstract String getJobTitle();
-  public void changeDepartmentandId(String empName, String depId) {
+  public static Employee searchEmployeeByName2(String name) {
+	  for (int i = 0; i < employees.size(); i++) {
+	      if (employees.get(i).getNameSurname().equals(name)) {
+	        return employees.get(i);
+	      } else if (employees.get(i).getSurname().equals(name)) {
+	    	  return employees.get(i);
+	      } else 
+	    	  System.out.println("Employee was not found");
+	    }
+	    return null;
+  }
+  
+  public static Employee searchEmployeeById2(String id) {
+	  for (int i = 0; i < employees.size(); i++) {
+	      if (employees.get(i).getId() == id) {
+	        return employees.get(i);
+	      } 
+	    }
+	    return null;
+  }
+  
+  public void changeDepartmentAndId(String empName, int depId) {
        /* System.out.println('Insert the name of department in which you want to get included');
         String depname = sc.nextLine(); -> for main*/
-       Department.deleteEmployeeByName(empName); /* remove employee from his department*/
-       Department.searchDepartmentById(depId).addEmployee();
-       department = Department.searchDepartmentById(depId);
-       id = String.valueOf(Department.searchDepartmentById.getId()) + name.substring(1,2) + surname.substring(1,2) + String.valueOf(Department.getEmployeesOfDepartment().size()); /* change employee's id based on his new department */
+      Employee e = Employee.searchEmployeeByName2(empName);
+      e.getDepartment().deleteEmployeeByName(empName);
+	  Department d = Department.searchDepartmentById(depId);
+	  e.setDepartment(d);
+	  d.addEmployee(e);
+      e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
+       /* change employee's id based on his new department */
   
   }
+
+
   }

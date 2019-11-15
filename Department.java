@@ -51,12 +51,13 @@ public class Department {
     for (int i = 0; i < employeesOfDepartment.size(); i++) {
       if (employeesOfDepartment.get(i).getNameSurname().contentEquals(name)) {
         employeesOfDepartment.remove(i);
-        System.out.println("Employee was removed");
-      } else { 
+        } else if (employeesOfDepartment.get(i).getSurname().contentEquals(name)) {
+    	        employeesOfDepartment.remove(i);
+      } else
         System.out.println("This employee couldn't be removed because he wasn't found in this department");     
       }
     }
-  }// a method that deletes a specific employee from a department's arraylist using his name to find him
+  // a method that deletes a specific employee from a department's arraylist using his name to find him
   public void deleteEmployeeById(String id) {
     for (int i = 0; i < employeesOfDepartment.size(); i++) {
       if (employeesOfDepartment.get(i).getId().equals(id)) {
@@ -81,14 +82,15 @@ public class Department {
     String.format("%30s%30s", id, name);
     return str_1;
   }
-  public Department searchDepartmentById(String id) {
-    for (int i = 0 ; i < departments.size() ; i++) {
-      if (departments.get(i).getId().equals(id)) {
-        System.out.println("The department you search has been found: " + departments.get(i)); /*may not needed*/
-        return departments.get(i);
-    }
-   }
-   return null;
+  
+  public static Department searchDepartmentById(int id) {
+	  for (int i = 0; i < departments.size(); i++) {
+	      if (departments.get(i).getId() == id) {
+	        return departments.get(i);
+	      } 
+	  }
+	return null;    
+	      	 
   }
-  }
+}
   

@@ -8,7 +8,7 @@ public class Account {
  private String password;
  
  public Account(Employee e) {
-	 department = e.getDepartment();
+	 department = e.getDepartmentName();
 	 name = e.getName();
 	 surname = e.getSurname();
 	 telephone = e.getTelephone();
@@ -37,4 +37,6 @@ public class Account {
          System.out.print("Invalid Phone number");
      	System.out.print("Please retype your Phone Number");
  */ }  
+ 
+ 
  }

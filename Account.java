@@ -1,3 +1,5 @@
+import java.util.Scanner;
+import java.util.ArrayList;
 public class Account {
  private String department;
  private String name;
@@ -6,6 +8,7 @@ public class Account {
  private String email;
  private String id;
  private String password;
+ private static ArrayList<Account> accounts = new ArrayList<Account>();
  
  public Account(Employee e) {
 	 department = e.getDepartmentName();
@@ -15,6 +18,7 @@ public class Account {
 	 email = e.getEmail();
 	 id = e.getId();
 	 password = Checkers.ValidPassword();
+	 accounts.add(this); /*Account object entered on accounts ArrayList*/ 
 	 /*
 	 if (isValidEmail(email)) 
          System.out.print("Valid Email"); 
@@ -36,7 +40,34 @@ public class Account {
      else
          System.out.print("Invalid Phone number");
      	System.out.print("Please retype your Phone Number");
- */ }  
- 
+ */ }  	
+ 	public Account searchAccountByEmail(String email) {
+ 		boolean exists = false;
+ 		for(int i=0;i<this.accounts.size();i++) {
+ 			if (this.accounts.get(i).getEmail()==email) {
+ 				exists=true;
+ 				break;
+ 			}
+ 			if(exists==true) {
+ 				return this.accounts;
+ 			}else {
+ 				System.out.println("The email you entered does not relate to an existing account");
+ 				return null;
+ 			}
+ 		}
+ 	}
+	public boolean Login() {
+		boolean success=false;
+		System.out.println("Welcome!");
+		System.out.println("Please insert your email");
+		Scanner sc = new Scanner(System.in);
+		String email=sc.nextLine();
+		System.out.println("Please insert your password");
+		String password = sc.nextLine();
+		if (password==searchAccountByEmail(email).getPassword()) {
+			success=true;
+		}
+		return success;
+	}
  
  }

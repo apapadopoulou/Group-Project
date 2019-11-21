@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class MiddleManager extends Employee {
   private ArrayList <Department> managingDepartments = new ArrayList <Department>();
   private ArrayList <String> namesOfManagingDepartments = new ArrayList <String>();
+  public static ArrayList <MiddleManager> middleManagers = new ArrayList <MiddleManager>();
   public MiddleManager(String name, String surname, int telephone, String email, Department department){
 	    super(name, surname, telephone, email, department);
 	    for(int i = 1; i < Department.departments.size(); i++) {
@@ -24,6 +25,7 @@ public class MiddleManager extends Employee {
 	    }
 	    input.close();
 	    System.out.println("The managing departments have been saved");
+	    middleManagers.add(this);
   }
   
   
@@ -64,7 +66,15 @@ public String toString() {
 			
 }
 
-
+public static MiddleManager searchMiddleManagerById(String id) {
+	  for (int i = 0; i < middleManagers.size(); i++) {
+	      if (middleManagers.get(i).getId().contentEquals(id)) {
+	        return middleManagers.get(i);
+	      } 
+	  }
+	return null;    
+	      	 
+}
 
 @Override
 public String getJobTitle() {

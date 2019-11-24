@@ -1,4 +1,7 @@
 import java.util.Scanner;
+
+import project.Employee;
+
 import java.util.ArrayList;
 public class Account {
  private String department;

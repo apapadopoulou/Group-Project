@@ -3,10 +3,10 @@ public class Department {
   private int id;
   private String name;
   private static int num_dep = 1; // counter
-  private ArrayList <BasicEmployee> employeesOfDepartment = new ArrayList <BasicEmployee>(); /* a list that contains the employees
+  private ArrayList <Employee> employeesOfDepartment = new ArrayList <Employee>(); /* a list that contains the employees
   of each department separately*/
   public static ArrayList <Department> departments = new ArrayList <Department>(); // a list that contains all the departments
-  public Department(String name, ArrayList<BasicEmployee> employeesOfDepartment) {
+  public Department(String name, ArrayList<Employee> employeesOfDepartment) {
     id = num_dep++;
     this.name = name;
     this.employeesOfDepartment = employeesOfDepartment;
@@ -19,13 +19,13 @@ public class Department {
     return id;
   }
   
-  public ArrayList<BasicEmployee> getEmployeesOfDepartment() {
+  public ArrayList<Employee> getEmployeesOfDepartment() {
     return employeesOfDepartment;
   }
-  public void addEmployee(BasicEmployee employee) {
+  public void addEmployee(Employee employee) {
     employeesOfDepartment.add(employee);
   }
-  public BasicEmployee searchEmployeeByName(String name) {
+  public Employee searchEmployeeByName(String name) {
     for (int i = 0; i < employeesOfDepartment.size(); i++) {
       if (employeesOfDepartment.get(i).getNameSurname().equals(name)) {
         System.out.println("The employee was found");

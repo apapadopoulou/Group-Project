@@ -5,7 +5,7 @@ import java.text.ParseException;
 	 private String oldDate;
 	 
 	
-	 public TimeOff(String oldDate, int days) {
+	 public class TimeOff(String oldDate, int days) {
 	 //Given Date in String format
 		 	this.oldDate = oldDate;
 		 	System.out.println("Starting day is: "+oldDate);

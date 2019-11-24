@@ -4,9 +4,8 @@ public class MiddleManager extends Employee {
   private ArrayList <Department> managingDepartments = new ArrayList <Department>();
   private ArrayList <String> namesOfManagingDepartments = new ArrayList <String>();
   public static ArrayList <MiddleManager> middleManagers = new ArrayList <MiddleManager>();
-  public MiddleManager(String name, String surname, int telephone, String email, String id){
-	    super(name, surname, telephone, email);
-	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
+  public MiddleManager(String name, String surname, int telephone, String email, Department department){
+	    super(name, surname, telephone, email, department);
 	    for(int i = 1; i < Department.departments.size(); i++) {
 	    	Department.searchDepartmentById(i).toString();
 	    }
@@ -27,7 +26,6 @@ public class MiddleManager extends Employee {
 	    input.close();
 	    System.out.println("The managing departments have been saved");
 	    middleManagers.add(this);
-	    employees.add(this);
   }
   
   
@@ -64,7 +62,7 @@ public void setNamesOfManagingDepartments(ArrayList<String> namesOfManagingDepar
 @Override
 public String toString() {
 	return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getId() + ", Email = " + getEmail() + ", Telephone = " + getTelephone()
-			+ ", Managing Departments = " + getNamesOfManagingDepartments();
+			+ ", Department = " + getDepartmentName() + ", Managing Departments = " + getNamesOfManagingDepartments();
 			
 }
 

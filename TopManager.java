@@ -5,8 +5,9 @@ public class TopManager extends Employee{
   private ArrayList <MiddleManager> managingManagers = new ArrayList <MiddleManager>();
   private ArrayList <String> namesOfManagingManagers = new ArrayList <String>();
   public static ArrayList <TopManager> topManagers = new ArrayList <TopManager>();
-  public TopManager( String name, String surname, int telephone, String email, Department department){
-    super(name, surname, telephone, email, department);
+  public TopManager( String name, String surname, int telephone, String email, String id){
+    super(name, surname, telephone, email);
+    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(topManagers.size());
     for(int i = 1; i < MiddleManager.middleManagers.size(); i++) {
     	MiddleManager.searchMiddleManagerById(String.valueOf(i)).toString();
     }
@@ -27,6 +28,7 @@ public class TopManager extends Employee{
     input.close();
     System.out.println("The managing managers have been saved");
     topManagers.add(this);
+    employees.add(this);
 }
   
 @Override

@@ -4,10 +4,11 @@ import java.util.Scanner;
 public class Task extends Program{
 	private Date dueDate;
 	private boolean done;
-	private int significance_level;  /*[1-10]*/ 
-	public Task(Date dueDate) {
+	private int levelOfImportance;  /*The level of importance should be between 1 to 10*/ 
+	public Task(Date dueDate, int levelOfImportance) {
 		this.dueDate = dueDate;
 		done = false;
+		this.levelOfImportance = levelOfImportance;
 	}
 	public Date getDueDate() {
 		return dueDate;
@@ -21,7 +22,17 @@ public class Task extends Program{
 	public void setStatus(boolean status) {
 		done = status;
 	}
-	public void newTask() {
+	public int getLevelOfImportance() {
+		return levelOfImportance;
+	}
+	public void setLevelOfImportance(int levelOfImportance) {
+		this.levelOfImportance = levelOfImportance;
+	}
+	/*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
+	you need to create a group task.*/
+	public void newTask() { 
+		Scanner sc = new Scanner(System.in);
+		System.out.println("You are about to create a Task.")
 	} 
 
 	        System.out.print("Insert first date: ");
@@ -76,6 +87,7 @@ public int parts() {
 	parts=sc.hasNextInt();
 	return parts;
 }
+
 
 
 }

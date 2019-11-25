@@ -1,3 +1,7 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -32,7 +36,15 @@ public class Task extends Program{
 	you need to create a group task.*/
 	public void newTask() { 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("You are about to create a Task.")
+		System.out.println("You are about to create a Task.");
+		System.out.println("Please insert due date:/n Note: Due date should be inserted according to the format dd-mm-yyy!");
+		String inputDate = sc.nextLine();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate dueDate = LocalDate.parse(inputDate);
+		System.out.println("Please insert level of importance for this task:");
+		int levelOfImportance = sc.nextInt();
+		
+		
 	} 
 
 	        System.out.print("Insert first date: ");

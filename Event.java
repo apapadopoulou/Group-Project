@@ -1,5 +1,4 @@
-
-public class Event {
+public class Event extends Program{
 	private String title;
 	private String date;
 

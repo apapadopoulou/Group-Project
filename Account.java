@@ -67,18 +67,19 @@ public class Account {
  		}
  	}
  }
-
- public boolean Login() {
-	boolean success=false;
-	System.out.println("Welcome!");
-	System.out.println("Please insert your email");
-	Scanner sc = new Scanner(System.in);
-	String email=sc.nextLine();
-	System.out.println("Please insert your password");
-	String password = sc.nextLine();
-	if (password==searchAccountByEmail(email).getPassword()) {
-		success=true;
-	}
-	return success;
- }
+ 	/*This method checks if the password and the email of the input 
+ 	 * are equal to the password and the email of the user.*/
+ 	public boolean login() {
+ 		boolean success=false;
+ 		System.out.println("Welcome!");
+ 		System.out.println("Please insert your email");
+ 		Scanner sc = new Scanner(System.in);
+ 			String email=sc.nextLine();
+ 			System.out.println("Please insert your password");
+ 			String password = sc.nextLine();
+ 			if (password.equals(searchAccountByEmail(email).getPassword()) && email.equals(searchAccountByEmail(email).getEmail())) {
+ 				success=true;
+ 			}
+ 			return success;
+ 	}
 }

@@ -26,7 +26,7 @@ public abstract class Employee {
     return department.getName();
   }
   public Department getDepartment() {
-	  return department;
+    return department;
   }
   public String getName() {
     return name;
@@ -64,8 +64,8 @@ public abstract class Employee {
     this.email = email;
   }
   public void setId(String id) {
-		this.id = id;
-	}
+    this.id = id;
+  }
   @Override
   public String toString() {
         String str_2 = "";
@@ -79,37 +79,37 @@ public abstract class Employee {
   }
   public abstract String getJobTitle();
   public static Employee searchEmployeeByName2(String name) {
-	  for (int i = 0; i < employees.size(); i++) {
-	      if (employees.get(i).getNameSurname().equals(name)) {
-	        return employees.get(i);
-	      } else if (employees.get(i).getSurname().equals(name)) {
-	    	  return employees.get(i);
-	      } else 
-	    	  System.out.println("Employee was not found");
-	    }
-	    return null;
+    for (int i = 0; i < employees.size(); i++) {
+        if (employees.get(i).getNameSurname().equals(name)) {
+          return employees.get(i);
+        } else if (employees.get(i).getSurname().equals(name)) {
+          return employees.get(i);
+        } else 
+          System.out.println("Employee was not found");
+      }
+      return null;
   }
   
   public static Employee searchEmployeeById2(String id) {
-	  for (int i = 0; i < employees.size(); i++) {
-	      if (employees.get(i).getId() == id) {
-	        return employees.get(i);
-	      } 
-	    }
-	    return null;
+    for (int i = 0; i < employees.size(); i++) {
+        if (employees.get(i).getId() == id) {
+          return employees.get(i);
+        } 
+      }
+      return null;
   }
   
+  /* this is a method that changes employee's id based on his new department */
   public void changeDepartmentAndId(String empName, int depId) {
        /* System.out.println('Insert the name of department in which you want to get included');
         String depname = sc.nextLine(); -> for main*/
       Employee e = Employee.searchEmployeeByName2(empName);
       e.getDepartment().deleteEmployeeByName(empName);
-	  Department d = Department.searchDepartmentById(depId);
-	  e.setDepartment(d);
-	  d.addEmployee(e);
+    Department d = Department.searchDepartmentById(depId);
+    e.setDepartment(d);
+    d.addEmployee(e);
       e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
-       /* change employee's id based on his new department */
-  
+      
   }
 
 

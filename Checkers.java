@@ -15,21 +15,21 @@ public class Checkers {
             return false;
         return pat.matcher(email).matches();
     }
-		// validate last name
+		// This method validate first name
 		public static boolean isValidFirstName( String firstName ) {
 	      return firstName.matches( "[A-Z][a-z]*" );
 	   }
-	   // validate last name
+	   // This method validate last name
 	   public static boolean isValidLastName( String lastName ) {
 	      return lastName.matches( "[A-Z][a-z]*" );
 	   }
 
-	   // validate phone number
+	   //This method validate phone number with specific ways
 	   private static boolean isValidPhoneNumber(String phoneNo) {
 			//validate phone numbers of format "1234567890"
 			if (phoneNo.matches("\\d{10}"))
 				return true;
-			//validating phone number with -, . or spaces
+			//validating phone number with -, . or spaces for example 210-96-13-432
 			else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}"))
 				return true;
 			else
@@ -61,7 +61,7 @@ public class Checkers {
 			      return password;
 
 			   }
-			   //vallidate event title
+			   //This method validate the event title (speficic titles) 
 			   public static boolean isValidTitle(String title) {
 				   return title == "appointment" || title == "meeting" || title == "main event";
 			   }

@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Task extends Program{
 	private Date dueDate;
 	private boolean done;
+	private int parts;
 	private int levelOfImportance;  /*The level of importance should be between 1 to 10*/ 
 	public Task(Date dueDate, int levelOfImportance) {
 		this.dueDate = dueDate;
@@ -43,8 +44,6 @@ public class Task extends Program{
 		LocalDate dueDate = LocalDate.parse(inputDate);
 		System.out.println("Please insert level of importance for this task:");
 		int levelOfImportance = sc.nextInt();
-		
-		
 	} 
 
 	        System.out.print("Insert first date: ");
@@ -92,12 +91,16 @@ public class Task extends Program{
 
 	        System.out.println ("Days: " + diff / 1000 / 60 / 60 / 24);
 	
-	
-public int parts() {
-	System.out.println("In how many parts do you want to divide your work with");
-	Scanner sc = new Scanner(System.in);
-	parts=sc.hasNextInt();
-	return parts;
+	/*This method lets the user choose in how many parts the task should be devided.*/
+	    public void taskSegmentation() {
+	        System.out.println("In how many parts should the task be devided?");
+	       	Scanner sc = new Scanner(System.in);
+	       	parts = sc.hasNextInt();
+	       	this.parts = parts;
+	       	
+	       	for (int count = parts) {
+	       		PersonalisedCalendar
+	       	}
 }
 
 

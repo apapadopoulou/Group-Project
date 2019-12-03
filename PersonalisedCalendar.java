@@ -8,12 +8,6 @@ public class PersonalisedCalendar /*extends Calendar*/ {
 	private Day day;
 	private Task task;
 	private Event event;
-	/*Creating constructor */
-	public PersonalisedCalendar(Day day, Task task, Event event) {
-		this.day = day;
-		this.task = task;
-		this.event = event;
-	}
 	/* Creating a 2X2 table named calendar of type Day and containing every day of the year*/
 	private Day [] [] calendar = new Day [12][]; 
 	/* PersonalisedCalendar method inputs the specific amount of days each month has */

@@ -43,5 +43,60 @@ public class Test {
         BasicEmployee basemp = new BasicEmployee(bname, bsurname, btelephone, bemail, bdep);
     }
     } while (bname != " ");
-    }
-    }
+    /* the user is going to insert all the middle managers*/
+    String mname;
+    String msurname;
+    String mtelephone;
+    String memail;
+    Int did;
+    ArrayList <Department> managingdeps = new ArrayList <Department>();
+    do {
+        System.out.println("Insert name of middle manager. In case you have inserted all the middle managers, please press enter");
+        mname = sc.nextLine();
+        if (mname != " ") {
+            do {
+                System.out.println("Now insert id of departments he manages. When there is no other department to insert, please press -1");
+                did = sc.nextInt();
+                if (did != -1) {
+                    for (Department d : Department.departments) {
+                        if (did = Department.departments.getId()) {
+                            managingdeps.add(d);
+                        }
+                    }
+                    System.out.println("Now insert surname, telephone and email for this middle manager in that order");
+                    msurname = sc.nextLine();
+                    mtelephone = sc.nextLine();
+                    memail = sc.nextLine();
+                    MiddleManager mm = new MiddleManager(mname, msurname, mtelephone, memail, managingdeps);
+                }
+            } while (did != 0);
+        }
+    } while (mname != " ");
+    /* the user is going to insert all the top managers */
+    String tname;
+    String tsurname;
+    String ttelephone;
+    String temail;
+    String depname;
+    Department dep;
+        do {
+            System.out.println("Insert name of top manager. In case you have inserted all the top managers, please press enter");
+            tname = sc.nextLine();
+            if (tname != " ") {
+                System.out.println("Now insert surname, telephone, email and department's name for this top manager in that order");
+                tsurname = sc.nextLine();
+                ttelephone = sc.nextLine();
+                temail = sc.nextLine();
+                depname = sc.nextLine();
+                for (Department d : Department.departments) {
+                    if (depname.equals(d.getName())) {
+                        dep = d;
+                    }
+                }
+                TopManager tm = new TopManager(tname, tsurname, ttelephone, temail, dep);
+            }
+        } while (tname != " ");
+           }
+ }   
+            
+             

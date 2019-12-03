@@ -1,56 +1,43 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import project.Employee;
 public class HumanResources {
-	private String email;
+
 	private double salary;
+	private String department;
 	private String name;
 	private String surname;
-	public static ArrayList <HumanResources> employees = new ArrayList<HumanResources>();
+	private int telephone;
+	private String email;
+	private String id;
+	private String password;
+	private static ArrayList<HumanResources> hr = new ArrayList<HumanResources>();
+    HumanResources hr1 = new HumanResources();
+
     /*Constructor for class HumanResources*/
-    public HumanResources(String email, double salary, String name, String surname) {
-		this.email = email;
-		this.salary = salary;
-		this.name = name;
-		this.surname = surname;
+    public HumanResources(Employee emp) {
+		salary = emp.getSalary();
+		department = emp.getDepartmentName();
+	    name = emp.getName();
+		surname = emp.getSurname();
+		telephone = emp.getTelephone();
+		email = emp.getEmail();
+		id = emp.getId();
+		password = Checkers.ValidPassword();
+	    hr.add(this);
     }
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
-	public String getEmail() {
-		return email;
-	}
-	 public void setName(String name) {
-		 this.name = name;
-	 }
-	 public String getName() {
-		 return name;
-	 }
-	 public void setSurname(String surname) {
-		 this.surname = surname;
-	 }
-	 public String getSurname() {
-		 return surname;
-	 }
 
-    public void setSalary(double salary) {
-			this.salary = salary;
-	}
-    public double getSalary() {
-		return salary;
-    }
 /*Using for loop in order to find out if the employee is a HR Director and to display the salary of the current employee*/
-       for (counter = 0; counter <= employees.size(); counter++) {
-        if (email.contains("HR")) {
+       for (counter = 0; counter < hr.size(); counter++) {
+        hr1.login();
+        if (department == "HR") {
             System.out.println("The Keyword :HR: is found. The connected user is a HR Director!");
         } else {
             System.out.println("The Keyword :HR: is not found. The connected user is not a HR Director!");
         }
           System.out.println("The salary of the current employee is:" + salary);
        }
-
-
-
 
 /*Creating method to display the menu to the employee*/
    public static void Display_Menu() {
@@ -79,3 +66,4 @@ public class HumanResources {
 	   Menu1(); /*Calling method Menu1*/
    }
 }
+

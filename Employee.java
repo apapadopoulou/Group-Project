@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 public abstract class Employee {
+  private double salary;
   private Department department;
   private String name;
   private String surname;
@@ -12,12 +13,13 @@ public abstract class Employee {
   /*????? ??? ??? ?????????? ??? ???????????? Employee*/
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   /* ?????? Constructor ??? ??? ????? Employee*/
-  public Employee(String name, String surname, int telephone, String email, Department department) {
+  public Employee(String name, String surname, int telephone, String email, Department department, double salary) {
     this.name = name;
     this.surname = surname;
     this.telephone = telephone;
     this.email = email;
     this.department = department;
+    this.salary = salary;
     department.getEmployeesOfDepartment().add(this);
     id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + String.valueOf(department.getEmployeesOfDepartment().size());
     employees.add(this);
@@ -34,6 +36,9 @@ public abstract class Employee {
   }
   public String getSurname() {
     return surname;
+  }
+  public double getSalary() {
+    return salary;
   }
   
   public String getEmail() {
@@ -53,6 +58,9 @@ public abstract class Employee {
   }
   public String getNameSurname() {
       return getName() + getSurname();
+  }
+  public void setSalary(double salary) {
+      this.salary = salary;
   }
   
   public int getTelephone() {
@@ -74,8 +82,9 @@ public abstract class Employee {
         String.format("%30s", surname) +
         String.format("%30s", telephone) +
         String.format("%30s", email) +
-        String.format("%30s", id); */
-        String.format("%30s%30s%30s%30s%30s", name, surname, telephone, email, id );
+        String.format("%30s", id); 
+        String.format("%30s", salary);*/
+        String.format("%30s%30s%30s%30s%30s", name, surname, telephone, email, id, salary );
         return str_2;
   }
   public abstract String getJobTitle();

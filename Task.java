@@ -45,7 +45,8 @@ public class Task extends Program{
 		System.out.println("Please insert level of importance for this task:");
 		int levelOfImportance = sc.nextInt();
 	} 
-
+	/*Method calculating the difference between two dates*/
+	public int difference(firstDate, secondDate) {
 	        System.out.print("Insert first date: ");
 	        Scanner s = new Scanner(System.in);
 	        String[] insert1 = new String[3];
@@ -90,6 +91,7 @@ public class Task extends Program{
 	        long diff = secondDate.getTime() - firstDate.getTime();
 
 	        System.out.println ("Days: " + diff / 1000 / 60 / 60 / 24);
+	}
 	
 	/*This method lets the user choose in how many parts the task should be devided.*/
 	    public void taskSegmentation() {

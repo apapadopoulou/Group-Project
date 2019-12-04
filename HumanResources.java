@@ -13,7 +13,7 @@ public class HumanResources {
 	private String id;
 	private String password;
 	private static ArrayList<HumanResources> hr = new ArrayList<HumanResources>();
-    HumanResources hr1 = new HumanResources();
+    HumanResources hr1 = new HumanResources(); /*Creating ArrayList hr1*/
 
     /*Constructor for class HumanResources*/
     public HumanResources(Employee emp) {

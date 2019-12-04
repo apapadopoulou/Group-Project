@@ -3,7 +3,7 @@ public class Event extends Program{
 	private String title;
 	private String date;
 	private LocalTime time;
-	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee();
+	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
 	public Event(String title, String date, LocalTime time) {
 		super(date);
 		this.title = title;

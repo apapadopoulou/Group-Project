@@ -1,13 +1,19 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 public class Task extends Program{
 	private Date dueDate;
 	private boolean done;
-	private int significance_level;  /*[1-10]*/ 
-	public Task(Date dueDate) {
+	private int parts;
+	private int levelOfImportance;  /*The level of importance should be between 1 to 10*/ 
+	public Task(Date dueDate, int levelOfImportance) {
 		this.dueDate = dueDate;
 		done = false;
+		this.levelOfImportance = levelOfImportance;
 	}
 	public Date getDueDate() {
 		return dueDate;
@@ -21,7 +27,23 @@ public class Task extends Program{
 	public void setStatus(boolean status) {
 		done = status;
 	}
-	public void newTask() {
+	public int getLevelOfImportance() {
+		return levelOfImportance;
+	}
+	public void setLevelOfImportance(int levelOfImportance) {
+		this.levelOfImportance = levelOfImportance;
+	}
+	/*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
+	you need to create a group task.*/
+	public void newTask() { 
+		Scanner sc = new Scanner(System.in);
+		System.out.println("You are about to create a Task.");
+		System.out.println("Please insert due date:/n Note: Due date should be inserted according to the format dd-mm-yyy!");
+		String inputDate = sc.nextLine();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		LocalDate dueDate = LocalDate.parse(inputDate);
+		System.out.println("Please insert level of importance for this task:");
+		int levelOfImportance = sc.nextInt();
 	} 
 
 	        System.out.print("Insert first date: ");
@@ -69,13 +91,18 @@ public class Task extends Program{
 
 	        System.out.println ("Days: " + diff / 1000 / 60 / 60 / 24);
 	
-	
-public int parts() {
-	System.out.println("In how many parts do you want to divide your work with");
-	Scanner sc = new Scanner(System.in);
-	parts=sc.hasNextInt();
-	return parts;
+	/*This method lets the user choose in how many parts the task should be devided.*/
+	    public void taskSegmentation() {
+	        System.out.println("In how many parts should the task be devided?");
+	       	Scanner sc = new Scanner(System.in);
+	       	parts = sc.hasNextInt();
+	       	this.parts = parts;
+	       	
+	       	for (int count = parts) {
+	       		PersonalisedCalendar
+	       	}
 }
+
 
 
 }

@@ -1,17 +1,19 @@
-
-public class Event {
+import java.util.ArrayList;
+public class Event extends Program{
 	private String title;
 	private String date;
-
-	public Event(String title, String date) {
+	private LocalTime time;
+	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee();
+	public Event(String title, String date, LocalTime time) {
 		this.title = title;
 		do {
-		if (Checkers.isValidTitle(title)) 
+		if (Checkers.isValidTitle(title))
 			System.out.println("Valid Title");
-		else 
+		else
 			System.out.println("Invalid Title; Insert a new one");
 		} while (Checkers.isValidTitle(title));
 		this.date = date;
+		this.time = time;
 	}
 
 	public String getTitle() {

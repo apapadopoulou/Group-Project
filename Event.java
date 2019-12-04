@@ -5,6 +5,7 @@ public class Event extends Program{
 	private LocalTime time;
 	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee();
 	public Event(String title, String date, LocalTime time) {
+		super(date);
 		this.title = title;
 		do {
 		if (Checkers.isValidTitle(title))
@@ -24,12 +25,5 @@ public class Event extends Program{
 		this.title = title;
 	}
 
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
 
 }

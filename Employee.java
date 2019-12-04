@@ -8,11 +8,14 @@ public abstract class Employee {
   private String email;
   private String id;
 <<<<<<< HEAD
+<<<<<<< HEAD
   /*ArrayList that stores Employee objects*/
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   /*Constructor for class Employee*/
   public Employee(String name, String surname, int telephone, String email, Department department) {
 =======
+=======
+>>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
   private PersonalisedCalendar employeesCalendar = new PersonalisedCalendar();
   /*????????? ??? ??????? ??? ?? ID*/
   private static int counter = 1;
@@ -20,6 +23,9 @@ public abstract class Employee {
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   /* ?????? Constructor ??? ??? ????? Employee*/
   public Employee(String name, String surname, int telephone, String email, Department department, double salary) {
+<<<<<<< HEAD
+>>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
+=======
 >>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
     this.name = name;
     this.surname = surname;

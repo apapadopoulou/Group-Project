@@ -15,7 +15,12 @@ import java.io.IOException;
 	 private String oldDate;
 	 static String absolutePath = "C:\\Users\\Bill\\Desktop\\ΔΕΤ\\Java Προγραμματισμός 2\\Ομαδική εργασια HR\\src\\TimeOff.txt";
 	 
+<<<<<<< HEAD
 	 public TimeOff(String oldDate, int days) {
+=======
+	
+	 public class TimeOff(String oldDate, int days) {
+>>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
 	 //Given Date in String format
 		 	this.oldDate = oldDate;
 		 	System.out.println("Starting day is: "+oldDate);

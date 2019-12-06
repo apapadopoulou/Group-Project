@@ -5,7 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
-public class Task extends Program{
+import java.util.ArrayList;
+import java.util.Collections;
+public class Task extends Program implements Comparable<Task>{
 	private Date dueDate;
 	private boolean done;
 	private int parts;
@@ -102,8 +104,27 @@ public class Task extends Program{
 	       	
 	       	for (int count = parts) {
 	       		PersonalisedCalendar
-	       	}
-}
+	      }
+	    }
+	    @Override
+	    public int compareTo(Task task) {
+	    	return this.getLevelOfImportance().compareTo(task.getLevelOfImportance());
+	    }
+	    /*Method sorting tasks from most important to least important*/
+	    public static ArrayList<Task> sort_Tasks_By_LevelOfImportance (ArrayList<Task> task){
+	    	Collections.sort(task);
+	    	return task;
+	    }
+	    @Override
+	    public Date compareTo(Task task) {
+	    	return this.getDueDate().compareTo(task.getDueDate());
+	    }
+	    /*Method sorting tasks by DueDate*/
+	    public static ArrayList<Task> sort_Tasks_By_Due_Date(ArrayList<Task> task){
+	    	Collections.sort(task);
+	    	return task;
+	    }
+	    
 
 
 

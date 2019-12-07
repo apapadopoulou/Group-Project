@@ -1,57 +1,27 @@
 import java.util.ArrayList;
 public abstract class Employee {
-  private double salary;
-  private Department department;
   private String name;
   private String surname;
   private int telephone;
   private String email;
   private String id;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  /*ArrayList that stores Employee objects*/
-  public static ArrayList<Employee> employees = new ArrayList<Employee>();
-  /*Constructor for class Employee*/
-  public Employee(String name, String surname, int telephone, String email, Department department) {
-=======
-=======
->>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
-  private PersonalisedCalendar employeesCalendar = new PersonalisedCalendar();
   /*????????? ??? ??????? ??? ?? ID*/
   private static int counter = 1;
   /*????? ??? ??? ?????????? ??? ???????????? Employee*/
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   /* ?????? Constructor ??? ??? ????? Employee*/
-  public Employee(String name, String surname, int telephone, String email, Department department, double salary) {
-<<<<<<< HEAD
->>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
-=======
->>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
+  public Employee(String name, String surname, int telephone, String email) {
     this.name = name;
     this.surname = surname;
     this.telephone = telephone;
     this.email = email;
-    this.department = department;
-    this.salary = salary;
-    department.getEmployeesOfDepartment().add(this);
-    id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + String.valueOf(department.getEmployeesOfDepartment().size());
-    employees.add(this);
   }
-  
-  public String getDepartmentName() {
-    return department.getName();
-  }
-  public Department getDepartment() {
-    return department;
-  }
+
   public String getName() {
     return name;
   }
   public String getSurname() {
     return surname;
-  }
-  public double getSalary() {
-    return salary;
   }
   
   public String getEmail() {
@@ -60,9 +30,7 @@ public abstract class Employee {
   public String getId() {
     return id;
   }
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+
   public void setName(String name) {
     this.name = name;
   }
@@ -71,9 +39,6 @@ public abstract class Employee {
   }
   public String getNameSurname() {
       return getName() + getSurname();
-  }
-  public void setSalary(double salary) {
-      this.salary = salary;
   }
   
   public int getTelephone() {
@@ -86,8 +51,8 @@ public abstract class Employee {
     this.email = email;
   }
   public void setId(String id) {
-    this.id = id;
-  }
+		this.id = id;
+	}
   @Override
   public String toString() {
         String str_2 = "";
@@ -95,45 +60,18 @@ public abstract class Employee {
         String.format("%30s", surname) +
         String.format("%30s", telephone) +
         String.format("%30s", email) +
-        String.format("%30s", id); 
-        String.format("%30s", salary);*/
-        String.format("%30s%30s%30s%30s%30s", name, surname, telephone, email, id, salary );
+        String.format("%30s", id); */
+        String.format("%30s%30s%30s%30s%30s", name, surname, telephone, email, id );
         return str_2;
   }
   public abstract String getJobTitle();
-  public static Employee searchEmployeeByName2(String name) {
-    for (int i = 0; i < employees.size(); i++) {
-        if (employees.get(i).getNameSurname().equals(name)) {
-          return employees.get(i);
-        } else if (employees.get(i).getSurname().equals(name)) {
-          return employees.get(i);
-        } else 
-          System.out.println("Employee was not found");
-      }
-      return null;
-  }
-  
+
   public static Employee searchEmployeeById2(String id) {
-    for (int i = 0; i < employees.size(); i++) {
-        if (employees.get(i).getId() == id) {
-          return employees.get(i);
-        } 
-      }
-      return null;
+	  for (int i = 0; i < employees.size(); i++) {
+	      if (employees.get(i).getId() == id) {
+	        return employees.get(i);
+	      } 
+	    }
+	    return null;
   }
-  
-  /* this is a method that changes employee's id based on his new department */
-  public void changeDepartmentAndId(String empName, int depId) {
-       /* System.out.println('Insert the name of department in which you want to get included');
-        String depname = sc.nextLine(); -> for main*/
-      Employee e = Employee.searchEmployeeByName2(empName);
-      e.getDepartment().deleteEmployeeByName(empName);
-    Department d = Department.searchDepartmentById(depId);
-    e.setDepartment(d);
-    d.addEmployee(e);
-      e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
-      
-  }
-
-
-  }
+}

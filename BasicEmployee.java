@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 
 public class BasicEmployee extends Employee {
-	public BasicEmployee(String name, String surname,int telephone, String email, Department department, String id) {
-		super(name, surname, telephone, email, department);
 	private Department department;
 	public static ArrayList <BasicEmployee> basicEmployees = new ArrayList <BasicEmployee>(); 
 	public BasicEmployee(String name, String surname,int telephone, String email, String id, Department department) {

@@ -59,6 +59,14 @@ public static MiddleManager searchMiddleManagerById(String id) {
 	return null;    
 	      	 
 }
+
+public static Department showDepartments(Department departments) {
+	for (int i = 0; i < departments.size(); i++) {
+		System.out.println("The department name is:" + departments.get(i));
+		return departments.get(i);
+	}
+}	
+
 @Override
 public String getJobTitle() {
 	// TODO Auto-generated method stub

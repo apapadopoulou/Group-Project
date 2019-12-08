@@ -7,11 +7,9 @@ public abstract class Employee {
   private String email;
   private String id;
   private Date birthdate;
-  /*????????? ??? ??????? ??? ?? ID*/
-  private static int counter = 1;
-  /*????? ??? ??? ?????????? ??? ???????????? Employee*/
+  
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
-  /* ?????? Constructor ??? ??? ????? Employee*/
+  // Constructor
   public Employee(String name, String surname, int telephone, String email, Date birthdate) {
     this.name = name;
     this.surname = surname;
@@ -56,6 +54,8 @@ public abstract class Employee {
   public void setId(String id) {
 		this.id = id;
 	}
+  
+  // Method toString including a String format for the given data
   @Override
   public String toString() {
         String str_2 = "";
@@ -69,6 +69,7 @@ public abstract class Employee {
   }
   public abstract String getJobTitle();
 
+  // Returns the employee we searched for
   public static Employee searchEmployeeById2(String id) {
 	  for (int i = 0; i < employees.size(); i++) {
 	      if (employees.get(i).getId() == id) {

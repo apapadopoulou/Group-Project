@@ -69,7 +69,7 @@ public class Account {
  		}
  	}
  }
- 	/*This method checks if the password and the email of the input 
+ 	/*This method checks if the password and the email of the input
  	 * are equal to the password and the email of the user.*/
  	public static boolean login() {
  		boolean success=false;
@@ -91,9 +91,41 @@ public class Account {
  		login();
  		jf.setVisible(true);
  		//Tried to create the login window but failed
- 		
+
  	}
  	//public static void main(String [] args) {
  	//	firstScreen();
  	//}
+
+ 	/* This method generates Employee's password */
+ 	public static string passwordGenerator {
+		PasswordGenerator gen = new PasswordGenerator();
+		CharacterData lowerCaseChars = EnglishCharacterData.LowerCase;
+		CharacterRule lowerCaseRule = new CharacterRule(lowerCaseChars);
+		lowerCaseRule.setNumberOfCharacters(1);
+
+		CharacterData upperCaseChars = EnglishCharacterData.UpperCase;
+		CharacterRule upperCaseRule = new CharacterRule(upperCaseChars);
+		upperCaseRule.setNumberOfCharacters(1);
+
+		CharacterData digitChars = EnglishCharacterData.Digit;
+		CharacterRule digitRule = new CharacterRule(digitChars);
+		digitRule.setNumberOfCharacters(1);
+
+		CharacterData specialChars = new CharacterData() {
+			public String getErrorCode() {
+				return ERROR_CODE;
+			}
+
+		    public String getCharacters() {
+		            return "!@#$%^&*()_+";
+		    }
+		};
+		CharacterRule splCharRule = new CharacterRule(specialChars);
+		splCharRule.setNumberOfCharacters(1);
+
+		String password = gen.generatePassword(8, splCharRule, lowerCaseRule,
+		   upperCaseRule, digitRule);
+        return password;
+	}
 }

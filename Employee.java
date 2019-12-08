@@ -1,20 +1,23 @@
 import java.util.ArrayList;
+import java.util.Date;
 public abstract class Employee {
   private String name;
   private String surname;
   private int telephone;
   private String email;
   private String id;
+  private Date birthdate;
   /*????????? ??? ??????? ??? ?? ID*/
   private static int counter = 1;
   /*????? ??? ??? ?????????? ??? ???????????? Employee*/
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   /* ?????? Constructor ??? ??? ????? Employee*/
-  public Employee(String name, String surname, int telephone, String email) {
+  public Employee(String name, String surname, int telephone, String email, Date birthdate) {
     this.name = name;
     this.surname = surname;
     this.telephone = telephone;
     this.email = email;
+    this.birthdate = birthdate;
   }
 
   public String getName() {

@@ -1,6 +1,8 @@
 import java.util.Scanner;
-
-import project.Employee;
+import javax.swing.JFrame;
+//import project.Employee;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import java.util.ArrayList;
 public class Account {
@@ -69,9 +71,9 @@ public class Account {
  }
  	/*This method checks if the password and the email of the input 
  	 * are equal to the password and the email of the user.*/
- 	public boolean login() {
+ 	public static boolean login() {
  		boolean success=false;
- 		System.out.println("Welcome!");
+ 		//System.out.println("Welcome!");
  		System.out.println("Please insert your email");
  		Scanner sc = new Scanner(System.in);
  			String email=sc.nextLine();
@@ -82,4 +84,16 @@ public class Account {
  			}
  			return success;
  	}
+ 	public static void firstScreen() {
+ 		JFrame jf = new JFrame ("Welcome!");
+ 		jf.setBounds(0, 0, 800, 600);
+ 		System.out.println("Please login into your account: ");
+ 		login();
+ 		jf.setVisible(true);
+ 		//Tried to create the login window but failed
+ 		
+ 	}
+ 	//public static void main(String [] args) {
+ 	//	firstScreen();
+ 	//}
 }

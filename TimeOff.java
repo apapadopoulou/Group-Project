@@ -1,20 +1,68 @@
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.text.ParseException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+/**Class TimeOff
+ *  Class that handles timeOffs for employees
+ * 
+ * by Panos, Sarantos , Vasilis
+ */
  public class TimeOff {
 	 private String oldDate;
+	 static String absolutePath = "C:\\Users\\Bill\\Desktop\\���\\Java ��������������� 2\\������� ������� HR\\src\\TimeOff.txt";
 	 
-	
-	 public class TimeOff(String oldDate, int days) {
+//<<<<<<< HEAD
+	  public TimeOff(String oldDate, int days) {
+//>>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
 	 //Given Date in String format
-		 	this.oldDate = oldDate;
-		 	System.out.println("Starting day is: "+oldDate);
-			//Specifying date format that matches the given date
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		this.oldDate = oldDate;
+		System.out.println("Starting day is: "+oldDate);
+		//Specifying date format that matches the given date
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Calendar c = Calendar.getInstance();
+		try{
+		   //Setting the date to the given date
+		   c.setTime(sdf.parse(oldDate));
+		}catch(ParseException e){
+			e.printStackTrace();
+		}	
+		//Number of Days to add
+		c.add(Calendar.DAY_OF_MONTH, days);  
+		//Date after adding the days to the given date
+		String newDate = sdf.format(c.getTime());  
+		//Displaying the new Date after addition of Days
+		System.out.println("Ending day is: "+newDate);
+	 }
+	 
+	 //Checks if employee can have the specific day off//
+	 public static boolean check(Employee emp, String date) {
+		 
+		 return true;
+	 } 
+	 
+	 //Adds a day off (one day ONLY)//
+	 public static void addTimeOff(Employee emp, String date) {
+		 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 			Calendar c = Calendar.getInstance();
 			try{
 			   //Setting the date to the given date
-			   c.setTime(sdf.parse(oldDate));
+			   c.setTime(sdf.parse(date));
+			}catch(ParseException e){
+				e.printStackTrace();
+			 }
+	 }
+	 
+	 //Adds time off (ANY number of days)//
+	 public static void addTimeOff(Employee emp, String date, int days) {
+		 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			Calendar c = Calendar.getInstance();
+			try{
+			   //Setting the date to the given date
+			   c.setTime(sdf.parse(date));
 			}catch(ParseException e){
 				e.printStackTrace();
 			 }
@@ -22,11 +70,72 @@ import java.text.ParseException;
 			//Number of Days to add
 			c.add(Calendar.DAY_OF_MONTH, days);  
 			//Date after adding the days to the given date
-			String newDate = sdf.format(c.getTime());  
-			//Displaying the new Date after addition of Days
-			System.out.println("Ending day is: "+newDate);
+			String newDate = sdf.format(c.getTime());
 	 }
- }	
+	 //Returns String status of employees timeOffs and remaining timeOffs//
+	 public static String status(Employee emp) {
+		 try(FileWriter writer = new FileWriter(absolutePath)) {
+		     String fileContent = "This is a sample text.";
+		     writer.write(fileContent);
+		     writer.write(fileContent);
+		     writer.write("\n123213123421");
+		     writer.write("\n312412dsafe");
+		 } catch (IOException e) {
+			 System.out.println("laio2");
+		     // exception handling
+		 }
+
+		 // read the content from file
+		 try(FileReader reader = new FileReader(absolutePath)) {
+		     int ch = reader.read();
+		     while(ch != -1) {
+		         System.out.print((char)ch);
+		         ch = reader.read();
+		     }
+		 } catch (FileNotFoundException b) {
+			 System.err.print("File not Found: "+ b);
+		     // exception handling
+		 } catch (IOException c) {
+			 System.err.print("IO excpetion: "+ c);
+		     // exception handling
+		 }
+		 return "���";
+	 }		
+	 //Removes a day Off(one day ONLY)//
+	 public static void removeTimeOff(Employee emp, String date) {}
+	 //Removes a TimeOff(ANY number of days)//
+	 public static void removeTimeOff(Employee emp, String date, int days) {}
+	 // write the content in file 
+ }
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  /* 2nd way 
   	import java.time.LocalDate;
    	public class TimeOff {

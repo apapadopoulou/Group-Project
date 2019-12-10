@@ -5,7 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
-public class Task extends Program{
+import java.util.ArrayList;
+import java.util.Collections;
+public class Task extends Program implements Comparable<Task>{
 	private Date dueDate;
 	private boolean done;
 	private int parts;
@@ -45,7 +47,8 @@ public class Task extends Program{
 		System.out.println("Please insert level of importance for this task:");
 		int levelOfImportance = sc.nextInt();
 	} 
-
+	/*Method calculating the difference between two dates*/
+	public int difference(firstDate, secondDate) {
 	        System.out.print("Insert first date: ");
 	        Scanner s = new Scanner(System.in);
 	        String[] insert1 = new String[3];
@@ -90,6 +93,7 @@ public class Task extends Program{
 	        long diff = secondDate.getTime() - firstDate.getTime();
 
 	        System.out.println ("Days: " + diff / 1000 / 60 / 60 / 24);
+	}
 	
 	/*This method lets the user choose in how many parts the task should be devided.*/
 	    public void taskSegmentation() {
@@ -100,8 +104,27 @@ public class Task extends Program{
 	       	
 	       	for (int count = parts) {
 	       		PersonalisedCalendar
-	       	}
-}
+	      }
+	    }
+	    @Override
+	    public int compareTo(Task task) {
+	    	return this.getLevelOfImportance().compareTo(task.getLevelOfImportance());
+	    }
+	    /*Method sorting tasks from most important to least important*/
+	    public static ArrayList<Task> sort_Tasks_By_LevelOfImportance (ArrayList<Task> task){
+	    	Collections.sort(task);
+	    	return task;
+	    }
+	    @Override
+	    public Date compareTo(Task task) {
+	    	return this.getDueDate().compareTo(task.getDueDate());
+	    }
+	    /*Method sorting tasks by DueDate*/
+	    public static ArrayList<Task> sort_Tasks_By_Due_Date(ArrayList<Task> task){
+	    	Collections.sort(task);
+	    	return task;
+	    }
+	    
 
 
 

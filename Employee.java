@@ -1,34 +1,23 @@
 import java.util.ArrayList;
+import java.util.Date;
 public abstract class Employee {
-  private Department department;
   private String name;
   private String surname;
   private int telephone;
   private String email;
   private String id;
-  private PersonalisedCalendar employeesCalendar = new PersonalisedCalendar();
-  /*????????? ??? ??????? ??? ?? ID*/
-  private static int counter = 1;
-  /*????? ??? ??? ?????????? ??? ???????????? Employee*/
+  private Date birthdate;
+  
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
-  /* ?????? Constructor ??? ??? ????? Employee*/
-  public Employee(String name, String surname, int telephone, String email, Department department) {
+  // Constructor
+  public Employee(String name, String surname, int telephone, String email, Date birthdate) {
     this.name = name;
     this.surname = surname;
     this.telephone = telephone;
     this.email = email;
-    this.department = department;
-    department.getEmployeesOfDepartment().add(this);
-    id = String.valueOf(department.getId()) + name.substring(1,2) + surname.substring(1,2) + String.valueOf(department.getEmployeesOfDepartment().size());
-    employees.add(this);
+    this.birthdate = birthdate;
   }
-  
-  public String getDepartmentName() {
-    return department.getName();
-  }
-  public Department getDepartment() {
-    return department;
-  }
+
   public String getName() {
     return name;
   }
@@ -42,9 +31,7 @@ public abstract class Employee {
   public String getId() {
     return id;
   }
-  public void setDepartment(Department department) {
-    this.department = department;
-  }
+
   public void setName(String name) {
     this.name = name;
   }
@@ -65,8 +52,10 @@ public abstract class Employee {
     this.email = email;
   }
   public void setId(String id) {
-    this.id = id;
-  }
+		this.id = id;
+	}
+  
+  // Method toString including a String format for the given data
   @Override
   public String toString() {
         String str_2 = "";
@@ -79,6 +68,7 @@ public abstract class Employee {
         return str_2;
   }
   public abstract String getJobTitle();
+<<<<<<< HEAD
   public static Employee searchEmployeeByName2(String name) {
     for (int i = 0; i < employees.size(); i++) {
         if (employees.get(i).getNameSurname().equals(name)) {
@@ -130,6 +120,16 @@ public abstract class Employee {
       System.out.println("The employee with id "+this.getId()+"is not considered efficien.");
     }
     }
+=======
+>>>>>>> d4d00b167b3c91ed3df53269a2283fa7c5e5a206
 
-
+  // Returns the employee we searched for
+  public static Employee searchEmployeeById2(String id) {
+	  for (int i = 0; i < employees.size(); i++) {
+	      if (employees.get(i).getId() == id) {
+	        return employees.get(i);
+	      } 
+	    }
+	    return null;
   }
+}

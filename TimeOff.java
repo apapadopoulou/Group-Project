@@ -7,39 +7,35 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 /**Class TimeOff
- *  Class that handles timeOffs for employes
+ *  Class that handles timeOffs for employees
  * 
  * by Panos, Sarantos , Vasilis
  */
  public class TimeOff {
 	 private String oldDate;
-	 static String absolutePath = "C:\\Users\\Bill\\Desktop\\ΔΕΤ\\Java Προγραμματισμός 2\\Ομαδική εργασια HR\\src\\TimeOff.txt";
+	 static String absolutePath = "C:\\Users\\Bill\\Desktop\\οΏ½οΏ½οΏ½\\Java οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ 2\\οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½οΏ½ HR\\src\\TimeOff.txt";
 	 
-<<<<<<< HEAD
-	 public TimeOff(String oldDate, int days) {
-=======
-	
-	 public class TimeOff(String oldDate, int days) {
->>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
+//<<<<<<< HEAD
+	  public TimeOff(String oldDate, int days) {
+//>>>>>>> 29433e418283c8866ffcff32daedbf873d98b853
 	 //Given Date in String format
-		 	this.oldDate = oldDate;
-		 	System.out.println("Starting day is: "+oldDate);
-			//Specifying date format that matches the given date
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-			Calendar c = Calendar.getInstance();
-			try{
-			   //Setting the date to the given date
-			   c.setTime(sdf.parse(oldDate));
-			}catch(ParseException e){
-				e.printStackTrace();
-			 }
-			   
-			//Number of Days to add
-			c.add(Calendar.DAY_OF_MONTH, days);  
-			//Date after adding the days to the given date
-			String newDate = sdf.format(c.getTime());  
-			//Displaying the new Date after addition of Days
-			System.out.println("Ending day is: "+newDate);
+		this.oldDate = oldDate;
+		System.out.println("Starting day is: "+oldDate);
+		//Specifying date format that matches the given date
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Calendar c = Calendar.getInstance();
+		try{
+		   //Setting the date to the given date
+		   c.setTime(sdf.parse(oldDate));
+		}catch(ParseException e){
+			e.printStackTrace();
+		}	
+		//Number of Days to add
+		c.add(Calendar.DAY_OF_MONTH, days);  
+		//Date after adding the days to the given date
+		String newDate = sdf.format(c.getTime());  
+		//Displaying the new Date after addition of Days
+		System.out.println("Ending day is: "+newDate);
 	 }
 	 
 	 //Checks if employee can have the specific day off//
@@ -103,7 +99,7 @@ import java.io.IOException;
 			 System.err.print("IO excpetion: "+ c);
 		     // exception handling
 		 }
-		 return "υευ";
+		 return "οΏ½οΏ½οΏ½";
 	 }		
 	 //Removes a day Off(one day ONLY)//
 	 public static void removeTimeOff(Employee emp, String date) {}

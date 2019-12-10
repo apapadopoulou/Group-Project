@@ -1,15 +1,17 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 public class MiddleManager extends Employee {
   private ArrayList <Department> managingDepartments = new ArrayList <Department>();
   private ArrayList <String> namesOfManagingDepartments = new ArrayList <String>();
   public static ArrayList <MiddleManager> middleManagers = new ArrayList <MiddleManager>();
-  public MiddleManager(String name, String surname, int telephone, String email, String id){
-	    super(name, surname, telephone, email);
+  public MiddleManager(String name, String surname, int telephone, String email, Date birthdate, String id){
+	    super(name, surname, telephone, email, birthdate);
 	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
 	    for(int i = 1; i < Department.departments.size(); i++) {
 	    	Department.searchDepartmentById(i).toString();
 	    }
+	    //Constructs the list of the managing departments
 	    System.out.println("Type the ids of the managing departements");
 	    System.out.println("Press enter after each id entry");
 	    System.out.println("Press 0 and Enter if you're done");
@@ -31,45 +33,42 @@ public class MiddleManager extends Employee {
   }
 
 
-public ArrayList<Department> getManagingDepartments() {
-	return managingDepartments;
-}
-public void setManagingDepartments(ArrayList<Department> managingDepartments) {
-	this.managingDepartments = managingDepartments;
-}
-public ArrayList<String> getNamesOfManagingDepartments() {
-	return namesOfManagingDepartments;
-}
-public void setNamesOfManagingDepartments(ArrayList<String> namesOfManagingDepartments) {
-	this.namesOfManagingDepartments = namesOfManagingDepartments;
-}
-@Override
-public String toString() {
-	return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getId() + ", Email = " + getEmail() + ", Telephone = " + getTelephone()
-			+ ", Managing Departments = " + getNamesOfManagingDepartments();
+  public ArrayList<Department> getManagingDepartments() {
+	  return managingDepartments;
+  }
+  public void setManagingDepartments(ArrayList<Department> managingDepartments) {
+	  this.managingDepartments = managingDepartments;
+  }	
+  public ArrayList<String> getNamesOfManagingDepartments() {
+	  return namesOfManagingDepartments;
+  }
+  public void setNamesOfManagingDepartments(ArrayList<String> namesOfManagingDepartments) {
+	  this.namesOfManagingDepartments = namesOfManagingDepartments;
+  }
+  @Override
+  public String toString() {
+	  return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getId() + ", Email = " + getEmail() + ", Telephone = " + getTelephone()
+	  + ", Managing Departments = " + getNamesOfManagingDepartments();
+  }
 
-}
-
-public static MiddleManager searchMiddleManagerById(String id) {
+  public static MiddleManager searchMiddleManagerById(String id) {
 	  for (int i = 0; i < middleManagers.size(); i++) {
 	      if (middleManagers.get(i).getId().contentEquals(id)) {
 	        return middleManagers.get(i);
 	      } 
 	  }
-	return null;    
-	      	 
-}
+	  return null;      	 
+  }
 
-public static Department showDepartments(Department departments) {
-	for (int i = 0; i < departments.size(); i++) {
-		System.out.println("The department name is:" + departments.get(i));
-		return departments.get(i);
-	}
-}	
+  public static void showManagingDepartments(MiddleManager mm) {
+	  for (int i = 0; i < mm.managingDepartments.size(); i++) {
+		  System.out.println(mm.managingDepartments.get(i).getName());
+	  }
+  }	
 
-@Override
-public String getJobTitle() {
+  @Override
+  public String getJobTitle() {
 	// TODO Auto-generated method stub
-	return null;
-}
+	  return null;
+  }
 }

@@ -1,27 +1,16 @@
 import java.util.Scanner;
-
-import project.Employee;
-
 import java.util.ArrayList;
 public class Account {
- private String department;
- private String name;
- private String surname;
- private int telephone;
- private String email;
- private String id;
- private String password;
- private static ArrayList<Account> accounts = new ArrayList<Account>();
+	private Employee employee;
+	private String email;
+	private String password;
+	private static ArrayList<Account> accounts = new ArrayList<Account>();
 
  /* Account's constructor */
 
  public Account(Employee e) {
-	 department = e.getDepartmentName();
-	 name = e.getName();
-	 surname = e.getSurname();
-	 telephone = e.getTelephone();
-	 email = e.getEmail();
-	 id = e.getId();
+	 this.employee = e;
+	 this.email = e.getEmail();
 	 password = Checkers.ValidPassword();
 	 accounts.add(this); /*Account object entered on accounts ArrayList*/
 
@@ -52,34 +41,36 @@ public class Account {
 
  /* This method searches Employees' accounts by their email*/
 
- public Account searchAccountByEmail(String email) {
- 	boolean exists = false;
- 	for(int i=0;i<this.accounts.size();i++) {
- 		if (this.accounts.get(i).getEmail()==email) {
- 			exists=true;
- 			break;
+ 	public Account searchAccountByEmail(String email) {
+ 		boolean exists = false;
+ 		for(int i = 0; i < accounts.size();) {
+ 			if (accounts.get(i).email == email) {
+ 				exists = true;
+ 				break;
+ 			}
+ 			if (exists == true) {
+ 				return accounts.get(i);
+ 			} else {
+ 				System.out.println("The email you entered does not relate to an existing account");
+ 				return null;
+ 			}
  		}
- 		if(exists==true) {
- 			return this.accounts;
- 		}else {
- 			System.out.println("The email you entered does not relate to an existing account");
- 			return null;
- 		}
+ 		return null;
  	}
- }
  	/*This method checks if the password and the email of the input 
  	 * are equal to the password and the email of the user.*/
  	public boolean login() {
- 		boolean success=false;
+ 		boolean success = false;
  		System.out.println("Welcome!");
  		System.out.println("Please insert your email");
  		Scanner sc = new Scanner(System.in);
- 			String email=sc.nextLine();
+ 			String email = sc.nextLine();
  			System.out.println("Please insert your password");
  			String password = sc.nextLine();
- 			if (password.equals(searchAccountByEmail(email).getPassword()) && email.equals(searchAccountByEmail(email).getEmail())) {
- 				success=true;
+ 			if (password.equals(searchAccountByEmail(email).password)) {
+ 				success = true;
  			}
+ 			sc.close();
  			return success;
  	}
 }

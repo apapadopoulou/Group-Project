@@ -12,29 +12,47 @@ public class Task extends Program implements Comparable<Task>{
 	private boolean done;
 	private int parts;
 	private int levelOfImportance;  /*The level of importance should be between 1 to 10*/ 
-	public Task(Date dueDate, int levelOfImportance) {
+	
+	public Task(Date dueDate, int parts, int levelOfImportance) {
+		super();
 		this.dueDate = dueDate;
 		done = false;
+		this.parts = parts;
 		this.levelOfImportance = levelOfImportance;
 	}
+	
 	public Date getDueDate() {
 		return dueDate;
 	}
+
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
+
 	public boolean getStatus() {
 		return done;
 	}
-	public void setStatus(boolean status) {
-		done = status;
+
+	public void setStatus(boolean done) {
+		this.done = done;
 	}
+
+	public int getParts() {
+		return parts;
+	}
+
+	public void setParts(int parts) {
+		this.parts = parts;
+	}
+
 	public int getLevelOfImportance() {
 		return levelOfImportance;
 	}
+
 	public void setLevelOfImportance(int levelOfImportance) {
 		this.levelOfImportance = levelOfImportance;
 	}
+
 	/*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
 	you need to create a group task.*/
 	public void newTask() { 

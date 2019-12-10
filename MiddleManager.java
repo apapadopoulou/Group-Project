@@ -60,11 +60,36 @@ public class MiddleManager extends Employee {
 	  return null;      	 
   }
 
+<<<<<<< HEAD
   public static void showManagingDepartments(MiddleManager mm) {
 	  for (int i = 0; i < mm.managingDepartments.size(); i++) {
 		  System.out.println(mm.managingDepartments.get(i).getName());
 	  }
   }	
+=======
+public static Department showDepartments(Department managingDepartments) {
+	for (int i = 0; i < managingDepartments.size(); i++) {
+		System.out.println("The department name is:" + managingDepartments.get(i));
+		return managingDepartments.get(i);
+	}
+}
+
+public static MiddleManager evaluation(int rating, MiddleManager middleManagers) {
+	for (int i = 0; i < middleManagers.size(); i++) {
+		if (rating == 1) {
+			System.out.println("The current employee needs to work harder");
+		}	else if (rating == 2) {
+			System.out.println("The current employee is doing well, but he needs progress");
+		}   else if (rating == 3) {
+			System.out.println("The current employee works satisfactorily");
+		}	else if (rating == 4) {
+			System.out.println("The current employee is doing very well");
+		}	else if (rating == 5) {
+			System.out.println("The current employee works excellent!");
+		}
+	}
+}	
+>>>>>>> e6fd30b94f4b801f5470cdeb833771a6f88b4d76
 
   @Override
   public String getJobTitle() {

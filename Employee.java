@@ -112,6 +112,24 @@ public abstract class Employee {
       e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
       
   }
+  
+  
+  /*a method that evaluates an employee based on the level of importance of tasks he is responsible for*/
+  public void employeeEvaluation (int loi) {
+    int count = 0;
+    int sum = 0;
+    for (Employee e : ) {
+      if (e.equals(emp)) {
+        sum += loi; /*level of importance for this task*/
+        count++;
+      }
+    }
+    if (sum >= loi) {
+      System.out.println("The employee with id "+this.getId()+"is considered efficient.");
+    } else {
+      System.out.println("The employee with id "+this.getId()+"is not considered efficien.");
+    }
+    }
 
 
   }

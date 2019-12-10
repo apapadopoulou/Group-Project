@@ -54,7 +54,7 @@ public class Department {
         } else if (employeesOfDepartment.get(i).getSurname().contentEquals(name)) {
               employeesOfDepartment.remove(i);
       } else
-        System.out.println("This employee couldn't be removed because he wasn't found in this department");     
+          System.out.println("This employee couldn't be removed because he wasn't found in this department");     
       }
     }
   // a method that deletes a specific employee from a department's arraylist using his name to find him

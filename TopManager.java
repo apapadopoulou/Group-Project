@@ -34,11 +34,6 @@ public class TopManager extends Employee{
     employees.add(this);
 }
 
-@Override
-public String getJobTitle() {
-	// TODO Auto-generated method stub
-	return null;
-}
 public ArrayList <MiddleManager> getManagingManagers() {
 	return managingManagers;
 }

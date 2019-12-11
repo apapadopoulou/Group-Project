@@ -9,12 +9,10 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class Account {
-<<<<<<< HEAD
 	private Employee employee;
 	private String email;
 	private String password;
 	private static ArrayList<Account> accounts = new ArrayList<Account>();
-=======
 	private String department;
  	private String name;
  	private String surname;
@@ -23,17 +21,13 @@ public class Account {
  	private String id;
  	private String password;
  	private static ArrayList<Account> accounts = new ArrayList<Account>();
->>>>>>> e6fd30b94f4b801f5470cdeb833771a6f88b4d76
-
  	/* Account's constructor */
 
-<<<<<<< HEAD
  public Account(Employee e) {
 	 this.employee = e;
 	 this.email = e.getEmail();
 	 password = Checkers.ValidPassword();
 	 accounts.add(this); /*Account object entered on accounts ArrayList*/
-=======
  	public Account(Employee e) {
 	 	department = e.getDepartmentName();
 	 	name = e.getName();
@@ -43,7 +37,6 @@ public class Account {
 	 	id = e.getId();
 	 	password = Checkers.ValidPassword();
 	 	accounts.add(this); /*Account object entered on accounts ArrayList*/
->>>>>>> e6fd30b94f4b801f5470cdeb833771a6f88b4d76
 
 	 	/*
 	 	if (isValidEmail(email))
@@ -78,7 +71,7 @@ public class Account {
 
  	public Account searchAccountByEmail(String email) {
  		boolean exists = false;
-<<<<<<< HEAD
+ 		
  		for(int i = 0; i < accounts.size();) {
  			if (accounts.get(i).email == email) {
  				exists = true;

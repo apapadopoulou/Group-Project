@@ -16,9 +16,9 @@ private void addToProgram() {
 	Object options = {"Task", "Event"};
 	JOptionPane.showInputDialog("What do you want to add to the daily program?",possibilities);
 }
-public static void main (String [] args) {
+/*public static void main (String [] args) {
 	Day test = new Day();
 	test.addToProgram();
-}
+}*/
 }
 

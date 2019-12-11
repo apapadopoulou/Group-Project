@@ -377,7 +377,7 @@ public class Account {
  	}
  	//public static void main(String [] args) {
  	//	firstScreen();
- 	//} 
+ 	//}
 
  	/* This method generates Employee's password */
  	public static string passwordGenerator() {

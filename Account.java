@@ -21,7 +21,7 @@ public class Account {
  	private int telephone;
  	private String email;
  	private String id;
- 	private String password;
+ 	private String password; 
  	private static ArrayList<Account> accounts = new ArrayList<Account>();
 >>>>>>> e6fd30b94f4b801f5470cdeb833771a6f88b4d76
 

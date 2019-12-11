@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
+
 public class Request {
     class GraphicPane extends JComponent {
         public GraphicPane() {
@@ -27,9 +28,29 @@ public class Request {
         
         // Remember, the method show() is deprecated
         jf.setVisible(true);
-    }
+        
+        /*jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 
+        Container contentPane = jf.getContentPane();  
+        SpringLayout layout = new SpringLayout();  
+        contentPane.setLayout(layout);  
+
+          
+        JTextField textField = new JTextField("", 15);  
+         
+        contentPane.add(textField);  
+   
+        
+        
+        layout.putConstraint(SpringLayout.NORTH, textField,6,SpringLayout.NORTH, contentPane);  
+        layout.putConstraint(SpringLayout.EAST, contentPane,6,SpringLayout.EAST, textField);  
+        layout.putConstraint(SpringLayout.SOUTH, contentPane,6,SpringLayout.SOUTH, textField);  
+
+        jf.pack();  
+        jf.setVisible(true);  */
+    }  
+   
     public static void main(String[] args) {
         new Request();
-    }
-}
+          }  
+   }

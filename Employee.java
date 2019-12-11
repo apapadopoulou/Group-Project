@@ -3,17 +3,17 @@ import java.util.Date;
 public abstract class Employee {
 	private String name;
 	private String surname;
-	private int telephone;
+	private int phonenumber;
 	private String email;
 	private String id;
 	private Date birthdate;
 	  
 	public static ArrayList<Employee> employees = new ArrayList<Employee>();
 	// Constructor
-	public Employee(String name, String surname, int telephone, String email, Date birthdate) {
+	public Employee(String name, String surname, int phonenumber, String email, Date birthdate) {
 		this.name = name;
 	    this.surname = surname;
-	    this.telephone = telephone;
+	    this.phonenumber = phonenumber;
 	    this.email = email;
 	    this.birthdate = birthdate;
 	}	  
@@ -50,11 +50,11 @@ public abstract class Employee {
 	    return getName() + getSurname();
 	}
 	  
-	public int getTelephone() {
-		return telephone;
+	public int getPhonenumber() {
+		return phonenumber;
 	}
-	public void setTelephone(int telephone) {
-	    this.telephone = telephone;
+	public void setPhonenumber(int phonenumber) {
+	    this.phonenumber = phonenumber;
 	}
 	public void setEmail(String email) {
 	    this.email = email;
@@ -62,8 +62,6 @@ public abstract class Employee {
 	public void setId(String id) {
 		this.id = id;
 	}
-<<<<<<< HEAD
-	  
 	// Method toString including a String format for the given data
 	@Override
 	public String toString() {

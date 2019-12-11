@@ -71,10 +71,10 @@ public abstract class Employee {
 	      String.format("%30s", telephone) +
 	      String.format("%30s", email) +
 	      String.format("%30s", id); */
-	    String.format("%30s%30s%30s%30s%30s", name, surname, telephone, email, id );
+	    String.format("%30s%30s%30s%30s%30s", name, surname, phonenumber, email, id );
 	    return str_2;
 	}
-	public abstract String getJobTitle();
+	//public abstract String getJobTitle();
 	
 	// Returns the employee we searched for
 	public static Employee searchEmployeeById2(String id) {
@@ -85,22 +85,10 @@ public abstract class Employee {
 		}
 		return null;
 	}
-=======
+
   
   // Method toString including a String format for the given data
-  @Override
-  public String toString() {
-        String str_2 = "";
-        /*str_1 = String.format("%30s", name ) +
-        String.format("%30s", surname) +
-        String.format("%30s", telephone) +
-        String.format("%30s", email) +
-        String.format("%30s", id); */
-        String.format("%30s%30s%30s%30s%30s", name, surname, telephone, email, id );
-        return str_2;
-  }
-  public abstract String getJobTitle();
-<<<<<<< HEAD
+ 
   public static Employee searchEmployeeByName2(String name) {
     for (int i = 0; i < employees.size(); i++) {
         if (employees.get(i).getNameSurname().equals(name)) {
@@ -112,37 +100,17 @@ public abstract class Employee {
       }
       return null;
   }
-  
-  public static Employee searchEmployeeById2(String id) {
-    for (int i = 0; i < employees.size(); i++) {
-        if (employees.get(i).getId() == id) {
-          return employees.get(i);
-        } 
-      }
-      return null;
-  }
-  
+    
   /* this is a method that changes employee's id based on his new department */
-  public void changeDepartmentAndId(String empName, int depId) {
-       /* System.out.println('Insert the name of department in which you want to get included');
-        String depname = sc.nextLine(); -> for main*/
-      Employee e = Employee.searchEmployeeByName2(empName);
-      e.getDepartment().deleteEmployeeByName(empName);
-    Department d = Department.searchDepartmentById(depId);
-    e.setDepartment(d);
-    d.addEmployee(e);
-      e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
-      
-  }
-  
+ 
   
   /*a method that evaluates an employee based on the level of importance of tasks he is responsible for*/
-  public void employeeEvaluation (int loi) {
+ /* public void employeeEvaluation (int loi) {
     int count = 0;
     int sum = 0;
-    for (Employee e : ) {
+    for (Employee e :  ) {
       if (e.equals(emp)) {
-        sum += loi; /*level of importance for this task*/
+        sum += loi; /*level of importance for this task
         count++;
       }
     }
@@ -151,18 +119,6 @@ public abstract class Employee {
     } else {
       System.out.println("The employee with id "+this.getId()+"is not considered efficien.");
     }
-    }
-=======
->>>>>>> d4d00b167b3c91ed3df53269a2283fa7c5e5a206
+    } */
 
-  // Returns the employee we searched for
-  public static Employee searchEmployeeById2(String id) {
-	  for (int i = 0; i < employees.size(); i++) {
-	      if (employees.get(i).getId() == id) {
-	        return employees.get(i);
-	      } 
-	    }
-	    return null;
-  }
->>>>>>> e6fd30b94f4b801f5470cdeb833771a6f88b4d76
-}
+ }

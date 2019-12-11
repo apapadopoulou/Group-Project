@@ -116,7 +116,7 @@ public class Task extends Program implements Comparable<Task> {
 	public void taskSegmentation() {
 		System.out.println("In how many parts should the task be devided?");
         Scanner sc = new Scanner(System.in);
-        parts = sc.hasNextInt();
+        parts = sc.nextInt();
         this.parts = parts;
         Date[] partdates = new Date[parts];
         for (int i = 0; i < parts; i++) {

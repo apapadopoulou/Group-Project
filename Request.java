@@ -1,19 +1,18 @@
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 
 public class Request {
-    class GraphicPanel extends JComponent {
+    class GraphicPane extends JComponent {
         /**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
 
-		public GraphicPanel() {
+		public GraphicPane() {
             super();
         }
     
@@ -25,7 +24,7 @@ public class Request {
     
     public Request() {
         JFrame jf = new JFrame("Request");
-        GraphicPanel gp = new GraphicPanel();
+        GraphicPane gp = new GraphicPane();
         
         jf.setBounds(0,0, 800, 600);
         jf.setLayout(new BorderLayout());        

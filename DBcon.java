@@ -14,7 +14,6 @@ public class DBcon {
 	private int salary;
 	
 	public static void main (String args[]) {
-		 
 		 /*URL of database with username and password.*/
 		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
 				"databaseName=DB56;user=G556;password=939wd5890;";
@@ -37,11 +36,25 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement.*/
-			stmt.executeUpdate("CREATE TABLE BusyB " + 
-					             "(empID INT not null," + 
-					             "salary INT," +  
-								"PRIMARY KEY  (empID));");
-		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+			stmt.executeUpdate("CREATE TABLE Department "
+					            + "(depID INT not null,"
+					            + "nameDep VARCHAR(20),"
+					            + "PRIMARY KEY (depID));");
+			stmt.executeUpdate("CREATE TABLE Employee "
+								+ "(empID VARCHAR(20) not null,"
+								+ "nameEmp VARCHAR(20),"
+								+ "surname VARCHAR(20)"
+								+ "phonenumber INT"
+								+ "email VARCHAR(50)"
+								+ "birthdate DATE"
+								+ "PRIMARY KEY (empID));");
+			//stmt.executeUpdate();
+			//stmt.executeUpdate();
+			//stmt.executeUpdate();
+			//stmt.executeUpdate();
+			//stmt.executeUpdate();
+		/*Catch block if an exception occurs while making
+		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		} 
@@ -80,7 +93,8 @@ public class DBcon {
 			System.out.print("test: ");
 			System.out.println(e.getMessage());
 		}
-		/*Try block for making the DB connection and executing the given statement.*/
+		/*Try block for making the DB connection and
+		 *  executing the given statement.*/
 		try {
 			/*Makes the actual connection with the server.*/
 			dbcon = DriverManager.getConnection(url);

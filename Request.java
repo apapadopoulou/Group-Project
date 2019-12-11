@@ -7,8 +7,13 @@ import javax.swing.JFrame;
 
 
 public class Request {
-    class GraphicPane extends JComponent {
-        public GraphicPane() {
+    class GraphicPanel extends JComponent {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public GraphicPanel() {
             super();
         }
     
@@ -20,7 +25,7 @@ public class Request {
     
     public Request() {
         JFrame jf = new JFrame("Request");
-        GraphicPane gp = new GraphicPane();
+        GraphicPanel gp = new GraphicPanel();
         
         jf.setBounds(0,0, 800, 600);
         jf.setLayout(new BorderLayout());        

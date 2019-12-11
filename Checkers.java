@@ -35,36 +35,34 @@ public class Checkers {
 			else
 				return false;
 	   }
-			public static String ValidPassword() {
-			      //Input from user
-			      String password;
-			      Scanner input = new Scanner(System.in);
-			      System.out.printf("Please create your password:\n");
-			      password = input.nextLine();
+		public static String ValidPassword() {
+		      //Input from user
+		      String password;
+		      Scanner input = new Scanner(System.in);
+		      System.out.printf("Please create your password:\n");
+			  password = input.nextLine();
 
-			      //Checking password length
-			      while( (password.length() < 6) || (password.length() > 15) )
-			      {
-			         System.out.print("This password must be between 6 and 15 characters. Try again: ");
-			         password = input.nextLine();
-			      }
-			      //Confirming if passwords match
-			      String password2;
-			      System.out.print("\nPlease type your password again to confirm: ");
-			      password2 = input.nextLine();
+			  //Checking password length
+			  while( (password.length() < 6) || (password.length() > 15) ) {
+				  System.out.print("This password must be between 6 and 15 characters. Try again: ");
+				  password = input.nextLine();
+			  }
+			  //Confirming if passwords match
+			  String password2;
+			  System.out.print("\nPlease type your password again to confirm: ");
+			  password2 = input.nextLine();
 
-			      while( !password2.equals(password) )
-			      {
-			         System.out.print("Those passwords do not match. Try again: ");
-			         password2 = input.nextLine();
-			      }
-			      return password;
-
-			   }
-			   //This method validate the event title (speficic titles) 
-			   public static boolean isValidTitle(String title) {
-				   return title == "appointment" || title == "meeting" || title == "main event";
-			   }
-	   }
+			  while( !password2.equals(password) ) {
+				  System.out.print("Those passwords do not match. Try again: ");
+				  password2 = input.nextLine();
+			  }
+			  input.close();
+			  return password;
+		}
+		//This method validate the event title (speficic titles) 
+		public static boolean isValidTitle(String title) {
+			return title == "appointment" || title == "meeting" || title == "main event";
+		}
+}
 
 

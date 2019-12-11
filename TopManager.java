@@ -1,15 +1,19 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 public class TopManager extends Employee{
   private ArrayList <MiddleManager> managingManagers = new ArrayList <MiddleManager>();
   private ArrayList <String> namesOfManagingManagers = new ArrayList <String>();
   public static ArrayList <TopManager> topManagers = new ArrayList <TopManager>();
-  public TopManager( String name, String surname, int telephone, String email, String id){
-    super(name, surname, telephone, email);
+  public TopManager( String name, String surname, int telephone, String email,Date birthdate, String id){
+    super(name, surname, telephone, email, birthdate);
+    /*the id is constructed using the first two letters of the manager's name, the first two letters of the managers's surname
+     * and the number of top managers that already exist */
     id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(topManagers.size());
     for(int i = 1; i < MiddleManager.middleManagers.size(); i++) {
     	MiddleManager.searchMiddleManagerById(String.valueOf(i)).toString();
     }
+    //Constructs the list with the managing managers
     System.out.println("Type the ids of the managers you are responsible for");
     System.out.println("Press enter after each id entry");
     System.out.println("Press 0 and Enter if you're done");

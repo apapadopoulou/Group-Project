@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.ArrayList;
 public class Event extends Program{
 	private String title;
@@ -5,7 +6,6 @@ public class Event extends Program{
 	private LocalTime time;
 	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
 	public Event(String title, String date, LocalTime time) {
-		super(date);
 		this.title = title;
 		do {
 		if (Checkers.isValidTitle(title))

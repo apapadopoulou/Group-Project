@@ -1,12 +1,9 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.*;
-import java.util.Calendar;
-import java.util.Date;
-public class Day {
-  private ArrayList <Program> dailyProgram = new ArrayList <Program>();
-  public Day() {
-	  LocalDate date = LocalDate.now();
 
+<<<<<<< HEAD
   }
   public void displayDay(LocalDate date) {
 	  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy");
@@ -20,5 +17,27 @@ private void addToProgram() {
 	Day test = new Day();
 	test.addToProgram();
 }*/
+=======
+public class Day {
+	private ArrayList <Program> dailyProgram = new ArrayList <Program>();
+	private LocalDate date;
+	
+	public Day() {
+		this.date = LocalDate.now();
+	}
+	public void displayDay(LocalDate date) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy");
+  	  	System.out.println(date.format(formatter));
+	}
+	String[] options = {"Task", "Event"};
+	private void addToProgram() {
+		String showInputDialog = JOptionPane.showInputDialog("What do you want to add to the daily program?", options);
+		System.out.print(showInputDialog);
+	}
+	public static void main (String [] args) {
+		Day test = new Day();
+		test.addToProgram();
+	}
+>>>>>>> edaa847c023c1e087b04053d73c26e46b3ee259f
 }
 

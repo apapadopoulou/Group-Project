@@ -5,12 +5,13 @@ import java.util.GregorianCalendar;
 import java.util.ArrayList;
 
 public class PersonalisedCalendar /*extends Calendar*/ {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	private Day day;
 	private Task task;
 	private Event event;
-=======
->>>>>>> 6f433bbb41971139c51b0a2734ab286dfd389aa2
+	
+//=======
+//>>>>>>> 6f433bbb41971139c51b0a2734ab286dfd389aa2
 	/* Creating a 2X2 table named calendar of type Day and containing every day of the year*/
 	private Day [] [] calendar = new Day [12][]; 
 	/* PersonalisedCalendar method inputs the specific amount of days each month has */

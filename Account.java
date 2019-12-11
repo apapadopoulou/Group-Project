@@ -1,11 +1,10 @@
 import java.util.Scanner;
-<<<<<<< HEAD
-=======
+
 import javax.swing.JFrame;
 //import project.Employee;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
->>>>>>> e6fd30b94f4b801f5470cdeb833771a6f88b4d76
+
 import java.util.ArrayList;
 
 public class Account {
@@ -13,31 +12,14 @@ public class Account {
 	private String email;
 	private String password;
 	private static ArrayList<Account> accounts = new ArrayList<Account>();
-	private String department;
- 	private String name;
- 	private String surname;
- 	private int telephone;
- 	private String email;
- 	private String id;
- 	private String password; 
- 	private static ArrayList<Account> accounts = new ArrayList<Account>();
- 	/* Account's constructor */
+	 	/* Account's constructor */
 
- public Account(Employee e) {
+	public Account(Employee e) {
 	 this.employee = e;
 	 this.email = e.getEmail();
 	 password = Checkers.ValidPassword();
 	 accounts.add(this); /*Account object entered on accounts ArrayList*/
- 	public Account(Employee e) {
-	 	department = e.getDepartmentName();
-	 	name = e.getName();
-	 	surname = e.getSurname();
-	 	telephone = e.getTelephone();
-	 	email = e.getEmail();
-	 	id = e.getId();
-	 	password = Checkers.ValidPassword();
-	 	accounts.add(this); /*Account object entered on accounts ArrayList*/
-
+ 	
 	 	/*
 	 	if (isValidEmail(email))
          	System.out.print("Valid Email");
@@ -69,7 +51,7 @@ public class Account {
 
  	/* This method searches Employees' accounts by their email*/
 
- 	public Account searchAccountByEmail(String email) {
+ 	public static Account searchAccountByEmail(String email) {
  		boolean exists = false;
  		
  		for(int i = 0; i < accounts.size();) {
@@ -80,35 +62,21 @@ public class Account {
  			if (exists == true) {
  				return accounts.get(i);
  			} else {
-=======
- 		for(int i=0;i<this.accounts.size();i++) {
- 			if (this.accounts.get(i).getEmail()==email) {
- 				exists=true;
- 				break;
- 			}
- 			if(exists==true) {
- 				return this.accounts;
- 			}else {
->>>>>>> e6fd30b94f4b801f5470cdeb833771a6f88b4d76
  				System.out.println("The email you entered does not relate to an existing account");
  				return null;
  			}
  		}
  		return null;
  	}
-<<<<<<< HEAD
+
  	/*This method checks if the password and the email of the input 
  	 * are equal to the password and the email of the user.*/
- 	public boolean login() {
- 		boolean success = false;
- 		System.out.println("Welcome!");
-=======
+
  	/*This method checks if the password and the email of the input
  	   are equal to the password and the email of the user.*/
  	public static boolean login() {
  		boolean success=false;
  		//System.out.println("Welcome!");
->>>>>>> e6fd30b94f4b801f5470cdeb833771a6f88b4d76
  		System.out.println("Please insert your email");
  		Scanner sc = new Scanner(System.in);
  			String email = sc.nextLine();
@@ -373,7 +341,7 @@ public class Account {
  	//}
 
  	/* This method generates Employee's password */
- 	public static string passwordGenerator() {
+ 	public static String passwordGenerator() {
 		PasswordGenerator gen = new PasswordGenerator();
 		CharacterData lowerCaseChars = EnglishCharacterData.LowerCase;
 		CharacterRule lowerCaseRule = new CharacterRule(lowerCaseChars);

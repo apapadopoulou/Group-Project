@@ -13,7 +13,7 @@ public class DBcon {
 	private int id;
 	private int salary;
 	
-	public static void main (String args[]) {
+	public static void tableCreation() {
 		 /*URL of database with username and password.*/
 		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
 				"databaseName=DB56;user=G556;password=939wd5890;";
@@ -37,21 +37,36 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			/*Executes the given statement.*/
 			stmt.executeUpdate("CREATE TABLE Department "
-					            + "(depID INT not null,"
-					            + "nameDep VARCHAR(20),"
-					            + "PRIMARY KEY (depID));");
+			    + "(depID INT not null,"
+		        + "nameDep VARCHAR(20),"
+		        + "PRIMARY KEY (depID));");
 			stmt.executeUpdate("CREATE TABLE Employee "
-								+ "(empID VARCHAR(20) not null,"
-								+ "nameEmp VARCHAR(20),"
-								+ "surname VARCHAR(20)"
-								+ "phonenumber INT"
-								+ "email VARCHAR(50)"
-								+ "birthdate DATE"
-								+ "PRIMARY KEY (empID));");
-			//stmt.executeUpdate();
-			//stmt.executeUpdate();
-			//stmt.executeUpdate();
-			//stmt.executeUpdate();
+				+ "(empID VARCHAR(20) not null,"
+				+ "nameEmp VARCHAR(20),"
+				+ "surname VARCHAR(20)"
+				+ "phonenumber INT"
+				+ "email VARCHAR(50)"
+				+ "birthdate DATE"
+				+ "PRIMARY KEY (empID));");
+			stmt.executeUpdate("CREATE TABLE BasicEmployee "
+				+ "(empID VARCHAR(20) not null,"
+			    + "PRIMARY KEY (empID)"
+			    + "FOREIGN KEY (empID) REFERENCES Employee );");
+			stmt.executeUpdate("CREATE TABLE MiddleManager "
+				+ "(empID VARCHAR(20) not null,"
+				+ "PRIMARY KEY (empID)"
+				+ "FOREIGN KEY (empID) REFERENCES Employee );");
+			stmt.executeUpdate("CREATE TABLE TopManager "
+			    + "(empID VARCHAR(20) not null,"
+		        + "PRIMARY KEY (empID)"
+		        + "FOREIGN KEY (empID) REFERENCES Employee );");
+			stmt.executeUpdate("CREATE TABLE Account "
+				+ "(empID VARCHAR(20) not null,"
+				+ "email VARCHAR(50 UNIQUE)"
+				+ "password VARCHAR(8)"
+				+ "PRIMARY KEY(empID)"
+				+ "FOREIGN KEY (empID) REFERENCES Employee"
+				+ "FOREIGN KEY (email) REFERENCES Employee);");
 			//stmt.executeUpdate();
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/

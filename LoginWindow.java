@@ -82,7 +82,7 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("busyb.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("https://github.com/apapadopoulou/Group-Project/blob/master/busyb.jpg?raw=true")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

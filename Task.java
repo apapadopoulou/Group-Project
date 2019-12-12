@@ -10,16 +10,24 @@ import java.util.Collections;
 
 public class Task extends Program implements Comparable<Task> {
   private Date dueDate;
+  private Date completionDate;
+  private String desc;
   private boolean done;
   private int parts;
-  private int levelOfImportance;  /*The level of importance should be between 1 to 10*/ 
+  private int weight;  /*Weight of a task should be between 1 to 10*/ 
+  private Employee emp;
+  public int counter=0; //Needed to create the Task IDs. 
+  private int id;
   
-  public Task(Date dueDate, int parts, int levelOfImportance) {
+  public Task(Date dueDate, String desc, int parts, int weight, Employee emp) {
     super();
+    this.desc = desc;
     this.dueDate = dueDate;
     done = false;
     this.parts = parts;
-    this.levelOfImportance = levelOfImportance;
+    this.weight = weight;
+    this.emp = emp;
+    this.id = counter++; //Needed for the DataBase. 
   }
   
   public Date getDueDate() {
@@ -34,8 +42,9 @@ public class Task extends Program implements Comparable<Task> {
     return done;
   }
 
-  public void setStatus(boolean done) {
+  public void setStatus(boolean done) { //Used to indicate when a task is completed
     this.done = done;
+    
   }
 
   public int getParts() {
@@ -46,12 +55,12 @@ public class Task extends Program implements Comparable<Task> {
     this.parts = parts;
   }
 
-  public int getLevelOfImportance() {
-    return levelOfImportance;
+  public int getWeight() {
+    return weight;
   }
 
-  public void setLevelOfImportance(int levelOfImportance) {
-    this.levelOfImportance = levelOfImportance;
+  public void setWeight(int weight) {
+    this.weight = weight;
   }
 
   /*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
@@ -64,7 +73,7 @@ public class Task extends Program implements Comparable<Task> {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     LocalDate dueDate = LocalDate.parse(inputDate);
     System.out.println("Please insert level of importance for this task:");
-    int levelOfImportance = sc.nextInt();
+    int weight = sc.nextInt();
   } 
   /*Method calculating the difference between two dates*/
   public int difference(firstDate, secondDate) {
@@ -120,7 +129,7 @@ public class Task extends Program implements Comparable<Task> {
         this.parts = parts;
         Date[] partdates = new Date[parts];
         for (int i = 0; i < parts; i++) {
-          System.out.println("which is the date until which the part : "+i+1+" needs to be completed? Please insert the date according to the formt dd-mm-yyy.");
+          System.out.println("which is the date until which the part : " + i + 1 + " needs to be completed? Please insert the date according to the formt dd-mm-yyy.");
             String dt = sc.nextLine();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate dueDate = LocalDate.parse(dt);

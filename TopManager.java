@@ -5,7 +5,7 @@ public class TopManager extends Employee{
   private ArrayList <MiddleManager> managingManagers = new ArrayList <MiddleManager>();
   private ArrayList <String> namesOfManagingManagers = new ArrayList <String>();
   public static ArrayList <TopManager> topManagers = new ArrayList <TopManager>();
-  public TopManager( String name, String surname, int telephone, String email,Date birthdate, String id){
+  public TopManager( String name, String surname, int telephone, String email, Date birthdate){
     super(name, surname, telephone, email, birthdate);
     /*the id is constructed using the first two letters of the manager's name, the first two letters of the managers's surname
      * and the number of top managers that already exist */

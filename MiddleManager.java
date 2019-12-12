@@ -5,8 +5,8 @@ public class MiddleManager extends Employee {
   private ArrayList <Department> managingDepartments = new ArrayList <Department>();
   private ArrayList <String> namesOfManagingDepartments = new ArrayList <String>();
   public static ArrayList <MiddleManager> middleManagers = new ArrayList <MiddleManager>();
-  public MiddleManager(String name, String surname, int telephone, String email, Date birthdate, String id){
-	    super(name, surname, telephone, email, birthdate);
+  public MiddleManager(String name, String surname, int phonenumber, String email, Date birthdate){
+	    super(name, surname, phonenumber, email, birthdate);
 	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
 	    for(int i = 1; i < Department.departments.size(); i++) {
 	    	Department.searchDepartmentById(i).toString();

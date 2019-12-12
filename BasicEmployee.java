@@ -8,7 +8,7 @@ public class BasicEmployee extends Employee {
 	public static ArrayList <BasicEmployee> basicEmployees = new ArrayList <BasicEmployee>(); // An ArrayList that contains all Basic Employees.
 	
 	/*Constructor for class BasicEmployee.*/
-	public BasicEmployee(String name, String surname,int telephone, String email, Date birthdate, String id, Department department) {
+	public BasicEmployee(String name, String surname,int telephone, String email, Date birthdate, Department department) {
 		super(name, surname, telephone, email, birthdate);//Calls the constructoer for the superclass Employee.
 		this.department = department;
 		/*

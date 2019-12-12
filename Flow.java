@@ -1,25 +1,48 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+ /* Class Flow manages the main flow of the application and
+  * supports data entry and first connection to the database." */
 public class Flow {
 public static void dataEntry() {
 		Scanner sc = new Scanner(System.in);
 	    String dname;
+	    String name;
+	    String surname;
+	    String email;
+	    String phoneNumber;
+	    String inputDate;
+	    Department dep;
 	    do {
-	        System.out.println("Insert name of Department. In case you have inserted all the Departments, please press enter.");
-	        dname = sc.nextLine();
-	        if (dname != " ") {
-	            Department dep = new Department(dname);
+	        System.out.println("Insert name of Department. In case you have inserted all the Departments, please type done.");
+	        dname = sc.next();
+	        if (dname != "done") {
+	            dep = new Department(dname);
+	            System.out.println("Department created with id: " + dep.getId());
+	            System.out.println("It's time to insert the Employees of the department!");
+	            System.out.println("When you are done, please type done.");
+	            System.out.println("Name: ");
+	            name = sc.next();
+	            while(name != "done") {
+	            	boolean run = true;
+	            	while (run) {
+	            	 System.out.println("Surname: ");
+	            	 surname = sc.next();
+	            	 System.out.println("Email: ");
+	            	 email = sc.next();
+	            	 System.out.println("Phonenumber: ");
+	            	 phoneNumber = sc.next();
+	            	 System.out.println("Date of Birth: ");
+	            	 inputDate = sc.nextLine();
+	            	 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	            	 LocalDate birthDate = LocalDate.parse(inputDate);
+	            	 Employee emp = new BasicEmployee(name, surname, email, phoneNumber, birthDate, dep);
+	            	}
+	            }
+	            
 	        }
-	    } while (dname != " ");
-	    /* the user is going to insert all the basic employees of his business*/
-	    System.out.println("It's time to insert datas about basic employees");
-	    String bname;
-	    String bsurname;
-	    String bemail;
-	    String btelephone;
-	    Int bdepid;
-	    Department bdep;
+	    } while (dname != "done");
 	    do {
 	    System.out.println("Insert name of basic employee. In case you have inserted all the basic employees, please press enter");
 	    bname = sc.nextLine();
@@ -86,5 +109,8 @@ public static void dataEntry() {
 	                TopManager tm = new TopManager(tname, tsurname, ttelephone, temail, dep);
 	            }
 	        } while (tname != " ");
+	}
+	public void dataInputScreen() {
+		
 	}
 }

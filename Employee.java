@@ -7,15 +7,20 @@ public abstract class Employee {
   private String email;
   private String id;
   private Date birthdate;
-    
+  private PersonalisedCalendar pc; 
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   // Constructor
   public Employee(String name, String surname, int phonenumber, String email, Date birthdate) {
-    this.name = name;
+	  if(!Checkers.isValidPhoneNumber(phonenumber)) {
+		  throw new IllegalArgumentException(
+				  "phone number is not valid");
+	  }
+	  this.name = name;
       this.surname = surname;
       this.phonenumber = phonenumber;
       this.email = email;
       this.birthdate = birthdate;
+      
   }   
   
   public Date getBirthdate() {

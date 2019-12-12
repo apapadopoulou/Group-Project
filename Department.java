@@ -6,10 +6,9 @@ public class Department {
   private ArrayList <BasicEmployee> employeesOfDepartment = new ArrayList <BasicEmployee>(); /* a list that contains the employees
   of each department separately*/
   public static ArrayList <Department> departments = new ArrayList <Department>(); // a list that contains all the departments
-  public Department(String name, ArrayList<BasicEmployee> employeesOfDepartment) {
+  public Department(String name) {
     id = num_dep++;
     this.name = name;
-    this.employeesOfDepartment = employeesOfDepartment;
     departments.add(this);
   } // constructor of departments
   public static ArrayList<Department> getDepartments() {

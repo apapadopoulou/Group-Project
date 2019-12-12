@@ -29,7 +29,7 @@ public class Request {
         // Remember, the method show() is deprecated
         jf.setVisible(true);
         
-        /*jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
 
         Container contentPane = jf.getContentPane();  
         SpringLayout layout = new SpringLayout();  
@@ -47,7 +47,7 @@ public class Request {
         layout.putConstraint(SpringLayout.SOUTH, contentPane,6,SpringLayout.SOUTH, textField);  
 
         jf.pack();  
-        jf.setVisible(true);  */
+        jf.setVisible(true);  
     }  
    
     public static void main(String[] args) {

@@ -50,7 +50,7 @@ public static void dataEntry() throws ParseException {
 	            	   System.out.println("Employee "
 	            	 		+ "created with id: " + emp.getId());
 	            	   //Loop breakes when an Employee is created.
-	            	   break;
+	            	   return;
 	            	 }
 	            	System.out.println("Name: ");
 	 	            name = sc.next();
@@ -98,12 +98,18 @@ public static void dataEntry() throws ParseException {
         	   System.out.println("Top Manager "
         	 		+ "created with id: " + emp.getId());
         	   //Loop breakes when an Employee is created.
-        	   break;
+        	   return;
         	 }
         	System.out.println("Name: ");
 	            name = sc.next();
         }
 	}
+public static void main(String [] args) {
+	try {
+	dataEntry();
+	}
+	catch (Exception e) { }
+}
 	public void dataInputScreen() {
 		
 	}

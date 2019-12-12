@@ -82,18 +82,19 @@ public class Account {
  			String email = sc.nextLine();
  			System.out.println("Please insert your password");
  			String password = sc.nextLine();
- 			if (password.equals(searchAccountByEmail(email).password)) {
+ 			if (password.equals
+ 					(searchAccountByEmail(email).password)) {
  				success = true;
  			}
  			sc.close();
  			return success;
  	}
- 	public static void loginScreen() {
- 		JFrame jf = new JFrame ("Welcome!");
- 		jf.setBounds(0, 0, 800, 600);
- 		System.out.println("Please login into your account: ");
- 		login();
- 		jf.setVisible(true);
+ 	//public static void loginScreen() {
+ 		//JFrame jf = new JFrame("Welcome!");
+ 		//jf.setBounds(0, 0, 800, 600);
+ 		//System.out.println("Please login into your account: ");
+ 		//login();
+ 		//jf.setVisible(true);
  		//Tried to create the login window but failed
  		/* 
  		  * @(#)OptionPaneDemo.java	1.11 05/11/17 

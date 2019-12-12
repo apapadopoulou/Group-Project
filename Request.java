@@ -1,14 +1,18 @@
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 
 public class Request {
     class GraphicPane extends JComponent {
-        public GraphicPane() {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public GraphicPane() {
             super();
         }
     

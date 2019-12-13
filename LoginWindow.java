@@ -129,10 +129,8 @@ public class LoginWindow extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabelClose.setBackground(new java.awt.Color(255, 222, 89));
-        jLabelClose.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabelClose.setForeground(new java.awt.Color(255, 222, 89));
-        jLabelClose.setText("x");
+       
+        jLabelClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/close.png")));
         jLabelClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabelClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(final java.awt.event.MouseEvent evt) {
@@ -216,8 +214,19 @@ public class LoginWindow extends javax.swing.JFrame {
     }                                      
 
     private void jButton1ActionPerformed(final java.awt.event.ActionEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+         DefaultPassword df = new DefaultPassword();
+         df.setVisible(true);
+         df.pack();
+         df.setLocationRelativeTo(null);
+         df.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         
+           java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DefaultPassword().setVisible(true);
+                }
+            });
+           this.dispose();
+    }                 
 
     /**
      * @param args the command line arguments

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 
 public class Task extends Program implements Comparable<Task> {
   private Date dueDate;
@@ -40,16 +41,16 @@ public class Task extends Program implements Comparable<Task> {
    *Constructor for multi-employee group task. 
    */
   public Task(Date dueDate, String desc, int parts, int importance, int difficulty, ArrayList<String> empids) {
-	super();
-	this.desc = desc;
-	this.dueDate = dueDate;
-	done = false;
-	this.parts = parts;
-	this.importance = importance;
-	this.difficulty = difficulty;
-	this.empids = empids;
-	this.id = counter++; //Needed for the DataBase. 
-	  }
+  super();
+  this.desc = desc;
+  this.dueDate = dueDate;
+  done = false;
+  this.parts = parts;
+  this.importance = importance;
+  this.difficulty = difficulty;
+  this.empids = empids;
+  this.id = counter++; //Needed for the DataBase. 
+    }
   
   public Date getDueDate() {
     return dueDate;
@@ -146,16 +147,18 @@ public class Task extends Program implements Comparable<Task> {
   public void taskSegmentation() {
     System.out.println("In how many parts should the task be devided?");
         Scanner sc = new Scanner(System.in);
-        parts = sc.nextInt();
-        this.parts = parts;
-        Date[] partdates = new Date[parts];
-        for (int i = 0; i < parts; i++) {
-          System.out.println("which is the date until which the part : " + i + 1 + " needs to be completed? Please insert the date according to the formt dd-mm-yyy.");
-            String dt = sc.nextLine();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate dueDate = LocalDate.parse(dt);
-            partdates[i] = dt;
-        }
+        try {
+            parts = sc.nextInt();
+            this.parts = parts;
+            Date[] partdates = new Date[parts];
+            for (int i = 0; i < parts; i++) {
+                System.out.println("which is the date until which the part : " + i + 1 + " needs to be completed? Please insert the date according to the formt dd-mm-yyy.");
+                String dt = sc.nextLine();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                LocalDate dueDate = LocalDate.parse(dt);
+                partdates[i] = dt;
+            }
+        } catch(InputMismatchException e1) {}
   }
   
   //@Override
@@ -170,7 +173,7 @@ public class Task extends Program implements Comparable<Task> {
   }
   
   @Override
-  	public Date compareTo(Task task) { //Add some comments please!!!!
+    public Date compareTo(Task task) { //Add some comments please!!!!
     return this.getDueDate().compareTo(task.getDueDate());
   }
   

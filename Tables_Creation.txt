@@ -1,0 +1,42 @@
+			stmt.executeUpdate("CREATE TABLE Department "
+			    + "(depID INT not null,"
+		        + "nameDep VARCHAR(20),"
+		        + "PRIMARY KEY (depID));");
+			stmt.executeUpdate("CREATE TABLE Employee "
+				+ "(empID VARCHAR(20) not null,"
+				+ "nameEmp VARCHAR(20),"
+				+ "surname VARCHAR(20)"
+				+ "phonenumber INT"
+				+ "email VARCHAR(50)"
+				+ "birthdate DATE"
+				+ "PRIMARY KEY (empID));");
+			stmt.executeUpdate("CREATE TABLE BasicEmployee "
+				+ "(empID VARCHAR(20) not null,"
+			    + "PRIMARY KEY (empID)"
+			    + "FOREIGN KEY (empID) REFERENCES Employee );");
+			stmt.executeUpdate("CREATE TABLE MiddleManager "
+				+ "(empID VARCHAR(20) not null,"
+				+ "PRIMARY KEY (empID)"
+				+ "FOREIGN KEY (empID) REFERENCES Employee );");
+			stmt.executeUpdate("CREATE TABLE TopManager "
+			    + "(empID VARCHAR(20) not null,"
+		        + "PRIMARY KEY (empID)"
+		        + "FOREIGN KEY (empID) REFERENCES Employee );");
+			stmt.executeUpdate("CREATE TABLE Account "
+				+ "(empID VARCHAR(20) not null,"
+				+ "email VARCHAR(50 UNIQUE)"
+				+ "password VARCHAR(8)"
+				+ "PRIMARY KEY(empID)"
+				+ "FOREIGN KEY (empID) REFERENCES Employee"
+				+ "FOREIGN KEY (email) REFERENCES Employee);");
+			stmt.executeUpdate("CREATE TABLE Program "
+				+ "(progDate VARCHAR(20) not null,"
+				+ "PRIMARY KEY(progDate));");
+			stmt.executeUpdate("CREATE TABLE Task " 
+				+ "(desc VARCHAR(20) not null,"
+				+ "parts INT not null"
+				+ "importance INT not null"
+				+ "difficulty INT not null"
+				+ "empID VARCHAR(20) not null"
+				+ "id INT not null);");
+			//stmt.executeUpdate();

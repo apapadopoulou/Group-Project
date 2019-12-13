@@ -22,7 +22,7 @@ public static void dataEntry() throws ParseException {
 	        		+ "In case you have inserted all the"
 	        		+ " Departments, please type done.");
 	        dname = sc.next();
-	        if (dname != "done") {
+	        if (!dname.equals("done")) {
 	            dep = new Department(dname);
 	            System.out.println("Department created"
 	            		+ " with id: " + dep.getId());
@@ -32,7 +32,7 @@ public static void dataEntry() throws ParseException {
 	            System.out.println("When you are done, please type done.");
 	            System.out.println("Name: ");
 	            name = sc.next();
-	            while (name != "done") {
+	            while (!name.equals("done")) {
 	            	boolean run = true;
 	            	while (run) {
 	            	   System.out.println("Surname: ");
@@ -74,13 +74,13 @@ public static void dataEntry() throws ParseException {
          	   System.out.println("Manager "
          	 		+ "created with id: " + emp.getId());
 	        }
-	    } while (dname != "done");
+	    } while (!dname.equals("done"));
 	    Department d = new Department("Top");
 	    System.out.println("Now, you are going to add Top Managers."
 	    		+ " Type done to terminate.");
 	    System.out.println("Name: ");
         name = sc.next();
-        while (name != "done") {
+        while (!name.equals("done")) {
         	boolean run = true;
         	while (run) {
         	   System.out.println("Surname: ");

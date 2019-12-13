@@ -90,12 +90,27 @@ public class Task extends Program implements Comparable<Task> {
   public void newTask() { 
     Scanner sc = new Scanner(System.in);
     System.out.println("You are about to create a Task.");
-    System.out.println("Please insert due date:/n Note: Due date should be inserted according to the format dd-mm-yyy!");
-    String inputDate = sc.nextLine();
+    do {
+    	try {
+    		System.out.println("Please insert due date:/n Note: Due date should be inserted according to the format dd-mm-yyy!");
+    		String inputDate = sc.nextLine();
+    	}catch(InputMismatchException e) {
+    		System.out.println("Please insert due date correctly!/n Note: Due date should be inserted according to the format dd-mm-yyy!")
+    	}
+    }while(inputDate !instanceof String );
+    	input.nextLine();
+    	
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     LocalDate dueDate = LocalDate.parse(inputDate);
-    System.out.println("Please insert level of importance for this task:");
-    int weight = sc.nextInt();
+    do{
+    	try {
+   
+    		System.out.println("Please insert level of importance for this task:");
+    		int weight = sc.nextInt();
+    }catch (InputMismatchException e) {
+    	System.out.println("Please insert level of importance for this task again")
+    }
+    }while(weight !instanceof Integer);
   } 
   /*Method calculating the difference between two dates*/
   public int difference(firstDate, secondDate) {

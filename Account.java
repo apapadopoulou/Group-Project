@@ -77,11 +77,19 @@ public class Account {
  	public static boolean login() {
  		boolean success=false;
  		//System.out.println("Welcome!");
- 		System.out.println("Please insert your email");
  		Scanner sc = new Scanner(System.in);
- 			String email = sc.nextLine();
+ 		try {
+ 		System.out.println("Please insert your email");
+ 		String email = sc.nextLine();
+ 		}catch(InputMismatchException e) {
+ 			System.out.println("Please enter your email");
+ 		}
+ 		try{
  			System.out.println("Please insert your password");
  			String password = sc.nextLine();
+ 		}catch(InputMIsmatchException e) {
+ 			System.out.println("Please enter your password")
+ 		}
  			if (password.equals
  					(searchAccountByEmail(email).password)) {
  				success = true;

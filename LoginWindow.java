@@ -55,18 +55,18 @@ public class LoginWindow extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setText("Username :");
 
-        jTextField1.setBackground(new java.awt.Color(0, 0, 0));
+        jTextField1.setBackground(new java.awt.Color(240, 240, 240));
         jTextField1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 222, 89));
+        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(0, 0, 0));
+        jPasswordField1.setBackground(new java.awt.Color(240, 240, 240));
         jPasswordField1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(255, 222, 89));
+        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);

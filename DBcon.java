@@ -67,7 +67,6 @@ public class DBcon {
 				+ "PRIMARY KEY(empID)"
 				+ "FOREIGN KEY (empID) REFERENCES Employee"
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
-			//stmt.executeUpdate();
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {

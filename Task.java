@@ -14,21 +14,42 @@ public class Task extends Program implements Comparable<Task> {
   private String desc;
   private boolean done;
   private int parts;
-  private int weight;  /*Weight of a task should be between 1 to 10*/ 
-  private Employee emp;
+  private int importance; //Importance of a task should be between 1 and 10.
+  private int difficulty; //Difficulty of a task should be between 1 and 10.
+  private String empid; //Employee ID for single-employee Tasks.
+  private ArrayList<String> empids; //Employee IDs ArrayList for Group Tasks. 
   public int counter=0; //Needed to create the Task IDs. 
   private int id;
   
-  public Task(Date dueDate, String desc, int parts, int weight, Employee emp) {
+  /*
+   *Constructor for single-employee task.
+   */
+  public Task(Date dueDate, String desc, int parts, int importance, int difficulty, String empid) {
     super();
     this.desc = desc;
     this.dueDate = dueDate;
     done = false;
     this.parts = parts;
-    this.weight = weight;
-    this.emp = emp;
+    this.importance = importance;
+    this.difficulty = difficulty;
+    this.empid = empid;
     this.id = counter++; //Needed for the DataBase. 
   }
+  
+  /*
+   *Constructor for multi-employee group task. 
+   */
+  public Task(Date dueDate, String desc, int parts, int importance, int difficulty, ArrayList<String> empids) {
+	super();
+	this.desc = desc;
+	this.dueDate = dueDate;
+	done = false;
+	this.parts = parts;
+	this.importance = importance;
+	this.difficulty = difficulty;
+	this.empids = empids;
+	this.id = counter++; //Needed for the DataBase. 
+	  }
   
   public Date getDueDate() {
     return dueDate;
@@ -55,12 +76,12 @@ public class Task extends Program implements Comparable<Task> {
     this.parts = parts;
   }
 
-  public int getWeight() {
-    return weight;
+  public int getImportance() {
+    return importance;
   }
 
-  public void setWeight(int weight) {
-    this.weight = weight;
+  public void setImportance(int weight) {
+    this.importance = importance;
   }
 
   /*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
@@ -137,10 +158,10 @@ public class Task extends Program implements Comparable<Task> {
         }
   }
   
-  @Override
-  public int compareTo(Task task) {
-    return this.getLevelOfImportance().compareTo(task.getLevelOfImportance());
-  }
+  //@Override
+  //public int compareTo(Task task) { //Add comments please!!!!.
+  //  return this.getImportance().compareTo(task.getImportance());
+// }
   
   /*Method sorting tasks from most important to least important*/
   public static ArrayList<Task> sort_Tasks_By_LevelOfImportance (ArrayList<Task> task){
@@ -149,7 +170,7 @@ public class Task extends Program implements Comparable<Task> {
   }
   
   @Override
-  public Date compareTo(Task task) {
+  	public Date compareTo(Task task) { //Add some comments please!!!!
     return this.getDueDate().compareTo(task.getDueDate());
   }
   

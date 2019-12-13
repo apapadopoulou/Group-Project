@@ -67,6 +67,20 @@ public class DBcon {
 				+ "PRIMARY KEY(empID)"
 				+ "FOREIGN KEY (empID) REFERENCES Employee"
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
+<<<<<<< HEAD
+=======
+			stmt.executeUpdate("CREATE TABLE Program "
+				+ "(progDate VARCHAR(20) not null,"
+				+ "PRIMARY KEY(progDate));");
+			stmt.executeUpdate("CREATE TABLE Task " 
+				+ "(desc VARCHAR(20) not null,"
+				+ "parts INT not null"
+				+ "importance INT not null"
+				+ "difficulty INT not null"
+				+ "empID VARCHAR(20) not null"
+				+ "id INT not null);");
+			//stmt.executeUpdate();
+>>>>>>> 906b78fa014402bbe9adb5f03fa33b32d338453e
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {

@@ -42,9 +42,11 @@ public static void dataEntry() throws ParseException {
 	            	   System.out.println("Phonenumber: ");
 	            	   phoneNumber = sc.nextInt();
 	            	   System.out.println("Date of Birth: ");
+	            	   sc.nextLine();
 	            	   inputDate = sc.nextLine();
 	            	   Date date = new SimpleDateFormat(""
 	            	 		+ "dd/MM/yyyy").parse(inputDate);
+	            	   sc.nextLine();
 	            	   BasicEmployee emp = new BasicEmployee(name, surname,
 	            			   phoneNumber, email, date, dep);
 	            	   System.out.println("Employee "
@@ -103,6 +105,7 @@ public static void dataEntry() throws ParseException {
         	System.out.println("Name: ");
 	            name = sc.next();
         }
+        sc.close();
 	}
 public static void main(String [] args) {
 	try {

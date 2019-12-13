@@ -10,9 +10,11 @@ import java.util.Collections;
 
 public class Task extends Program implements Comparable<Task> {
   private Date dueDate;
+  private Date startDate;
   private Date completionDate;
   private String desc;
   private boolean done;
+  private boolean isGroupTask;
   private int parts;
   private int importance; //Importance of a task should be between 1 and 10.
   private int difficulty; //Difficulty of a task should be between 1 and 10.
@@ -24,11 +26,13 @@ public class Task extends Program implements Comparable<Task> {
   /*
    *Constructor for single-employee task.
    */
-  public Task(Date dueDate, String desc, int parts, int importance, int difficulty, String empid) {
+  public Task(Date startDate, Date dueDate, String desc, int parts, int importance, int difficulty, String empid) {
     super();
     this.desc = desc;
+    this.startdDate = startDate;
     this.dueDate = dueDate;
     done = false;
+    isGroupTask = false; 
     this.parts = parts;
     this.importance = importance;
     this.difficulty = difficulty;
@@ -39,11 +43,13 @@ public class Task extends Program implements Comparable<Task> {
   /*
    *Constructor for multi-employee group task. 
    */
-  public Task(Date dueDate, String desc, int parts, int importance, int difficulty, ArrayList<String> empids) {
+  public Task(Date startDate, Date dueDate, String desc, int parts, int importance, int difficulty, ArrayList<String> empids) {
 	super();
 	this.desc = desc;
 	this.dueDate = dueDate;
+	this.startDate = startDate;
 	done = false;
+	isGroupTask = true;
 	this.parts = parts;
 	this.importance = importance;
 	this.difficulty = difficulty;
@@ -51,7 +57,11 @@ public class Task extends Program implements Comparable<Task> {
 	this.id = counter++; //Needed for the DataBase. 
 	  }
   
-  public Date getDueDate() {
+  public Date getStartDate( ) { //Returns the starting date of the task.
+	  return startDate;
+  }
+  
+  public Date getDueDate() { // Returns the due date of the task.
     return dueDate;
   }
 
@@ -84,6 +94,17 @@ public class Task extends Program implements Comparable<Task> {
     this.importance = importance;
   }
 
+  public int getDifficulty() {
+	  return difficulty;
+  }
+  
+  public void setDifficulty(int diff) {
+	  difficulty = diff;
+  }
+  
+  public boolean isGroupTask() {
+	  return isGroupTask;
+  }
   /*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
   you need to create a group task.*/
   public void newTask() { 

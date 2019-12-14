@@ -8,6 +8,7 @@
  *
  * @author User
  */
+import java.awt.Frame;
 public class DefaultPassword extends javax.swing.JFrame {
 
     /**
@@ -28,7 +29,8 @@ public class DefaultPassword extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         TextForDefPass = new javax.swing.JLabel();
-        OKButton = new org.jdesktop.swingx.JXButton();
+        OKButton = new javax.swing.JButton();
+        OKButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -85,42 +87,42 @@ public class DefaultPassword extends javax.swing.JFrame {
            this.dispose();
     }//GEN-LAST:event_OKButtonMouseClicked
  public static void main(String args[]) {
--        /* Set the Nimbus look and feel */
--        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
--        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
--         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
--         */
--        try {
--            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
--                if ("Nimbus".equals(info.getName())) {
--                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
--                    break;
--                }
--            }
--        } catch (ClassNotFoundException ex) {
--            java.util.logging.Logger.getLogger(DefaultPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
--        } catch (InstantiationException ex) {
--            java.util.logging.Logger.getLogger(DefaultPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
--        } catch (IllegalAccessException ex) {
--            java.util.logging.Logger.getLogger(DefaultPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
--        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
--            java.util.logging.Logger.getLogger(DefaultPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
--        }
--        //</editor-fold>
+        /* Set the Nimbus look and feel */
+       //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DefaultPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DefaultPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DefaultPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DefaultPassword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
  
--        /* Create and display the form */
--        java.awt.EventQueue.invokeLater(new Runnable() {
--            public void run() {
--                new DefaultPassword().setVisible(true);
--            }
--        });
--    }
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DefaultPassword().setVisible(true);
+            }
+        });
+    }
     /**
      * @param args the command line arguments
     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdesktop.swingx.JXButton OKButton;
+    private javax.swing.JButton OKButton;
     private javax.swing.JLabel TextForDefPass;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

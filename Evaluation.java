@@ -1,8 +1,12 @@
-import java.util.Date; //Used to get the Time.
+import java.util.Date; //Used to get the Time.g
 import java.util.ArrayList;
 import java.sql.*;
 
 public class Evaluation {
+	
+	/*URL of database with username and password.*/
+	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
+			"databaseName=DB56;user=G556;password=939wd5890;";
 	
 	/*
 	 * Basic method which is called to evaluate a Task.
@@ -16,10 +20,12 @@ public class Evaluation {
 		} else {
 			score = evalGroupTask(task); //Calls method for evaluating group Tasks.
 		}
+		saveToDb(task, score);
 		return score;
 	}
 	
 	public static double evalSingleTask(Task task) {
+		
 		
 	}
 	
@@ -31,10 +37,9 @@ public class Evaluation {
 	 *Returns an ArrayLIst of type Double which contains all of an employee's previous evaluations. 
 	 */
 	public static ArrayList<Double> getEvalHistory(String id) {
-		ArrayList<Double> evalHistory = new ArrayList<Double>();
-		/*URL of database with username and password.*/
-		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
-				"databaseName=DB56;user=G556;password=939wd5890;";
+		
+		ArrayList<Double> evalHistory = new ArrayList<Double>(); //ArrayList to save previous evaluations.
+		
 		/*Connection type object to make the connection.*/
 		Connection dbcon;
 		/*Statement type object that contains the statement we will send to the server.*/
@@ -70,6 +75,43 @@ public class Evaluation {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 		return evalHistory; // Returns the ArrayList.
+	}
+	
+	public static void saveToDb(Task task, double score) {
+		/*Connection type object to make the connection.*/
+		Connection dbcon;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt;
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			if (!task.isGroupTask()) { //Checks if its a group task or not.
+				/*Executes the given statement that saves the evaluation score and the employee's ID. */
+				stmt.executeUpdate("INSERT INTO JEvaluations (empID, evaluation) VALUES (" + task.getEmpID() + ", " + score + ");");
+			} else {
+				for (int i =0; i < task.getEmpIDs().size(); i++) {
+					stmt.executeUpdate("INSERT INTO JEvaluations (empID, evaluation) VALUES (" + task.getEmpIDs().get(i) + ", " + score + ");");
+				}
+			}
+				
+	
+			stmt.close(); //Closes the Statement resource.
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
 	}
 	
 	/*

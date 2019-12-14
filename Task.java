@@ -1,3 +1,4 @@
+package ex7;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class Task extends Program implements Comparable<Task> {
   private Date completionDate;
   private String desc;
   private boolean done;
+  private boolean isGroupTask;
   private int parts;
   private int importance; //Importance of a task should be between 1 and 10.
   private int difficulty; //Difficulty of a task should be between 1 and 10.
@@ -21,6 +23,8 @@ public class Task extends Program implements Comparable<Task> {
   private ArrayList<String> empids; //Employee IDs ArrayList for Group Tasks. 
   public int counter=0; //Needed to create the Task IDs. 
   private int id;
+  private double score;
+  private double[] scores;
   
   /*
    *Constructor for single-employee task.
@@ -30,6 +34,7 @@ public class Task extends Program implements Comparable<Task> {
     this.desc = desc;
     this.dueDate = dueDate;
     done = false;
+    isGroupTask = false;
     this.parts = parts;
     this.importance = importance;
     this.difficulty = difficulty;
@@ -45,6 +50,7 @@ public class Task extends Program implements Comparable<Task> {
   this.desc = desc;
   this.dueDate = dueDate;
   done = false;
+  isGroupTask = true;
   this.parts = parts;
   this.importance = importance;
   this.difficulty = difficulty;
@@ -92,7 +98,17 @@ public class Task extends Program implements Comparable<Task> {
   public void setImportance(int weight) {
     this.importance = importance;
   }
+  
+  public void setTaskScore(double score) {
+	  this.score = score;
+  }
+  public void setTaskScore(double [] score) {
+	  this.scores = scores;
+  }
 
+  public boolean isGroupTask() {
+	  return isGroupTask;
+  }
   /*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
   you need to create a group task.*/
   public void newTask() { 

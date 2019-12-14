@@ -68,6 +68,14 @@ public class Task extends Program implements Comparable<Task> {
     this.done = done;
     
   }
+  
+  public String getEmpID() {
+	  return empid;
+  }
+  
+  public ArrayList<String> getEmpIDs() {
+	  return empids;
+  }
 
   public int getParts() {
     return parts;

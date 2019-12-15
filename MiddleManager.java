@@ -2,9 +2,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 public class MiddleManager extends Employee {
+	
   private ArrayList <Department> managingDepartments = new ArrayList <Department>();
   private ArrayList <String> namesOfManagingDepartments = new ArrayList <String>();
   public static ArrayList <MiddleManager> middleManagers = new ArrayList <MiddleManager>();
+  
   public MiddleManager(String name, String surname, int phonenumber, String email, Date birthdate){
 	    super(name, surname, phonenumber, email, birthdate);
 	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());

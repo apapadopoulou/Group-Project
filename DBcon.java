@@ -67,8 +67,6 @@ public class DBcon {
 				+ "PRIMARY KEY(empID)"
 				+ "FOREIGN KEY (empID) REFERENCES Employee"
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
-<<<<<<< HEAD
-=======
 			stmt.executeUpdate("CREATE TABLE Program "
 				+ "(progDate VARCHAR(20) not null,"
 				+ "PRIMARY KEY(progDate));");
@@ -80,7 +78,6 @@ public class DBcon {
 				+ "empID VARCHAR(20) not null"
 				+ "id INT not null);");
 			//stmt.executeUpdate();
->>>>>>> 906b78fa014402bbe9adb5f03fa33b32d338453e
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {
@@ -104,7 +101,7 @@ public class DBcon {
 		this.salary = salary;
 		saveToDB(id, salary);
 	}
-	
+	/*Method ti save objects to Database*/
 	public static void saveToDB(int id, int salary) {
 		/*URL of database with username and password.*/
 		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
@@ -137,7 +134,7 @@ public class DBcon {
 			//System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-	/*Method to load objects from DB*/
+	/*Method to load objects from Database*/
 	public static void loadFromDB() {
 		/*URL of database with username and password.*/
 		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
@@ -169,6 +166,88 @@ public class DBcon {
 				int salary = rs.getInt("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
 				new DBcon(id, salary);
+				System.out.println("testing 2 done!!!");
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void saveDepartment(int id, int salary) {
+		/*URL of database with username and password.*/
+		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
+				"databaseName=DB56;user=G556;password=939wd5890;";
+		/*Connection type object to make the connection.*/
+		Connection dbcon;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt;
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and
+		 *  executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			stmt.executeUpdate("INSERT INTO BusyB (empID, salary) VALUES (" + id + ", " + salary + ");");
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			//System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void UpdateBasicEmpVar(String varName, String variable) {} //TODO!!!!
+	
+	public static void UpdateBasicEmpVar(String varName, int variable) {} //TODO!!!!
+	
+	public static void UpdateBasicEmpVar(String varName, Date variable) {} //TODO!!!!
+	
+	/*Method to load Departments from DB*/
+	public static void loadDepartments() {
+		/*URL of database with username and password.*/
+		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
+				"databaseName=DB56;user=G556;password=939wd5890;";
+		/*Connection type object to make the connection.*/
+		Connection dbcon;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt;
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			ResultSet rs;
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			rs = stmt.executeQuery("SELECT departmentID, name FROM JDepartment");
+			/*Does a loop for every row (object in this case) it finds.*/
+			while (rs.next()) {
+				int id = rs.getInt("departmentID");
+				String name = rs.getString("name");
+				/*After we find the variables we call the constructor to make the object again.*/
+				new Department(name, id);
 				System.out.println("testing 2 done!!!");
 			}
 			rs.close();

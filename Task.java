@@ -1,117 +1,177 @@
-package ex7;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+//import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.InputMismatchException;
 
-public class Task extends Program implements Comparable<Task> {
-  private Date dueDate;
-  private Date completionDate;
-  private String desc;
-  private boolean done;
-  private boolean isGroupTask;
-  private int parts;
-  private int importance; //Importance of a task should be between 1 and 10.
-  private int difficulty; //Difficulty of a task should be between 1 and 10.
-  private String empid; //Employee ID for single-employee Tasks.
-  private ArrayList<String> empids; //Employee IDs ArrayList for Group Tasks. 
-  public int counter=0; //Needed to create the Task IDs. 
-  private int id;
-  private double score;
-  private double[] scores;
+public class Task extends Program {
+	
+	/*URL of database with username and password.*/
+	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
+			"databaseName=DB56;user=G556;password=939wd5890;";
+	private Date startDate;
+	private Date dueDate;
+	private Date completionDate;
+	private String desc;
+	private boolean done;
+	private boolean isGroupTask;
+	private int parts;
+	private int importance; //Importance of a task should be between 1 and 10.
+	private int difficulty; //Difficulty of a task should be between 1 and 10.
+	private String empid; //Employee ID for single-employee Tasks.
+	private ArrayList<String> empids; //Employee IDs ArrayList for Group Tasks. 
+	public int counter=0; //Needed to create the Task IDs. 
+	private int id;
+	private double score;
+	private double[] scores;
   
   /*
    *Constructor for single-employee task.
    */
-  public Task(Date dueDate, String desc, int parts, int importance, int difficulty, String empid) {
-    super();
-    this.desc = desc;
-    this.dueDate = dueDate;
-    done = false;
-    isGroupTask = false;
-    this.parts = parts;
-    this.importance = importance;
-    this.difficulty = difficulty;
-    this.empid = empid;
-    this.id = counter++; //Needed for the DataBase. 
-  }
+	public Task(Date startDate, Date dueDate, String desc, int parts, int importance, int difficulty, String empid) {
+		super();
+		this.desc = desc;
+		this.startDate = startDate;
+		this.dueDate = dueDate;
+		done = false;
+		isGroupTask = false;
+		this.parts = parts;
+		this.importance = importance;
+		this.difficulty = difficulty;
+		this.empid = empid;
+		this.id = counter++; //Needed for the DataBase. 
+	}
   
   /*
    *Constructor for multi-employee group task. 
    */
-  public Task(Date dueDate, String desc, int parts, int importance, int difficulty, ArrayList<String> empids) {
-  super();
-  this.desc = desc;
-  this.dueDate = dueDate;
-  done = false;
-  isGroupTask = true;
-  this.parts = parts;
-  this.importance = importance;
-  this.difficulty = difficulty;
-  this.empids = empids;
-  this.id = counter++; //Needed for the DataBase. 
+	public Task(Date startDate, Date dueDate, String desc, int parts, int importance, int difficulty, ArrayList<String> empids) {
+		super();
+		this.desc = desc;
+		this.startDate = startDate;
+		this.dueDate = dueDate;
+		done = false;
+		isGroupTask = true;
+		this.parts = parts;
+		this.importance = importance;
+		this.difficulty = difficulty;
+		this.empids = empids;
+		this.id = counter++; //Needed for the DataBase. 
     }
   
-  public Date getDueDate() {
-    return dueDate;
-  }
+	public Date getDueDate() {
+		return dueDate;
+	}
 
-  public void setDueDate(Date dueDate) {
-    this.dueDate = dueDate;
-  }
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
 
-  public boolean getStatus() {
-    return done;
-  }
+	public Date getStartDate() {
+		return startDate;
+	}
+  
+	public void setStartDate(Date date) {
+		this.startDate = date;
+	}
 
-  public void setStatus(boolean done) { //Used to indicate when a task is completed
-    this.done = done;
+	public Date getCompletionDate() {
+		return completionDate;
+	}
+	public boolean getStatus() {
+		return done;
+	}
+
+	public void setStatus(boolean done) { //Used to indicate when a task is completed
+		completionDate = new Date();
+		this.done = done;
     
-  }
+	}
   
-  public String getEmpID() {
-	  return empid;
-  }
+	public String getEmpID() {
+		return empid;
+	}
   
-  public ArrayList<String> getEmpIDs() {
-	  return empids;
-  }
+	public ArrayList<String> getEmpIDs() {
+		return empids;
+	}
 
-  public int getParts() {
-    return parts;
-  }
+	public int getParts() {
+		return parts;
+	}
 
-  public void setParts(int parts) {
-    this.parts = parts;
-  }
+	public void setParts(int parts) {
+		this.parts = parts;
+	}
 
-  public int getImportance() {
-    return importance;
-  }
+	public int getImportance() {
+		return importance;
+	}
 
-  public void setImportance(int weight) {
-    this.importance = importance;
-  }
+	public void setImportance(int weight) {
+		this.importance = importance;
+	}
   
-  public void setTaskScore(double score) {
-	  this.score = score;
-  }
-  public void setTaskScore(double [] score) {
-	  this.scores = scores;
-  }
+	public void setTaskScore(double score) {
+		this.score = score;
+	}
+  
+	public int getDifficulty() {
+		return difficulty;
+	}
+	public void setTaskScore(double [] score) {
+		this.scores = scores;
+	}
 
-  public boolean isGroupTask() {
-	  return isGroupTask;
-  }
-  /*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
-  you need to create a group task.*/
-  public void newTask() { 
+	public boolean isGroupTask() {
+		return isGroupTask;
+	}
+  
+	public int getTaskID() {
+		return id;  
+	}
+	
+	public static void saveToDb(Task task) {
+		/*Connection type object to make the connection.*/
+		Connection dbcon;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt;
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			if (!task.isGroupTask()) { //Checks if its a group task or not.
+				/*Executes the given statement that saves the evaluation score and the employee's ID. */
+				stmt.executeUpdate("INSERT INTO JTasks (taskID, dueDate, , empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpID() + ", " + score + ");");
+			} else {
+				for (int i =0; i < task.getEmpIDs().size(); i++) {
+					stmt.executeUpdate("INSERT INTO JTasks (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpIDs().get(i) + ", " + score + ");");
+				}
+			}
+				
+	
+			stmt.close(); //Closes the Statement resource.
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	/*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
+  	you need to create a group task.*/
+	/*public void newTask() { 
     Scanner sc = new Scanner(System.in);
     System.out.println("You are about to create a Task.");
     do {
@@ -135,55 +195,10 @@ public class Task extends Program implements Comparable<Task> {
     	System.out.println("Please insert level of importance for this task again")
     }
     }while(weight !instanceof Integer);
-  } 
-  /*Method calculating the difference between two dates*/
-  public int difference(firstDate, secondDate) {
-    System.out.print("Insert first date: ");
-    Scanner s = new Scanner(System.in);
-      String[] insert1 = new String[3];
-      while (s.hasNext()) {
-        int i = 0;
-          insert1[i] = s.next();
-          if (!s.hasNext()) {
-            s.close();
-            break;
-            }
-            i++;
-      }
-      System.out.print("Insert second date: ");
-      Scanner t = new Scanner(System.in);
-      String[] insert2 = new String[3];
-
-      while (t.hasNext()) {
-        int i = 0;
-        insert2[i] = t.next();
-        if (!t.hasNext()) {
-          t.close();
-          break;
-        }
-        i++;
-      }
-        Calendar cal = Calendar.getInstance();
-
-        cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(insert1[0]));
-        cal.set(Calendar.MONTH, Integer.parseInt(insert1[1]));
-        cal.set(Calendar.YEAR, Integer.parseInt(insert1[2]));
-        Date firstDate = cal.getTime();
-
-        cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(insert2[0]));
-        cal.set(Calendar.MONTH, Integer.parseInt(insert2[1]));
-        cal.set(Calendar.YEAR, Integer.parseInt(insert2[2]));
-        Date secondDate = cal.getTime();
-
-
-        long diff = secondDate.getTime() - firstDate.getTime();
-
-
-        System.out.println ("Days: " + diff / 1000 / 60 / 60 / 24);
-  }
+  } */
   
   /*This method lets the user choose in how many parts the task should be devided.*/
-  public void taskSegmentation() {
+ /* public void taskSegmentation() {
     System.out.println("In how many parts should the task be devided?");
         Scanner sc = new Scanner(System.in);
         try {
@@ -198,27 +213,5 @@ public class Task extends Program implements Comparable<Task> {
                 partdates[i] = dt;
             }
         } catch(InputMismatchException e1) {}
-  }
-  
-  //@Override
-  //public int compareTo(Task task) { //Add comments please!!!!.
-  //  return this.getImportance().compareTo(task.getImportance());
-// }
-  
-  /*Method sorting tasks from most important to least important*/
-  public static ArrayList<Task> sort_Tasks_By_LevelOfImportance (ArrayList<Task> task){
-    Collections.sort(task);
-    return task;
-  }
-  
-  @Override
-    public Date compareTo(Task task) { //Add some comments please!!!!
-    return this.getDueDate().compareTo(task.getDueDate());
-  }
-  
-  /*Method sorting tasks by DueDate*/
-  public static ArrayList<Task> sort_Tasks_By_Due_Date(ArrayList<Task> task){
-      Collections.sort(task);
-      return task;
-  }
+  }*/
 }

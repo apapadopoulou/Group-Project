@@ -27,7 +27,7 @@ public class DefaultPassword extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        background = new javax.swing.JPanel();
         TextForDefPass = new javax.swing.JLabel();
         OKButton = new javax.swing.JButton();
         OKButton = new javax.swing.JButton();
@@ -36,7 +36,7 @@ public class DefaultPassword extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 140));
+        background.setBackground(new java.awt.Color(255, 255, 140));
 
         TextForDefPass.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         TextForDefPass.setText("You are using the default password. If you want to change it go to settings.");
@@ -48,8 +48,8 @@ public class DefaultPassword extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(background);
+        background.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -71,8 +71,8 @@ public class DefaultPassword extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 470, 100);
+        getContentPane().add(background);
+        background.setBounds(0, 0, 470, 100);
 
         setSize(new java.awt.Dimension(469, 97));
         setLocationRelativeTo(null);
@@ -124,6 +124,6 @@ public class DefaultPassword extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OKButton;
     private javax.swing.JLabel TextForDefPass;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel background;
     // End of variables declaration//GEN-END:variables
 }

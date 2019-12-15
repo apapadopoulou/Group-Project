@@ -7,9 +7,12 @@ public class BasicEmployee extends Employee {
 	private String id; // ID instance variable.
 	public static ArrayList <BasicEmployee> basicEmployees = new ArrayList <BasicEmployee>(); // An ArrayList that contains all Basic Employees.
 	
-	/*Constructor for class BasicEmployee.*/
+	/*
+	 * Basic constructor for class BasicEmployee.
+	 * Use this constructor if you want to create new Basic employees.
+	 */
 	public BasicEmployee(String name, String surname,int telephone, String email, Date birthdate, Department department) {
-		super(name, surname, telephone, email, birthdate);//Calls the constructoer for the superclass Employee.
+		super(name, surname, telephone, email, birthdate);//Calls the constructor for the superclass Employee.
 		this.department = department;
 		/*
 		 * The id is constructed using the department's id,
@@ -25,12 +28,25 @@ public class BasicEmployee extends Employee {
 		employees.add(this); // I dont know what this does. Someone explain it here!!!!
 	}
 
+	/*
+	 * Database constructor for class BasicEmployee.
+	 * This constructor is used to load employees from the database when the program opens.
+	 */
+	public BasicEmployee(String name, String surname,int telephone, String email, Date birthdate, int depID, String empID) {
+		super(name, surname, telephone, email, birthdate); //Calls the constructor for the superclass Employee.
+		this.department = Department.getDepartment(depID); //Gets the Department object using the Department id.
+		id = empID;
+		basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
+		employees.add(this); // I dont know what this does. Someone explain it here!!!!
+	}
+
 	public Department getDepartment() {
 		return department;
 	}
 
 	public void setDepartment(Department department) {
 		this.department = department;
+		DBcon.UpdateBasicEmpVar("department", department.getId()); //Saves the change to the Database.
 	}
 	
 	public String getID() {
@@ -49,7 +65,7 @@ public class BasicEmployee extends Employee {
 	      e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
 	     
 	  }
-	@Override
+	//@Override
 	public String getJobTitle() {
 		// TODO Auto-generated method stub
 		return null;

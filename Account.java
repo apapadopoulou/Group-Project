@@ -1,16 +1,14 @@
 import java.util.Scanner;
 import javax.swing.JFrame;
 //import project.Employee;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 
 public class Account {
 	private Employee employee;
-	private static String email;
-	private static String password;
+	private String email;
+	private String password;
 	private static ArrayList<Account> accounts = new ArrayList<Account>();
 	 	/* Account's constructor */
 
@@ -92,7 +90,7 @@ public class Account {
 
  	/*This method checks if the password and the email of the input
  	   are equal to the password and the email of the user.*/
- 	/*public static boolean login() {
+ 	public static boolean login() {
  		boolean success=false;
  		//System.out.println("Welcome!");
  		Scanner sc = new Scanner(System.in);
@@ -108,14 +106,13 @@ public class Account {
  		}catch(InputMismatchException e) {
  			System.out.println("Please enter your password");
  		}
- 			if (password.equals
- 					(searchAccountByEmail(email).password)) {
- 				success = true;
- 			}
- 			sc.close();
- 			return success;
+ 		if (password.equals
+ 				(searchAccountByEmail(email).password)) {
+ 			success = true;
+ 		}
+ 		sc.close();
+ 		return success;
  	}
- 	*/
  	
  	public static void main(String [] args) {
  		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -126,7 +123,6 @@ public class Account {
  	}
 
  	/* This method generates Employee's password */
-<<<<<<< HEAD
  	public static char[] passwordGenerator() {
  		String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
         String Small_chars = "abcdefghijklmnopqrstuvwxyz"; 
@@ -148,36 +144,4 @@ public class Account {
         } 
         return password; 
 	}
-=======
- 	/*public static String passwordGenerator() {
-		PasswordGenerator gen = new PasswordGenerator();
-		CharacterData lowerCaseChars = EnglishCharacterData.LowerCase;
-		CharacterRule lowerCaseRule = new CharacterRule(lowerCaseChars);
-		lowerCaseRule.setNumberOfCharacters(1);
-
-		CharacterData upperCaseChars = EnglishCharacterData.UpperCase;
-		CharacterRule upperCaseRule = new CharacterRule(upperCaseChars);
-		upperCaseRule.setNumberOfCharacters(1);
-
-		CharacterData digitChars = EnglishCharacterData.Digit;
-		CharacterRule digitRule = new CharacterRule(digitChars);
-		digitRule.setNumberOfCharacters(1);
-
-		CharacterData specialChars = new CharacterData() {
-			public String getErrorCode() {
-				return ERROR_CODE;
-			}
-
-		    public String getCharacters() {
-		            return "!@#$%^&*()_+";
-		    }
-		};
-		CharacterRule splCharRule = new CharacterRule(specialChars);
-		splCharRule.setNumberOfCharacters(1);
-
-		String password = gen.generatePassword(8, splCharRule, lowerCaseRule,
-		   upperCaseRule, digitRule);
-        return password;
-	}*/
->>>>>>> 31c2b6cd9de51d99d5fec38515775f814d1be611
 }

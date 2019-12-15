@@ -1,16 +1,16 @@
 import java.util.Scanner;
-
 import javax.swing.JFrame;
 //import project.Employee;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Random;
 
 public class Account {
 	private Employee employee;
-	private String email;
-	private String password;
+	private static String email;
+	private static String password;
 	private static ArrayList<Account> accounts = new ArrayList<Account>();
 	 	/* Account's constructor */
 
@@ -69,9 +69,6 @@ public class Account {
  		return null;
  	}
 
- 	/*This method checks if the password and the email of the input 
- 	 * are equal to the password and the email of the user.*/
-
  	/*This method checks if the password and the email of the input
  	   are equal to the password and the email of the user.*/
  	public static boolean login() {
@@ -87,8 +84,8 @@ public class Account {
  		try{
  			System.out.println("Please insert your password");
  			String password = sc.nextLine();
- 		}catch(InputMIsmatchException e) {
- 			System.out.println("Please enter your password")
+ 		}catch(InputMismatchException e) {
+ 			System.out.println("Please enter your password");
  		}
  			if (password.equals
  					(searchAccountByEmail(email).password)) {
@@ -350,34 +347,25 @@ public class Account {
  	//}
 
  	/* This method generates Employee's password */
- 	public static String passwordGenerator() {
-		PasswordGenerator gen = new PasswordGenerator();
-		CharacterData lowerCaseChars = EnglishCharacterData.LowerCase;
-		CharacterRule lowerCaseRule = new CharacterRule(lowerCaseChars);
-		lowerCaseRule.setNumberOfCharacters(1);
-
-		CharacterData upperCaseChars = EnglishCharacterData.UpperCase;
-		CharacterRule upperCaseRule = new CharacterRule(upperCaseChars);
-		upperCaseRule.setNumberOfCharacters(1);
-
-		CharacterData digitChars = EnglishCharacterData.Digit;
-		CharacterRule digitRule = new CharacterRule(digitChars);
-		digitRule.setNumberOfCharacters(1);
-
-		CharacterData specialChars = new CharacterData() {
-			public String getErrorCode() {
-				return ERROR_CODE;
-			}
-
-		    public String getCharacters() {
-		            return "!@#$%^&*()_+";
-		    }
-		};
-		CharacterRule splCharRule = new CharacterRule(specialChars);
-		splCharRule.setNumberOfCharacters(1);
-
-		String password = gen.generatePassword(8, splCharRule, lowerCaseRule,
-		   upperCaseRule, digitRule);
-        return password;
+ 	public static char[] passwordGenerator() {
+ 		String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+        String Small_chars = "abcdefghijklmnopqrstuvwxyz"; 
+        String numbers = "0123456789"; 
+        String symbols = "!@#$%^&*_=+-/.?<>)"; 
+        String values = Capital_chars + Small_chars + 
+                        numbers + symbols; 
+  
+        // Using random method 
+        Random ran = new Random(); 
+        char[] password = new char[8]; 
+  
+        for (int i = 0; i < 8; i++) { 
+            // Use of charAt() method : to get character value 
+            // Use of nextInt() as it is scanning the value as int 
+            password[i] = 
+              values.charAt(ran.nextInt(values.length())); 
+  
+        } 
+        return password; 
 	}
 }

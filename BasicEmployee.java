@@ -44,28 +44,22 @@ public class BasicEmployee extends Employee {
 	public Department getDepartment() {
 		return department;
 	}
-
+	
+	// Method that changes the employee's department using the department object.
 	public void setDepartment(Department department) {
 		this.department = department;
-		DBcon.UpdateBasicEmpVar("department", department.getId()); //Saves the change to the Database.
+		DBcon.UpdateBasicEmpVar("department", department.getId(), id); //Saves the change to the Database.
 	}
 	
 	public String getID() {
 		return id;
 	}
-	// Method that changes the employee's department
-	public void changeDepartmentAndId(String empName, int depId) {
-	       /* System.out.println('Insert the name of department in which you want to get included');
-	        String depname = sc.nextLine(); -> for main*/
-	      BasicEmployee e = BasicEmployee.searchEmployeeByName2(empName);
-	      e.getDepartment().deleteEmployeeByName(empName);
-		  Department d = Department.searchDepartmentById(depId);
-		  e.setDepartment(d);
-		  d.addEmployee(e);
-		  /* change employee's id based on his new department */
-	      e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
-	     
-	  }
+	// Method that changes the employee's department using the department id.
+	public void setDepartment(int depId) {
+		department = Department.getDepartment(depID);
+		DBcon.UpdateBasicEmpVar("department", department.getId(), id); //Saves the change to the Database.
+	}
+	
 	//@Override
 	public String getJobTitle() {
 		// TODO Auto-generated method stub
@@ -83,4 +77,18 @@ public class BasicEmployee extends Employee {
 		    }
 		    return null;
 	  }
+	
+	// Method that changes the employee's department
+		public void changeDepartmentAndId(String empName, int depId) {
+		       /* System.out.println('Insert the name of department in which you want to get included');
+		        String depname = sc.nextLine(); -> for main*/
+		      BasicEmployee e = BasicEmployee.searchEmployeeByName2(empName);
+		      e.getDepartment().deleteEmployeeByName(empName);
+			  Department d = Department.searchDepartmentById(depId);
+			  e.setDepartment(d);
+			  d.addEmployee(e);
+			  /* change employee's id based on his new department */
+		      e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
+		     
+		  }
 }

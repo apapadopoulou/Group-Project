@@ -7,7 +7,7 @@ public abstract class Employee {
   private String email;
   private String id;
   private Date birthdate;
-  private PersonalisedCalendar pc; 
+  private PersonalisedCalendar pc;
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   // Constructor
   public Employee(String name, String surname, int phonenumber, String email, Date birthdate) {
@@ -20,31 +20,31 @@ public abstract class Employee {
       this.phonenumber = phonenumber;
       this.email = email;
       this.birthdate = birthdate;
-      
-  }   
-  
+
+  }
+
   public Date getBirthdate() {
     return birthdate;
-  } 
-  
+  }
+
   public void setBirthdate(Date birthdate) {
     this.birthdate = birthdate;
-  } 
-  
+  }
+
   public String getName() {
       return name;
   }
   public String getSurname() {
       return surname;
   }
-    
+
   public String getEmail() {
       return email;
   }
   public String getId() {
       return id;
   }
-  
+
   public void setName(String name) {
       this.name = name;
   }
@@ -54,7 +54,7 @@ public abstract class Employee {
   public String getNameSurname() {
       return getName() + getSurname();
   }
-    
+
   public int getPhonenumber() {
     return phonenumber;
   }
@@ -80,42 +80,42 @@ public abstract class Employee {
       return str_2;
   }
   //public abstract String getJobTitle();
-  
+
   // Returns the employee we searched for
   public static Employee searchEmployeeById2(String id) {
     for (int i = 0; i < employees.size(); i++) {
       if (employees.get(i).getId() == id) {
             return employees.get(i);
-        } 
+        }
     }
     return null;
   }
 
-  
+
   // Method toString including a String format for the given data
- 
+
   public static Employee searchEmployeeByName2(String name) {
     for (int i = 0; i < employees.size(); i++) {
         if (employees.get(i).getNameSurname().equals(name)) {
           return employees.get(i);
         } else if (employees.get(i).getSurname().equals(name)) {
           return employees.get(i);
-        } else 
+        } else
           System.out.println("Employee was not found");
       }
       return null;
   }
-    
+
   /* this is a method that changes employee's id based on his new department */
- 
-  
+
+
   /*a method that evaluates an employee based on the level of importance of tasks he is responsible for*/
-  public void employeeEvaluation (int loi) { /*loi is a variable determined by each business*/
-    int count = 0;
+/*  public void employeeEvaluation (int loi) {*/ /*loi is a variable determined by each business*/
+/*  int count = 0;
     int sum = 0;
       if (.equals(this.getName()) {
-        sum += getLevelOfImportance(); /*level of importance for this task*/
-        count++;
+        sum += getLevelOfImportance(); */ /*level of importance for this task*/
+/*      count++;
       }
     }
     if (count != 0) {
@@ -125,6 +125,5 @@ public abstract class Employee {
         System.out.println("The employee with id "+this.getId()+"is not considered efficien.");
       }
     }
-  }
-
- }
+  }*/
+}

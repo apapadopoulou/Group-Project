@@ -298,5 +298,86 @@ public class DBcon {
 	public static void UpdateBasicEmpVar(String varName, int variable) {} //TODO!!!!
 
 	public static void UpdateBasicEmpVar(String varName, Date variable) {} //TODO!!!!
+	
+	public static void saveEvaluation(Task task, double score) {
+		/*Connection type object to make the connection.*/
+		Connection dbcon;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt;
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			if (!task.isGroupTask()) { //Checks if its a group task or not.
+				/*Executes the given statement that saves the evaluation score and the employee's ID. */
+				stmt.executeUpdate("INSERT INTO JEvaluations (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpID() + ", " + score + ");");
+			} else {
+				for (int i =0; i < task.getEmpIDs().size(); i++) {
+					stmt.executeUpdate("INSERT INTO JEvaluations (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpIDs().get(i) + ", " + score + ");");
+				}
+			}
+				
+	
+			stmt.close(); //Closes the Statement resource.
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
 
+	/*
+	 *Method responsible for retrieving past evaluations of employee's performance on his tasks.
+	 *Returns an ArrayLIst of type Double which contains all of an employee's previous evaluations. 
+	 */
+	public static ArrayList<Double> getEvalHistory(String id) {
+		
+		ArrayList<Double> evalHistory = new ArrayList<Double>(); //ArrayList to save previous evaluations.
+		
+		/*Connection type object to make the connection.*/
+		Connection dbcon;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt;
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			ResultSet rs;
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given query that returns the History of Evaluations for the particular BasicEmployee using his ID.*/
+			rs = stmt.executeQuery("SELECT evaluation FROM JEvaluations WHERE empID=" + id );
+			/*Does a loop for every row it finds.*/
+			while (rs.next()) {
+				double evaluation = rs.getDouble("evaluation");//Returns the evalutaion value from this row.
+				evalHistory.add(evaluation);// Adds the evaluation value to the ArrayList.
+				System.out.println("check if its correct!!");//Used for testing.
+			}
+			rs.close(); //Closes the ResultSet resource.
+			stmt.close(); //Closes the Statement resource.
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		return evalHistory; // Returns the ArrayList.
+	}
 }

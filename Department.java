@@ -36,12 +36,21 @@ public class Department {
 		}
 		return dep;
 	}
+	
 	public static ArrayList<Department> getDepartments() {
 		return departments;
 	}
 	
 	public int getId() {
 		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public ArrayList<BasicEmployee> getEmployeesOfDepartment() {
@@ -98,12 +107,7 @@ public class Department {
 			}
 		}
 	}// a method that deletes a specific employee from a department's arraylist using his id to find him
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	@Override
 	public String toString() {
 		String str_1 = "";

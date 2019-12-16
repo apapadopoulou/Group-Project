@@ -12,15 +12,15 @@ public class DBcon {
 	/*Some example variables.*/
 	private int id;
 	private int salary;
+	/*URL of database with username and password.*/
+	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
+			"databaseName=DB56;user=G556;password=939wd5890;";
+	/*Connection type object to make the connection.*/
+	public static Connection dbcon;
+	/*Statement type object that contains the statement we will send to the server.*/
+	public static Statement stmt;
 	
 	public static void tableCreation() {
-		 /*URL of database with username and password.*/
-		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
-				"databaseName=DB56;user=G556;password=939wd5890;";
-		/*Connection type object to make the connection.*/
-		Connection dbcon;
-		/*Statement type object that contains the statement we will send to the server.*/
-		Statement stmt;
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -103,13 +103,6 @@ public class DBcon {
 	}
 	/*Method ti save objects to Database*/
 	public static void saveToDB(int id, int salary) {
-		/*URL of database with username and password.*/
-		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
-				"databaseName=DB56;user=G556;password=939wd5890;";
-		/*Connection type object to make the connection.*/
-		Connection dbcon;
-		/*Statement type object that contains the statement we will send to the server.*/
-		Statement stmt;
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -136,13 +129,6 @@ public class DBcon {
 	}
 	/*Method to load objects from Database*/
 	public static void loadFromDB() {
-		/*URL of database with username and password.*/
-		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
-				"databaseName=DB56;user=G556;password=939wd5890;";
-		/*Connection type object to make the connection.*/
-		Connection dbcon;
-		/*Statement type object that contains the statement we will send to the server.*/
-		Statement stmt;
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -177,14 +163,7 @@ public class DBcon {
 		}
 	}
 	
-	public static void saveDepartment(int id, int salary) {
-		/*URL of database with username and password.*/
-		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
-				"databaseName=DB56;user=G556;password=939wd5890;";
-		/*Connection type object to make the connection.*/
-		Connection dbcon;
-		/*Statement type object that contains the statement we will send to the server.*/
-		Statement stmt;
+	public static void saveDepartment(Department dep) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -201,7 +180,7 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BusyB (empID, salary) VALUES (" + id + ", " + salary + ");");
+			stmt.executeUpdate("INSERT INTO BBDepartment (departmentID, name) VALUES (" + dep.getId() + ", " + dep.getName() + ");");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -210,21 +189,8 @@ public class DBcon {
 		}
 	}
 	
-	public static void UpdateBasicEmpVar(String varName, String variable) {} //TODO!!!!
-	
-	public static void UpdateBasicEmpVar(String varName, int variable) {} //TODO!!!!
-	
-	public static void UpdateBasicEmpVar(String varName, Date variable) {} //TODO!!!!
-	
 	/*Method to load Departments from DB*/
 	public static void loadDepartments() {
-		/*URL of database with username and password.*/
-		String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
-				"databaseName=DB56;user=G556;password=939wd5890;";
-		/*Connection type object to make the connection.*/
-		Connection dbcon;
-		/*Statement type object that contains the statement we will send to the server.*/
-		Statement stmt;
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -241,7 +207,7 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT departmentID, name FROM JDepartment");
+			rs = stmt.executeQuery("SELECT departmentID, name FROM BBDepartment");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
 				int id = rs.getInt("departmentID");
@@ -258,5 +224,79 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
+	
+	public static void saveBasicEmployee(BasicEmployee emp) {
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and
+		 *  executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, depID, empID)"
+					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone() 
+					+  ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ + ", " + emp.getDepId() + ", " + emp.getId() + ");");
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			//System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void loadBasicEmployees() {
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			ResultSet rs;
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, depID, empID FROM BBBasicEmployee");
+			/*Does a loop for every row (object in this case) it finds.*/
+			while (rs.next()) {
+				String name = rs.getString("name");
+				String surname = rs.getString("surname");
+				String telephone = rs.getString("telephone");
+				String email = rs.getString("email");
+				Date birthDate = rs.getDate("birthDate");
+				int depId = rs.getInt("depID");
+				String empId = rs.getString("empID");
+				/*After we find the variables we call the constructor to make the object again.*/
+				new BasicEmployee(name, surname, telephone, email, birtDate, depId, empId));
+				System.out.println("testing 2 done!!!");
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void UpdateBasicEmpVar(String varName, String variable) {} //TODO!!!!
+	
+	public static void UpdateBasicEmpVar(String varName, int variable) {} //TODO!!!!
+	
+	public static void UpdateBasicEmpVar(String varName, Date variable) {} //TODO!!!!
+	
 }
-

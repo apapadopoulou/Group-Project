@@ -13,13 +13,13 @@ public class DBcon {
 	private int id;
 	private int salary;
 	/*URL of database with username and password.*/
-	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
+	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
 			"databaseName=DB56;user=G556;password=939wd5890;";
 	/*Connection type object to make the connection.*/
 	public static Connection dbcon;
 	/*Statement type object that contains the statement we will send to the server.*/
 	public static Statement stmt;
-	
+
 	public static void tableCreation() {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
@@ -70,7 +70,7 @@ public class DBcon {
 			stmt.executeUpdate("CREATE TABLE Program "
 				+ "(progDate VARCHAR(20) not null,"
 				+ "PRIMARY KEY(progDate));");
-			stmt.executeUpdate("CREATE TABLE Task " 
+			stmt.executeUpdate("CREATE TABLE Task "
 				+ "(desc VARCHAR(20) not null,"
 				+ "parts INT not null"
 				+ "importance INT not null"
@@ -82,7 +82,7 @@ public class DBcon {
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
-		} 
+		}
 		/*USED FOR TESTING ONLY.*/
 		DBcon yes = new DBcon(312312, 6000);
 		new DBcon(313424, 100000);
@@ -162,7 +162,7 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-	
+
 	public static void saveDepartment(Department dep) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
@@ -188,7 +188,7 @@ public class DBcon {
 			//System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-	
+
 	/*Method to load Departments from DB*/
 	public static void loadDepartments() {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
@@ -224,7 +224,7 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-	
+
 	public static void saveBasicEmployee(BasicEmployee emp) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
@@ -243,7 +243,7 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
 			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, depID, empID)"
-					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone() 
+					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone()
 					+  ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ + ", " + emp.getDepId() + ", " + emp.getId() + ");");
 			stmt.close();
 			dbcon.close();
@@ -252,7 +252,7 @@ public class DBcon {
 			//System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-	
+
 	public static void loadBasicEmployees() {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
@@ -281,7 +281,7 @@ public class DBcon {
 				int depId = rs.getInt("depID");
 				String empId = rs.getString("empID");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new BasicEmployee(name, surname, telephone, email, birtDate, depId, empId));
+				new BasicEmployee(name, surname, telephone, email, birtDate, depId, empId);
 				System.out.println("testing 2 done!!!");
 			}
 			rs.close();
@@ -292,11 +292,11 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-	
+
 	public static void UpdateBasicEmpVar(String varName, String variable) {} //TODO!!!!
-	
+
 	public static void UpdateBasicEmpVar(String varName, int variable) {} //TODO!!!!
-	
+
 	public static void UpdateBasicEmpVar(String varName, Date variable) {} //TODO!!!!
-	
+
 }

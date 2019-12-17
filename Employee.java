@@ -122,7 +122,7 @@ public abstract class Employee {
       if (sum/count >= loi) {
         System.out.println("The employee with id "+this.getId()+"is considered efficient.");
       } else {
-        System.out.println("The employee with id "+this.getId()+"is not considered efficien.");
+        System.out.println("The employee with id "+this.getId()+"is not considered efficient.");
       }
     }
   }

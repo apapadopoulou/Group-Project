@@ -4,6 +4,7 @@ public class Department {
 	private int id;
 	private String name;
 	private static int num_dep = 1; // counter
+	private String managerId;
 	private ArrayList <BasicEmployee> employeesOfDepartment = new ArrayList <BasicEmployee>(); /* a list that contains the employees of each department separately*/
 	public static ArrayList <Department> departments = new ArrayList <Department>(); // a list that contains all the departments
 	
@@ -52,7 +53,24 @@ public class Department {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	public void setManagerId(String id) {
+		managerId = id;
+		DBcon.updateDepartmentVar("managerId", managerId, this.id);
+	}
+	/*
+	public  void setManagerId(i, String managerId) {
+		for (int i = 0; i < departments.size(); i++) {
+			if (depId == departments.get(i).getId()) {
+				this.managerId = managerId;
+			}
+		}
+	}*/
+	
+	public String getManagerId() {
+		return managerId;
+	}
+	
 	public ArrayList<BasicEmployee> getEmployeesOfDepartment() {
 	  return employeesOfDepartment;
 	}

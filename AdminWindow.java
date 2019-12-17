@@ -99,6 +99,10 @@ public class AdminWindow extends JFrame {
         tbirthdate.setSize(190, 20);
         tbirthdate.setLocation(200, 500);
         adminSettings.add(tbirthdate);
+        String admnSurname = tsurname.getText();
+        String admnName = tname.getText();
+        int admnPhonenumber = parseInt(tphonenumber.getText());
+        
 	}
 	public static void main (String [] args) {
 		AdminWindow aw = new AdminWindow();

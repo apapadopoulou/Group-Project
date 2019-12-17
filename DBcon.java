@@ -1,11 +1,15 @@
 /**
  * DBcon Class
  * Used for testing the Database connection.
+ * 
+ * @author Vasilis Xifaras
  */
+
 /*Im not sure if we need that.*/
 import java.io.*;
 /*used to create the sql connection.*/
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class DBcon {
@@ -224,7 +228,9 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-
+	
+	public static void updateDepartmentVar(String varName, String variable, int depId) {} //TODO !!!!
+	
 	public static void saveBasicEmployee(BasicEmployee emp) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
@@ -277,11 +283,12 @@ public class DBcon {
 				String surname = rs.getString("surname");
 				String telephone = rs.getString("telephone");
 				String email = rs.getString("email");
-				Date birthDate = rs.getDate("birthDate");
+				java.sql.Date birthDate = rs.getDate("birthDate");
 				int depId = rs.getInt("depID");
 				String empId = rs.getString("empID");
+				java.util.Date birthDateNew = birthDate;
 				/*After we find the variables we call the constructor to make the object again.*/
-				new BasicEmployee(name, surname, telephone, email, birtDate, depId, empId);
+				new BasicEmployee(name, surname, telephone, email, birthDateNew, depId, empId);
 				System.out.println("testing 2 done!!!");
 			}
 			rs.close();
@@ -293,11 +300,80 @@ public class DBcon {
 		}
 	}
 
-	public static void UpdateBasicEmpVar(String varName, String variable) {} //TODO!!!!
+	public static void UpdateBasicEmpVar(String varName, String variable, int empid) {} //TODO!!!!
 
-	public static void UpdateBasicEmpVar(String varName, int variable) {} //TODO!!!!
+	public static void UpdateBasicEmpVar(String varName, int variable, int empId) {} //TODO!!!!
 
-	public static void UpdateBasicEmpVar(String varName, Date variable) {} //TODO!!!!
+	public static void UpdateBasicEmpVar(String varName, java.util.Date variable, int empId) {} //TODO!!!!
+	
+	public static void saveMiddleManager(MiddleManager emp) {
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and
+		 *  executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			stmt.executeUpdate("INSERT INTO BBMiddleManager (name, surname, telephone, email, birthdate, empID)"
+					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone()
+					+ ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ 
+					+ ", " + emp.getId() + ");");
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			//System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void loadMiddleManagers() {
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			ResultSet rs;
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, empID FROM BBMiddleManager");
+			/*Does a loop for every row (object in this case) it finds.*/
+			while (rs.next()) {
+				String name = rs.getString("name");
+				String surname = rs.getString("surname");
+				String telephone = rs.getString("telephone");
+				String email = rs.getString("email");
+				java.sql.Date birthDate = rs.getDate("birthDate");
+				String empId = rs.getString("empID");
+				java.util.Date birthDateNew = birthDate;
+				/*After we find the variables we call the constructor to make the object again.*/
+				new MiddleManager(name, surname, telephone, email, birthDateNew, empId);
+				System.out.println("MiddleManager loading  done!!!");
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
 	
 	public static void saveEvaluation(Task task, double score) {
 		/*Connection type object to make the connection.*/

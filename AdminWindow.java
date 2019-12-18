@@ -109,8 +109,11 @@ public class AdminWindow extends JFrame {
         String admnPhonenumber = tphonenumber.getText();
         String admnEmail = temail.getText();
         String temp = tbirthdate.getText();
-        Date admnBirthdate = new SimpleDateFormat(""
+        Date admnBirthdate = null;
+        try{
+            admnBirthdate = new SimpleDateFormat(""
                 + "dd/MM/yyyy").parse(temp);
+        } catch (Exception e) {}
         //The "Administrator" department is created.
         //This department has only one Employee.
         Department admin = new Department("Administrator");

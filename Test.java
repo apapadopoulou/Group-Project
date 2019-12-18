@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
   import java.util.*;
   import javax.mail.*;
@@ -52,3 +53,20 @@
 
 
 
+=======
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Test {
+	public static void main(String args []) {
+		DBcon.loadBasicEmployees();
+		//System.out.println("Loaded BASIC EMPLOYEES");
+		Date birthDate = new Date();
+		Department dep = new Department("Sales");
+		System.out.println("Created DEPARTMENT");
+		Employee emp = new BasicEmployee("vasilis", "Xifaras", "6942796775", "alcabilone@gmail.com", birthDate, 1);
+		System.out.println("Created BASIC EMPLOYEE");
+	}
+ } 
+>>>>>>> 70bed5e6218ea8864b40bb42178c044615b4b348

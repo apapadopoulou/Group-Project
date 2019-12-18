@@ -11,9 +11,9 @@ public class BasicEmployee extends Employee {
 	 * Basic constructor for class BasicEmployee.
 	 * Use this constructor if you want to create new Basic employees.
 	 */
-	public BasicEmployee(String name, String surname, String phonenumber, String email, Date birthdate, Department department) {
+	public BasicEmployee(String name, String surname, String phonenumber, String email, Date birthdate, int depID) {
 		super(name, surname, phonenumber, email, birthdate);//Calls the constructor for the superclass Employee.
-		this.department = department;
+		this.department = Department.getDepartment(depID); //Gets the Department object using the Department id
 		/*
 		 * The id is constructed using the department's id,
 		 * the first two letters of the employees's name, 
@@ -27,6 +27,7 @@ public class BasicEmployee extends Employee {
 		basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
 		employees.add(this); // I dont know what this does. Someone explain it here!!!!
 		DBcon.saveBasicEmployee(this); //Saves the object to the Database.
+		System.out.println("DONE");
 	}
 
 	/*
@@ -39,6 +40,8 @@ public class BasicEmployee extends Employee {
 		id = empID;
 		basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
 		employees.add(this); // I dont know what this does. Someone explain it here!!!!
+		System.out.println(this.toString());
+		System.out.println("done stage 2");
 	}
 
 	public Department getDepartment() {
@@ -48,7 +51,7 @@ public class BasicEmployee extends Employee {
 	// Method that changes the employee's department using the department object.
 	public void setDepartment(Department department) {
 		this.department = department;
-		DBcon.UpdateBasicEmpVar("department", department.getId(), id); //Saves the change to the Database.
+		//DBcon.UpdateBasicEmpVar("department", department.getId(), id); //Saves the change to the Database.
 	}
 	
 	public String getID() {
@@ -56,8 +59,12 @@ public class BasicEmployee extends Employee {
 	}
 	// Method that changes the employee's department using the department id.
 	public void setDepartment(int depId) {
-		department = Department.getDepartment(depID);
-		DBcon.UpdateBasicEmpVar("department", department.getId(), id); //Saves the change to the Database.
+		department = Department.getDepartment(depId);
+		//DBcon.UpdateBasicEmpVar("department", department.getId(), id); //Saves the change to the Database.
+	}
+	
+	public int getDepId() {
+		return department.getId();
 	}
 	
 	//@Override

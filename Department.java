@@ -16,6 +16,7 @@ public class Department {
 		id = num_dep++;
 		this.name = name;
 		departments.add(this);
+		DBcon.saveDepartment(this);
 	}
 	
 	/*

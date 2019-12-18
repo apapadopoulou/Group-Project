@@ -128,7 +128,7 @@ public class DBcon {
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
-			//System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
 	/*Method to load objects from Database*/
@@ -184,12 +184,12 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBDepartment (departmentID, name) VALUES (" + dep.getId() + ", " + dep.getName() + ");");
+			stmt.executeUpdate("INSERT INTO BBDepartment (dep_id, name) VALUES (" + dep.getId() + ", " + dep.getName() + ");");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
-			//System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
 
@@ -211,10 +211,10 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT departmentID, name FROM BBDepartment");
+			rs = stmt.executeQuery("SELECT dep_id, name FROM BBDepartment");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
-				int id = rs.getInt("departmentID");
+				int id = rs.getInt("dep_id");
 				String name = rs.getString("name");
 				/*After we find the variables we call the constructor to make the object again.*/
 				new Department(name, id);
@@ -248,14 +248,16 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, depID, empID)"
+			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, dep_id, emp_id)"
 					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone()
 					+  ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ + ", " + emp.getDepId() + ", " + emp.getId() + ");");
+			System.out.println("EXECUTED THE STATEMENT");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
-			//System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("what?");
 		}
 	}
 
@@ -276,16 +278,18 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, depID, empID FROM BBBasicEmployee");
+			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, dep_id, emp_id FROM BBBasicEmployee");
 			/*Does a loop for every row (object in this case) it finds.*/
+			System.out.println("yeyey!!!!");
 			while (rs.next()) {
+				System.out.println("yeyeyy22");
 				String name = rs.getString("name");
 				String surname = rs.getString("surname");
 				String telephone = rs.getString("telephone");
 				String email = rs.getString("email");
 				java.sql.Date birthDate = rs.getDate("birthDate");
-				int depId = rs.getInt("depID");
-				String empId = rs.getString("empID");
+				int depId = rs.getInt("dep_id");
+				String empId = rs.getString("emp_id");
 				java.util.Date birthDateNew = birthDate;
 				/*After we find the variables we call the constructor to make the object again.*/
 				new BasicEmployee(name, surname, telephone, email, birthDateNew, depId, empId);
@@ -331,7 +335,7 @@ public class DBcon {
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
-			//System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
 	

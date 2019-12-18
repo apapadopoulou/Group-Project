@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -104,12 +106,15 @@ public class AdminWindow extends JFrame {
         adminSettings.add(tbirthdate);
         String admnSurname = tsurname.getText();
         String admnName = tname.getText();
-        int admnPhonenumber = Integer.parseInt(tphonenumber.getText());
+        String admnPhonenumber = tphonenumber.getText();
         String admnEmail = temail.getText();
         String temp = tbirthdate.getText();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate admnBirthdate = LocalDate.parse(temp);
-        Employee admin = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate);
+        Date admnBirthdate = new SimpleDateFormat(""
+                + "dd/MM/yyyy").parse(temp);
+        //The "Administrator" department is created.
+        //This department has only one Employee.
+        Department admin = new Department("Administrator");
+        Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin);
 	}
 	public static void main (String [] args) {
 		AdminWindow aw = new AdminWindow();

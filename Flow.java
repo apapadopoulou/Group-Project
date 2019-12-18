@@ -16,7 +16,7 @@ public static void dataEntry() throws ParseException {
       String name;
       String surname;
       String email;
-      int phoneNumber;
+      String phoneNumber;
       String inputDate;
       Department dep;
       do {
@@ -42,7 +42,7 @@ public static void dataEntry() throws ParseException {
                    System.out.println("Email: ");
                    email = sc.next();
                    System.out.println("Phonenumber: ");
-                   phoneNumber = sc.nextInt();
+                   phoneNumber = sc.next();
                    System.out.println("Date of Birth: ");
                    try {
                       sc.nextLine();
@@ -69,7 +69,7 @@ public static void dataEntry() throws ParseException {
              System.out.println("Email: ");
              email = sc.next();
              System.out.println("Phonenumber: ");
-             phoneNumber = sc.nextInt();
+             phoneNumber = sc.next();
              System.out.println("Date of Birth: ");
              try {
                 inputDate = sc.nextLine();
@@ -99,7 +99,7 @@ public static void dataEntry() throws ParseException {
              System.out.println("Email: ");
              email = sc.next();
              System.out.println("Phonenumber: ");
-             phoneNumber = sc.nextInt();
+             phoneNumber = sc.next();
              System.out.println("Date of Birth: ");
              try {
                   inputDate = sc.nextLine();

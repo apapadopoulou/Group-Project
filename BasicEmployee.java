@@ -11,8 +11,8 @@ public class BasicEmployee extends Employee {
 	 * Basic constructor for class BasicEmployee.
 	 * Use this constructor if you want to create new Basic employees.
 	 */
-	public BasicEmployee(String name, String surname,String telephone, String email, Date birthdate, Department department) {
-		super(name, surname, telephone, email, birthdate);//Calls the constructor for the superclass Employee.
+	public BasicEmployee(String name, String surname, String phonenumber, String email, Date birthdate, Department department) {
+		super(name, surname, phonenumber, email, birthdate);//Calls the constructor for the superclass Employee.
 		this.department = department;
 		/*
 		 * The id is constructed using the department's id,

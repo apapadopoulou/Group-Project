@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 public class MiddleManager extends Employee {
-	
 	private ArrayList <Department> managingDepartments = new ArrayList <Department>();
 	public static ArrayList <MiddleManager> middleManagers = new ArrayList <MiddleManager>();
 	private String id;
@@ -14,28 +13,6 @@ public class MiddleManager extends Employee {
 	public MiddleManager(String name, String surname, String telephone, String email, Date birthdate){
 		super(name, surname, telephone, email, birthdate);
 	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
-	    
-	    for(int i = 1; i < Department.departments.size(); i++) {
-	    	Department.searchDepartmentById(i).toString();
-	    }
-	    //Constructs the list of the managing departments
-	    System.out.println("Type the ids of the managing departements");
-	    System.out.println("Press enter after each id entry");
-	    System.out.println("Press 0 and Enter if you're done");
-	    Scanner input = new Scanner(System.in);
-	    int d_id = input.nextInt();
-	    while (d_id != 0) {
-	    	if (d_id > Department.departments.size() || d_id < 0 ) {
-	    		System.out.println("Wrong input. Please enter another id");
-	    		d_id = input.nextInt();
-	    		continue;
-	      	}
-	    	managingDepartments.add(Department.searchDepartmentById(d_id));
-	    	Department dep = Department.searchDepartmentById(d_id);
-	    	dep.setManagerId(id);
-	    }
-	    input.close();
-	    System.out.println("The managing departments have been saved");
 	    middleManagers.add(this);
 	    employees.add(this);
 	    DBcon.saveMiddleManager(this);

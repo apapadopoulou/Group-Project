@@ -25,7 +25,7 @@ public class Checkers {
 	   }
 
 	   //This method validate phone number with specific ways
-	   private static boolean isValidPhoneNumber(String phoneNo) {
+	   public static boolean isValidPhoneNumber(String phoneNo) {
 			//validate phone numbers of format "1234567890"
 			if (phoneNo.matches("\\d{10}"))
 				return true;

@@ -35,7 +35,7 @@ public class AdminWindow extends JFrame {
             }
         });
 	}
-	public Employee adminSettingsEntry() {
+	public void adminSettingsEntry() {
 		JFrame adminSettings = new JFrame("Admin Settings");
 		adminSettings.setLayout(new BorderLayout());
         adminSettings.setSize(800, 700);
@@ -120,6 +120,5 @@ public class AdminWindow extends JFrame {
         //This department has only one Employee.
         Department admin = new Department("Administrator");
         Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
-        return admn;
 	}
 }

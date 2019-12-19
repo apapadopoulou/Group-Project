@@ -92,7 +92,7 @@ public class PersonalisedCalendar /* extends Calendar */ {
 	}
 	
 	/* This method checks if the year is leap */
-	public static boolean leapYear(year) {
+	public static boolean leapYear(int year) {
 		boolean leap = false;
 		if (year % 4 == 0) {
 			if (year % 100 == 0) {

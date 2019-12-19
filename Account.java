@@ -8,14 +8,14 @@ import java.util.Random;
 public class Account {
 	private Employee employee;
 	private String email;
-	private String password;
+	private char[] password;
 	private static ArrayList<Account> accounts = new ArrayList<Account>();
 	 	/* Account's constructor */
 
 	public Account(Employee e) {
 	 this.employee = e;
 	 this.email = e.getEmail();
-	 password = Checkers.ValidPassword();
+	 password = passwordGenerator();
 	 accounts.add(this); /*Account object entered on accounts ArrayList*/
  	
 	 	/*
@@ -47,7 +47,11 @@ public class Account {
 
 	}
 
- 	/* This method searches Employees' accounts by their email*/
+ 	public Account() {
+			// TODO Auto-generated constructor stub
+		}
+
+	/* This method searches Employees' accounts by their email*/
 
  	public Employee getEmployee() {
 		return employee;
@@ -64,12 +68,12 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPassword() {
+	
+	public char[] getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(char[] password) {
 		this.password = password;
 	}
 
@@ -102,12 +106,12 @@ public class Account {
  		}
  		try{
  			System.out.println("Please insert your password");
- 			String password = sc.nextLine();
+ 			char password = sc.next().charAt(0);
  		}catch(InputMismatchException e) {
  			System.out.println("Please enter your password");
  		}
- 		if (password.equals
- 				(searchAccountByEmail(email).password)) {
+ 		searchAccountByEmail(new Account().email);
+		if (password.equals(new Account().password)) {
  			success = true;
  		}
  		sc.close();

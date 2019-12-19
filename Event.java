@@ -6,7 +6,7 @@ public class Event extends Program {
 	/* private String date; */
 	private LocalTime time;
 	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
-
+	private int Event_code; /* needed for the DB */
 	public Event(String title, String date, LocalTime time) {
 		this.title = title;
 		do {
@@ -17,6 +17,7 @@ public class Event extends Program {
 		} while (Checkers.isValidTitle(title));
 		this.date = date;
 		this.setTime(time);
+		this.Event_code = counter++; /* needed fot the Database*/
 	}
 
 	public String getTitle() {

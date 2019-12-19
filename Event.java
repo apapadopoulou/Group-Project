@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Event extends Program {
 	private String title;
-	private String date;
+	/* private String date; */
 	private LocalTime time;
 	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
 

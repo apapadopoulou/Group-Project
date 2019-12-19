@@ -73,62 +73,50 @@ public class DBcon {
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
 			stmt.executeUpdate("CREATE TABLE Program "
 				+ "(progDate VARCHAR(20) not null,"
-				+ "PRIMARY KEY(progDate));");
-			/* einai moni i task nmz den xreiazetai prepei na xwristoun opws parakatw */
-			stmt.executeUpdate("CREATE TABLE Task "
-				+ "(desc VARCHAR(20) not null,"
-				+ "parts INT not null"
-				+ "importance INT not null"
-				+ "difficulty INT not null"
-				+ "empID VARCHAR(20) not null"
-				+ "id INT not null);");
-			//stmt.executeUpdate();
+				+ " Program_code VARCHAR(10),"
+				+ "empID VARCHAR(20) not null,"
+				+ "PRIMARY KEY(Program_code)");
+				+ "FOREIGN KEY (empID) REFERENCES Employee );");
+			/* creating tables for task */
+				stmt.executeUpdate("CREATE TABLE Task "
+						+ "(Start_date Date not null,"
+						+ "Task_code VARCHAR(15)"
+						+ "Due_date DATE not null, "
+						+ "Description VARCHAR(40) not null,"
+						+ "Parts INTEGER not null,"
+						+ "Importance INTEGER not null,"
+						+ "Difficulty INTEGER not null,"
+						+ "empID VARCHAR(20) not null,"
+						+ "PRIMARY KEY (Task_code),"
+						+ "FOREIGN KEY (empID) REFERENCES Employee"
+					
+				stmt.executeUpdate("CREATE TABLE SingleEmployeeTask "
+						+ "(EmpID VARCHAR(20),"
+						+ "Task_code VARCHAR(15),"
+						+ "CONSTRAINT PKSimple PRIMARY KEY (Task_code)," + 
+						+ "CONSTRAINT FKSimple FOREIGN KEY (Task_code)" + 
+						+ "REFERENCES Client(Task_code));");  
+					
+				stmt.executeUpdate("CREATE TABLE MultiEmployeeTask "
+						+ "(EmpID VARCHAR(20),"
+						+ "Task_code VARCHAR(15) not null,"
+						+ "PRIMARY KEY (Task_code), "
+						+ "FOREIGN KEY (Task_code) REFERENCES Task "
+						+ "	ON DELETE CASCADE));  
+					/* creating tables for event */	
+				stmt.executeUpdate("CREATE TABLE Event "
+						+ "(Event_date DATE not null,"
+						+ "Event_code VARCHAR(15) not null,"
+						+ "Event_time VARCHAR(13)not null,"
+						+ "PRIMARY KEY (Event_code),"							
+						+ "FOREIGN KEY (Program_code) REFERENCES Program );");	
+				
+				//stmt.executeUpdate();
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		
-		/* Creating tables for Task*/
-		stmt.executeUpdate("CREATE TABLE SINGLE_EMPLOYEE_TASK "
-			+ "(Start_date Date not null,"
-			+ "Stask_code VARCHAR(15)"
-			+ "Due_date DATE not null, "
-			+ "Description VARCHAR(40) not null,"
-			+ "Parts INTEGER not null,"
-			+ "Importance INTEGER not null,"
-			+ "Difficulty INTEGER not null,"
-			+ "empID VARCHAR(20) not null,"
-			+ "PRIMARY KEY (Task_code),"
-			+ "FOREIGN KEY (empID) REFERENCES Employee );");
-		stmt.executeUpdate("CREATE TABLE MULTI_EMPLOYEE_TASK "
-				+ "(Start_date Date not null,"
-				+ "Mtask_code VARCHAR(15)"
-				+ "Due_date DATE not null, "
-				+ "Description VARCHAR(40) not null,"
-				+ "Parts INTEGER not null,"
-				+ "Importance INTEGER not null,"
-				+ "Difficulty INTEGER not null,"
-				+ "empID VARCHAR(20) not null,"
-				+ "PRIMARY KEY (Task_code),"
-				/* error. theloume na mpainei i lista */
-				+ "FOREIGN KEY (empID) REFERENCES Employee );");
-		/* Create table for Event */
-		stmt.executeUpdate("CREATE TABLE Single_Event "
-				+ "(Event_date DATE not null,"
-				+ "Sevent_code VARCHAR(15) not null,"
-				+ "Event_time VARCHAR(13)not null,"
-				+ "PRIMARY KEY (Sevent_code),"
-				+ "FOREIGN KEY (Stask_code) REFERENCES SINGLE_EMPLOYEE_TASK );");
-		stmt.executeUpdate("CREATE TABLE Multi_Event "
-				+ "(Event_date DATE not null,"
-				+ "Mevent_code VARCHAR(15) not null,"
-				+ "Event_time VARCHAR(13)not null,"
-				+ "PRIMARY KEY (Mevent_code),"
-				/* pali error me tn eisagwgi listas */
-				+ "FOREIGN KEY (Mtask_code) REFERENCES MULTI_EMPLOYEE_TASK );");
-
-		
 		/*USED FOR TESTING ONLY.*/
 		DBcon yes = new DBcon(312312, 6000);
 		new DBcon(313424, 100000);

@@ -10,9 +10,11 @@ public class Account {
 	private String email;
 	private String password;
 	private static ArrayList<Account> accounts = new ArrayList<Account>();
+        private int a;
 	 	/* Account's constructor */
 
 	public Account(Employee e) {
+         a = 0;
 	 this.employee = e;
 	 this.email = e.getEmail();
 	 password = Checkers.ValidPassword();
@@ -48,7 +50,12 @@ public class Account {
 	}
 
  	/* This method searches Employees' accounts by their email*/
-
+        public int getA() {
+            return a;
+        }
+        public void setA (int a){
+            this.a = a;
+        }
  	public Employee getEmployee() {
 		return employee;
 	}
@@ -90,7 +97,7 @@ public class Account {
 
  	/*This method checks if the password and the email of the input
  	   are equal to the password and the email of the user.*/
- 	public static boolean login() {
+ 	/*public static boolean login() {
  		boolean success=false;
  		//System.out.println("Welcome!");
  		Scanner sc = new Scanner(System.in);
@@ -112,7 +119,7 @@ public class Account {
  		}
  		sc.close();
  		return success;
- 	}
+ 	}*/
  	
  	public static void main(String [] args) {
  		java.awt.EventQueue.invokeLater(new Runnable() {
@@ -121,7 +128,16 @@ public class Account {
             }
         });
  	}
-
+        public int typeOfEmployee(Employee e){
+            if (e instanceof BasicEmployee){
+                return 1;
+            } else if(e instanceof MiddleManager){
+                return 2;
+            } else 
+                return 3;    
+                    
+        }
+               
  	/* This method generates Employee's password */
  	public static char[] passwordGenerator() {
  		String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 

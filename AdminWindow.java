@@ -21,7 +21,7 @@ public class AdminWindow extends JFrame {
 		JTextPane jta = new JTextPane();
         JButton button = new JButton("OK");
         jf.setLayout(new BorderLayout());
-        jf.setSize(400, 300);
+        jf.setSize(800, 700);
         jf.add(button, BorderLayout.SOUTH);
         jf.add(jta, BorderLayout.CENTER);
         jta.setText("Hello! Welcome to BusyB! "
@@ -37,7 +37,7 @@ public class AdminWindow extends JFrame {
 	public Employee adminSettingsEntry() {
 		JFrame adminSettings = new JFrame("Admin Settings");
 		adminSettings.setLayout(new BorderLayout());
-        adminSettings.setSize(400, 300);
+        adminSettings.setSize(800, 700);
         JTextPane jta = new JTextPane();
         adminSettings.add(jta, BorderLayout.CENTER);
         jta.setText("You are the administrator of the system."
@@ -46,7 +46,7 @@ public class AdminWindow extends JFrame {
         adminSettings.setLayout(null);
         JLabel title = new JLabel("Administrator Data Entry");
         title.setFont(new Font("Arial", Font.PLAIN, 30));
-        title.setSize(300, 30);
+        title.setSize(700, 30);
         title.setLocation(300, 30);
         adminSettings.add(title);
         JLabel surname = new JLabel("Surname");
@@ -58,7 +58,7 @@ public class AdminWindow extends JFrame {
         JTextField tsurname = new JTextField();
         tsurname.setFont(new Font("Arial", Font.PLAIN, 15));
         tsurname.setSize(190, 20);
-        tsurname.setLocation(200, 100);
+        tsurname.setLocation(300, 100);
         adminSettings.add(tsurname);
         JLabel name = new JLabel("Name");
         name.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -69,7 +69,7 @@ public class AdminWindow extends JFrame {
         JTextField tname = new JTextField();
         tname.setFont(new Font("Arial", Font.PLAIN, 15));
         tname.setSize(190, 20);
-        tname.setLocation(200, 200);
+        tname.setLocation(300, 200);
         adminSettings.add(tname);
         JLabel phonenumber = new JLabel("Phonenumber");
         phonenumber.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -80,7 +80,7 @@ public class AdminWindow extends JFrame {
         JTextField tphonenumber = new JTextField();
         tphonenumber.setFont(new Font("Arial", Font.PLAIN, 15));
         tphonenumber.setSize(190, 20);
-        tphonenumber.setLocation(200, 300);
+        tphonenumber.setLocation(300, 300);
         adminSettings.add(tphonenumber);
         JLabel email = new JLabel("Email");
         email.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -92,7 +92,7 @@ public class AdminWindow extends JFrame {
         JTextField temail = new JTextField();
         temail.setFont(new Font("Arial", Font.PLAIN, 15));
         temail.setSize(190, 20);
-        temail.setLocation(200, 400);
+        temail.setLocation(300, 400);
         adminSettings.add(temail);
         JLabel birthdate = new JLabel("Birth Date");
         birthdate.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -103,7 +103,7 @@ public class AdminWindow extends JFrame {
         JTextField tbirthdate = new JTextField();
         tbirthdate.setFont(new Font("Arial", Font.PLAIN, 15));
         tbirthdate.setSize(190, 20);
-        tbirthdate.setLocation(200, 500);
+        tbirthdate.setLocation(300, 500);
         adminSettings.add(tbirthdate);
         String admnSurname = tsurname.getText();
         String admnName = tname.getText();

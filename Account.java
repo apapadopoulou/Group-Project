@@ -49,7 +49,7 @@ public class Account {
 
 	}
 
-<<<<<<< HEAD
+
  	/* This method searches Employees' accounts by their email*/
         public int getA() {
             return a;
@@ -57,14 +57,14 @@ public class Account {
         public void setA (int a){
             this.a = a;
         }
-=======
+
  	public Account() {
 			// TODO Auto-generated constructor stub
 		}
 
 	/* This method searches Employees' accounts by their email*/
 
->>>>>>> 62120e1fe78665b6d4568ff9733365a087e29ea0
+
  	public Employee getEmployee() {
 		return employee;
 	}

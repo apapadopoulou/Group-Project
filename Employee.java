@@ -105,26 +105,12 @@ public abstract class Employee {
       }
       return null;
   }
+}
     
   /* this is a method that changes employee's id based on his new department */
  
   
   /*a method that evaluates an employee based on the level of importance of tasks he is responsible for*/
-  public void employeeEvaluation (int loi) { /*loi is a variable determined by each business*/
-    int count = 0;
-    int sum = 0;
-      if (.equals(this.getName()) {
-        sum += getLevelOfImportance(); /*level of importance for this task*/
-        count++;
-      }
-    }
-    if (count != 0) {
-      if (sum/count >= loi) {
-        System.out.println("The employee with id "+this.getId()+"is considered efficient.");
-      } else {
-        System.out.println("The employee with id "+this.getId()+"is not considered efficient.");
-      }
-    }
-  }
+  
 
- }
+ 

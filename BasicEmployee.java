@@ -48,9 +48,9 @@ public class BasicEmployee extends Employee {
 		return department;
 	}
 	
-	// Method that changes the employee's department using the department object.
-	public void setDepartment(Department department) {
-		this.department = department;
+	//Method that changes the employee's department using the department object.
+	public void setDepartmet(int depID) {
+		this.department = Department.searchDepartmentById(depID);
 		//DBcon.UpdateBasicEmpVar("department", department.getId(), id); //Saves the change to the Database.
 	}
 	
@@ -91,11 +91,10 @@ public class BasicEmployee extends Employee {
 		        String depname = sc.nextLine(); -> for main*/
 		      BasicEmployee e = BasicEmployee.searchEmployeeByName2(empName);
 		      e.getDepartment().deleteEmployeeByName(empName);
-			  Department d = Department.searchDepartmentById(depId);
-			  e.setDepartment(d);
-			  d.addEmployee(e);
+			  e.setDepartment(depId);
+			  Department.searchDepartmentById(depId).addEmployee(e);
 			  /* change employee's id based on his new department */
-		      e.setId(String.valueOf(d.getId()) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(d.getEmployeesOfDepartment().size()));
+		      e.setId(String.valueOf(depId) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(Department.searchDepartmentById(depId).getEmployeesOfDepartment().size()));
 		     
 		  }
 }

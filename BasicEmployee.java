@@ -25,7 +25,7 @@ public class BasicEmployee extends Employee {
 			+ String.valueOf(department.getEmployeesOfDepartment().size());
 		
 		basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
-		employees.add(this); // I dont know what this does. Someone explain it here!!!!
+		employees.add(this); // I don't know what this does. Someone explain it here!!!!
 		DBcon.saveBasicEmployee(this); //Saves the object to the Database.
 		System.out.println("DONE");
 	}

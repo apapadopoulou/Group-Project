@@ -18,6 +18,7 @@ public class AdminWindow extends JFrame {
 	//This class allows the administrator of the system to enter his/her data.
 	public void hello() {
 		JFrame jf = new AdminWindow();
+		jf.setBackground(new java.awt.Color(255, 255, 140));
 		JTextPane jta = new JTextPane();
         JButton button = new JButton("OK");
         jf.setLayout(new BorderLayout());

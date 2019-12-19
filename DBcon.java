@@ -73,15 +73,45 @@ public class DBcon {
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
 			stmt.executeUpdate("CREATE TABLE Program "
 				+ "(progDate VARCHAR(20) not null,"
-				+ "PRIMARY KEY(progDate));");
-			stmt.executeUpdate("CREATE TABLE Task "
-				+ "(desc VARCHAR(20) not null,"
-				+ "parts INT not null"
-				+ "importance INT not null"
-				+ "difficulty INT not null"
-				+ "empID VARCHAR(20) not null"
-				+ "id INT not null);");
-			//stmt.executeUpdate();
+				+ " Program_code VARCHAR(10),"
+				+ "empID VARCHAR(20) not null,"
+				+ "PRIMARY KEY(Program_code)");
+				+ "FOREIGN KEY (empID) REFERENCES Employee );");
+			/* creating tables for task */
+				stmt.executeUpdate("CREATE TABLE Task "
+						+ "(Start_date Date not null,"
+						+ "Task_code VARCHAR(15)"
+						+ "Due_date DATE not null, "
+						+ "Description VARCHAR(40) not null,"
+						+ "Parts INTEGER not null,"
+						+ "Importance INTEGER not null,"
+						+ "Difficulty INTEGER not null,"
+						+ "empID VARCHAR(20) not null,"
+						+ "PRIMARY KEY (Task_code),"
+						+ "FOREIGN KEY (empID) REFERENCES Employee"
+					
+				stmt.executeUpdate("CREATE TABLE SingleEmployeeTask "
+						+ "(EmpID VARCHAR(20),"
+						+ "Task_code VARCHAR(15),"
+						+ "CONSTRAINT PKSimple PRIMARY KEY (Task_code)," + 
+						+ "CONSTRAINT FKSimple FOREIGN KEY (Task_code)" + 
+						+ "REFERENCES Client(Task_code));");  
+					
+				stmt.executeUpdate("CREATE TABLE MultiEmployeeTask "
+						+ "(EmpID VARCHAR(20),"
+						+ "Task_code VARCHAR(15) not null,"
+						+ "PRIMARY KEY (Task_code), "
+						+ "FOREIGN KEY (Task_code) REFERENCES Task "
+						+ "	ON DELETE CASCADE));  
+					/* creating tables for event */	
+				stmt.executeUpdate("CREATE TABLE Event "
+						+ "(Event_date DATE not null,"
+						+ "Event_code VARCHAR(15) not null,"
+						+ "Event_time VARCHAR(13)not null,"
+						+ "PRIMARY KEY (Event_code),"							
+						+ "FOREIGN KEY (Program_code) REFERENCES Program );");	
+				
+				//stmt.executeUpdate();
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {
@@ -128,7 +158,7 @@ public class DBcon {
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
-			//System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
 	/*Method to load objects from Database*/
@@ -184,12 +214,12 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBDepartment (departmentID, name) VALUES (" + dep.getId() + ", " + dep.getName() + ");");
+			stmt.executeUpdate("INSERT INTO BBDepartment (dep_id, name) VALUES (" + dep.getId() + ", " + dep.getName() + ");");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
-			//System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
 
@@ -211,10 +241,10 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT departmentID, name FROM BBDepartment");
+			rs = stmt.executeQuery("SELECT dep_id, name FROM BBDepartment");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
-				int id = rs.getInt("departmentID");
+				int id = rs.getInt("dep_id");
 				String name = rs.getString("name");
 				/*After we find the variables we call the constructor to make the object again.*/
 				new Department(name, id);
@@ -248,14 +278,16 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, depID, empID)"
+			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, dep_id, emp_id)"
 					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone()
 					+  ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ + ", " + emp.getDepId() + ", " + emp.getId() + ");");
+			System.out.println("EXECUTED THE STATEMENT");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
-			//System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLException: " + e.getMessage());
+			System.out.println("what?");
 		}
 	}
 
@@ -276,16 +308,18 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, depID, empID FROM BBBasicEmployee");
+			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, dep_id, emp_id FROM BBBasicEmployee");
 			/*Does a loop for every row (object in this case) it finds.*/
+			System.out.println("yeyey!!!!");
 			while (rs.next()) {
+				System.out.println("yeyeyy22");
 				String name = rs.getString("name");
 				String surname = rs.getString("surname");
 				String telephone = rs.getString("telephone");
 				String email = rs.getString("email");
 				java.sql.Date birthDate = rs.getDate("birthDate");
-				int depId = rs.getInt("depID");
-				String empId = rs.getString("empID");
+				int depId = rs.getInt("dep_id");
+				String empId = rs.getString("emp_id");
 				java.util.Date birthDateNew = birthDate;
 				/*After we find the variables we call the constructor to make the object again.*/
 				new BasicEmployee(name, surname, telephone, email, birthDateNew, depId, empId);
@@ -331,7 +365,7 @@ public class DBcon {
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
-			//System.out.println("SQLException: " + e.getMessage());
+			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
 	

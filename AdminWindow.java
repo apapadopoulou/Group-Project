@@ -117,12 +117,7 @@ public class AdminWindow extends JFrame {
         //The "Administrator" department is created.
         //This department has only one Employee.
         Department admin = new Department("Administrator");
-        Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin);
+        Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
         return admn;
-	}
-	public static void main (String [] args) {
-		AdminWindow aw = new AdminWindow();
-		aw.hello();
-	
 	}
 }

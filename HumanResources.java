@@ -7,7 +7,6 @@ public class HumanResources extends Employee {
     /*parameters for class HumanResources*/
 	HumanResources hr = new HumanResources();
 	Department department = new Department();
-	public static ArrayList<Employee> employees = new ArrayList<Employee>();
 
     /*Constructor for class HumanResources*/
     public HumanResources(String name, String surname, String phonenumber, String email, String id, date birthdate) {
@@ -16,12 +15,12 @@ public class HumanResources extends Employee {
     }
 
 /*Using for loop in order to find out if the employee is a HR Director and to display the salary of the current employee*/
-       for (counter = 0; counter < employees.size(); counter++) {
+     /*  for (int counter = 0; counter < employees.size(); counter++) {
         hr.login();/*Calling method login() from Account class*/
-        if (departments.get(counter)) {
+       /* if (Department.getDepartments().get(counter).getName.equals("HR")) {
             System.out.println("The current employee is registered at HR department!");
             Menu1();/*Calling method Menu1() */
-        } else {
+     /*   } else {
             System.out.println("The current employee is not registered at HR department.");
         }
        }

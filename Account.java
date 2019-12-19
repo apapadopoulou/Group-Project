@@ -8,7 +8,7 @@ import java.util.Random;
 public class Account {
 	private Employee employee;
 	private String email;
-	private String password;
+	private char[] password;
 	private static ArrayList<Account> accounts = new ArrayList<Account>();
         private int a;
 	 	/* Account's constructor */
@@ -17,7 +17,7 @@ public class Account {
          a = 0;
 	 this.employee = e;
 	 this.email = e.getEmail();
-	 password = Checkers.ValidPassword();
+	 password = passwordGenerator();
 	 accounts.add(this); /*Account object entered on accounts ArrayList*/
  	
 	 	/*
@@ -49,6 +49,7 @@ public class Account {
 
 	}
 
+<<<<<<< HEAD
  	/* This method searches Employees' accounts by their email*/
         public int getA() {
             return a;
@@ -56,6 +57,14 @@ public class Account {
         public void setA (int a){
             this.a = a;
         }
+=======
+ 	public Account() {
+			// TODO Auto-generated constructor stub
+		}
+
+	/* This method searches Employees' accounts by their email*/
+
+>>>>>>> 62120e1fe78665b6d4568ff9733365a087e29ea0
  	public Employee getEmployee() {
 		return employee;
 	}
@@ -71,12 +80,12 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getPassword() {
+	
+	public char[] getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(char[] password) {
 		this.password = password;
 	}
 
@@ -109,12 +118,12 @@ public class Account {
  		}
  		try{
  			System.out.println("Please insert your password");
- 			String password = sc.nextLine();
+ 			char password = sc.next().charAt(0);
  		}catch(InputMismatchException e) {
  			System.out.println("Please enter your password");
  		}
- 		if (password.equals
- 				(searchAccountByEmail(email).password)) {
+ 		searchAccountByEmail(new Account().email);
+		if (password.equals(new Account().password)) {
  			success = true;
  		}
  		sc.close();

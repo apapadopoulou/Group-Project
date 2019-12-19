@@ -74,6 +74,7 @@ public class DBcon {
 			stmt.executeUpdate("CREATE TABLE Program "
 				+ "(progDate VARCHAR(20) not null,"
 				+ "PRIMARY KEY(progDate));");
+			/* einai moni i task nmz den xreiazetai prepei na xwristoun opws parakatw */
 			stmt.executeUpdate("CREATE TABLE Task "
 				+ "(desc VARCHAR(20) not null,"
 				+ "parts INT not null"
@@ -87,6 +88,47 @@ public class DBcon {
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
+		
+		/* Creating tables for Task*/
+		stmt.executeUpdate("CREATE TABLE SINGLE_EMPLOYEE_TASK "
+			+ "(Start_date Date not null,"
+			+ "Stask_code VARCHAR(15)"
+			+ "Due_date DATE not null, "
+			+ "Description VARCHAR(40) not null,"
+			+ "Parts INTEGER not null,"
+			+ "Importance INTEGER not null,"
+			+ "Difficulty INTEGER not null,"
+			+ "empID VARCHAR(20) not null,"
+			+ "PRIMARY KEY (Task_code),"
+			+ "FOREIGN KEY (empID) REFERENCES Employee );");
+		stmt.executeUpdate("CREATE TABLE MULTI_EMPLOYEE_TASK "
+				+ "(Start_date Date not null,"
+				+ "Mtask_code VARCHAR(15)"
+				+ "Due_date DATE not null, "
+				+ "Description VARCHAR(40) not null,"
+				+ "Parts INTEGER not null,"
+				+ "Importance INTEGER not null,"
+				+ "Difficulty INTEGER not null,"
+				+ "empID VARCHAR(20) not null,"
+				+ "PRIMARY KEY (Task_code),"
+				/* error. theloume na mpainei i lista */
+				+ "FOREIGN KEY (empID) REFERENCES Employee );");
+		/* Create table for Event */
+		stmt.executeUpdate("CREATE TABLE Single_Event "
+				+ "(Event_date DATE not null,"
+				+ "Sevent_code VARCHAR(15) not null,"
+				+ "Event_time VARCHAR(13)not null,"
+				+ "PRIMARY KEY (Sevent_code),"
+				+ "FOREIGN KEY (Stask_code) REFERENCES SINGLE_EMPLOYEE_TASK );");
+		stmt.executeUpdate("CREATE TABLE Multi_Event "
+				+ "(Event_date DATE not null,"
+				+ "Mevent_code VARCHAR(15) not null,"
+				+ "Event_time VARCHAR(13)not null,"
+				+ "PRIMARY KEY (Mevent_code),"
+				/* pali error me tn eisagwgi listas */
+				+ "FOREIGN KEY (Mtask_code) REFERENCES MULTI_EMPLOYEE_TASK );");
+
+		
 		/*USED FOR TESTING ONLY.*/
 		DBcon yes = new DBcon(312312, 6000);
 		new DBcon(313424, 100000);

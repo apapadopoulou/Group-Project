@@ -87,6 +87,7 @@ public class AdminWindow extends JFrame {
         email.setSize(100, 20);
         email.setLocation(100, 400);
         adminSettings.add(email);
+        adminSettings.add(jta, BorderLayout.CENTER);
         adminSettings.setVisible(true);
         JTextField temail = new JTextField();
         temail.setFont(new Font("Arial", Font.PLAIN, 15));

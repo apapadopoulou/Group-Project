@@ -17,7 +17,7 @@ public static void dataEntry() throws ParseException {
       String surname;
       String email;
       String phoneNumber;
-      String inputDate;
+      String inputDate = null;
       Department dep;
       do {
           System.out.println("Insert name of Department. "
@@ -44,16 +44,18 @@ public static void dataEntry() throws ParseException {
                    System.out.println("Phonenumber: ");
                    phoneNumber = sc.next();
                    System.out.println("Date of Birth: ");
-                   try {
-                      sc.nextLine();
-                      inputDate = sc.nextLine();
-                   } catch (DateformatException e2) {
-                      System.err.println("Wrong way to import date of birth. Please import date birth according to 'dd/MM/yyyy'." + e2);
-                   } catch (InputMismatchException e3) {}
-                     Date date = new SimpleDateFormat(""
-                     + "dd/MM/yyyy").parse(inputDate);
-                     sc.nextLine();
-                     BasicEmployee emp = new BasicEmployee(name, surname, phoneNumber, email, date, dep);
+                   boolean con = true;
+                   while (!con) {
+                	   try {
+                		   sc.nextLine();
+                		   inputDate = sc.nextLine();
+                		   break;
+                	   } catch (InputMismatchException e3) {}
+                   }
+                	  Date date = new SimpleDateFormat(""
+                		   + "dd/MM/yyyy").parse(inputDate);
+                	  sc.nextLine();
+                     BasicEmployee emp = new BasicEmployee(name, surname, phoneNumber, email, date, dep.getId());
                      System.out.println("Employee " + "created with id: " + emp.getId());
                      //Loop breakes when an Employee is created.
                      return;
@@ -73,9 +75,7 @@ public static void dataEntry() throws ParseException {
              System.out.println("Date of Birth: ");
              try {
                 inputDate = sc.nextLine();
-             } catch (DateformatException e4) {
-                System.err.println("Wrong way to import date of birth. Please import date birth according to 'dd/MM/yyyy'." + e4);
-             } catch (InputMismatchException e5) {}
+            } catch (InputMismatchException e5) {}
              Date date = new SimpleDateFormat(""
              + "dd/MM/yyyy").parse(inputDate);
              sc.nextLine();
@@ -103,8 +103,6 @@ public static void dataEntry() throws ParseException {
              System.out.println("Date of Birth: ");
              try {
                   inputDate = sc.nextLine();
-             } catch (DateformatException e6) {
-                  System.err.println("Wrong way to import date of birth. Please import date birth according to 'dd/MM/yyyy'." + e6);
              } catch (InputMismatchException e7) {}
                   Date date = new SimpleDateFormat(""
                   + "dd/MM/yyyy").parse(inputDate);

@@ -7,6 +7,7 @@ public class BusyB {
 		if (args[0] != null) {
 			AdminWindow aw = new AdminWindow();
 			aw.hello();
+			
 		}
 	}
 }

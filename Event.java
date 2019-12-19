@@ -1,20 +1,22 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
-public class Event extends Program{
+
+public class Event extends Program {
 	private String title;
 	private String date;
 	private LocalTime time;
 	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
+
 	public Event(String title, String date, LocalTime time) {
 		this.title = title;
 		do {
-		if (Checkers.isValidTitle(title))
-			System.out.println("Valid Title");
-		else
-			System.out.println("Invalid Title; Insert a new one");
+			if (Checkers.isValidTitle(title))
+				System.out.println("Valid Title");
+			else
+				System.out.println("Invalid Title; Insert a new one");
 		} while (Checkers.isValidTitle(title));
 		this.date = date;
-		this.time = time;
+		this.setTime(time);
 	}
 
 	public String getTitle() {
@@ -25,5 +27,12 @@ public class Event extends Program{
 		this.title = title;
 	}
 
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
 
 }

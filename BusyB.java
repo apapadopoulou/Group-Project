@@ -5,6 +5,7 @@ public class BusyB {
 	 */
 	public static void main (String[] args) {
 		if (args[0] != null) {
+			DBcon.tableCreation();
 			AdminWindow aw = new AdminWindow();
 			aw.hello();
 			

@@ -77,46 +77,27 @@ public class DBcon {
 				+ "PRIMARY KEY(empID),"
 				+ "FOREIGN KEY (empID) REFERENCES Employee,"
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
-			stmt.executeUpdate("CREATE TABLE BBProgram "
-				+ "(progDate VARCHAR(20) not null,"
-				+ " Program_code VARCHAR(10),"
-				+ "empID VARCHAR(20) not null,"
-				+ "PRIMARY KEY(Program_code)"
-				+ "FOREIGN KEY (empID) REFERENCES Employee );");
 			/* creating tables for task */
-				stmt.executeUpdate("CREATE TABLE Task "
-					+ "(Start_date Date not null,"
-					+ "Task_code VARCHAR(15)"
-					+ "Due_date DATE not null, "
-					+ "Description VARCHAR(40) not null,"
-					+ "Parts INTEGER not null,"
-						+ "Importance INTEGER not null,"
-						+ "Difficulty INTEGER not null,"
-						+ "empID VARCHAR(20) not null,"
-						+ "PRIMARY KEY (Task_code),"
-						+ "FOREIGN KEY (empID) REFERENCES Employee);");
-					
-				stmt.executeUpdate("CREATE TABLE SingleEmployeeTask "
-						+ "(EmpID VARCHAR(20),"
-						+ "Task_code VARCHAR(15),"
-						+ "CONSTRAINT PKSimple PRIMARY KEY (Task_code)," 
-						+ "CONSTRAINT FKSimple FOREIGN KEY (Task_code)" 
-						+ "REFERENCES Client(Task_code));");  
-					
-				stmt.executeUpdate("CREATE TABLE MultiEmployeeTask "
-						+ "(EmpID VARCHAR(20),"
-						+ "Task_code VARCHAR(15) not null,"
-						+ "PRIMARY KEY (Task_code), "
-						+ "FOREIGN KEY (Task_code) REFERENCES Task "
-						+ "	ON DELETE CASCADE);");  
-					/* creating tables for event */	
-				stmt.executeUpdate("CREATE TABLE Event "
-						+ "(Event_date DATE not null,"
-						+ "Event_code VARCHAR(15) not null,"
-						+ "Event_time VARCHAR(13)not null,"
-						+ "PRIMARY KEY (Event_code),"							
-						+ "FOREIGN KEY (Program_code) REFERENCES Program );");	
-				
+			stmt.executeUpdate("CREATE TABLE BBTask "
+				+ "(taskCode VARCHAR(15),"
+				+ "startDate DATE not null,"
+				+ "dueDate DATE not null, "
+				+ "description VARCHAR(40) not null,"
+				+ "parts INTEGER not null,"
+				+ "importance INTEGER not null,"
+				+ "difficulty INTEGER not null,"
+				+ "empID VARCHAR(20) not null,"
+				+ "PRIMARY KEY (taskCode),"
+				+ "FOREIGN KEY (empID) REFERENCES Employee);");
+			/* creating tables for event */	
+			stmt.executeUpdate("CREATE TABLE BBEvent "
+				+ "(eventCode VARCHAR(15) not null,"
+				+ "eventDate DATE not null,"
+				+ "eventTime VARCHAR(13)not null,"
+				+ "type INT,"
+				+ "title VARCHAR(50),"
+				+ "description VARCHAR(300),"
+				+ "PRIMARY KEY (Event_code));");	
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {

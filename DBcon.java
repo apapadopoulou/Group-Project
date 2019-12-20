@@ -75,7 +75,7 @@ public class DBcon {
 				+ "(progDate VARCHAR(20) not null,"
 				+ " Program_code VARCHAR(10),"
 				+ "empID VARCHAR(20) not null,"
-				+ "PRIMARY KEY(Program_code)");
+				+ "PRIMARY KEY(Program_code)"
 				+ "FOREIGN KEY (empID) REFERENCES Employee );");
 			/* creating tables for task */
 				stmt.executeUpdate("CREATE TABLE Task "
@@ -88,13 +88,13 @@ public class DBcon {
 						+ "Difficulty INTEGER not null,"
 						+ "empID VARCHAR(20) not null,"
 						+ "PRIMARY KEY (Task_code),"
-						+ "FOREIGN KEY (empID) REFERENCES Employee"
+						+ "FOREIGN KEY (empID) REFERENCES Employee);");
 					
 				stmt.executeUpdate("CREATE TABLE SingleEmployeeTask "
 						+ "(EmpID VARCHAR(20),"
 						+ "Task_code VARCHAR(15),"
-						+ "CONSTRAINT PKSimple PRIMARY KEY (Task_code)," + 
-						+ "CONSTRAINT FKSimple FOREIGN KEY (Task_code)" + 
+						+ "CONSTRAINT PKSimple PRIMARY KEY (Task_code)," 
+						+ "CONSTRAINT FKSimple FOREIGN KEY (Task_code)" 
 						+ "REFERENCES Client(Task_code));");  
 					
 				stmt.executeUpdate("CREATE TABLE MultiEmployeeTask "
@@ -102,7 +102,7 @@ public class DBcon {
 						+ "Task_code VARCHAR(15) not null,"
 						+ "PRIMARY KEY (Task_code), "
 						+ "FOREIGN KEY (Task_code) REFERENCES Task "
-						+ "	ON DELETE CASCADE));  
+						+ "	ON DELETE CASCADE);");  
 					/* creating tables for event */	
 				stmt.executeUpdate("CREATE TABLE Event "
 						+ "(Event_date DATE not null,"

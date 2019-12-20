@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
   import java.util.*;
   import javax.mail.*;
@@ -69,4 +69,3 @@ public class Test {
 		System.out.println("Created BASIC EMPLOYEE");
 	}
  } 
->>>>>>> 70bed5e6218ea8864b40bb42178c044615b4b348

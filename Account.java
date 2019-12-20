@@ -8,7 +8,7 @@ import java.util.Random;
 public class Account {
 	private Employee employee;
 	private String email;
-	private char[] password;
+	private String password;
 	private static ArrayList<Account> accounts = new ArrayList<Account>();
         private int a;
 	 	/* Account's constructor */
@@ -19,7 +19,7 @@ public class Account {
 	 this.email = e.getEmail();
 	 password = passwordGenerator();
 	 accounts.add(this); /*Account object entered on accounts ArrayList*/
- 	
+
 	 	/*
 	 	if (isValidEmail(email))
          	System.out.print("Valid Email");
@@ -80,18 +80,18 @@ public class Account {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public char[] getPassword() {
+
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(char[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	public static Account searchAccountByEmail(String email) {
  		boolean exists = false;
- 		
+
  		for(int i = 0; i < accounts.size();) {
  			if (accounts.get(i).email.equals(email)) {
  				exists = true;
@@ -99,7 +99,7 @@ public class Account {
  			}
  			if (exists == true) {
  				return accounts.get(i);
- 			} 
+ 			}
  		}
  		return null;
  	}
@@ -129,7 +129,7 @@ public class Account {
  		sc.close();
  		return success;
  	}*/
- 	
+
  	public static void main(String [] args) {
  		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -142,31 +142,35 @@ public class Account {
                 return 1;
             } else if(e instanceof MiddleManager){
                 return 2;
-            } else 
-                return 3;    
-                    
+            } else
+                return 3;
+
         }
-               
+
  	/* This method generates Employee's password */
- 	public static char[] passwordGenerator() {
- 		String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
-        String Small_chars = "abcdefghijklmnopqrstuvwxyz"; 
-        String numbers = "0123456789"; 
-        String symbols = "!@#$%^&*_=+-/.?<>)"; 
-        String values = Capital_chars + Small_chars + 
-                        numbers + symbols; 
-  
-        // Using random method 
-        Random ran = new Random(); 
-        char[] password = new char[8]; 
-  
-        for (int i = 0; i < 8; i++) { 
-            // Use of charAt() method : to get character value 
-            // Use of nextInt() as it is scanning the value as int 
-            password[i] = 
-              values.charAt(ran.nextInt(values.length())); 
-  
-        } 
-        return password; 
+ 	public static String passwordGenerator() {
+		String password = null;
+ 		String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String Small_chars = "abcdefghijklmnopqrstuvwxyz";
+        String numbers = "0123456789";
+        String symbols = "!@#$%^&*_=+-/.?<>)";
+        String values = Capital_chars + Small_chars +
+                        numbers + symbols;
+
+        // Using random method
+        Random ran = new Random();
+        char[] psw = new char[8];
+
+        for (int i = 0; i < 8; i++) {
+            // Use of charAt() method : to get character value
+            // Use of nextInt() as it is scanning the value as int
+            psw[i] =
+              values.charAt(ran.nextInt(values.length()));
+
+        }
+        for (int i = 0; i < 8; i++) {
+		        	password += psw[i];
+        }
+        return password;
 	}
 }

@@ -13,9 +13,6 @@ import java.sql.Date;
 import java.util.*;
 
 public class DBcon {
-	/*Some example variables.*/
-	private int id;
-	private int salary;
 	/*URL of database with username and password.*/
 	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
 			"databaseName=DB56;user=G556;password=939wd5890;";
@@ -111,30 +108,13 @@ public class DBcon {
 						+ "PRIMARY KEY (Event_code),"							
 						+ "FOREIGN KEY (Program_code) REFERENCES Program );");	
 				
-				//stmt.executeUpdate();
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		/*USED FOR TESTING ONLY.*/
-		DBcon yes = new DBcon(312312, 6000);
-		new DBcon(313424, 100000);
-		DBcon ywdqnew = new DBcon(313424, 100000);
-		DBcon yes2 = new DBcon(984312312, 6000);
-		new DBcon(327545424, 100000);
-		DBcon ywdqnedw = new DBcon(35213424, 100000);
-		DBcon yes3 = new DBcon(5465312, 6000);
-		new DBcon(313424, 100000);
-		DBcon ywdqdnew = new DBcon(31423, 100000);
-		System.out.println("testing done!!!");
-		loadFromDB();
 	}
-	public DBcon (int id, int salary) {
-		this.id = id;
-		this.salary = salary;
-		saveToDB(id, salary);
-	}
+
 	/*Method ti save objects to Database*/
 	public static void saveToDB(int id, int salary) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/

@@ -37,38 +37,47 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement.*/
-			stmt.executeUpdate("CREATE TABLE Department "
+			stmt.executeUpdate("CREATE TABLE BBMiddleManager "
+				+ "(empID VARCHAR(20) not null,"
+				+ "nameEmp VARCHAR(20),"
+				+ "surname VARCHAR(20),"
+				+ "phonenumber VARCHAR(15),"
+				+ "email VARCHAR(50),"
+				+ "birthdate DATE,"
+				+ "PRIMARY KEY (empID)");
+			stmt.executeUpdate("CREATE TABLE BBDepartment "
 			    + "(depID INT not null,"
 		        + "nameDep VARCHAR(20),"
-		        + "PRIMARY KEY (depID));");
-			stmt.executeUpdate("CREATE TABLE Employee "
+			    + "managerID VARCHAR (30),"
+		        + "PRIMARY KEY (depID)),"
+			    + "FOREIGN KEY (managerID) REFERENCES BBMiddleManager);");
+			stmt.executeUpdate("CREATE TABLE BBBasicEmployee "
 				+ "(empID VARCHAR(20) not null,"
 				+ "nameEmp VARCHAR(20),"
 				+ "surname VARCHAR(20)"
-				+ "phonenumber INT"
-				+ "email VARCHAR(50)"
-				+ "birthdate DATE"
-				+ "PRIMARY KEY (empID));");
-			stmt.executeUpdate("CREATE TABLE BasicEmployee "
+				+ "phonenumber VARCHAR(15),"
+				+ "email VARCHAR(50),"
+				+ "birthdate DATE,"
+				+ "depID INT,"
+			    + "PRIMARY KEY (empID),"
+			    + "FOREIGN KEY (depID) REFERENCES Department );");
+			stmt.executeUpdate("CREATE TABLE BBTopManager "
 				+ "(empID VARCHAR(20) not null,"
-			    + "PRIMARY KEY (empID)"
-			    + "FOREIGN KEY (empID) REFERENCES Employee );");
-			stmt.executeUpdate("CREATE TABLE MiddleManager "
+				+ "nameEmp VARCHAR(20),"
+				+ "surname VARCHAR(20)"
+				+ "phonenumber VARCHAR(15),"
+				+ "email VARCHAR(50),"
+				+ "birthdate DATE,"
+				+ "depID INT,"
+			    + "PRIMARY KEY (empID);");
+			stmt.executeUpdate("CREATE TABLE BBAccount "
 				+ "(empID VARCHAR(20) not null,"
-				+ "PRIMARY KEY (empID)"
-				+ "FOREIGN KEY (empID) REFERENCES Employee );");
-			stmt.executeUpdate("CREATE TABLE TopManager "
-			    + "(empID VARCHAR(20) not null,"
-		        + "PRIMARY KEY (empID)"
-		        + "FOREIGN KEY (empID) REFERENCES Employee );");
-			stmt.executeUpdate("CREATE TABLE Account "
-				+ "(empID VARCHAR(20) not null,"
-				+ "email VARCHAR(50 UNIQUE)"
-				+ "password VARCHAR(8)"
-				+ "PRIMARY KEY(empID)"
-				+ "FOREIGN KEY (empID) REFERENCES Employee"
+				+ "email VARCHAR(50 UNIQUE),"
+				+ "password VARCHAR(8),"
+				+ "PRIMARY KEY(empID),"
+				+ "FOREIGN KEY (empID) REFERENCES Employee,"
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
-			stmt.executeUpdate("CREATE TABLE Program "
+			stmt.executeUpdate("CREATE TABLE BBProgram "
 				+ "(progDate VARCHAR(20) not null,"
 				+ " Program_code VARCHAR(10),"
 				+ "empID VARCHAR(20) not null,"
@@ -76,11 +85,11 @@ public class DBcon {
 				+ "FOREIGN KEY (empID) REFERENCES Employee );");
 			/* creating tables for task */
 				stmt.executeUpdate("CREATE TABLE Task "
-						+ "(Start_date Date not null,"
-						+ "Task_code VARCHAR(15)"
-						+ "Due_date DATE not null, "
-						+ "Description VARCHAR(40) not null,"
-						+ "Parts INTEGER not null,"
+					+ "(Start_date Date not null,"
+					+ "Task_code VARCHAR(15)"
+					+ "Due_date DATE not null, "
+					+ "Description VARCHAR(40) not null,"
+					+ "Parts INTEGER not null,"
 						+ "Importance INTEGER not null,"
 						+ "Difficulty INTEGER not null,"
 						+ "empID VARCHAR(20) not null,"

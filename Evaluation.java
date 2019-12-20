@@ -329,6 +329,80 @@ public class Evaluation {
 		}
 		return finalScore;
 	}
+	
+	public static double calculateTimeScore(double percentageDiff, double taskLevel) {
+		double timeScore = 10;
+	if (taskLevel > 7) {
+		calcTimeScoreA(percentageDiff, taskLevel);
+	} else if (taskLevel > 5.5){
+		calcTimeScoreB(percentageDiff, taskLevel);
+	} else if (taskLevel > 4.5){
+		calcTimeScoreC(percentageDiff, taskLevel);
+	} else {
+		calctimeScoreD(percentageDiff, taskLevel);
+	}
+		return timeScore;
+	}
+	
+	public static double calcTimeScoreA(double percentageDiff, double taskLevel) {
+		double timeScore;
+		double timeDiffRate = taskLevel / 10;
+		if (percentageDiff >= (timeDiffRate - 0.1 * timeDiffRate)) {
+			timeScore = 10.0;
+		} else if (percentageDiff >= (timeDiffRate - 0.2 * timeDiffRate)) {
+			timeScore = 9.5;
+		} else if (percentageDiff >= (timeDiffRate - 0.3 * timeDiffRate)) {
+			timeScore = 8.2;
+		} else if (percentageDiff >= (timeDiffRate - 0.4 * timeDiffRate)) {
+			timeScore = 7.8;
+		} else if (percentageDiff >= (timeDiffRate - 0.5 * timeDiffRate)) {
+			timeScore = 7.3;
+		} else if (percentageDiff >= (timeDiffRate - 0.6 * timeDiffRate)) {
+			timeScore = 6.8;
+		} else if (percentageDiff >= (timeDiffRate - 0.7 * timeDiffRate)) {
+			timeScore = 6.5;
+		} else if (percentageDiff >= (timeDiffRate - 0.8 * timeDiffRate)) {
+			timeScore = 6.2;
+		} else if (percentageDiff >= (timeDiffRate - 0.9 * timeDiffRate)) {
+			timeScore = 5.6;
+		} else if (percentageDiff >= (timeDiffRate - 0.95 * timeDiffRate)) {
+			timeScore = 4.3;
+		} else if (percentageDiff < 0.0) {
+			timeScore = 0.0;
+		} else {
+			timeScore = 3.0;
+		}
+		return timeScore;
+	}
+	
+	public static double calcTimeScoreB(double percentageDiff, double taskLevel) {
+		double timeScore;
+		double timeDiffRate = taskLevel / 10;
+		if (percentageDiff >= (timeDiffRate - 0.1 * timeDiffRate)) {
+			timeScore = 10.0;
+		} else if (percentageDiff >= (timeDiffRate - 0.2 * timeDiffRate)) {
+			timeScore = 7.5;
+		} else if (percentageDiff >= (timeDiffRate - 0.3 * timeDiffRate)) {
+			timeScore = 6.5;
+		} else if (percentageDiff >= (timeDiffRate - 0.4 * timeDiffRate)) {
+			timeScore = 5.8;
+		} else if (percentageDiff >= (timeDiffRate - 0.5 * timeDiffRate)) {
+			timeScore = 4.4;
+		} else if (percentageDiff >= (timeDiffRate - 0.6 * timeDiffRate)) {
+			timeScore = 3.1;
+		} else if (percentageDiff >= (timeDiffRate - 0.7 * timeDiffRate)) {
+			timeScore = 2.6;
+		} else if (percentageDiff >= (timeDiffRate - 0.8 * timeDiffRate)) {
+			timeScore = 1.9;
+		} else if (percentageDiff >= (timeDiffRate - 0.9 * timeDiffRate)) {
+			timeScore = 1.8;
+		} else if (percentageDiff < 0.0){
+			timeScore = 0.0;
+		} else {
+			timeScore = 1.5;
+		}
+		return timeScore;
+	}
 
 	/*
 	 * Method to calculate the difference between completion date and due date in percentage.

@@ -22,22 +22,30 @@ public class DBcon {
 	public static Statement stmt;
 
 	public static void tableCreation() {
+		/*Connection type object to make the connection.*/
+		Connection dbcon = null;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt = null;
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			if (dbcon != null) {
+                System.out.println("Connection Successful!");
+            }
 		/*Catch block if an exception occurs and the specified driver is not found.*/
-		} catch (java.lang.ClassNotFoundException e) {
+		} catch (Exception e) {
 			System.out.print("test: ");
 			System.out.println(e.getMessage());
 		}
 		/*Try block for making the DB connection and executing the given statement.*/
 		try {
-			/*Makes the actual connection with the server.*/
-			dbcon = DriverManager.getConnection(url);
-			/*Creates the statement*/
-			stmt = dbcon.createStatement();
+			
 			/*Executes the given statement.*/
-			stmt.executeUpdate("CREATE TABLE BBMiddleManager "
+			stmt.executeQuery("CREATE TABLE BBMiddleManager "
 				+ "(empID VARCHAR(20) not null,"
 				+ "nameEmp VARCHAR(20),"
 				+ "surname VARCHAR(20),"

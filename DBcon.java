@@ -88,7 +88,7 @@ public class DBcon {
 				+ "difficulty INTEGER not null,"
 				+ "empID VARCHAR(20) not null,"
 				+ "PRIMARY KEY (taskCode),"
-				+ "FOREIGN KEY (empID) REFERENCES Employee);");
+				+ "FOREIGN KEY (empID) REFERENCES BBAcount);");
 			/* creating tables for event */	
 			stmt.executeUpdate("CREATE TABLE BBEvent "
 				+ "(eventCode VARCHAR(15) not null,"
@@ -97,7 +97,14 @@ public class DBcon {
 				+ "type INT,"
 				+ "title VARCHAR(50),"
 				+ "description VARCHAR(300),"
-				+ "PRIMARY KEY (Event_code));");	
+				+ "PRIMARY KEY (Event_code));");
+			stmt.executeUpdate("CREATE TABLE BBEvaluation "
+					+ "(taskID int not null,"
+					+ "empID int not null,"
+					+ "evaluation real not null,"
+					+ "PRIMARY KEY (taskID, empID),"
+					+ "FOREIGN KEY (empID) REFERENCES BBAcount,"
+					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");	
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {
@@ -155,7 +162,7 @@ public class DBcon {
 				int id = rs.getInt("empID");
 				int salary = rs.getInt("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new DBcon(id, salary);
+				//new DBcon(id, salary);
 				System.out.println("testing 2 done!!!");
 			}
 			rs.close();
@@ -400,10 +407,10 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			if (!task.isGroupTask()) { //Checks if its a group task or not.
 				/*Executes the given statement that saves the evaluation score and the employee's ID. */
-				stmt.executeUpdate("INSERT INTO JEvaluations (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpID() + ", " + score + ");");
+				stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpID() + ", " + score + ");");
 			} else {
 				for (int i =0; i < task.getEmpIDs().size(); i++) {
-					stmt.executeUpdate("INSERT INTO JEvaluations (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpIDs().get(i) + ", " + score + ");");
+					stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpIDs().get(i) + ", " + score + ");");
 				}
 			}
 				

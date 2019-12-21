@@ -1,5 +1,6 @@
 
 import java.awt.Frame;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -106,8 +107,6 @@ public final class FirstWindow extends javax.swing.JFrame {
         settings = new javax.swing.JLabel();
         arrow1 = new javax.swing.JLabel();
         arrow4 = new javax.swing.JLabel();
-        closeWindow = new javax.swing.JLabel();
-        minWindow = new javax.swing.JLabel();
         busyBicon = new javax.swing.JLabel();
         arrow5 = new javax.swing.JLabel();
         if (num != 3 && num != 4)
@@ -134,7 +133,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/beeicon.png")));
         getContentPane().setLayout(null);
 
         currentDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -192,24 +191,6 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
-        closeWindow.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        closeWindow.setText("Χ");
-        closeWindow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        closeWindow.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                closeWindowMouseClicked(evt);
-            }
-        });
-
-        minWindow.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        minWindow.setText("-");
-        minWindow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        minWindow.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                minWindowMouseClicked(evt);
-            }
-        });
-
         busyBicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
         arrow5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -238,50 +219,35 @@ public final class FirstWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(busyBicon))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(minWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(closeWindow))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(arrow5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(arrow1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(arrow2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(arrow3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(arrow4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(arrow6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(arrow7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 429, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(62, 62, 62)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(arrow5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(arrow1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(arrow2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(arrow3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(arrow4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(arrow6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(arrow7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(439, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(minWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(closeWindow)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(arrow1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(arrow2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(arrow3)
-                        .addGap(4, 4, 4)
-                        .addComponent(arrow4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(arrow5)
-                        .addGap(1, 1, 1)
-                        .addComponent(arrow6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(arrow7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(83, 83, 83)
+                .addComponent(arrow1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arrow2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arrow3)
+                .addGap(4, 4, 4)
+                .addComponent(arrow4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arrow5)
+                .addGap(1, 1, 1)
+                .addComponent(arrow6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(arrow7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(settings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(busyBicon, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -338,10 +304,10 @@ public final class FirstWindow extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(273, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelDailPr, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabelPayrolls, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -356,19 +322,11 @@ public final class FirstWindow extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1600, 870);
+        jPanel1.setBounds(0, 0, 1600, 840);
 
-        setSize(new java.awt.Dimension(1596, 868));
+        setSize(new java.awt.Dimension(1612, 879));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void minWindowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minWindowMouseClicked
-        this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_minWindowMouseClicked
-
-    private void closeWindowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeWindowMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_closeWindowMouseClicked
 
     private void arrow4ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_arrow4ComponentAdded
         // TODO add your handling code here:
@@ -419,7 +377,6 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel arrow6;
     private javax.swing.JLabel arrow7;
     private javax.swing.JLabel busyBicon;
-    private javax.swing.JLabel closeWindow;
     private javax.swing.JLabel currentDate;
     private javax.swing.JLabel currentTime;
     private javax.swing.Box.Filler filler1;
@@ -432,7 +389,6 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTimeoffs;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel minWindow;
     private javax.swing.JLabel settings;
     private javax.swing.JLabel today_label;
     // End of variables declaration//GEN-END:variables

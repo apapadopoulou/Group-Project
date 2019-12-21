@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Test {
 	public static void main(String args []) {
+		DBcon.tableCreation();
 		DBcon.loadBasicEmployees();
 		//System.out.println("Loaded BASIC EMPLOYEES");
 		Date birthDate = new Date();

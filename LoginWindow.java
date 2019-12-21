@@ -3,6 +3,7 @@
 *Copyright 2019 BusyB
 */
 import java.awt.Frame;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /*
@@ -57,6 +58,7 @@ public class LoginWindow extends javax.swing.JFrame {
         loginTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(LoginWindow.class.getResource("/images/smallLogo.PNG")));
         setUndecorated(true); // No default background
 
         lowerBackground.setBackground(new java.awt.Color(r, g, b));

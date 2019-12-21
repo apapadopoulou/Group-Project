@@ -9,6 +9,7 @@
  * @author User
  */
 import java.awt.Frame;
+import java.awt.Toolkit;
 public class DefaultPassword extends javax.swing.JFrame {
 
     /**
@@ -35,6 +36,7 @@ public class DefaultPassword extends javax.swing.JFrame {
         OKButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(DefaultPassword.class.getResource("/images/smallLogo.PNG")));
         setUndecorated(true);
         getContentPane().setLayout(null);
 

@@ -133,7 +133,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/beeicon.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/smallLogo.PNG")));
         getContentPane().setLayout(null);
 
         currentDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N

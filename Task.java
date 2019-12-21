@@ -8,9 +8,6 @@ import java.util.ArrayList;
 
 public class Task extends Program {
 	
-	/*URL of database with username and password.*/
-	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" + 
-			"databaseName=DB56;user=G556;password=939wd5890;";
 	private Date startDate;
 	private Date dueDate;
 	private Date completionDate;

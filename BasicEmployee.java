@@ -72,6 +72,20 @@ public class BasicEmployee extends Employee {
 		// TODO Auto-generated method stub
 		return null;
 	}
+        /* Method that checks if a Basic Employee works in HR department*/
+        public static boolean HREmployee(String name) {
+		  for (int i = 0; i < basicEmployees.size(); i++) {
+		      if (basicEmployees.get(i).getNameSurname().equals(name) && basicEmployees.get(i).getDepartment().getName() == "HR") {
+		        return true;
+		      } else if (basicEmployees.get(i).getSurname().equals(name) && basicEmployees.get(i).getDepartment().getName() == "HR") {
+		    	  return true;
+		      } else 
+		    	  return false;
+		    }
+            return false;
+		
+	  }
+        
 	//Method that return the basic employee we have searched for
 	public static BasicEmployee searchEmployeeByName2(String name) {
 		  for (int i = 0; i < basicEmployees.size(); i++) {

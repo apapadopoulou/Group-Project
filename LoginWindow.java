@@ -228,6 +228,7 @@ public class LoginWindow extends javax.swing.JFrame {
     private void jButton1ActionPerformed(final java.awt.event.ActionEvent evt) {
          String email = emailField.getText();
          String password = passwordField.getText();
+         int n;
          Account ac;
          ac = Account.searchAccountByEmail(email);
          if ( ac == null){
@@ -240,24 +241,24 @@ public class LoginWindow extends javax.swing.JFrame {
              passwordField.setText("");
              emailField.requestFocus();
          } else if (ac.getPassword().equals(password)) {
-            
+            n = ac.typeOfEmployee(ac.getEmployee());
             ac.setA(ac.getA()+1);
             if (ac.getA() == 1){       
-                DefaultPassword df = new DefaultPassword();
+                DefaultPassword df = new DefaultPassword(n);
                 df.setVisible(true);
                 df.pack();
                 df.setLocationRelativeTo(null);
                 df.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 java.awt.EventQueue.invokeLater(new Runnable() {
                    public void run() {
-                        new DefaultPassword().setVisible(true);
+                        new DefaultPassword(n).setVisible(true);
                         }
                     });
                 this.dispose();
             } else {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                new FirstWindow().setVisible(true);
+                new FirstWindow(n).setVisible(true);
                 }
             });
            this.dispose();

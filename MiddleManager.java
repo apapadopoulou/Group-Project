@@ -41,19 +41,31 @@ public class MiddleManager extends Employee {
 	    }
 		return departments;
 	}
+        /** Method that chackes if the Manager manages the HR department*/
+        public boolean managingHR(){
+            for ( int i = 0; i < this.getManagingDepartments().size(); i++){
+                if (this.getManagingDepartments().get(i).getName() == "HR")
+                    return true;
+            }
+            return false;      
+        } 
 	
 	public void setManagingDepartments(ArrayList<Department> managingDepartments) {
 		this.managingDepartments = managingDepartments;
-	}	
-	/*
-	public ArrayList<String> getNamesOfManagingDepartments() {
-		return namesOfManagingDepartments;
 	}
-	
-	public void setNamesOfManagingDepartments(ArrayList<String> namesOfManagingDepartments) {
-		this.namesOfManagingDepartments = namesOfManagingDepartments;
-	}*/
-	
+        /** Method that returns true if the manager works in the HR department*/
+	public static boolean HREmployee(String name) {
+		  for (int i = 0; i < middleManagers.size(); i++) {
+		      if (middleManagers.get(i).getNameSurname().equals(name) && middleManagers.get(i).managingHR() == true) {
+                        return true;
+		      } else if (middleManagers.get(i).getSurname().equals(name) && middleManagers.get(i).managingHR() == true) {
+		    	  return true;
+		      } else 
+		    	  return false;
+		    }
+            return false;
+		
+	  }
 	@Override
 	public String toString() {
 		return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getId() + ", Email = " + getEmail() + ", Telephone = " + getTelephone()

@@ -36,14 +36,6 @@ public class DBcon {
 			if (dbcon != null) {
                 System.out.println("Connection Successful!");
             }
-		/*Catch block if an exception occurs and the specified driver is not found.*/
-		} catch (Exception e) {
-			System.out.print("test: ");
-			System.out.println(e.getMessage());
-		}
-		/*Try block for making the DB connection and executing the given statement.*/
-		try {
-			
 			/*Executes the given statement.*/
 			stmt.executeQuery("CREATE TABLE BBMiddleManager "
 				+ "(empID VARCHAR(20) not null,"
@@ -107,14 +99,23 @@ public class DBcon {
 				+ "description VARCHAR(300),"
 				+ "PRIMARY KEY (Event_code));");
 			stmt.executeUpdate("CREATE TABLE BBEvaluation "
-					+ "(taskID int not null,"
-					+ "empID int not null,"
-					+ "evaluation real not null,"
-					+ "PRIMARY KEY (taskID, empID),"
-					+ "FOREIGN KEY (empID) REFERENCES BBAcount,"
-					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");	
+				+ "(taskID int not null,"
+				+ "empID int not null,"
+				+ "evaluation real not null,"
+				+ "PRIMARY KEY (taskID, empID),"
+				+ "FOREIGN KEY (empID) REFERENCES BBAcount,"					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");	
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (Exception e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+	}
+		/*Try block for making the DB connection and executing the given statement.
+		try {
+			
+		
 		/*Catch block if an exception occurs while making
-		 *  the connection and executing the statement.*/
+		 *  the connection and executing the statement.
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}

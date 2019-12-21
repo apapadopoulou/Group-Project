@@ -11,6 +11,7 @@ import java.io.*;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+import java.sql.jdbc;
 
 public class DBcon {
 	/*URL of database with username and password.*/
@@ -28,15 +29,16 @@ public class DBcon {
 		Statement stmt = null;
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
+			Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");
 			/*Makes the actual connection with the server.*/
+			DriverManager.registerDriver(SQLServerDriver());    
 			dbcon = DriverManager.getConnection(url);
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			if (dbcon != null) {
                 System.out.println("Connection Successful!");
             }
-			/*Executes the given statement.*/
+			/*Executes the given statement.
 			stmt.executeQuery("CREATE TABLE BBMiddleManager "
 				+ "(empID VARCHAR(20) not null,"
 				+ "nameEmp VARCHAR(20),"
@@ -77,7 +79,7 @@ public class DBcon {
 				+ "PRIMARY KEY(empID),"
 				+ "FOREIGN KEY (empID) REFERENCES Employee,"
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
-			/* creating tables for task */
+			/* creating tables for task 
 			stmt.executeUpdate("CREATE TABLE BBTask "
 				+ "(taskCode VARCHAR(15),"
 				+ "startDate DATE not null,"
@@ -89,7 +91,7 @@ public class DBcon {
 				+ "empID VARCHAR(20) not null,"
 				+ "PRIMARY KEY (taskCode),"
 				+ "FOREIGN KEY (empID) REFERENCES BBAcount);");
-			/* creating tables for event */	
+			/* creating tables for event *
 			stmt.executeUpdate("CREATE TABLE BBEvent "
 				+ "(eventCode VARCHAR(15) not null,"
 				+ "eventDate DATE not null,"
@@ -170,11 +172,6 @@ public class DBcon {
 			while (rs.next()) {
 				int id = rs.getInt("empID");
 				int salary = rs.getInt("salary");
-				/*After we find the variables we call the constructor to make the object again.*/
-<<<<<<< HEAD
-				//new DBcon(id, salary);
-=======
->>>>>>> 5e8be5b4117dfa6c558cdf98206d219c41bc8a1e
 				System.out.println("testing 2 done!!!");
 			}
 			rs.close();

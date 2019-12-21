@@ -1,5 +1,6 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Event extends Program {
 	private String title;
@@ -9,7 +10,7 @@ public class Event extends Program {
 	private LocalTime time;
 	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
 	private String Event_code; /* needed for the DB */
-	public Event(String title, String date, LocalTime time, String description) {
+	public Event(String title, Date date, LocalTime time, String description) {
 		this.title = title;
                 /*this.description = description;
 		do {

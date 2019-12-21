@@ -11,7 +11,27 @@ public class Day {
     date = d;
   }
   
- /* public void displayDay(LocalDate date) {
+  
+ public ArrayList<Program> getDailyProgram() {
+	return dailyProgram;
+}
+
+
+public void setDailyProgram(ArrayList<Program> dailyProgram) {
+	this.dailyProgram = dailyProgram;
+}
+
+
+public Date getDate() {
+	return date;
+}
+
+
+public void setDate(Date date) {
+	this.date = date;
+}
+
+/* public void displayDay(LocalDate date) {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy");
         System.out.println(date.format(formatter));
   }

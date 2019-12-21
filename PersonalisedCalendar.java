@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class PersonalisedCalendar /* extends Calendar */ {
@@ -38,7 +40,7 @@ public class PersonalisedCalendar /* extends Calendar */ {
 				// hi
 			}
 		}
-	}
+	
 
 	/* displayCalendar method which prints the calendar on the screen 
 	public void displayCalendar() {
@@ -50,16 +52,43 @@ public class PersonalisedCalendar /* extends Calendar */ {
 		/* This loop displaying if an employee has a task or event */
 		/* By searching every cell of the list */
 		/* If the name of the employee exists, it's shown */
+
+		/* name is username of the employee */
+		/*for (int i = 0; i < calendar[i].dailyProgram.size(); i++) {
+=======
 		/* name is username of the employee 
 		for (int i = 0; i < calendar[monthdailyProgram.size(); i++) {
+>>>>>>> 7747656e7db2b98f3212638f7d969fbc7f4c5c12
 			if (dailyProgram.contains(name)) {
 				System.out.println(dailyProgram.get(i));
-			} else {
+			}else {
 				System.out.println("None");
 			}
-		}
+		}*/
 	}
-
+        /** This method returns the daily program of the employee for the date given*/
+    public ArrayList <Program> today (Date d) {
+    	LocalDate localDate = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    	int month = localDate.getMonthValue();
+    	int dayD = localDate.getDayOfMonth();
+    	return calendar[month - 1][dayD - 1].getDailyProgram();
+    }
+    public void addToCalendar (Program p) {
+        Date d = p.getDate();
+        LocalDate localDate = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+    	int dayD = localDate.getDayOfMonth();
+        calendar[month - 1][dayD - 1] = day; 
+               
+    }
+    	
+    
+    	
+    
+    
+    
+    
+    
 	/* Main method that assigns a personalised calendar to a user and displays it */
 
 	public Day getDay() {

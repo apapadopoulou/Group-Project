@@ -14,7 +14,9 @@ public class DefaultPassword extends javax.swing.JFrame {
     /**
      * Creates new form DefaultPassword
      */
-    public DefaultPassword() {
+    private int n;
+    public DefaultPassword(int n) {
+        this.n = n;
         initComponents();
     }
 
@@ -81,7 +83,7 @@ public class DefaultPassword extends javax.swing.JFrame {
     private void OKButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKButtonMouseClicked
             java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow().setVisible(true);
+                new FirstWindow(n).setVisible(true);
                 }
             });
            this.dispose();
@@ -113,7 +115,7 @@ public class DefaultPassword extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DefaultPassword().setVisible(true);
+                new DefaultPassword(1).setVisible(true);
             }
         });
     }

@@ -112,7 +112,7 @@ public class DBcon {
 		}
 	}
 
-	/*Method ti save objects to Database*/
+	/**Method saveToDB(int in1,int in2) saves objects to Database*/
 	public static void saveToDB(int id, int salary) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
@@ -162,7 +162,10 @@ public class DBcon {
 				int id = rs.getInt("empID");
 				int salary = rs.getInt("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
+<<<<<<< HEAD
 				//new DBcon(id, salary);
+=======
+>>>>>>> 5e8be5b4117dfa6c558cdf98206d219c41bc8a1e
 				System.out.println("testing 2 done!!!");
 			}
 			rs.close();

@@ -1,27 +1,28 @@
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Event extends Program {
 	private String title;
-        private String description;
-	/* private String date; */
-        private static int counter = 1;
-	private LocalTime time;
+    private String description;
+	private Date date; 
+    private static int counter = 1;
+	private String time;
 	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
-	private String Event_code; /* needed for the DB */
-	public Event(String title, Date date, LocalTime time, String description) {
+	private int eventCode;
+	private int type;
+	public Event(String title, Date date, String time, String description, int type) {
 		this.title = title;
-                /*this.description = description;
+        this.description = description;
 		do {
 			if (Checkers.isValidTitle(title))
 				System.out.println("Valid Title");
 			else
-				System.out.println("Invalid Title; Insert a new one");
-		} while (Checkers.isValidTitle(title));*/
+				System.out.println("Invalid Title! Insert a new one");
+		} while (Checkers.isValidTitle(title));
 		this.date = date;
 		this.setTime(time);
-		this.Event_code = String.valueOf(counter++) + title.substring(1, 2); /* needed fot the Database*/
+		this.eventCode = counter++;
+		this.type = type;
 	}
 
 	public String getTitle() {
@@ -32,11 +33,11 @@ public class Event extends Program {
 		this.title = title;
 	}
 
-	public LocalTime getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(LocalTime time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 

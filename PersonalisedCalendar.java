@@ -40,9 +40,9 @@ public class PersonalisedCalendar /* extends Calendar */ {
 				// hi
 			}
 		}
-	}
+	
 
-	/* displayCalendar method which prints the calendar on the screen */
+	/* displayCalendar method which prints the calendar on the screen 
 	public void displayCalendar() {
 		for (int month = 0; month <= 11; month++) {
 			JFrame f = new JFrame("Month");
@@ -52,8 +52,13 @@ public class PersonalisedCalendar /* extends Calendar */ {
 		/* This loop displaying if an employee has a task or event */
 		/* By searching every cell of the list */
 		/* If the name of the employee exists, it's shown */
+
 		/* name is username of the employee */
 		/*for (int i = 0; i < calendar[i].dailyProgram.size(); i++) {
+=======
+		/* name is username of the employee 
+		for (int i = 0; i < calendar[monthdailyProgram.size(); i++) {
+>>>>>>> 7747656e7db2b98f3212638f7d969fbc7f4c5c12
 			if (dailyProgram.contains(name)) {
 				System.out.println(dailyProgram.get(i));
 			}else {
@@ -85,11 +90,6 @@ public class PersonalisedCalendar /* extends Calendar */ {
     
     
 	/* Main method that assigns a personalised calendar to a user and displays it */
-	public static void main(String[] args) {
-		PersonalisedCalendar c = new PersonalisedCalendar();
-		c.displayCalendar();
-
-	}
 
 	public Day getDay() {
 		return day;

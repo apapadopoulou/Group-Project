@@ -13,9 +13,6 @@ import java.sql.Date;
 import java.util.*;
 
 public class DBcon {
-	/*Some example variables.*/
-	private int id;
-	private int salary;
 	/*URL of database with username and password.*/
 	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
 			"databaseName=DB56;user=G556;password=939wd5890;";
@@ -40,102 +37,75 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement.*/
-			stmt.executeUpdate("CREATE TABLE Department "
+			stmt.executeUpdate("CREATE TABLE BBMiddleManager "
+				+ "(empID VARCHAR(20) not null,"
+				+ "nameEmp VARCHAR(20),"
+				+ "surname VARCHAR(20),"
+				+ "phonenumber VARCHAR(15),"
+				+ "email VARCHAR(50),"
+				+ "birthdate DATE,"
+				+ "PRIMARY KEY (empID)");
+			stmt.executeUpdate("CREATE TABLE BBDepartment "
 			    + "(depID INT not null,"
 		        + "nameDep VARCHAR(20),"
-		        + "PRIMARY KEY (depID));");
-			stmt.executeUpdate("CREATE TABLE Employee "
+			    + "managerID VARCHAR (30),"
+		        + "PRIMARY KEY (depID)),"
+			    + "FOREIGN KEY (managerID) REFERENCES BBMiddleManager);");
+			stmt.executeUpdate("CREATE TABLE BBBasicEmployee "
 				+ "(empID VARCHAR(20) not null,"
 				+ "nameEmp VARCHAR(20),"
 				+ "surname VARCHAR(20)"
-				+ "phonenumber INT"
-				+ "email VARCHAR(50)"
-				+ "birthdate DATE"
-				+ "PRIMARY KEY (empID));");
-			stmt.executeUpdate("CREATE TABLE BasicEmployee "
+				+ "phonenumber VARCHAR(15),"
+				+ "email VARCHAR(50),"
+				+ "birthdate DATE,"
+				+ "depID INT,"
+			    + "PRIMARY KEY (empID),"
+			    + "FOREIGN KEY (depID) REFERENCES Department );");
+			stmt.executeUpdate("CREATE TABLE BBTopManager "
 				+ "(empID VARCHAR(20) not null,"
-			    + "PRIMARY KEY (empID)"
-			    + "FOREIGN KEY (empID) REFERENCES Employee );");
-			stmt.executeUpdate("CREATE TABLE MiddleManager "
+				+ "nameEmp VARCHAR(20),"
+				+ "surname VARCHAR(20)"
+				+ "phonenumber VARCHAR(15),"
+				+ "email VARCHAR(50),"
+				+ "birthdate DATE,"
+				+ "depID INT,"
+			    + "PRIMARY KEY (empID);");
+			stmt.executeUpdate("CREATE TABLE BBAccount "
 				+ "(empID VARCHAR(20) not null,"
-				+ "PRIMARY KEY (empID)"
-				+ "FOREIGN KEY (empID) REFERENCES Employee );");
-			stmt.executeUpdate("CREATE TABLE TopManager "
-			    + "(empID VARCHAR(20) not null,"
-		        + "PRIMARY KEY (empID)"
-		        + "FOREIGN KEY (empID) REFERENCES Employee );");
-			stmt.executeUpdate("CREATE TABLE Account "
-				+ "(empID VARCHAR(20) not null,"
-				+ "email VARCHAR(50 UNIQUE)"
-				+ "password VARCHAR(8)"
-				+ "PRIMARY KEY(empID)"
-				+ "FOREIGN KEY (empID) REFERENCES Employee"
+				+ "email VARCHAR(50 UNIQUE),"
+				+ "password VARCHAR(8),"
+				+ "PRIMARY KEY(empID),"
+				+ "FOREIGN KEY (empID) REFERENCES Employee,"
 				+ "FOREIGN KEY (email) REFERENCES Employee);");
-			stmt.executeUpdate("CREATE TABLE Program "
-				+ "(progDate VARCHAR(20) not null,"
-				+ " Program_code VARCHAR(10),"
-				+ "empID VARCHAR(20) not null,"
-				+ "PRIMARY KEY(Program_code)");
-				+ "FOREIGN KEY (empID) REFERENCES Employee );");
 			/* creating tables for task */
-				stmt.executeUpdate("CREATE TABLE Task "
-						+ "(Start_date Date not null,"
-						+ "Task_code VARCHAR(15)"
-						+ "Due_date DATE not null, "
-						+ "Description VARCHAR(40) not null,"
-						+ "Parts INTEGER not null,"
-						+ "Importance INTEGER not null,"
-						+ "Difficulty INTEGER not null,"
-						+ "empID VARCHAR(20) not null,"
-						+ "PRIMARY KEY (Task_code),"
-						+ "FOREIGN KEY (empID) REFERENCES Employee"
-					
-				stmt.executeUpdate("CREATE TABLE SingleEmployeeTask "
-						+ "(EmpID VARCHAR(20),"
-						+ "Task_code VARCHAR(15),"
-						+ "CONSTRAINT PKSimple PRIMARY KEY (Task_code)," + 
-						+ "CONSTRAINT FKSimple FOREIGN KEY (Task_code)" + 
-						+ "REFERENCES Client(Task_code));");  
-					
-				stmt.executeUpdate("CREATE TABLE MultiEmployeeTask "
-						+ "(EmpID VARCHAR(20),"
-						+ "Task_code VARCHAR(15) not null,"
-						+ "PRIMARY KEY (Task_code), "
-						+ "FOREIGN KEY (Task_code) REFERENCES Task "
-						+ "	ON DELETE CASCADE));  
-					/* creating tables for event */	
-				stmt.executeUpdate("CREATE TABLE Event "
-						+ "(Event_date DATE not null,"
-						+ "Event_code VARCHAR(15) not null,"
-						+ "Event_time VARCHAR(13)not null,"
-						+ "PRIMARY KEY (Event_code),"							
-						+ "FOREIGN KEY (Program_code) REFERENCES Program );");	
-				
-				//stmt.executeUpdate();
+			stmt.executeUpdate("CREATE TABLE BBTask "
+				+ "(taskCode VARCHAR(15),"
+				+ "startDate DATE not null,"
+				+ "dueDate DATE not null, "
+				+ "description VARCHAR(40) not null,"
+				+ "parts INTEGER not null,"
+				+ "importance INTEGER not null,"
+				+ "difficulty INTEGER not null,"
+				+ "empID VARCHAR(20) not null,"
+				+ "PRIMARY KEY (taskCode),"
+				+ "FOREIGN KEY (empID) REFERENCES Employee);");
+			/* creating tables for event */	
+			stmt.executeUpdate("CREATE TABLE BBEvent "
+				+ "(eventCode VARCHAR(15) not null,"
+				+ "eventDate DATE not null,"
+				+ "eventTime VARCHAR(13)not null,"
+				+ "type INT,"
+				+ "title VARCHAR(50),"
+				+ "description VARCHAR(300),"
+				+ "PRIMARY KEY (Event_code));");	
 		/*Catch block if an exception occurs while making
 		 *  the connection and executing the statement.*/
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		/*USED FOR TESTING ONLY.*/
-		DBcon yes = new DBcon(312312, 6000);
-		new DBcon(313424, 100000);
-		DBcon ywdqnew = new DBcon(313424, 100000);
-		DBcon yes2 = new DBcon(984312312, 6000);
-		new DBcon(327545424, 100000);
-		DBcon ywdqnedw = new DBcon(35213424, 100000);
-		DBcon yes3 = new DBcon(5465312, 6000);
-		new DBcon(313424, 100000);
-		DBcon ywdqdnew = new DBcon(31423, 100000);
-		System.out.println("testing done!!!");
-		loadFromDB();
 	}
-	public DBcon (int id, int salary) {
-		this.id = id;
-		this.salary = salary;
-		saveToDB(id, salary);
-	}
-	/*Method ti save objects to Database*/
+
+	/**Method saveToDB(int in1,int in2) saves objects to Database*/
 	public static void saveToDB(int id, int salary) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
@@ -185,7 +155,6 @@ public class DBcon {
 				int id = rs.getInt("empID");
 				int salary = rs.getInt("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new DBcon(id, salary);
 				System.out.println("testing 2 done!!!");
 			}
 			rs.close();

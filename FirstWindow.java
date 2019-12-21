@@ -26,6 +26,7 @@ public final class FirstWindow extends javax.swing.JFrame {
      */
     private int num;
     public FirstWindow(int num) {
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.num = num;
         initComponents();
         ShowDate();
@@ -58,6 +59,47 @@ public final class FirstWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        try {
+            jPanel1 =(javax.swing.JPanel)java.beans.Beans.instantiate(getClass().getClassLoader(), "FirstWindow_jPanel1");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+        currentDate = new javax.swing.JLabel();
+        today_label = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        currentTime = new javax.swing.JLabel();
+        jLabelDailPr = new javax.swing.JLabel();
+        jLabelTeam = new javax.swing.JLabel();
+        if (num != 3 && num != 4)
+        jLabelTeam.setText("");
+        else {
+            jLabelTeam.setFont(new java.awt.Font("Arial", 1, 24));
+            jLabelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jLabelTeam.setText("Team");
+
+        }
+        jLabelPayrolls = new javax.swing.JLabel();
+        if ( num != 2 && num != 4)
+        jLabelPayrolls.setText("");
+        else {
+            jLabelPayrolls.setFont(new java.awt.Font("Arial", 1, 24));
+            jLabelPayrolls.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jLabelPayrolls.setText("Payrolls");
+        }
+        jLabelTimeoffs = new javax.swing.JLabel();
+        if ( num != 2 && num != 4)
+        jLabelTimeoffs.setText("");
+        else {
+            jLabelTimeoffs.setFont(new java.awt.Font("Arial", 1, 24));
+            jLabelTimeoffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jLabelTimeoffs.setText("Time offs");
+        }
+        SortBy = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
         jPanel2 = new javax.swing.JPanel();
         arrow2 = new javax.swing.JLabel();
         arrow3 = new javax.swing.JLabel();
@@ -76,7 +118,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         if ( num != 4 && num != 3) 
         arrow6.setText("");
         else {
-            arrow6.setFont(new java.awt.Font("Arial", 1, 20)); 
+            arrow6.setFont(new java.awt.Font("Arial", 1, 24)); 
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow6.setText("Evaluate");
             arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -85,58 +127,48 @@ public final class FirstWindow extends javax.swing.JFrame {
         if (num != 3 && num !=4)
         arrow7.setText("");
         else {
-            arrow7.setFont(new java.awt.Font("Arial", 1, 20));
+            arrow7.setFont(new java.awt.Font("Arial", 1, 24));
             arrow7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow7.setText("My Evaluation");
             arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         }
-        jPanel1 = new javax.swing.JPanel();
-        currentDate = new javax.swing.JLabel();
-        today_label = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        currentTime = new javax.swing.JLabel();
-        jLabelDailPr = new javax.swing.JLabel();
-        jLabelTeam = new javax.swing.JLabel();
-        if (num != 3 && num != 4)
-        jLabelTeam.setText("");
-        else {
-            jLabelTeam.setFont(new java.awt.Font("Arial", 1, 20));
-            jLabelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelTeam.setText("Team");
-
-        }
-        jLabelPayrolls = new javax.swing.JLabel();
-        if ( num != 2 && num != 4)
-        jLabelPayrolls.setText("");
-        else {
-            jLabelPayrolls.setFont(new java.awt.Font("Arial", 1, 20));
-            jLabelPayrolls.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelPayrolls.setText("Payrolls");
-        }
-        jLabelTimeoffs = new javax.swing.JLabel();
-        if ( num != 2 && num != 4)
-        jLabelTimeoffs.setText("");
-        else {
-            jLabelTimeoffs.setFont(new java.awt.Font("Arial", 1, 20));
-            jLabelTimeoffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelTimeoffs.setText("Time offs");
-        }
-        SortBy = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(255, 222, 89));
+        currentDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        currentDate.setText("Date");
 
-        arrow2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        today_label.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
+        today_label.setText("TODAY");
+
+        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/list (1).png"))); // NOI18N
+        jLabel2.setText("To Do List!");
+
+        currentTime.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        currentTime.setText("Time");
+
+        jLabelDailPr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabelDailPr.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+
+        jLabelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        SortBy.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
+        SortBy.setText("Sort By:");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
+
+        jPanel2.setBackground(new java.awt.Color(255, 222, 89));
+        jPanel2.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+
+        arrow2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow2.setText("Add Task or Reminder");
         arrow2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        arrow3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        arrow3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow3.setText("Time off Request");
         arrow3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -146,12 +178,12 @@ public final class FirstWindow extends javax.swing.JFrame {
         settings.setText("Settings");
         settings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        arrow1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        arrow1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow1.setText("Show Calendar");
         arrow1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        arrow4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        arrow4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow4.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -170,7 +202,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         });
 
         minWindow.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        minWindow.setText("_");
+        minWindow.setText("-");
         minWindow.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         minWindow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -180,7 +212,7 @@ public final class FirstWindow extends javax.swing.JFrame {
 
         busyBicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
-        arrow5.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        arrow5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -201,7 +233,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap()
                 .addComponent(settings)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(busyBicon))
@@ -222,64 +254,39 @@ public final class FirstWindow extends javax.swing.JFrame {
                             .addComponent(arrow4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(arrow6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(arrow7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 149, Short.MAX_VALUE)))
+                        .addGap(0, 429, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(minWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(closeWindow))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(minWindow, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(closeWindow)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(arrow1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(arrow2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(arrow3)
+                        .addGap(4, 4, 4)
+                        .addComponent(arrow4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(arrow5)
+                        .addGap(1, 1, 1)
+                        .addComponent(arrow6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(arrow7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(busyBicon)
-                .addGap(73, 73, 73))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(arrow1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(arrow2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(arrow3)
-                .addGap(4, 4, 4)
-                .addComponent(arrow4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(arrow5)
-                .addGap(1, 1, 1)
-                .addComponent(arrow6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(arrow7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 233, Short.MAX_VALUE)
-                .addComponent(settings)
-                .addGap(82, 82, 82))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(settings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(busyBicon, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(9, 9, 9))
         );
-
-        getContentPane().add(jPanel2);
-        jPanel2.setBounds(375, 0, 529, 706);
-
-        jPanel1.setBackground(new java.awt.Color(255, 222, 120));
-        jPanel1.setPreferredSize(new java.awt.Dimension(529, 706));
-
-        currentDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        currentDate.setText("Date");
-
-        today_label.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
-        today_label.setText("TODAY");
-
-        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/list (1).png"))); // NOI18N
-        jLabel2.setText("To Do List!");
-
-        currentTime.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        currentTime.setText("Time");
-
-        jLabelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        SortBy.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
-        SortBy.setText("Sort By:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -294,18 +301,21 @@ public final class FirstWindow extends javax.swing.JFrame {
                     .addComponent(currentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDailPr, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabelTimeoffs, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabelPayrolls, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabelTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelTimeoffs, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDailPr, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(SortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(539, Short.MAX_VALUE))
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabelTeam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                        .addComponent(jLabelPayrolls, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,26 +332,33 @@ public final class FirstWindow extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelDailPr, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                                .addComponent(jLabelTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelPayrolls, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelTimeoffs, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelDailPr, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelPayrolls, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelTimeoffs, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(72, Short.MAX_VALUE))))
+                        .addGap(117, 117, 117)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1090, 700);
+        jPanel1.setBounds(0, 0, 1600, 870);
 
-        setSize(new java.awt.Dimension(904, 633));
+        setSize(new java.awt.Dimension(1596, 868));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -405,6 +422,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel closeWindow;
     private javax.swing.JLabel currentDate;
     private javax.swing.JLabel currentTime;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -229,6 +229,7 @@ public class MyCalendar extends javax.swing.JFrame {
                 new FirstWindow(n).setVisible(true);
             }
         });
+        this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
 
     /**

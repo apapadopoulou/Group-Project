@@ -367,6 +367,7 @@ public final class FirstWindow extends javax.swing.JFrame {
                 new TimeOffRequest(num).setVisible(true);
             }
         });
+        this.dispose();
     }//GEN-LAST:event_arrow3MouseClicked
 
     private void arrow1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow1MouseClicked
@@ -379,6 +380,7 @@ public final class FirstWindow extends javax.swing.JFrame {
                 new MyCalendar(num).setVisible(true);
             }
         });
+        this.dispose();
     }//GEN-LAST:event_arrow1MouseClicked
 
     private void arrow4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow4MouseClicked

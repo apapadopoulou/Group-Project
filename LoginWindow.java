@@ -4,6 +4,8 @@
 */
 import java.awt.Frame;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+
 import javax.swing.JFrame;
 
 /*
@@ -76,6 +78,11 @@ public class LoginWindow extends javax.swing.JFrame {
             public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
+
+			private void jTextField1ActionPerformed(ActionEvent evt) {
+				// TODO Auto-generated method stub
+				
+			}
         });
 
         passwordField.setBackground(new java.awt.Color(240, 240, 240));
@@ -85,6 +92,11 @@ public class LoginWindow extends javax.swing.JFrame {
             public void actionPerformed(final java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
             }
+
+			private void jPasswordField1ActionPerformed(ActionEvent evt) {
+				// TODO Auto-generated method stub
+				
+			}
         });
 
         loginButton.setBackground(new java.awt.Color(0, 0, 0));
@@ -210,14 +222,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
-    private void jTextField1ActionPerformed(final java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
-    }                                           
-
-    private void jPasswordField1ActionPerformed(final java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
-    }                                               
+                           
 
     private void jLabelCloseMouseClicked(final java.awt.event.MouseEvent evt) {                                         
         System.exit(0);

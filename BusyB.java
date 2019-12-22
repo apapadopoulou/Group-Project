@@ -4,11 +4,16 @@ public class BusyB {
 	 * @param args
 	 */
 	public static void main (String[] args) {
-		if (args[0] != null) {
+		if (!args[0].equals("0")) {
 			DBcon.tableCreation();
 			AdminWindow aw = new AdminWindow();
 			aw.hello();
-			
+		} else {
+			java.awt.EventQueue.invokeLater(new Runnable() {
+	            public void run() {
+	                new LoginWindow().setVisible(true);
+	            }
+	        });
 		}
 	}
 }

@@ -13,12 +13,13 @@ public class Event extends Program {
 	public Event(String title, Date date, String time, String description, int type) {
 		this.title = title;
         this.description = description;
-		do {
-			if (Checkers.isValidTitle(title))
+        this.type = type;
+		/*do {
+			if (Checkers.isValidType(type))
 				System.out.println("Valid Title");
 			else
 				System.out.println("Invalid Title! Insert a new one");
-		} while (Checkers.isValidTitle(title));
+		} while (Checkers.isValidTitle(title));*/
 		this.date = date;
 		this.setTime(time);
 		this.eventCode = counter++;

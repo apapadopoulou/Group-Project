@@ -60,8 +60,8 @@ public class Checkers {
 			  return password;
 		}
 		//This method validate the event title (speficic titles) 
-		public static boolean isValidTitle(String title) {
-			return title == "appointment" || title == "meeting" || title == "main event";
+		public static boolean isValidType(String type) {
+			return type == "appointment" || type == "meeting" || type == "main event";
 		}
 }
 

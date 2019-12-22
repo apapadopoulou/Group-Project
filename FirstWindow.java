@@ -25,7 +25,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     /**
      * Creates new form FirstWindow
      */
-    private int num;
+    protected int num;
     public FirstWindow(int num) {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.num = num;
@@ -199,6 +199,11 @@ public final class FirstWindow extends javax.swing.JFrame {
                 arrow4ComponentAdded(evt);
             }
         });
+        arrow4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow4MouseClicked(evt);
+            }
+        });
 
         busyBicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
@@ -359,7 +364,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         }        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TimeOffRequest().setVisible(true);
+                new TimeOffRequest(num).setVisible(true);
             }
         });
     }//GEN-LAST:event_arrow3MouseClicked
@@ -371,10 +376,29 @@ public final class FirstWindow extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
          
             public void run() {
-                new MyCalendar().setVisible(true);
+                new MyCalendar(num).setVisible(true);
             }
         });
     }//GEN-LAST:event_arrow1MouseClicked
+
+    private void arrow4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow4MouseClicked
+        if ( num != 1 && num != 2){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CreatEvent(num).setVisible(true);
+            }
+        });
+        } else {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new EventRequest(num).setVisible(true);
+            }
+        });
+        
+        
+        }
+        this.dispose();
+    }//GEN-LAST:event_arrow4MouseClicked
 
     /**
      * @param args the command line arguments

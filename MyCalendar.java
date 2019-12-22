@@ -17,12 +17,12 @@ import javax.swing.Timer;
  *
  * @author User
  */
-public class Calendar extends javax.swing.JFrame {
+public class MyCalendar extends javax.swing.JFrame {
 
     /**
      * Creates new form Calendar
      */
-    public Calendar() {
+    public MyCalendar() {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         ShowDate();
@@ -70,7 +70,7 @@ public class Calendar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 222, 89));
-        setIconImage(Toolkit.getDefaultToolkit().getImage(Calendar.class.getResource("/images/smallLogo.PNG")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(MyCalendar.class.getResource("/images/smallLogo.PNG")));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel1.setBackground(new java.awt.Color(255, 222, 89));
@@ -186,20 +186,20 @@ public class Calendar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Calendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Calendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Calendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Calendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Calendar().setVisible(true);
+                new MyCalendar().setVisible(true);
             }
         });
     }

@@ -11,7 +11,6 @@ import java.io.*;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
-import java.sql.jdbc;
 
 public class DBcon {
 	/*URL of database with username and password.*/
@@ -29,69 +28,73 @@ public class DBcon {
 		Statement stmt = null;
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
-			Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
 			/*Makes the actual connection with the server.*/
-			DriverManager.registerDriver(SQLServerDriver());    
 			dbcon = DriverManager.getConnection(url);
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
-			if (dbcon != null) {
-                System.out.println("Connection Successful!");
-            }
-			/*Executes the given statement.
-			stmt.executeQuery("CREATE TABLE BBMiddleManager "
+			/*Executes the given statement.*/
+			stmt.executeUpdate("CREATE TABLE BBMiddleManager "
 				+ "(empID VARCHAR(20) not null,"
 				+ "nameEmp VARCHAR(20),"
 				+ "surname VARCHAR(20),"
 				+ "phonenumber VARCHAR(15),"
 				+ "email VARCHAR(50),"
 				+ "birthdate DATE,"
-				+ "PRIMARY KEY (empID)");
+				+ "PRIMARY KEY (empID));");
+			System.out.println("TABLE BBMiddleManager CREATED"); 
+			
 			stmt.executeUpdate("CREATE TABLE BBDepartment "
 			    + "(depID INT not null,"
 		        + "nameDep VARCHAR(20),"
-			    + "managerID VARCHAR (30),"
-		        + "PRIMARY KEY (depID)),"
+			    + "managerID VARCHAR (20),"
+		        + "PRIMARY KEY (depID),"
 			    + "FOREIGN KEY (managerID) REFERENCES BBMiddleManager);");
+			System.out.println("TABLE BBDepartment CREATED"); 
+			
 			stmt.executeUpdate("CREATE TABLE BBBasicEmployee "
 				+ "(empID VARCHAR(20) not null,"
 				+ "nameEmp VARCHAR(20),"
-				+ "surname VARCHAR(20)"
+				+ "surname VARCHAR(20),"
 				+ "phonenumber VARCHAR(15),"
 				+ "email VARCHAR(50),"
 				+ "birthdate DATE,"
 				+ "depID INT,"
 			    + "PRIMARY KEY (empID),"
-			    + "FOREIGN KEY (depID) REFERENCES Department );");
+			    + "FOREIGN KEY (depID) REFERENCES BBDepartment );");
+			System.out.println("TABLE BBBasicEmployee CREATED");
+			
 			stmt.executeUpdate("CREATE TABLE BBTopManager "
 				+ "(empID VARCHAR(20) not null,"
 				+ "nameEmp VARCHAR(20),"
-				+ "surname VARCHAR(20)"
+				+ "surname VARCHAR(20),"
 				+ "phonenumber VARCHAR(15),"
 				+ "email VARCHAR(50),"
 				+ "birthdate DATE,"
 				+ "depID INT,"
-			    + "PRIMARY KEY (empID);");
+			    + "PRIMARY KEY (empID));");
+			System.out.println("TABLE BBTopManager CREATED"); 
+			
 			stmt.executeUpdate("CREATE TABLE BBAccount "
 				+ "(empID VARCHAR(20) not null,"
-				+ "email VARCHAR(50 UNIQUE),"
+				+ "email VARCHAR(50) UNIQUE,"
 				+ "password VARCHAR(8),"
-				+ "PRIMARY KEY(empID),"
-				+ "FOREIGN KEY (empID) REFERENCES Employee,"
-				+ "FOREIGN KEY (email) REFERENCES Employee);");
-			/* creating tables for task 
+				+ "PRIMARY KEY(empID));");
+			System.out.println("TABLE BBAccount CREATED"); 
+			
 			stmt.executeUpdate("CREATE TABLE BBTask "
-				+ "(taskCode VARCHAR(15),"
+				+ "(taskCode INT not null,"
 				+ "startDate DATE not null,"
 				+ "dueDate DATE not null, "
 				+ "description VARCHAR(40) not null,"
 				+ "parts INTEGER not null,"
-				+ "importance INTEGER not null,"
-				+ "difficulty INTEGER not null,"
+				+ "importance INT not null,"
+				+ "difficulty INT not null,"
 				+ "empID VARCHAR(20) not null,"
 				+ "PRIMARY KEY (taskCode),"
-				+ "FOREIGN KEY (empID) REFERENCES BBAcount);");
-			/* creating tables for event *
+				+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
+			System.out.println("TABLE BBTask CREATED");
+			
 			stmt.executeUpdate("CREATE TABLE BBEvent "
 				+ "(eventCode VARCHAR(15) not null,"
 				+ "eventDate DATE not null,"
@@ -99,25 +102,53 @@ public class DBcon {
 				+ "type INT,"
 				+ "title VARCHAR(50),"
 				+ "description VARCHAR(300),"
-				+ "PRIMARY KEY (Event_code));");
+				+ "PRIMARY KEY (eventCode));");
+			System.out.println("TABLE BBEvent CREATED");
+			
 			stmt.executeUpdate("CREATE TABLE BBEvaluation "
-				+ "(taskID int not null,"
-				+ "empID int not null,"
-				+ "evaluation real not null,"
+				+ "(taskID INT not null,"
+				+ "empID VARCHAR(20) not null,"
+				+ "evaluation REAL not null,"
 				+ "PRIMARY KEY (taskID, empID),"
-				+ "FOREIGN KEY (empID) REFERENCES BBAcount,"					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");	
+				+ "FOREIGN KEY (empID) REFERENCES BBAccount,"
+				+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
+			System.out.println("TABLE BBEvaluation CREATED");
 		/*Catch block if an exception occurs and the specified driver is not found.*/
 		} catch (Exception e) {
-			System.out.print("test: ");
+			System.out.print("test23: ");
 			System.out.println(e.getMessage());
 		}
 	}
-		/*Try block for making the DB connection and executing the given statement.
+	
+	public static void deleteTables() {
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
-			
-		
-		/*Catch block if an exception occurs while making
-		 *  the connection and executing the statement.
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and
+		 *  executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			stmt.executeUpdate("DROP TABLE BBEvaluation;");
+			stmt.executeUpdate("DROP TABLE BBEvent;");
+			stmt.executeUpdate("DROP TABLE BBTask;");
+			stmt.executeUpdate("DROP TABLE BBAccount;");
+			stmt.executeUpdate("DROP TABLE BBTopManager;");
+			stmt.executeUpdate("DROP TABLE BBBasicEmployee;");
+			stmt.executeUpdate("DROP TABLE BBDepartment;");
+			stmt.executeUpdate("DROP TABLE BBMiddleManager;");
+			System.out.println("SUCCESFULLY DELETED TABLES");
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
@@ -200,7 +231,7 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBDepartment (dep_id, name) VALUES (" + dep.getId() + ", " + dep.getName() + ");");
+			stmt.executeUpdate("INSERT INTO BBDepartment (depID, nameDep, managerID) VALUES (" + dep.getId() + ", '" + dep.getName() + "', null);");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -227,14 +258,14 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT dep_id, name FROM BBDepartment");
+			rs = stmt.executeQuery("SELECT depID, nameDep, managerID FROM BBDepartment");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
-				int id = rs.getInt("dep_id");
-				String name = rs.getString("name");
+				int id = rs.getInt("depID");
+				String name = rs.getString("nameDep");
+				String managerID = rs.getString("managerID");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new Department(name, id);
-				System.out.println("testing 2 done!!!");
+				new Department(name, id, managerID);
 			}
 			rs.close();
 			stmt.close();

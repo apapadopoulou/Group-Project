@@ -134,7 +134,6 @@ public final class FirstWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/smallLogo.PNG")));
-        getContentPane().setLayout(null);
 
         currentDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         currentDate.setText("Date");
@@ -164,13 +163,18 @@ public final class FirstWindow extends javax.swing.JFrame {
 
         arrow2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
-        arrow2.setText("Add Task or Reminder");
+        arrow2.setText("Add to Program");
         arrow2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         arrow3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow3.setText("Time off Request");
         arrow3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        arrow3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow3MouseClicked(evt);
+            }
+        });
 
         settings.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings_icon.png"))); // NOI18N
@@ -181,6 +185,11 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow1.setText("Show Calendar");
         arrow1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        arrow1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow1MouseClicked(evt);
+            }
+        });
 
         arrow4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
@@ -228,7 +237,7 @@ public final class FirstWindow extends javax.swing.JFrame {
                     .addComponent(arrow4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(arrow6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(arrow7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(439, Short.MAX_VALUE))
+                .addContainerGap(435, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,8 +330,7 @@ public final class FirstWindow extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 1600, 840);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         setSize(new java.awt.Dimension(1612, 879));
         setLocationRelativeTo(null);
@@ -331,6 +339,42 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void arrow4ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_arrow4ComponentAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_arrow4ComponentAdded
+
+    private void arrow3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow3MouseClicked
+         try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TimeOffRequest().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_arrow3MouseClicked
+
+    private void arrow1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow1MouseClicked
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+         
+            public void run() {
+                new MyCalendar().setVisible(true);
+            }
+        });
+    }//GEN-LAST:event_arrow1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -362,7 +406,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(4).setVisible(true);
+                new FirstWindow(1).setVisible(true);
             }
         });
     }

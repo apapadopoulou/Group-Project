@@ -3,7 +3,7 @@ public class Department {
 	
 	private int id;
 	private String name;
-	private static int num_dep = 1; // counter
+	private static int counter = 1; // counter
 	private String managerId;
 	private ArrayList <BasicEmployee> employeesOfDepartment = new ArrayList <BasicEmployee>(); /* a list that contains the employees of each department separately*/
 	public static ArrayList <Department> departments = new ArrayList <Department>(); // a list that contains all the departments
@@ -13,7 +13,7 @@ public class Department {
 	 * Use this constructor if you want to create a new Department.
 	 */
 	public Department(String name) {
-		id = num_dep++;
+		id = counter++;
 		this.name = name;
 		departments.add(this);
 		DBcon.saveDepartment(this);
@@ -23,10 +23,13 @@ public class Department {
 	 * Database constructor for class Department.
 	 * This constructor is used to load Departments from the database when the program opens.
 	 */
-	public Department(String name, int id) {
+	public Department(String name, int id, String managerId) {
 		this.id = id;
 		this.name = name;
+		this.managerId = managerId;
 		departments.add(this);
+		//Sets the counter to the current id to be used for new objects that are being created.
+		counter = ++id;
 	} 
 	
 	public static Department getDepartment (int id) {

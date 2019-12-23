@@ -74,13 +74,12 @@ public final class FirstWindow extends javax.swing.JFrame {
         currentTime = new javax.swing.JLabel();
         jLabelDailPr = new javax.swing.JLabel();
         jLabelTeam = new javax.swing.JLabel();
-        if (num != 3 && num != 4)
-        jLabelTeam.setText("");
-        else {
-            jLabelTeam.setFont(new java.awt.Font("Arial", 1, 24));
+        if (num != 3 && num != 4) {
+            jLabelTeam.setText("");
+        } else {
             jLabelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jLabelTeam.setFont(new java.awt.Font("Arial", 1, 24));
             jLabelTeam.setText("Team");
-
         }
         jLabelPayrolls = new javax.swing.JLabel();
         if ( num != 2 && num != 4)
@@ -151,8 +150,6 @@ public final class FirstWindow extends javax.swing.JFrame {
         jLabelDailPr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabelDailPr.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
 
-        jLabelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         SortBy.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         SortBy.setText("Sort By:");
 
@@ -216,7 +213,12 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
-        arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        arrow6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow6MouseClicked(evt);
+            }
+        });
 
         arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -419,8 +421,8 @@ public final class FirstWindow extends javax.swing.JFrame {
                 new MyEvaluation(num).setVisible(true);
             }
         });     
-        
-        }
+       }
+        this.dispose();
     }//GEN-LAST:event_arrow7MouseClicked
 
     private void arrow5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow5MouseClicked
@@ -431,7 +433,12 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
         }
+        this.dispose();
     }//GEN-LAST:event_arrow5MouseClicked
+
+    private void arrow6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_arrow6MouseClicked
 
     /**
      * @param args the command line arguments

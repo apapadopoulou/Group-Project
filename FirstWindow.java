@@ -210,10 +210,20 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        arrow5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow5MouseClicked(evt);
+            }
+        });
 
         arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        arrow7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow7MouseClicked(evt);
+            }
+        });
 
         if ( num != 4 && num != 5 && num != 3) {
             arrow4.setText("Event Request");
@@ -402,6 +412,27 @@ public final class FirstWindow extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_arrow4MouseClicked
 
+    private void arrow7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow7MouseClicked
+        if (num == 3 || num == 4) {
+             java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MyEvaluation(num).setVisible(true);
+            }
+        });     
+        
+        }
+    }//GEN-LAST:event_arrow7MouseClicked
+
+    private void arrow5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow5MouseClicked
+        if ( num != 3 && num != 4){
+             java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MyEvaluation(num).setVisible(true);
+            }
+        });
+        }
+    }//GEN-LAST:event_arrow5MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -432,7 +463,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(1).setVisible(true);
+                new FirstWindow(4).setVisible(true);
             }
         });
     }

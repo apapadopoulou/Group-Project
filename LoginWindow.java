@@ -249,8 +249,8 @@ public class LoginWindow extends javax.swing.JFrame {
              emailField.requestFocus();
          } else if (ac.getPassword().equals(password)) {
             n = ac.typeOfEmployee(ac.getEmployee());
-            ac.setA(ac.getA()+1);
-            if (ac.getA() == 1){       
+            ac.setHasDefaultPass(ac.getHasDefaultPass()+1);
+            if (ac.getHasDefaultPass() == 1){       
                 DefaultPassword df = new DefaultPassword(n);
                 df.setVisible(true);
                 df.pack();

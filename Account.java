@@ -12,53 +12,41 @@ public class Account {
     private String email;
     private String password;
     private static ArrayList<Account> accounts = new ArrayList<Account>();
-    private int a;
-    /* Account's constructor */
-
+    private int hasDefaultPass;
+    
+    /*
+     * Basic constructor for class Account.
+     * Use ONLY this constructor to create new Accounts.
+     */
     public Account(Employee e) {
-        a = 0;
+        hasDefaultPass = 0;
         this.employee = e;
         this.email = e.getEmail();
         password = passwordGenerator();
         accounts.add(this); /*Account object entered on accounts ArrayList*/
-
-        /*
-         if (isValidEmail(email))
-         System.out.print("Valid Email");
-         else {
-         System.out.print("Invalid Email");
-         System.out.print("Please retype your Email");
-         }
-         if (isValidFirstName(firstName))
-         System.out.print("Valid First Name");
-         else {
-         System.out.print("Invalid First Name");
-         System.out.print("Please retype your First Name");
-         }
-         if (isValidLastName(lastName))
-         System.out.print("Valid Last Name");
-         else {
-         System.out.print("Invalid Last Name");
-         System.out.print("Please retype your Last Name");
-         }
-         if (isValidPhoneNumber(phoneNo))
-         System.out.print("Valid Phone Number");
-         else {
-         System.out.print("Invalid Phone number");
-         System.out.print("Please retype your Phone Number");
-         }
-         */
-
+        DBcon.saveAccount(this);
     }
 
+    /*
+     * Database constructor for class Account.
+     * This constructor is used to create Account objects saved in the Database.
+     */
+    public Account(String empId, String password, int hasDefaultPass) {
+        this.hasDefaultPass = hasDefaultPass;
+        Employee e = Employee.searchEmployeeById(empId);
+        this.employee = e;
+        this.email = e.getEmail();
+        password = passwordGenerator();
+        accounts.add(this); /*Account object entered on accounts ArrayList*/
+    }
 
     /* This method searches Employees' accounts by their email*/
-    public int getA() {
-        return a;
+    public int getHasDefaultPass() {
+        return hasDefaultPass;
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public void setHasDefaultPass(int a) {
+        this.hasDefaultPass = a;
     }
 
     public Account() {

@@ -82,7 +82,7 @@ public abstract class Employee {
   //public abstract String getJobTitle();
   
   // Returns the employee we searched for
-  public static Employee searchEmployeeById2(String id) {
+  public static Employee searchEmployeeById(String id) {
     for (int i = 0; i < employees.size(); i++) {
       if (employees.get(i).getId() == id) {
             return employees.get(i);

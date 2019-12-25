@@ -6,7 +6,6 @@ import java.util.Date;
 public class HumanResources extends Employee {
     /*parameters for class HumanResources*/
 	HumanResources hr = new HumanResources();
-	Department department = new Department();
 
     /*Constructor for class HumanResources*/
     public HumanResources(String name, String surname, String phonenumber, String email, String id, date birthdate) {

@@ -41,7 +41,7 @@ public class MiddleManager extends Employee {
 	    }
 		return departments;
 	}
-        /** Method that chackes if the Manager manages the HR department*/
+        /** Method that checks if the Manager manages the HR department*/
         public boolean managingHR(){
             for ( int i = 0; i < this.getManagingDepartments().size(); i++){
                 if (this.getManagingDepartments().get(i).getName() == "HR")

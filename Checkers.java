@@ -37,7 +37,7 @@ public class Checkers {
 	   }
 		public static boolean isValidPassword(String password) {
 			  //Checking password length
-			  while( (password.length() >= 6) || (password.length() <= 15) ) {
+			  if( (password.length() >= 6) || (password.length() <= 15) ) {
 				  return true;
 			  }else {
 				  return false;

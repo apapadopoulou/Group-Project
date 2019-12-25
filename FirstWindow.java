@@ -150,6 +150,12 @@ public final class FirstWindow extends javax.swing.JFrame {
         jLabelDailPr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabelDailPr.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
 
+        jLabelTeam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTeamMouseClicked(evt);
+            }
+        });
+
         SortBy.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         SortBy.setText("Sort By:");
 
@@ -399,7 +405,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         if ( num != 1 && num != 2){
             java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreatEvent(num).setVisible(true);
+                new CreateEvent(num).setVisible(true);
             }
         });
         } else {
@@ -439,6 +445,17 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void arrow6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow6MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_arrow6MouseClicked
+
+    private void jLabelTeamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTeamMouseClicked
+        if (num == 3 || num == 4) {
+         /* Create and display the form */
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Team(num).setVisible(true);
+                }
+            });
+        }
+    }//GEN-LAST:event_jLabelTeamMouseClicked
 
     /**
      * @param args the command line arguments

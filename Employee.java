@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+
 public abstract class Employee {
   private String name;
   private String surname;
@@ -7,15 +8,19 @@ public abstract class Employee {
   private String email;
   private String birthdate;
   private double salary;
-  private double personal_score = 10;
+  private double personalScore = 10;
   private PersonalisedCalendar pc; 
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
+  
   // Constructor
   public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary/*, double personal_score*/) {
-	  if(!Checkers.isValidPhoneNumber(phonenumber)) {
-		  throw new IllegalArgumentException(
-				  "phone number is not valid");
-	  }
+    try {
+      if (!Checkers.isValidPhoneNumber(phonenumber)) {
+        throw new IllegalArgumentException("phone number is not valid");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 	  this.name = name;
       this.surname = surname;
       this.phonenumber = phonenumber;
@@ -51,6 +56,7 @@ public abstract class Employee {
   public void setName(String name) {
       this.name = name;
   }
+  
   public void setSurname(String surname) {
       this.surname = surname;
   }

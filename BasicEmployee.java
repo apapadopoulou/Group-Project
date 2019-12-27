@@ -1,31 +1,30 @@
 import java.util.ArrayList;
 
 public class BasicEmployee extends Employee {
-	
-	private Department department; //Department instance variable.
-	private String id; // ID instance variable.
-	public static ArrayList <BasicEmployee> basicEmployees = new ArrayList <BasicEmployee>(); // An ArrayList that contains all Basic Employees.
+  private Department department; //Department instance variable.
+  private String id; // ID instance variable.
+  public static ArrayList <BasicEmployee> basicEmployees = new ArrayList <BasicEmployee>(); // An ArrayList that contains all Basic Employees.
 	
 	/*
 	 * Basic constructor for class BasicEmployee.
 	 * Use this constructor if you want to create new Basic employees.
 	 */
-	public BasicEmployee(String name, String surname, String phonenumber, String email, String birthdate, int depID, double salary) {
-		super(name, surname, phonenumber, email, birthdate, salary);//Calls the constructor for the superclass Employee.
-		this.department = Department.getDepartment(depID); //Gets the Department object using the Department id
+  public BasicEmployee(String name, String surname, String phonenumber, String email, String birthdate, int depID, double salary) {
+    super(name, surname, phonenumber, email, birthdate, salary);//Calls the constructor for the superclass Employee.
+    this.department = Department.getDepartment(depID); //Gets the Department object using the Department id
 		/*
 		 * The id is constructed using the department's id,
 		 * the first two letters of the employees's name, 
 		 * the first two letters of the employee's surname
 	     * and the number of employees existing already in the department.
 	     */
-		id = String.valueOf(department.getId()) + name.substring(1,2)
-			+ surname.substring(1,2) 
-			+ String.valueOf(department.getEmployeesOfDepartment().size());
+	id = String.valueOf(department.getId()) + name.substring(1,2)
+		+ surname.substring(1,2) 
+		+ String.valueOf(department.getEmployeesOfDepartment().size());
 		
-		basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
-		employees.add(this); // I don't know what this does. Someone explain it here!!!!
-		DBcon.saveBasicEmployee(this); //Saves the object to the Database.
+	basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
+	employees.add(this); // I don't know what this does. Someone explain it here!!!!
+	DBcon.saveBasicEmployee(this); //Saves the object to the Database.
 	}
 
 	/*

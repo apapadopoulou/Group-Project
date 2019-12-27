@@ -5,14 +5,13 @@ public abstract class Employee {
   private String surname;
   private String phonenumber;
   private String email;
-  private String id;
-  private Date birthdate;
+  private String birthdate;
   private double salary;
   private double personal_score = 10;
   private PersonalisedCalendar pc; 
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   // Constructor
-  public Employee(String name, String surname, String phonenumber, String email, Date birthdate, double salary, double personal_score) {
+  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary/*, double personal_score*/) {
 	  if(!Checkers.isValidPhoneNumber(phonenumber)) {
 		  throw new IllegalArgumentException(
 				  "phone number is not valid");
@@ -23,14 +22,14 @@ public abstract class Employee {
       this.email = email;
       this.birthdate = birthdate;
       this.salary=salary;
-      this.personal_score = personal_score;
+      /*this.personal_score = personal_score;*/
   }   
   
-  public Date getBirthDate() {
+  public String getBirthDate() {
     return birthdate;
   } 
   
-  public void setBirthdate(Date birthdate) {
+  public void setBirthdate(String birthdate) {
     this.birthdate = birthdate;
   } 
   
@@ -44,8 +43,9 @@ public abstract class Employee {
   public String getEmail() {
       return email;
   }
-  public String getId() {
-      return id;
+  
+  public String getID() {
+	  return id;
   }
   
   public void setName(String name) {
@@ -73,9 +73,6 @@ public abstract class Employee {
   public void setEmail(String email) {
       this.email = email;
   }
-  public void setId(String id) {
-    this.id = id;
-  }
   public double getPersonal_Score() {
 	  return personal_score;
   }
@@ -94,7 +91,7 @@ public abstract class Employee {
         String.format("%30s", id)+
         String.format("%30s", salary)+
         String.format("%30s", personal_score); */
-      String.format("%30s%30s%30s%30s%30s", name, surname, phonenumber, email, id, salary, personal_score );
+      String.format("%30s%30s%30s%30s", name, surname, phonenumber, email, salary, personal_score );
       return str_2;
   }
   //public abstract String getJobTitle();
@@ -102,7 +99,7 @@ public abstract class Employee {
   // Returns the employee we searched for
   public static Employee searchEmployeeById(String id) {
     for (int i = 0; i < employees.size(); i++) {
-      if (employees.get(i).getId() == id) {
+      if (employees.get(i).getID() == id) {
             return employees.get(i);
         } 
     }

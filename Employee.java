@@ -7,10 +7,12 @@ public abstract class Employee {
   private String email;
   private String id;
   private Date birthdate;
+  private double salary;
+  private double personal_score = 10;
   private PersonalisedCalendar pc; 
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   // Constructor
-  public Employee(String name, String surname, String phonenumber, String email, Date birthdate) {
+  public Employee(String name, String surname, String phonenumber, String email, Date birthdate, double salary, double personal_score) {
 	  if(!Checkers.isValidPhoneNumber(phonenumber)) {
 		  throw new IllegalArgumentException(
 				  "phone number is not valid");
@@ -20,7 +22,8 @@ public abstract class Employee {
       this.phonenumber = phonenumber;
       this.email = email;
       this.birthdate = birthdate;
-      
+      this.salary=salary;
+      this.personal_score = personal_score;
   }   
   
   public Date getBirthDate() {
@@ -58,6 +61,12 @@ public abstract class Employee {
   public String getTelephone() {
     return phonenumber;
   }
+  public void setSalary(double salary) {
+	  this.salary=salary;
+  }
+  public double getSalary() {
+	  return salary;
+  }
   public void setTelephone(String phonenumber) {
       this.phonenumber = phonenumber;
   }
@@ -67,6 +76,13 @@ public abstract class Employee {
   public void setId(String id) {
     this.id = id;
   }
+  public double getPersonal_Score() {
+	  return personal_score;
+  }
+  public void setPersonal_Score(double personal_score) {
+	  this.personal_score = personal_score;
+  }
+  
   // Method toString including a String format for the given data
   @Override
   public String toString() {
@@ -75,8 +91,10 @@ public abstract class Employee {
         String.format("%30s", surname) +
         String.format("%30s", telephone) +
         String.format("%30s", email) +
-        String.format("%30s", id); */
-      String.format("%30s%30s%30s%30s%30s", name, surname, phonenumber, email, id );
+        String.format("%30s", id)+
+        String.format("%30s", salary)+
+        String.format("%30s", personal_score); */
+      String.format("%30s%30s%30s%30s%30s", name, surname, phonenumber, email, id, salary, personal_score );
       return str_2;
   }
   //public abstract String getJobTitle();

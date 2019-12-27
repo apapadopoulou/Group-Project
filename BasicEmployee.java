@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class BasicEmployee extends Employee {
 	
@@ -11,8 +10,8 @@ public class BasicEmployee extends Employee {
 	 * Basic constructor for class BasicEmployee.
 	 * Use this constructor if you want to create new Basic employees.
 	 */
-	public BasicEmployee(String name, String surname, String phonenumber, String email, Date birthdate, int depID) {
-		super(name, surname, phonenumber, email, birthdate);//Calls the constructor for the superclass Employee.
+	public BasicEmployee(String name, String surname, String phonenumber, String email, String birthdate, int depID, double salary) {
+		super(name, surname, phonenumber, email, birthdate, salary);//Calls the constructor for the superclass Employee.
 		this.department = Department.getDepartment(depID); //Gets the Department object using the Department id
 		/*
 		 * The id is constructed using the department's id,
@@ -27,15 +26,14 @@ public class BasicEmployee extends Employee {
 		basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
 		employees.add(this); // I don't know what this does. Someone explain it here!!!!
 		DBcon.saveBasicEmployee(this); //Saves the object to the Database.
-		System.out.println("DONE");
 	}
 
 	/*
 	 * Database constructor for class BasicEmployee.
 	 * This constructor is used to load employees from the database when the program opens.
 	 */
-	public BasicEmployee(String name, String surname,String telephone, String email, Date birthdate, int depID, String empID) {
-		super(name, surname, telephone, email, birthdate); //Calls the constructor for the superclass Employee.
+	public BasicEmployee(String name, String surname,String telephone, String email, String birthdate, int depID, String empID, double salary) {
+		super(name, surname, telephone, email, birthdate, salary); //Calls the constructor for the superclass Employee.
 		this.department = Department.getDepartment(depID); //Gets the Department object using the Department id.
 		id = empID;
 		basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.

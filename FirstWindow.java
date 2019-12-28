@@ -111,7 +111,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         if (num != 3 && num != 4)
         arrow5.setText("My Evaluation");
         else
-        arrow5.setText("Show Departments");
+        arrow5.setText("Manage Departments");
         arrow6 = new javax.swing.JLabel();
         if ( num != 4 && num != 3) 
         arrow6.setText("");
@@ -156,6 +156,12 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabelTimeoffs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTimeoffsMouseClicked(evt);
+            }
+        });
+
         SortBy.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         SortBy.setText("Sort By:");
 
@@ -168,6 +174,11 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow2.setText("Add to Program");
         arrow2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        arrow2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow2MouseClicked(evt);
+            }
+        });
 
         arrow3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
@@ -279,7 +290,7 @@ public final class FirstWindow extends javax.swing.JFrame {
                 .addComponent(arrow6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(arrow7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 408, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(settings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(busyBicon, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -456,6 +467,26 @@ public final class FirstWindow extends javax.swing.JFrame {
             });
         }
     }//GEN-LAST:event_jLabelTeamMouseClicked
+
+    private void arrow2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow2MouseClicked
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TaskOrReminderWindow1(num).setVisible(true);
+            }
+        });
+        this.dispose();
+    }//GEN-LAST:event_arrow2MouseClicked
+
+    private void jLabelTimeoffsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTimeoffsMouseClicked
+        if ( num == 2 || num == 4){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TimeOffWindow(num).setVisible(true);
+            }
+        });
+        this.dispose();
+        }
+    }//GEN-LAST:event_jLabelTimeoffsMouseClicked
 
     /**
      * @param args the command line arguments

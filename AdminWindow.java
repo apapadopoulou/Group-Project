@@ -14,8 +14,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+/**
+ * The AdminWindow class allows the administrator of the system to enter his/her data.
+ * @author BusyB
+ */
 public class AdminWindow extends JFrame {
-	//This class allows the administrator of the system to enter his/her data.
+	
 	public void hello() {
 		JFrame jf = new AdminWindow();
 		jf.setBackground(new java.awt.Color(255, 255, 140));
@@ -116,9 +120,15 @@ public class AdminWindow extends JFrame {
             admnBirthdate = new SimpleDateFormat(""
                 + "dd/MM/yyyy").parse(temp);
         } catch (Exception e) {}
-        //The "Administrator" department is created.
-        //This department has only one Employee.
+        /**
+         * The "Administrator" department is created.
+         * This department has only one Employee.
+         */
+        
         Department admin = new Department("Administrator");
         Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
 	}
 }
+/**
+ * End of AdminWindow class.
+ */

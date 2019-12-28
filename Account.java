@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
 *The Account class creates an account for each employee.
-*Each account is created based on the email and the password.
+*Each account is created based on his/her email and password.
 *Each account is added to an ArrayList called accounts.
 *@author BusyB
 */

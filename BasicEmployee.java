@@ -118,7 +118,8 @@ public class BasicEmployee extends Employee {
       } else {
         System.out.println("Employee was not found");
       }
-    return null;
+    }
+	return null;
     }
 	
 	/**

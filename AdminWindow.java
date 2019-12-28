@@ -13,8 +13,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+/**
+ * The AdminWindow class allows the administrator of the system to enter his/her data.
+ * @author BusyB
+ */
 public class AdminWindow extends JFrame {
-	//This class allows the administrator of the system to enter his/her data.
+	
 	public void hello() {
 		JFrame jf = new AdminWindow();
 		jf.setBackground(new java.awt.Color(255, 255, 140));
@@ -105,6 +109,7 @@ public class AdminWindow extends JFrame {
         tbirthdate.setSize(190, 20);
         tbirthdate.setLocation(300, 500);
         adminSettings.add(tbirthdate);
+<<<<<<< HEAD
         JButton button = new JButton("OK");
         button.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
@@ -127,4 +132,27 @@ public class AdminWindow extends JFrame {
         	
         };
         }
+=======
+        String admnSurname = tsurname.getText();
+        String admnName = tname.getText();
+        String admnPhonenumber = tphonenumber.getText();
+        String admnEmail = temail.getText();
+        String temp = tbirthdate.getText();
+        Date admnBirthdate = null;
+        try{
+            admnBirthdate = new SimpleDateFormat(""
+                + "dd/MM/yyyy").parse(temp);
+        } catch (Exception e) {}
+        /**
+         * The "Administrator" department is created.
+         * This department has only one Employee.
+         */
+        
+        Department admin = new Department("Administrator");
+        Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
+	}
+>>>>>>> 39837775bc8fe987e6f7fb5486ab544d5f5ab45a
 }
+/**
+ * End of AdminWindow class.
+ */

@@ -8,13 +8,13 @@ public abstract class Employee {
   private String email;
   private String birthdate;
   private double salary;
-  private int id;
+  private String id;
   private double personalScore = 10;
   private PersonalisedCalendar pc; 
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   
   // Constructor
-  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary, int id/*, double personal_score*/) {
+  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary, String id/*, double personal_score*/) {
     try {
       if (!Checkers.isValidPhoneNumber(phonenumber)) {
         throw new IllegalArgumentException("phone number is not valid");

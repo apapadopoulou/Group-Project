@@ -24,7 +24,8 @@ public class Team extends javax.swing.JFrame {
      * Creates new form Team
      */
     private int n;
-    public Team(int n) {        
+    public Team(int n) {     
+        this.n = n;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         ShowDate();

@@ -156,6 +156,12 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
+        jLabelPayrolls.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPayrollsMouseClicked(evt);
+            }
+        });
+
         jLabelTimeoffs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelTimeoffsMouseClicked(evt);
@@ -449,6 +455,12 @@ public final class FirstWindow extends javax.swing.JFrame {
                 new MyEvaluation(num).setVisible(true);
             }
         });
+        } else {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ShowDepartments(num).setVisible(true);
+            }
+        });
         }
         this.dispose();
     }//GEN-LAST:event_arrow5MouseClicked
@@ -465,7 +477,9 @@ public final class FirstWindow extends javax.swing.JFrame {
                     new Team(num).setVisible(true);
                 }
             });
+            this.dispose();
         }
+        
     }//GEN-LAST:event_jLabelTeamMouseClicked
 
     private void arrow2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow2MouseClicked
@@ -487,6 +501,15 @@ public final class FirstWindow extends javax.swing.JFrame {
         this.dispose();
         }
     }//GEN-LAST:event_jLabelTimeoffsMouseClicked
+
+    private void jLabelPayrollsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPayrollsMouseClicked
+       if ( num == 2|| num == 4){
+           java.awt.EventQueue.invokeLater(() -> {
+            new PayrollWindow(num).setVisible(true);
+        });
+           this.dispose();
+       }
+    }//GEN-LAST:event_jLabelPayrollsMouseClicked
 
     /**
      * @param args the command line arguments

@@ -110,6 +110,11 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 0, 255));
         jLabel4.setText("here");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setText("If you want to add Task, Event or Reminder to your Program press");
@@ -231,6 +236,15 @@ public class MyCalendar extends javax.swing.JFrame {
         });
         this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+         java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TaskOrReminderWindow1(n).setVisible(true);
+            }
+        });
+         this.dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments

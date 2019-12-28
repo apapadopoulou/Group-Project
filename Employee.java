@@ -8,12 +8,13 @@ public abstract class Employee {
   private String email;
   private String birthdate;
   private double salary;
+  private int id;
   private double personalScore = 10;
   private PersonalisedCalendar pc; 
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   
   // Constructor
-  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary/*, double personal_score*/) {
+  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary, private int id/*, double personal_score*/) {
     try {
       if (!Checkers.isValidPhoneNumber(phonenumber)) {
         throw new IllegalArgumentException("phone number is not valid");
@@ -27,8 +28,25 @@ public abstract class Employee {
       this.email = email;
       this.birthdate = birthdate;
       this.salary=salary;
+      this.id = id;
       /*this.personal_score = personal_score;*/
   }   
+  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary/*, double personal_score*/) {
+	    try {
+	      if (!Checkers.isValidPhoneNumber(phonenumber)) {
+	        throw new IllegalArgumentException("phone number is not valid");
+	      }
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    }
+		  this.name = name;
+	      this.surname = surname;
+	      this.phonenumber = phonenumber;
+	      this.email = email;
+	      this.birthdate = birthdate;
+	      this.salary=salary;
+	      /*this.personal_score = personal_score;*/
+	  }  
   
   public String getBirthDate() {
     return birthdate;

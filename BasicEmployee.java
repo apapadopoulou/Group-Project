@@ -21,7 +21,7 @@ public class BasicEmployee extends Employee {
 	id = String.valueOf(department.getId()) + name.substring(1,2)
 		+ surname.substring(1,2) 
 		+ String.valueOf(department.getEmployeesOfDepartment().size());
-		
+		this.setID(id);
 	basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
 	employees.add(this); // I don't know what this does. Someone explain it here!!!!
 	DBcon.saveBasicEmployee(this); //Saves the object to the Database.
@@ -31,10 +31,9 @@ public class BasicEmployee extends Employee {
 	 * Database constructor for class BasicEmployee.
 	 * This constructor is used to load employees from the database when the program opens.
 	 */
-	public BasicEmployee(String name, String surname,String telephone, String email, String birthdate, int depID, String empID, double salary) {
-		super(name, surname, telephone, email, birthdate, salary); //Calls the constructor for the superclass Employee.
+	public BasicEmployee(String name, String surname,String telephone, String email, String birthdate, int depID, String id, double salary) {
+		super(name, surname, telephone, email, birthdate, salary, id); //Calls the constructor for the superclass Employee.
 		this.department = Department.getDepartment(depID); //Gets the Department object using the Department id.
-		id = empID;
 		basicEmployees.add(this); //Adds the object in the ArrayList of BasicEmployees.
 		employees.add(this); // I dont know what this does. Someone explain it here!!!!
 		System.out.println(this.toString());

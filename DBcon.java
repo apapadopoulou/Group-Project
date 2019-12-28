@@ -14,14 +14,19 @@ import java.util.*;
 
 public class DBcon {
 	/*URL of database with username and password.*/
-	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
+	public static String url ="jdbc:sqlserver://195.251.249.161:1433;" +
 			"databaseName=DB56;user=G556;password=939wd5890;";
 	/*Connection type object to make the connection.*/
 	public static Connection dbcon;
 	/*Statement type object that contains the statement we will send to the server.*/
 	public static Statement stmt;
 
+<<<<<<< HEAD
 	public static void createTables() {
+=======
+	//Method to create tables on the DB.
+	public static void tableCreation() {
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 		/*Connection type object to make the connection.*/
 		Connection dbcon = null;
 		/*Statement type object that contains the statement we will send to the server.*/
@@ -80,8 +85,8 @@ public class DBcon {
 			
 			stmt.executeUpdate("CREATE TABLE BBAccount "
 				+ "(empID VARCHAR(20) not null,"
-				+ "email VARCHAR(50) UNIQUE,"
-				+ "password VARCHAR(8),"
+				+ "password VARCHAR(20),"
+				+ "hasDefaultPass INT,"
 				+ "PRIMARY KEY(empID));");
 			System.out.println("TABLE BBAccount CREATED"); 
 			
@@ -123,6 +128,7 @@ public class DBcon {
 		}
 	}
 	
+	//Method to delete all tables from DB.
 	public static void deleteTables() {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
@@ -156,9 +162,9 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-
-	/**Method saveToDB(int in1,int in2) saves objects to Database*/
-	public static void saveToDB(int id, int salary) {
+	
+	//Method to save Accounts to DB.
+	public static void saveAccount(Account acc) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -175,7 +181,8 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BusyB (empID, salary) VALUES (" + id + ", " + salary + ");");
+			stmt.executeUpdate("INSERT INTO BBAccount (empID, password, hasDefaultPass) VALUES ('"
+								+ acc.getEmployee().getID() + "', '" + acc.getPassword()+ "', " + acc.getHasDefaultPass() +");");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -183,8 +190,9 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-	/*Method to load objects from Database*/
-	public static void loadFromDB() {
+	
+	/*Method to load Accounts from DB*/
+	public static void loadAccounts() {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -201,12 +209,14 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT empID, salary FROM BusyB");
+			rs = stmt.executeQuery("SELECT empID, password, hasDefaultPass FROM BBAccount");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
-				int id = rs.getInt("empID");
-				int salary = rs.getInt("salary");
-				System.out.println("testing 2 done!!!");
+				String id = rs.getString("empID");
+				String password = rs.getString("password");
+				int hasDefaultPass = rs.getInt("hasDefaultPass");
+				/*After we find the variables we call the constructor to make the object again.*/
+				new Account(id, password, hasDefaultPass);
 			}
 			rs.close();
 			stmt.close();
@@ -234,7 +244,8 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBDepartment (depID, nameDep, managerID) VALUES (" + dep.getId() + ", '" + dep.getName() + "', null);");
+			stmt.executeUpdate("INSERT INTO BBDepartment (depID, nameDep, managerID) VALUES "
+								+ "(" + dep.getId() + ", '" + dep.getName() + "', null);");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -298,9 +309,15 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
+<<<<<<< HEAD
 			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, dep_id, emp_id, salary)"
 					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
 					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', " + emp.getDepId() + ", '" + emp.getID() + "', " + emp.getSalary() + ");");
+=======
+			stmt.executeUpdate("INSERT INTO BBBasicEmployee (nameEMP, surname, phonenumber, email, birthdate, depID, empID, salary)"
+					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
+					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ + "', " + emp.getDepId() + ", '" + emp.getID() + "', " + emp.getSalary() + ");");
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -329,7 +346,6 @@ public class DBcon {
 			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, dep_id, emp_id, salary FROM BBBasicEmployee");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
-				System.out.println("yeyeyy22");
 				String name = rs.getString("name");
 				String surname = rs.getString("surname");
 				String telephone = rs.getString("telephone");
@@ -340,6 +356,10 @@ public class DBcon {
 				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
 				new BasicEmployee(name, surname, telephone, email, birthDate, depId, empId, salary);
+<<<<<<< HEAD
+=======
+				System.out.println("testing 2 done!!!");
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			}
 			rs.close();
 			stmt.close();
@@ -373,9 +393,16 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
+<<<<<<< HEAD
 			stmt.executeUpdate("INSERT INTO BBMiddleManager (name, surname, telephone, email, birthdate, empID, salary)"
 					+ " VALUES ('" + emp.getName() + "','" + emp.getSurname() + "', '" + emp.getTelephone()
 					+ "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', '" + emp.getID() + "', " + emp.getSalary() + ");");
+=======
+			stmt.executeUpdate("INSERT INTO BBMiddleManager (name, surname, telephone, email, birthdate, empID)"
+					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone()
+					+ ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ 
+					+ ", " + emp.getID() + ");");
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -412,7 +439,12 @@ public class DBcon {
 				String empId = rs.getString("empID");
 				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
+<<<<<<< HEAD
 				new MiddleManager(name, surname, telephone, email, birthDate, empId, salary);
+=======
+				new MiddleManager(name, surname, telephone, email, birthDate,  empId, salary);
+				System.out.println("MiddleManager loading  done!!!");
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			}
 			rs.close();
 			stmt.close();

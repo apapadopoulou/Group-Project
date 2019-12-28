@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class MiddleManager extends Employee {
@@ -10,10 +9,17 @@ public class MiddleManager extends Employee {
 	 * Basic constructor for class MiddleManager.
 	 * Use this if you want to create new Middle Managers. 
 	 */
+<<<<<<< HEAD
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate){
 		super(name, surname, telephone, email, birthdate, null, 0);
 	    String id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
 	    setID(id);
+=======
+	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, double salary){
+		super(name, surname, telephone, email, birthdate, salary);
+	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
+	    this.setID(id);
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 	    middleManagers.add(this);
 	    employees.add(this);
 	    DBcon.saveMiddleManager(this);
@@ -24,9 +30,14 @@ public class MiddleManager extends Employee {
 	 * This constructor is used to load Middle Managers from the database when the program opens.
 	 */
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, String id, double salary){
+<<<<<<< HEAD
 	    super(name, surname, telephone, email, birthdate, id, salary);
+=======
+	    super(name, surname, telephone, email, birthdate, salary, id);
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 	    managingDepartments = getManagingDepartments(); //Adds the managing departments.
 	}
+	
 	
 	/*
 	 * Returns the managing departments.
@@ -41,7 +52,7 @@ public class MiddleManager extends Employee {
 	    }
 		return departments;
 	}
-        /** Method that chackes if the Manager manages the HR department*/
+        /** Method that checks if the Manager manages the HR department*/
         public boolean managingHR(){
             for ( int i = 0; i < this.getManagingDepartments().size(); i++){
                 if (this.getManagingDepartments().get(i).getName() == "HR")

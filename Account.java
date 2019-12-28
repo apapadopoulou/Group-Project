@@ -1,11 +1,15 @@
-
 import java.util.Scanner;
 import javax.swing.JFrame;
-//import project.Employee;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 
+/**
+*The Account class creates an account for each employee.
+*Each account is created based on the email and the password.
+*Each account is added to an ArrayList called accounts.
+*@author BusyB
+*/
 public class Account {
 
     private Employee employee;
@@ -13,23 +17,34 @@ public class Account {
     private String password;
     private static ArrayList<Account> accounts = new ArrayList<Account>();
     private int hasDefaultPass;
+}    
     
-    /*
+    /**
      * Basic constructor for class Account.
      * Use ONLY this constructor to create new Accounts.
+     * 
+     * @param e
      */
     public Account(Employee e) {
         hasDefaultPass = 0;
         this.employee = e;
         this.email = e.getEmail();
         password = passwordGenerator();
-        accounts.add(this); /*Account object entered on accounts ArrayList*/
+         /**
+          * Account object entered on accounts ArrayList.
+          */ 
+        
+        accounts.add(this);
         DBcon.saveAccount(this);
     }
 
-    /*
+    /**
      * Database constructor for class Account.
      * This constructor is used to create Account objects saved in the Database.
+     * 
+     *@param empId
+     *@param password
+     *@param hasDefaultPass
      */
     public Account(String empId, String password, int hasDefaultPass) {
         this.hasDefaultPass = hasDefaultPass;
@@ -37,10 +52,15 @@ public class Account {
         this.employee = e;
         this.email = e.getEmail();
         password = passwordGenerator();
-        accounts.add(this); /*Account object entered on accounts ArrayList*/
+         /**
+          *Account object entered on accounts ArrayList.
+          */
+        accounts.add(this);
     }
 
-    /* This method searches Employees' accounts by their email*/
+    /**
+     *Getters and Setters.
+     */
     public int getHasDefaultPass() {
         return hasDefaultPass;
     }
@@ -48,12 +68,7 @@ public class Account {
     public void setHasDefaultPass(int a) {
         this.hasDefaultPass = a;
     }
-
-    public Account() {
-        // TODO Auto-generated constructor stub
-    }
-
-    /* This method searches Employees' accounts by their email*/
+  
     public Employee getEmployee() {
         return employee;
     }
@@ -77,7 +92,11 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
-
+   
+   /**
+     *This method searches Employees' accounts by their email.
+    */
+    
     public static Account searchAccountByEmail(String email) {
         boolean exists = false;
 
@@ -118,14 +137,17 @@ public class Account {
      sc.close();
      return success;
      }*/
+    /**
+     * Start of main method.
+     */
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginWindow().setVisible(true);
             }
-        });
+        }
     }
-    /* This method return 1 if the employee is a BasicEmployee, 2 if the 
+    /** This method returns 1 if the employee is a BasicEmployee, 2 if the 
     * employee is a BasicEmployee who works in HR department, 3 if the employee
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 
     * HR department and 5 if the employee is a TopManager.
@@ -151,7 +173,9 @@ public class Account {
 
     }
 
-    /* This method generates Employee's password */
+    /**
+     *  This method generates Employee's password.
+     */
     public static String passwordGenerator() {
         String password = null;
         String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -161,15 +185,21 @@ public class Account {
         String values = Capital_chars + Small_chars
                 + numbers + symbols;
 
-        // Using random method
+        /** 
+         * Using Random method.
+         */
         Random ran = new Random();
         char[] psw = new char[8];
 
         for (int i = 0; i < 8; i++) {
-            // Use of charAt() method : to get character value
-            // Use of nextInt() as it is scanning the value as int
-            psw[i]
-                    = values.charAt(ran.nextInt(values.length()));
+            /**
+             * Use of charAt() method : to get character value.
+             */
+        	
+            /**
+             * Use of nextInt() as it is scanning the value as int.
+             */
+            psw[i]  = values.charAt(ran.nextInt(values.length()));
 
         }
         for (int i = 0; i < 8; i++) {
@@ -178,3 +208,6 @@ public class Account {
         return password;
     }
 }
+/** 
+ * End of Account class.
+ */

@@ -62,14 +62,6 @@ public class Department {
 		managerId = id;
 		DBcon.updateDepartmentVar("managerId", managerId, this.id);
 	}
-	/*
-	public  void setManagerId(i, String managerId) {
-		for (int i = 0; i < departments.size(); i++) {
-			if (depId == departments.get(i).getId()) {
-				this.managerId = managerId;
-			}
-		}
-	}*/
 	
 	public String getManagerId() {
 		return managerId;

@@ -5,36 +5,25 @@ public class MiddleManager extends Employee {
 	private ArrayList <Department> managingDepartments = new ArrayList <Department>();
 	public static ArrayList <MiddleManager> middleManagers = new ArrayList <MiddleManager>();
   
-	/*
+	/**
 	 * Basic constructor for class MiddleManager.
 	 * Use this if you want to create new Middle Managers. 
 	 */
-<<<<<<< HEAD
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate){
 		super(name, surname, telephone, email, birthdate, null, 0);
 	    String id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
 	    setID(id);
-=======
-	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, double salary){
-		super(name, surname, telephone, email, birthdate, salary);
-	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
-	    this.setID(id);
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 	    middleManagers.add(this);
 	    employees.add(this);
 	    DBcon.saveMiddleManager(this);
 	}
 	
-	/*
+	/**
 	 * Database constructor for class MiddleManager.
 	 * This constructor is used to load Middle Managers from the database when the program opens.
 	 */
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, String id, double salary){
-<<<<<<< HEAD
 	    super(name, surname, telephone, email, birthdate, id, salary);
-=======
-	    super(name, surname, telephone, email, birthdate, salary, id);
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 	    managingDepartments = getManagingDepartments(); //Adds the managing departments.
 	}
 	
@@ -52,10 +41,11 @@ public class MiddleManager extends Employee {
 	    }
 		return departments;
 	}
-        /** Method that checks if the Manager manages the HR department*/
-        public boolean managingHR(){
-            for ( int i = 0; i < this.getManagingDepartments().size(); i++){
-                if (this.getManagingDepartments().get(i).getName() == "HR")
+    
+	/** Method that checks if the Manager manages the HR department*/
+    public boolean managingHR(){
+    	for ( int i = 0; i < this.getManagingDepartments().size(); i++){
+    		if (this.getManagingDepartments().get(i).getName() == "HR")
                     return true;
             }
             return false;      
@@ -64,7 +54,8 @@ public class MiddleManager extends Employee {
 	public void setManagingDepartments(ArrayList<Department> managingDepartments) {
 		this.managingDepartments = managingDepartments;
 	}
-        /** Method that returns true if the manager works in the HR department*/
+	
+    /** Method that returns true if the manager works in the HR department*/
 	public static boolean HREmployee(String name) {
 		  for (int i = 0; i < middleManagers.size(); i++) {
 		      if (middleManagers.get(i).getNameSurname().equals(name) && middleManagers.get(i).managingHR() == true) {
@@ -77,6 +68,7 @@ public class MiddleManager extends Employee {
             return false;
 		
 	  }
+	
 	@Override
 	public String toString() {
 		return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getID() + ", Email = " + getEmail() + ", Telephone = " + getTelephone()

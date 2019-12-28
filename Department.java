@@ -97,7 +97,7 @@ public class Department {
 	
 	public Employee searchEmployeeById(String id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
-			if (employeesOfDepartment.get(i).getId().equals(id)) {
+			if (employeesOfDepartment.get(i).getID().equals(id)) {
 				System.out.println("The employee was found");
 				return employeesOfDepartment.get(i);
 			} else {
@@ -121,7 +121,7 @@ public class Department {
 	// a method that deletes a specific employee from a department's arraylist using his name to find him
 	public void deleteEmployeeById(String id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
-			if (employeesOfDepartment.get(i).getId().equals(id)) {
+			if (employeesOfDepartment.get(i).getID().equals(id)) {
 				employeesOfDepartment.remove(i);
 				System.out.println("Employee was removed");
 			} else { 

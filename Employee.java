@@ -1,33 +1,88 @@
 import java.util.ArrayList;
+<<<<<<< HEAD
+
+public abstract class Employee {
+	private String name;
+	private String surname;
+	private String phonenumber;
+	private String email;
+	private String id;
+	private String birthdate;
+	private double salary;
+	private PersonalisedCalendar pc; 
+	public static ArrayList<Employee> employees = new ArrayList<Employee>();
+	
+	// Constructor
+	public Employee(String name, String surname, String phonenumber, String email, String birthdate, String id, double salary) {
+		if(!Checkers.isValidPhoneNumber(phonenumber)) {
+			throw new IllegalArgumentException(
+				"phone number is not valid");
+		}
+		this.name = name;
+		this.surname = surname;
+		this.phonenumber = phonenumber;
+		this.email = email;
+		this.birthdate = birthdate;
+		this.id = id;
+		this.salary = salary;
+      
+  }
+=======
 import java.util.Date;
+
 public abstract class Employee {
   private String name;
   private String surname;
   private String phonenumber;
   private String email;
+  private String birthdate;
+  private double salary;
   private String id;
-  private Date birthdate;
+  private double personalScore = 10;
   private PersonalisedCalendar pc; 
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
+  
   // Constructor
-  public Employee(String name, String surname, String phonenumber, String email, Date birthdate) {
-	  if(!Checkers.isValidPhoneNumber(phonenumber)) {
-		  throw new IllegalArgumentException(
-				  "phone number is not valid");
-	  }
+  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary, String id/*, double personal_score*/) {
+    try {
+      if (!Checkers.isValidPhoneNumber(phonenumber)) {
+        throw new IllegalArgumentException("phone number is not valid");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 	  this.name = name;
       this.surname = surname;
       this.phonenumber = phonenumber;
       this.email = email;
       this.birthdate = birthdate;
-      
+      this.salary=salary;
+      this.id = id;
+      /*this.personal_score = personal_score;*/
   }   
+  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary/*, double personal_score*/) {
+	    try {
+	      if (!Checkers.isValidPhoneNumber(phonenumber)) {
+	        throw new IllegalArgumentException("phone number is not valid");
+	      }
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	    }
+		  this.name = name;
+	      this.surname = surname;
+	      this.phonenumber = phonenumber;
+	      this.email = email;
+	      this.birthdate = birthdate;
+	      this.salary=salary;
+	      /*this.personal_score = personal_score;*/
+	  }  
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
   
-  public Date getBirthDate() {
+  public String getBirthDate() {
     return birthdate;
   } 
   
-  public void setBirthdate(Date birthdate) {
+  public void setBirthdate(String birthdate) {
     this.birthdate = birthdate;
   } 
   
@@ -41,13 +96,19 @@ public abstract class Employee {
   public String getEmail() {
       return email;
   }
-  public String getId() {
+  
+  public String getID() {
+<<<<<<< HEAD
       return id;
+=======
+	  return id;
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
   }
   
   public void setName(String name) {
       this.name = name;
   }
+  
   public void setSurname(String surname) {
       this.surname = surname;
   }
@@ -58,25 +119,55 @@ public abstract class Employee {
   public String getTelephone() {
     return phonenumber;
   }
+  public void setSalary(double salary) {
+	  this.salary=salary;
+  }
+  public double getSalary() {
+	  return salary;
+  }
   public void setTelephone(String phonenumber) {
       this.phonenumber = phonenumber;
   }
   public void setEmail(String email) {
       this.email = email;
   }
-  public void setId(String id) {
+<<<<<<< HEAD
+  public void setID(String id) {
     this.id = id;
   }
+  
+  public double getSalary() {
+	  return salary;
+  }
+  
+  public void setSalary(double salary) {
+	  this.salary = salary;
+  }
+=======
+  public double getPersonal_Score() {
+	  return personal_score;
+  }
+  public void setPersonal_Score(double personal_score) {
+	  this.personal_score = personal_score;
+  }
+  
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
   // Method toString including a String format for the given data
   @Override
   public String toString() {
     String str_2 = "";
+<<<<<<< HEAD
+      String.format("%30s%30s%30s%30s%30s", name, surname, phonenumber, email, id );
+=======
       /*str_1 = String.format("%30s", name ) +
         String.format("%30s", surname) +
         String.format("%30s", telephone) +
         String.format("%30s", email) +
-        String.format("%30s", id); */
-      String.format("%30s%30s%30s%30s%30s", name, surname, phonenumber, email, id );
+        String.format("%30s", id)+
+        String.format("%30s", salary)+
+        String.format("%30s", personal_score); */
+      String.format("%30s%30s%30s%30s", name, surname, phonenumber, email, salary, personal_score );
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
       return str_2;
   }
   //public abstract String getJobTitle();
@@ -84,7 +175,7 @@ public abstract class Employee {
   // Returns the employee we searched for
   public static Employee searchEmployeeById(String id) {
     for (int i = 0; i < employees.size(); i++) {
-      if (employees.get(i).getId() == id) {
+      if (employees.get(i).getID() == id) {
             return employees.get(i);
         } 
     }

@@ -14,15 +14,19 @@ import java.util.*;
 
 public class DBcon {
 	/*URL of database with username and password.*/
-	public static String url ="jdbc:sqlserver://sqlserver.dmst.aueb.gr:1433;" +
+	public static String url ="jdbc:sqlserver://195.251.249.161:1433;" +
 			"databaseName=DB56;user=G556;password=939wd5890;";
 	/*Connection type object to make the connection.*/
 	public static Connection dbcon;
 	/*Statement type object that contains the statement we will send to the server.*/
 	public static Statement stmt;
 
+<<<<<<< HEAD
+	public static void createTables() {
+=======
 	//Method to create tables on the DB.
 	public static void tableCreation() {
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 		/*Connection type object to make the connection.*/
 		Connection dbcon = null;
 		/*Statement type object that contains the statement we will send to the server.*/
@@ -41,7 +45,8 @@ public class DBcon {
 				+ "surname VARCHAR(20),"
 				+ "phonenumber VARCHAR(15),"
 				+ "email VARCHAR(50),"
-				+ "birthdate DATE,"
+				+ "birthdate VARCHAR(30),"
+				+ "salary REAL,"
 				+ "PRIMARY KEY (empID));");
 			System.out.println("TABLE BBMiddleManager CREATED"); 
 			
@@ -59,8 +64,9 @@ public class DBcon {
 				+ "surname VARCHAR(20),"
 				+ "phonenumber VARCHAR(15),"
 				+ "email VARCHAR(50),"
-				+ "birthdate DATE,"
+				+ "birthdate VARCHAR(30),"
 				+ "depID INT,"
+				+ "salary REAL,"
 			    + "PRIMARY KEY (empID),"
 			    + "FOREIGN KEY (depID) REFERENCES BBDepartment );");
 			System.out.println("TABLE BBBasicEmployee CREATED");
@@ -71,8 +77,9 @@ public class DBcon {
 				+ "surname VARCHAR(20),"
 				+ "phonenumber VARCHAR(15),"
 				+ "email VARCHAR(50),"
-				+ "birthdate DATE,"
+				+ "birthdate VARCHAR(30),"
 				+ "depID INT,"
+				+ "salary REAL,"
 			    + "PRIMARY KEY (empID));");
 			System.out.println("TABLE BBTopManager CREATED"); 
 			
@@ -116,7 +123,7 @@ public class DBcon {
 			System.out.println("TABLE BBEvaluation CREATED");
 		/*Catch block if an exception occurs and the specified driver is not found.*/
 		} catch (Exception e) {
-			System.out.print("test23: ");
+			System.out.print("SQLExcpetion: ");
 			System.out.println(e.getMessage());
 		}
 	}
@@ -175,7 +182,7 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
 			stmt.executeUpdate("INSERT INTO BBAccount (empID, password, hasDefaultPass) VALUES ('"
-								+ acc.getEmployee().getId() + "', '" + acc.getPassword()+ "', " + acc.getHasDefaultPass() +");");
+								+ acc.getEmployee().getID() + "', '" + acc.getPassword()+ "', " + acc.getHasDefaultPass() +");");
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -302,16 +309,20 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, dep_id, emp_id)"
-					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone()
-					+  ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ + ", " + emp.getDepId() + ", " + emp.getId() + ");");
-			System.out.println("EXECUTED THE STATEMENT");
+<<<<<<< HEAD
+			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, dep_id, emp_id, salary)"
+					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
+					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', " + emp.getDepId() + ", '" + emp.getID() + "', " + emp.getSalary() + ");");
+=======
+			stmt.executeUpdate("INSERT INTO BBBasicEmployee (nameEMP, surname, phonenumber, email, birthdate, depID, empID, salary)"
+					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
+					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ + "', " + emp.getDepId() + ", '" + emp.getID() + "', " + emp.getSalary() + ");");
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
-			System.out.println("what?");
 		}
 	}
 
@@ -332,22 +343,23 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, dep_id, emp_id FROM BBBasicEmployee");
+			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, dep_id, emp_id, salary FROM BBBasicEmployee");
 			/*Does a loop for every row (object in this case) it finds.*/
-			System.out.println("yeyey!!!!");
 			while (rs.next()) {
-				System.out.println("yeyeyy22");
 				String name = rs.getString("name");
 				String surname = rs.getString("surname");
 				String telephone = rs.getString("telephone");
 				String email = rs.getString("email");
-				java.sql.Date birthDate = rs.getDate("birthDate");
+				String birthDate = rs.getString("birthDate");
 				int depId = rs.getInt("dep_id");
 				String empId = rs.getString("emp_id");
-				java.util.Date birthDateNew = birthDate;
+				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new BasicEmployee(name, surname, telephone, email, birthDateNew, depId, empId);
+				new BasicEmployee(name, surname, telephone, email, birthDate, depId, empId, salary);
+<<<<<<< HEAD
+=======
 				System.out.println("testing 2 done!!!");
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			}
 			rs.close();
 			stmt.close();
@@ -381,10 +393,16 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
+<<<<<<< HEAD
+			stmt.executeUpdate("INSERT INTO BBMiddleManager (name, surname, telephone, email, birthdate, empID, salary)"
+					+ " VALUES ('" + emp.getName() + "','" + emp.getSurname() + "', '" + emp.getTelephone()
+					+ "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', '" + emp.getID() + "', " + emp.getSalary() + ");");
+=======
 			stmt.executeUpdate("INSERT INTO BBMiddleManager (name, surname, telephone, email, birthdate, empID)"
 					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone()
 					+ ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ 
-					+ ", " + emp.getId() + ");");
+					+ ", " + emp.getID() + ");");
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -410,19 +428,23 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, empID FROM BBMiddleManager");
+			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, empID, salary FROM BBMiddleManager");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
 				String name = rs.getString("name");
 				String surname = rs.getString("surname");
 				String telephone = rs.getString("telephone");
 				String email = rs.getString("email");
-				java.sql.Date birthDate = rs.getDate("birthDate");
+				String birthDate = rs.getString("birthDate");
 				String empId = rs.getString("empID");
-				java.util.Date birthDateNew = birthDate;
+				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new MiddleManager(name, surname, telephone, email, birthDateNew, empId);
+<<<<<<< HEAD
+				new MiddleManager(name, surname, telephone, email, birthDate, empId, salary);
+=======
+				new MiddleManager(name, surname, telephone, email, birthDate,  empId, salary);
 				System.out.println("MiddleManager loading  done!!!");
+>>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			}
 			rs.close();
 			stmt.close();

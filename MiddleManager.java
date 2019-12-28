@@ -12,6 +12,7 @@ public class MiddleManager extends Employee {
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, double salary){
 		super(name, surname, telephone, email, birthdate, salary);
 	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
+	    this.setID(id);
 	    middleManagers.add(this);
 	    employees.add(this);
 	    DBcon.saveMiddleManager(this);
@@ -22,8 +23,7 @@ public class MiddleManager extends Employee {
 	 * This constructor is used to load Middle Managers from the database when the program opens.
 	 */
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, String id, double salary){
-	    super(name, surname, telephone, email, birthdate, salary);
-	    this.id = id;
+	    super(name, surname, telephone, email, birthdate, salary, id);
 	    managingDepartments = getManagingDepartments(); //Adds the managing departments.
 	}
 	

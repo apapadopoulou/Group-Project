@@ -14,7 +14,7 @@ public abstract class Employee {
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
   
   // Constructor
-  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary, private int id/*, double personal_score*/) {
+  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary, int id/*, double personal_score*/) {
     try {
       if (!Checkers.isValidPhoneNumber(phonenumber)) {
         throw new IllegalArgumentException("phone number is not valid");

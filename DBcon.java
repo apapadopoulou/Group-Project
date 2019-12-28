@@ -21,12 +21,7 @@ public class DBcon {
 	/*Statement type object that contains the statement we will send to the server.*/
 	public static Statement stmt;
 
-<<<<<<< HEAD
 	public static void createTables() {
-=======
-	//Method to create tables on the DB.
-	public static void tableCreation() {
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 		/*Connection type object to make the connection.*/
 		Connection dbcon = null;
 		/*Statement type object that contains the statement we will send to the server.*/
@@ -309,15 +304,9 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-<<<<<<< HEAD
 			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, dep_id, emp_id, salary)"
 					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
 					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', " + emp.getDepId() + ", '" + emp.getID() + "', " + emp.getSalary() + ");");
-=======
-			stmt.executeUpdate("INSERT INTO BBBasicEmployee (nameEMP, surname, phonenumber, email, birthdate, depID, empID, salary)"
-					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
-					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ + "', " + emp.getDepId() + ", '" + emp.getID() + "', " + emp.getSalary() + ");");
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -356,10 +345,6 @@ public class DBcon {
 				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
 				new BasicEmployee(name, surname, telephone, email, birthDate, depId, empId, salary);
-<<<<<<< HEAD
-=======
-				System.out.println("testing 2 done!!!");
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			}
 			rs.close();
 			stmt.close();
@@ -393,16 +378,9 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-<<<<<<< HEAD
 			stmt.executeUpdate("INSERT INTO BBMiddleManager (name, surname, telephone, email, birthdate, empID, salary)"
 					+ " VALUES ('" + emp.getName() + "','" + emp.getSurname() + "', '" + emp.getTelephone()
 					+ "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', '" + emp.getID() + "', " + emp.getSalary() + ");");
-=======
-			stmt.executeUpdate("INSERT INTO BBMiddleManager (name, surname, telephone, email, birthdate, empID)"
-					+ " VALUES (" + emp.getName() + ", " + emp.getSurname() + ", " + emp.getTelephone()
-					+ ", " + emp.getEmail() + ", " + emp.getBirthDate()/*I dont think this will work. We have to change data type probably.*/ 
-					+ ", " + emp.getID() + ");");
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			stmt.close();
 			dbcon.close();
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -439,12 +417,7 @@ public class DBcon {
 				String empId = rs.getString("empID");
 				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
-<<<<<<< HEAD
 				new MiddleManager(name, surname, telephone, email, birthDate, empId, salary);
-=======
-				new MiddleManager(name, surname, telephone, email, birthDate,  empId, salary);
-				System.out.println("MiddleManager loading  done!!!");
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
 			}
 			rs.close();
 			stmt.close();

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-<<<<<<< HEAD
 
 public abstract class Employee {
 	private String name;
@@ -27,56 +26,6 @@ public abstract class Employee {
 		this.salary = salary;
       
   }
-=======
-import java.util.Date;
-
-public abstract class Employee {
-  private String name;
-  private String surname;
-  private String phonenumber;
-  private String email;
-  private String birthdate;
-  private double salary;
-  private String id;
-  private double personalScore = 10;
-  private PersonalisedCalendar pc; 
-  public static ArrayList<Employee> employees = new ArrayList<Employee>();
-  
-  // Constructor
-  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary, String id/*, double personal_score*/) {
-    try {
-      if (!Checkers.isValidPhoneNumber(phonenumber)) {
-        throw new IllegalArgumentException("phone number is not valid");
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-	  this.name = name;
-      this.surname = surname;
-      this.phonenumber = phonenumber;
-      this.email = email;
-      this.birthdate = birthdate;
-      this.salary=salary;
-      this.id = id;
-      /*this.personal_score = personal_score;*/
-  }   
-  public Employee(String name, String surname, String phonenumber, String email, String birthdate, double salary/*, double personal_score*/) {
-	    try {
-	      if (!Checkers.isValidPhoneNumber(phonenumber)) {
-	        throw new IllegalArgumentException("phone number is not valid");
-	      }
-	    } catch (Exception e) {
-	      e.printStackTrace();
-	    }
-		  this.name = name;
-	      this.surname = surname;
-	      this.phonenumber = phonenumber;
-	      this.email = email;
-	      this.birthdate = birthdate;
-	      this.salary=salary;
-	      /*this.personal_score = personal_score;*/
-	  }  
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
   
   public String getBirthDate() {
     return birthdate;
@@ -89,29 +38,35 @@ public abstract class Employee {
   public String getName() {
       return name;
   }
+  
+  public void setName(String name) {
+      this.name = name;
+  }
+  
   public String getSurname() {
       return surname;
+  }
+  
+  public void setSurname(String surname) {
+      this.surname = surname;
   }
     
   public String getEmail() {
       return email;
   }
   
+  public void setEmail(String email) {
+      this.email = email;
+  }
+  
   public String getID() {
-<<<<<<< HEAD
       return id;
-=======
-	  return id;
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
   }
   
-  public void setName(String name) {
-      this.name = name;
-  }
-  
-  public void setSurname(String surname) {
-      this.surname = surname;
-  }
+  public void setID(String id) {
+	    this.id = id;
+	  }
+
   public String getNameSurname() {
       return getName() + getSurname();
   }
@@ -119,21 +74,9 @@ public abstract class Employee {
   public String getTelephone() {
     return phonenumber;
   }
-  public void setSalary(double salary) {
-	  this.salary=salary;
-  }
-  public double getSalary() {
-	  return salary;
-  }
+  
   public void setTelephone(String phonenumber) {
       this.phonenumber = phonenumber;
-  }
-  public void setEmail(String email) {
-      this.email = email;
-  }
-<<<<<<< HEAD
-  public void setID(String id) {
-    this.id = id;
   }
   
   public double getSalary() {
@@ -143,31 +86,12 @@ public abstract class Employee {
   public void setSalary(double salary) {
 	  this.salary = salary;
   }
-=======
-  public double getPersonal_Score() {
-	  return personal_score;
-  }
-  public void setPersonal_Score(double personal_score) {
-	  this.personal_score = personal_score;
-  }
-  
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
+
   // Method toString including a String format for the given data
   @Override
   public String toString() {
     String str_2 = "";
-<<<<<<< HEAD
       String.format("%30s%30s%30s%30s%30s", name, surname, phonenumber, email, id );
-=======
-      /*str_1 = String.format("%30s", name ) +
-        String.format("%30s", surname) +
-        String.format("%30s", telephone) +
-        String.format("%30s", email) +
-        String.format("%30s", id)+
-        String.format("%30s", salary)+
-        String.format("%30s", personal_score); */
-      String.format("%30s%30s%30s%30s", name, surname, phonenumber, email, salary, personal_score );
->>>>>>> d238654e364f3a5c7d14a6648e51a24bba1d4a6c
       return str_2;
   }
   //public abstract String getJobTitle();
@@ -197,11 +121,3 @@ public abstract class Employee {
       return null;
   }
 }
-    
-  /* this is a method that changes employee's id based on his new department */
- 
-  
-  /*a method that evaluates an employee based on the level of importance of tasks he is responsible for*/
-  
-
- 

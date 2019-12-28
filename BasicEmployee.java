@@ -60,10 +60,6 @@ public class BasicEmployee extends Employee {
     //DBcon.UpdateBasicEmpVar("department", department.getId(), id); 
     //Saves the change to the Database.
   }
-
-  public String getID() {
-    return id;
-  }
   
   // Method that changes the employee's department using the department id.
   public void setDepartment(int depId) {

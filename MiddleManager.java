@@ -1,18 +1,19 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
 public class MiddleManager extends Employee {
 	private ArrayList <Department> managingDepartments = new ArrayList <Department>();
 	public static ArrayList <MiddleManager> middleManagers = new ArrayList <MiddleManager>();
-	private String id;
   
 	/*
 	 * Basic constructor for class MiddleManager.
 	 * Use this if you want to create new Middle Managers. 
 	 */
-	public MiddleManager(String name, String surname, String telephone, String email, Date birthdate){
-		super(name, surname, telephone, email, birthdate);
-	    id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
+	public MiddleManager(String name, String surname, String telephone, String email, String birthdate){
+		super(name, surname, telephone, email, birthdate, null, 0);
+	    String id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
+	    setID(id);
 	    middleManagers.add(this);
 	    employees.add(this);
 	    DBcon.saveMiddleManager(this);
@@ -22,9 +23,8 @@ public class MiddleManager extends Employee {
 	 * Database constructor for class MiddleManager.
 	 * This constructor is used to load Middle Managers from the database when the program opens.
 	 */
-	public MiddleManager(String name, String surname, String telephone, String email, Date birthdate, String id){
-	    super(name, surname, telephone, email, birthdate);
-	    this.id = id;
+	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, String id, double salary){
+	    super(name, surname, telephone, email, birthdate, id, salary);
 	    managingDepartments = getManagingDepartments(); //Adds the managing departments.
 	}
 	
@@ -35,7 +35,7 @@ public class MiddleManager extends Employee {
 	public ArrayList<Department> getManagingDepartments() {
 	    ArrayList<Department> departments= new ArrayList<Department>();
 	    for (int i = 0; i < Department.departments.size(); i++) {
-			if (Department.departments.get(i).getManagerId() == id) {
+			if (Department.departments.get(i).getManagerId() == getID()) {
 				departments.add(Department.departments.get(i));
 			}
 	    }
@@ -68,13 +68,13 @@ public class MiddleManager extends Employee {
 	  }
 	@Override
 	public String toString() {
-		return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getId() + ", Email = " + getEmail() + ", Telephone = " + getTelephone()
+		return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getID() + ", Email = " + getEmail() + ", Telephone = " + getTelephone()
 		+ ", Managing Departments = "/* + getNamesOfManagingDepartments()*/;
 	}
 
 	public static MiddleManager searchMiddleManagerById(String id) {
 		for (int i = 0; i < middleManagers.size(); i++) {
-			if (middleManagers.get(i).getId().contentEquals(id)) {
+			if (middleManagers.get(i).getID().contentEquals(id)) {
 				return middleManagers.get(i);
 			} 
 		}

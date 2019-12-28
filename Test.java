@@ -4,13 +4,18 @@ import java.util.Date;
 
 public class Test {
 	public static void main(String args []) {
-		DBcon.tableCreation();
-		DBcon.loadBasicEmployees();
-		//System.out.println("Loaded BASIC EMPLOYEES");
-		Date birthDate = new Date();
-		Department dep = new Department("Sales");
-		System.out.println("Created DEPARTMENT");
-		Employee emp = new BasicEmployee("vasilis", "Xifaras", "6942796775", "alcabilone@gmail.com", birthDate, 1);
-		System.out.println("Created BASIC EMPLOYEE");
+		DBcon.deleteTables();
+		DBcon.createTables();
+		//DBcon.loadBasicEmployees();
+		Department dep0 = new Department("Sales");
+		Department dep1 = new Department("Sales");
+		Department dep2 = new Department("Sales");
+		Department dep3 = new Department("Sales");
+		
+		Employee emp0 = new BasicEmployee("vasilis", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 1);
+		Employee emp1 = new BasicEmployee("Tasos", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 1);
+		Employee emp2 = new BasicEmployee("Aggeliki", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 1);
+		Employee emp3 = new BasicEmployee("Giorgos", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 1);
+
 	}
  } 

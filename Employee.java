@@ -1,33 +1,37 @@
 import java.util.ArrayList;
-import java.util.Date;
+
 public abstract class Employee {
-  private String name;
-  private String surname;
-  private String phonenumber;
-  private String email;
-  private String id;
-  private Date birthdate;
-  private PersonalisedCalendar pc; 
-  public static ArrayList<Employee> employees = new ArrayList<Employee>();
-  // Constructor
-  public Employee(String name, String surname, String phonenumber, String email, Date birthdate) {
-	  if(!Checkers.isValidPhoneNumber(phonenumber)) {
-		  throw new IllegalArgumentException(
-				  "phone number is not valid");
-	  }
-	  this.name = name;
-      this.surname = surname;
-      this.phonenumber = phonenumber;
-      this.email = email;
-      this.birthdate = birthdate;
+	private String name;
+	private String surname;
+	private String phonenumber;
+	private String email;
+	private String id;
+	private String birthdate;
+	private double salary;
+	private PersonalisedCalendar pc; 
+	public static ArrayList<Employee> employees = new ArrayList<Employee>();
+	
+	// Constructor
+	public Employee(String name, String surname, String phonenumber, String email, String birthdate, String id, double salary) {
+		if(!Checkers.isValidPhoneNumber(phonenumber)) {
+			throw new IllegalArgumentException(
+				"phone number is not valid");
+		}
+		this.name = name;
+		this.surname = surname;
+		this.phonenumber = phonenumber;
+		this.email = email;
+		this.birthdate = birthdate;
+		this.id = id;
+		this.salary = salary;
       
-  }   
+  }
   
-  public Date getBirthDate() {
+  public String getBirthDate() {
     return birthdate;
   } 
   
-  public void setBirthdate(Date birthdate) {
+  public void setBirthdate(String birthdate) {
     this.birthdate = birthdate;
   } 
   
@@ -41,7 +45,8 @@ public abstract class Employee {
   public String getEmail() {
       return email;
   }
-  public String getId() {
+  
+  public String getID() {
       return id;
   }
   
@@ -64,18 +69,21 @@ public abstract class Employee {
   public void setEmail(String email) {
       this.email = email;
   }
-  public void setId(String id) {
+  public void setID(String id) {
     this.id = id;
+  }
+  
+  public double getSalary() {
+	  return salary;
+  }
+  
+  public void setSalary(double salary) {
+	  this.salary = salary;
   }
   // Method toString including a String format for the given data
   @Override
   public String toString() {
     String str_2 = "";
-      /*str_1 = String.format("%30s", name ) +
-        String.format("%30s", surname) +
-        String.format("%30s", telephone) +
-        String.format("%30s", email) +
-        String.format("%30s", id); */
       String.format("%30s%30s%30s%30s%30s", name, surname, phonenumber, email, id );
       return str_2;
   }
@@ -84,7 +92,7 @@ public abstract class Employee {
   // Returns the employee we searched for
   public static Employee searchEmployeeById2(String id) {
     for (int i = 0; i < employees.size(); i++) {
-      if (employees.get(i).getId() == id) {
+      if (employees.get(i).getID() == id) {
             return employees.get(i);
         } 
     }

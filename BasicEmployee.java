@@ -128,9 +128,7 @@ public class BasicEmployee extends Employee {
     return department.getId();
   }
 
-  /**
-   *@Override
-   */
+   @Override
   public String getJobTitle() {
     /**
      *TODO Auto-generated method stub

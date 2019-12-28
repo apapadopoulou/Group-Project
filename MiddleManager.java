@@ -27,9 +27,6 @@ public class MiddleManager extends Employee {
 	    managingDepartments = getManagingDepartments(); //Adds the managing departments.
 	}
 	
-	public String getID() {
-		return id;
-	}
 	
 	/*
 	 * Returns the managing departments.

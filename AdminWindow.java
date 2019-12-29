@@ -110,6 +110,7 @@ public class AdminWindow extends JFrame {
         tbirthdate.setLocation(300, 500);
         adminSettings.add(tbirthdate);
         JButton button = new JButton("OK");
+        button.setVisible(true);
         button.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
         	String admnSurname = tsurname.getText();

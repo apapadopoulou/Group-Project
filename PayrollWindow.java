@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.table.TableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -29,6 +30,7 @@ public class PayrollWindow extends javax.swing.JFrame {
         initComponents();
         showDate();
         showTime();
+
     }
 
     void showDate() {
@@ -49,6 +51,7 @@ public class PayrollWindow extends javax.swing.JFrame {
         }
         ).start();
     }
+    SalaryModification sal = new SalaryModification();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -115,11 +118,12 @@ public class PayrollWindow extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel4.setText("Payrolls");
 
-        jTable1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
+                {"e1", "1000"},
+                {"e2", "500"},
+                {"e3", "800"},
                 {null, null},
                 {null, null},
                 {null, null},
@@ -144,15 +148,7 @@ public class PayrollWindow extends javax.swing.JFrame {
             new String [] {
                 "Employee", "Salary"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jTable1);
@@ -163,6 +159,11 @@ public class PayrollWindow extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jButton1.setText("Modify");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -186,20 +187,18 @@ public class PayrollWindow extends javax.swing.JFrame {
                                 .addComponent(jLabel2)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(494, 494, 494))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(930, 930, 930)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(930, 930, 930)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(503, 503, 503)
                 .addComponent(jLabel5)
                 .addGap(0, 193, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(580, 580, 580))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,6 +243,19 @@ public class PayrollWindow extends javax.swing.JFrame {
         });
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        int index = jTable1.getSelectedRow();
+        TableModel model = jTable1.getModel();
+        String employee = (String) model.getValueAt(index, 0);
+        String salary = (String) model.getValueAt(index, 1);
+        sal.jLabel2.setText(employee);
+        sal.jLabel4.setText(salary);
+        jPanel1.add(sal);
+        sal.setVisible(true);
+
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments

@@ -109,7 +109,6 @@ public class AdminWindow extends JFrame {
         tbirthdate.setSize(190, 20);
         tbirthdate.setLocation(300, 500);
         adminSettings.add(tbirthdate);
-<<<<<<< HEAD
         JButton button = new JButton("OK");
         button.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
@@ -117,41 +116,16 @@ public class AdminWindow extends JFrame {
             String admnName = tname.getText();
             String admnPhonenumber = tphonenumber.getText();
             String admnEmail = temail.getText();
-            String temp = tbirthdate.getText();
-            Date admnBirthdate = null;
-            try{
-                admnBirthdate = new SimpleDateFormat(""
-                    + "dd/MM/yyyy").parse(temp);
-            } catch (Exception ex) {}
-            //The "Administrator" department is created.
-            //This department has only one Employee.
+            String admnBirthdate = tbirthdate.getText();
             Department admin = new Department("Administrator");
             Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
           }
         });
-        	
-        };
-        }
-=======
-        String admnSurname = tsurname.getText();
-        String admnName = tname.getText();
-        String admnPhonenumber = tphonenumber.getText();
-        String admnEmail = temail.getText();
-        String temp = tbirthdate.getText();
-        Date admnBirthdate = null;
-        try{
-            admnBirthdate = new SimpleDateFormat(""
-                + "dd/MM/yyyy").parse(temp);
-        } catch (Exception e) {}
         /**
          * The "Administrator" department is created.
          * This department has only one Employee.
          */
-        
-        Department admin = new Department("Administrator");
-        Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
-	}
->>>>>>> 39837775bc8fe987e6f7fb5486ab544d5f5ab45a
+        }
 }
 /**
  * End of AdminWindow class.

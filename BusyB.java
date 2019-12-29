@@ -9,7 +9,7 @@ public class BusyB {
   public static void main(String[] args) {
     if (!args[0].equals("0")) {
       DBcon.deleteTables();
-      DBcon.tableCreation();
+      DBcon.createTables();
       AdminWindow aw = new AdminWindow();
       aw.hello();
     } else {

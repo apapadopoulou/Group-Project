@@ -4,6 +4,7 @@ import java.util.ArrayList;
  */
 public class BasicEmployee extends Employee {
 	
+        private double score = 10;
 	private Department department; //Department instance variable.
 	public static ArrayList <BasicEmployee> basicEmployees = new ArrayList <BasicEmployee>(); // An ArrayList that contains all Basic Employees.
 	
@@ -20,7 +21,7 @@ public class BasicEmployee extends Employee {
 	 *@param salary
 	 */
 	public BasicEmployee(String name, String surname, String telephone, String email, String birthdate, int depID) {
-		//Calls the constructor for the superclass Employee.
+                //Calls the constructor for the superclass Employee.
 		super(name, surname, telephone, email, birthdate, null, 0);
 		//Gets the Department object using the Department id.
 		this.department = Department.getDepartment(depID);
@@ -36,9 +37,9 @@ public class BasicEmployee extends Employee {
 		setID(id);
 		//Adds the object in the ArrayList of BasicEmployees.
 		basicEmployees.add(this);
-		// I don't know what this does. Someone explain it here!!!!
+		//Adds the object in the ArrayList of Employees.
 		employees.add(this);
-		//Saves the object to the Database.
+                //Saves the object to the Database.
 		DBcon.saveBasicEmployee(this);
 	}
 	
@@ -122,6 +123,14 @@ public class BasicEmployee extends Employee {
 	return null;
     }
 	
+	public double getScore() {
+	return score;
+}
+
+public void setScore(double score) {
+	this.score = score;
+}
+
 	/**
 	 *Method that changes the employee's department.
 	 */

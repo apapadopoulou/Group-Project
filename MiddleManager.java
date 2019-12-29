@@ -11,7 +11,7 @@ public class MiddleManager extends Employee {
 	 */
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate){
 		super(name, surname, telephone, email, birthdate, null, 0);
-	    String id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(middleManagers.size());
+	    String id = name.substring(1,3) + surname.substring(1,3) + String.valueOf(middleManagers.size());
 	    setID(id);
 	    middleManagers.add(this);
 	    employees.add(this);

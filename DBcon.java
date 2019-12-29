@@ -304,7 +304,7 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBBasicEmployee (name, surname, telephone, email, birthdate, dep_id, emp_id, salary)"
+			stmt.executeUpdate("INSERT INTO BBBasicEmployee (nameEmp, surname, phonenumber, email, birthdate, depID, empID, salary)"
 					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
 					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', " + emp.getDepId() + ", '" + emp.getID() + "', " + emp.getSalary() + ");");
 			stmt.close();
@@ -332,16 +332,16 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, dep_id, emp_id, salary FROM BBBasicEmployee");
+			rs = stmt.executeQuery("SELECT nameEmp, surname, phonenumber, email, birthdate, depID, empID, salary FROM BBBasicEmployee");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
-				String name = rs.getString("name");
+				String name = rs.getString("nameEmp");
 				String surname = rs.getString("surname");
-				String telephone = rs.getString("telephone");
+				String telephone = rs.getString("phonenumber");
 				String email = rs.getString("email");
 				String birthDate = rs.getString("birthDate");
-				int depId = rs.getInt("dep_id");
-				String empId = rs.getString("emp_id");
+				int depId = rs.getInt("depID");
+				String empId = rs.getString("empID");
 				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
 				new BasicEmployee(name, surname, telephone, email, birthDate, depId, empId, salary);
@@ -378,7 +378,7 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			stmt.executeUpdate("INSERT INTO BBMiddleManager (name, surname, telephone, email, birthdate, empID, salary)"
+			stmt.executeUpdate("INSERT INTO BBMiddleManager (nameEmp, surname, phonenumber, email, birthdate, empID, salary)"
 					+ " VALUES ('" + emp.getName() + "','" + emp.getSurname() + "', '" + emp.getTelephone()
 					+ "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', '" + emp.getID() + "', " + emp.getSalary() + ");");
 			stmt.close();
@@ -406,12 +406,12 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
-			rs = stmt.executeQuery("SELECT name, surname, telephone, email, birthdate, empID, salary FROM BBMiddleManager");
+			rs = stmt.executeQuery("SELECT nameEmp, surname, phonenumber, email, birthdate, empID, salary FROM BBMiddleManager");
 			/*Does a loop for every row (object in this case) it finds.*/
 			while (rs.next()) {
-				String name = rs.getString("name");
+				String name = rs.getString("nameEmp");
 				String surname = rs.getString("surname");
-				String telephone = rs.getString("telephone");
+				String telephone = rs.getString("phonenumber");
 				String email = rs.getString("email");
 				String birthDate = rs.getString("birthDate");
 				String empId = rs.getString("empID");

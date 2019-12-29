@@ -5,10 +5,10 @@ import java.util.InputMismatchException;
 import java.util.Random;
 
 /**
-*The Account class creates an account for each employee.
-*Each account is created based on his/her email and password.
-*Each account is added to an ArrayList called accounts.
-*@author BusyB
+* The Account class creates an account for each employee.
+* Each account is created based on his/her email and password.
+* Each account is added to an ArrayList called accounts.
+* @author BusyB
 */
 public class Account {
 
@@ -16,8 +16,7 @@ public class Account {
     private String email;
     private String password;
     private static ArrayList<Account> accounts = new ArrayList<Account>();
-    private int hasDefaultPass;
-}    
+    private int hasDefaultPass;   
     
     /**
      * Basic constructor for class Account.
@@ -50,6 +49,7 @@ public class Account {
         this.hasDefaultPass = hasDefaultPass;
         Employee e = Employee.searchEmployeeById(empId);
         this.employee = e;
+        System.out.println(e.getID());
         this.email = e.getEmail();
         password = passwordGenerator();
          /**
@@ -139,14 +139,14 @@ public class Account {
      }*/
     /**
      * Start of main method.
-     */
+     *//*
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginWindow().setVisible(true);
             }
         }
-    }
+    }*/
     /** This method returns 1 if the employee is a BasicEmployee, 2 if the 
     * employee is a BasicEmployee who works in HR department, 3 if the employee
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 
@@ -177,7 +177,7 @@ public class Account {
      *  This method generates Employee's password.
      */
     public static String passwordGenerator() {
-        String password = null;
+        String password = "";
         String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String Small_chars = "abcdefghijklmnopqrstuvwxyz";
         String numbers = "0123456789";

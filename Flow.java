@@ -50,13 +50,13 @@ public static void dataEntry() throws ParseException {
                 		   sc.nextLine();
                 		   inputDate = sc.nextLine();
                 		   break;
-                	   } catch (InputMismatchException e3) {}
+                	   } catch (InputMismatchException ime) { }
                    }
-                	  Date date = new SimpleDateFormat(""
-                		   + "dd/MM/yyyy").parse(inputDate);
                 	  sc.nextLine();
-                     BasicEmployee emp = new BasicEmployee(name, surname, phoneNumber, email, date, dep.getId());
-                     System.out.println("Employee " + "created with id: " + emp.getId());
+                     BasicEmployee emp = new BasicEmployee(name,
+                    	surname, phoneNumber, email, inputDate, dep.getId());
+                     System.out.println("Employee "
+                     + "created with id: " + emp.getID());
                      //Loop breakes when an Employee is created.
                      return;
                  }
@@ -73,20 +73,21 @@ public static void dataEntry() throws ParseException {
              System.out.println("Phonenumber: ");
              phoneNumber = sc.next();
              System.out.println("Date of Birth: ");
-             try {
-                inputDate = sc.nextLine();
-            } catch (InputMismatchException e5) {}
-             Date date = new SimpleDateFormat(""
-             + "dd/MM/yyyy").parse(inputDate);
+             boolean con = true;
+             while (con) {
+            	 try {
+            		 inputDate = sc.nextLine();
+            		 break;
+            	 } catch (InputMismatchException ime) { }
+             }
              sc.nextLine();
              MiddleManager emp = new MiddleManager(name, surname,
-             phoneNumber, email, date);
+             phoneNumber, email, inputDate);
              emp.getManagingDepartments().add(dep);
              System.out.println("Manager "
-              + "created with id: " + emp.getId());
+              + "created with id: " + emp.getID());
           }
       } while (!dname.equals("done"));
-      Department d = new Department("Top");
       System.out.println("Now, you are going to add Top Managers."
       + " Type done to terminate.");
       System.out.println("Name: ");
@@ -101,30 +102,23 @@ public static void dataEntry() throws ParseException {
              System.out.println("Phonenumber: ");
              phoneNumber = sc.next();
              System.out.println("Date of Birth: ");
-             try {
-                  inputDate = sc.nextLine();
-             } catch (InputMismatchException e7) {}
-                  Date date = new SimpleDateFormat(""
-                  + "dd/MM/yyyy").parse(inputDate);
+             boolean con = true;
+             while (con) {
+            	 try {
+            		 inputDate = sc.nextLine();
+            		 break;
+            	 } catch (InputMismatchException ime) { }
+             }
              TopManager emp = new TopManager(name, surname,
-                 phoneNumber, email, date);
+                 phoneNumber, email, inputDate);
              System.out.println("Top Manager "
-              + "created with id: " + emp.getId());
+              + "created with id: " + emp.getID());
              //Loop breakes when an Employee is created.
-             return;
+             break;
            }
           System.out.println("Name: ");
               name = sc.next();
         }
         sc.close();
-  }
-public static void main(String [] args) {
-  try {
-  dataEntry();
-  }
-  catch (Exception e) { }
-}
-  public void dataInputScreen() {
-    
   }
 }

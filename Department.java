@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 public class Department {
-	
+
 	private int id;
 	private String name;
 	private static int counter = 1; // counter
 	private String managerId;
-	private ArrayList <BasicEmployee> employeesOfDepartment = new ArrayList <BasicEmployee>(); /* a list that contains the employees of each department separately*/
-	public static ArrayList <Department> departments = new ArrayList <Department>(); // a list that contains all the departments
+	private ArrayList<BasicEmployee> employeesOfDepartment = new ArrayList<BasicEmployee>(); 
+	/* a list that contains the employees of each department separately*/
+	public static ArrayList<Department> departments = new ArrayList<Department>();
+	// a list that contains all the departments
 	
 	/*
 	 * Basic constructor for class Department.
@@ -18,21 +20,23 @@ public class Department {
 		departments.add(this);
 		DBcon.saveDepartment(this);
 	}
-	
+
 	/*
 	 * Database constructor for class Department.
-	 * This constructor is used to load Departments from the database when the program opens.
+	 * This constructor is used to load Departments from the database
+	 * when the program opens.
 	 */
 	public Department(String name, int id, String managerId) {
 		this.id = id;
 		this.name = name;
 		this.managerId = managerId;
 		departments.add(this);
-		//Sets the counter to the current id to be used for new objects that are being created.
+		//Sets the counter to the current id to be used for
+		new objects that are being created.
 		counter = ++id;
-	} 
-	
-	public static Department getDepartment (int id) {
+	}
+
+	public static Department getDepartment(int id) {
 		Department dep = null;
 		for (int i = 0; i < departments.size(); i++) {
 			if (id == departments.get(i).getId()) {
@@ -41,40 +45,40 @@ public class Department {
 		}
 		return dep;
 	}
-	
+
 	public static ArrayList<Department> getDepartments() {
 		return departments;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
-	
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public void setManagerId(String id) {
 		managerId = id;
 		DBcon.updateDepartmentVar("managerId", managerId, this.id);
 	}
-	
+
 	public String getManagerId() {
 		return managerId;
 	}
-	
+
 	public ArrayList<BasicEmployee> getEmployeesOfDepartment() {
 	  return employeesOfDepartment;
 	}
-	
+
 	public void addEmployee(BasicEmployee employee) {
 		employeesOfDepartment.add(employee);
 	}
-	
+
 	public BasicEmployee searchEmployeeByName(String name) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
 			if (employeesOfDepartment.get(i).getNameSurname().equals(name)) {
@@ -85,8 +89,9 @@ public class Department {
 			}
 		}
 		return null;
-	} // a search method that search the employee list of the department to find a specific employee using his name
+	} 
 	
+	// a search method that search the employee list of the department to find a specific employee using his name
 	public Employee searchEmployeeById(String id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
 			if (employeesOfDepartment.get(i).getID().equals(id)) {
@@ -97,8 +102,9 @@ public class Department {
 			}
 		}
 		return null;
-	}// a search method that searches the employee list of the department to find a specific employee using his id
-	
+	}
+
+	// a search method that searches the employee list of the department to find a specific employee using his id
 	public void deleteEmployeeByName(String name) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
 			if (employeesOfDepartment.get(i).getNameSurname().contentEquals(name)) {
@@ -106,7 +112,7 @@ public class Department {
 			} else if (employeesOfDepartment.get(i).getSurname().contentEquals(name)) {
 				employeesOfDepartment.remove(i);
 			} else
-				System.out.println("This employee couldn't be removed because he wasn't found in this department");     
+				System.out.println("This employee couldn't be removed because he wasn't found in this department");
 		}
     }
 	
@@ -117,7 +123,7 @@ public class Department {
 				employeesOfDepartment.remove(i);
 				System.out.println("Employee was removed");
 			} else { 
-				System.out.println("This employee couldn't be removed because he wasn't found in this department");     
+				System.out.println("This employee couldn't be removed because he wasn't found in this department");
 			}
 		}
 	}// a method that deletes a specific employee from a department's arraylist using his id to find him
@@ -135,10 +141,8 @@ public class Department {
 		for (int i = 0; i < departments.size(); i++) {
 			if (departments.get(i).getId() == id) {
 				return departments.get(i);
-			} 
+			}
 	    }
-	  return null;    
-           
+	  return null;
 	}
 }
-  

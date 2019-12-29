@@ -24,6 +24,7 @@ public abstract class Employee {
 		this.birthdate = birthdate;
 		this.id = id;
 		this.salary = salary;
+		new Account(this);
       
   }
   

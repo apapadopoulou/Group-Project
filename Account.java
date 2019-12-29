@@ -24,10 +24,10 @@ public class Account {
      * 
      * @param e
      */
-    public Account(Employee e) {
+    public Account(Employee emp) {
         hasDefaultPass = 0;
-        this.employee = e;
-        this.email = e.getEmail();
+        employee = emp;
+        this.email = emp.getEmail();
         password = passwordGenerator();
          /**
           * Account object entered on accounts ArrayList.
@@ -48,9 +48,9 @@ public class Account {
     public Account(String empId, String password, int hasDefaultPass) {
         this.hasDefaultPass = hasDefaultPass;
         Employee e = Employee.searchEmployeeById(empId);
-        this.employee = e;
+        employee = e;
         System.out.println(e.getID());
-        this.email = e.getEmail();
+        email = e.getEmail();
         password = passwordGenerator();
          /**
           *Account object entered on accounts ArrayList.
@@ -65,8 +65,8 @@ public class Account {
         return hasDefaultPass;
     }
 
-    public void setHasDefaultPass(int a) {
-        this.hasDefaultPass = a;
+    public void setHasDefaultPass(int dp) {
+        hasDefaultPass = dp;
     }
   
     public Employee getEmployee() {
@@ -95,11 +95,9 @@ public class Account {
    
    /**
      *This method searches Employees' accounts by their email.
-    */
-    
+    */ 
     public static Account searchAccountByEmail(String email) {
         boolean exists = false;
-
         for (int i = 0; i < accounts.size();) {
             if (accounts.get(i).email.equals(email)) {
                 exists = true;
@@ -142,18 +140,18 @@ public class Account {
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 
     * HR department and 5 if the employee is a TopManager.
     */
-    public int typeOfEmployee(Employee e) {
-        if (e instanceof BasicEmployee) {
-            if (BasicEmployee.HREmployee(e.getName()) == true)
+    public int typeOfEmployee(Employee emp) {
+        if (emp instanceof BasicEmployee) {
+            if (BasicEmployee.HREmployee(emp.getName()) == true)
                 return 2;
-            else if (BasicEmployee.HREmployee(e.getSurname()) == true)
+            else if (BasicEmployee.HREmployee(emp.getSurname()) == true)
                 return 2;
             else
                 return 1;
-        } else if (e instanceof MiddleManager) {
-            if (MiddleManager.HREmployee(e.getName()) == true)
+        } else if (emp instanceof MiddleManager) {
+            if (MiddleManager.HREmployee(emp.getName()) == true)
                 return 4;
-            else if (MiddleManager.HREmployee(e.getSurname()) == true)
+            else if (MiddleManager.HREmployee(emp.getSurname()) == true)
                 return 4;
             else 
                 return 3;

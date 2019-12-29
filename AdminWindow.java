@@ -32,7 +32,7 @@ public class AdminWindow extends JFrame {
         		+ " It's time to set the initial settings.");
         jf.setVisible(true);
         button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ae) {
                jf.dispose();
                adminSettingsEntry();
             }
@@ -110,9 +110,10 @@ public class AdminWindow extends JFrame {
         tbirthdate.setLocation(300, 500);
         adminSettings.add(tbirthdate);
         JButton button = new JButton("OK");
-        button.setVisible(true);
+        adminSettings.add(button, BorderLayout.SOUTH);
+        //button.setVisible(true);
         button.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent e) {
+          public void actionPerformed(ActionEvent ae) {
         	String admnSurname = tsurname.getText();
             String admnName = tname.getText();
             String admnPhonenumber = tphonenumber.getText();
@@ -120,6 +121,7 @@ public class AdminWindow extends JFrame {
             String admnBirthdate = tbirthdate.getText();
             Department admin = new Department("Administrator");
             Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
+            adminSettings.dispose();
           }
         });
         /**

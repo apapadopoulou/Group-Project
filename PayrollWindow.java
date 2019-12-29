@@ -23,7 +23,7 @@ public class PayrollWindow extends javax.swing.JFrame {
      * Creates new form PayrollWindow
      */
     private int n;
-
+ 
     public PayrollWindow(int n) {
         this.n = n;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -51,8 +51,7 @@ public class PayrollWindow extends javax.swing.JFrame {
         }
         ).start();
     }
-    SalaryModification sal = new SalaryModification();
-
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -246,15 +245,11 @@ public class PayrollWindow extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        new SalaryModificationWindow().setVisible(true);
         int index = jTable1.getSelectedRow();
         TableModel model = jTable1.getModel();
         String employee = (String) model.getValueAt(index, 0);
         String salary = (String) model.getValueAt(index, 1);
-        sal.jLabel2.setText(employee);
-        sal.jLabel4.setText(salary);
-        jPanel1.add(sal);
-        sal.setVisible(true);
-
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

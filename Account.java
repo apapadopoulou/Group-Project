@@ -26,6 +26,10 @@ public class Account {
     public Account(Employee emp) {
         hasDefaultPass = 0;
         employee = emp;
+<<<<<<< HEAD
+=======
+        this.email = emp.getEmail();
+>>>>>>> 0131bfa18da80e4ba70e1cb568b76ed04974b02b
         password = passwordGenerator();
          /**
           * Account object entered on accounts ArrayList.
@@ -45,8 +49,16 @@ public class Account {
      */
     public Account(String empId, String password, int hasDefaultPass) {
         this.hasDefaultPass = hasDefaultPass;
+<<<<<<< HEAD
         employee = Employee.searchEmployeeById(empId);
         this.password = password;
+=======
+        Employee e = Employee.searchEmployeeById(empId);
+        employee = e;
+        System.out.println(e.getID());
+        email = e.getEmail();
+        password = passwordGenerator();
+>>>>>>> 0131bfa18da80e4ba70e1cb568b76ed04974b02b
          /**
           *Account object entered on accounts ArrayList.
           */

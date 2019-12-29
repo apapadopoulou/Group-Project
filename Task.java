@@ -57,7 +57,19 @@ public class Task extends Program {
 		this.empids = empids;
 		this.id = counter++; //Needed for the DataBase. 
     }
+	/*Constructor for single employee task that is not being evaluated*/
+	public Task(Date startDate, Date dueDate, String desc, String empid) {
+		super();
+		this.desc = desc;
+		this.startDate = startDate;
+		this.dueDate = dueDate;
+		done = false;
+		isGroupTask = false;
+		this.empid = empid;
+		this.id = counter++; //Needed for the DataBase. 
+	}
   
+	
 	public Date getDueDate() {
 		return dueDate;
 	}

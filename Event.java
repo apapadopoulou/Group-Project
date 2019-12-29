@@ -2,15 +2,16 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Event extends Program {
-	private String title;
+    private String title;
     private String description;
-	private Date date; 
+    private Date date;
     private static int counter = 1;
-	private String time;
-	ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
-	private int eventCode;
-	private int type;
-	public Event(String title, Date date, String time, String description, int type) {
+    private String time;
+    ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
+    private int eventCode;
+    private int type;
+    public Event(String title, Date date, String time,
+    		String description, int type) {
 		this.title = title;
         this.description = description;
         this.type = type;
@@ -18,7 +19,7 @@ public class Event extends Program {
 			if (Checkers.isValidType(type))
 				System.out.println("Valid Title");
 			else
-				System.out.println("Invalid Title! Insert a new one");
+		System.out.println("Invalid Title! Insert a new one");
 		} while (Checkers.isValidTitle(title));*/
 		this.date = date;
 		this.setTime(time);

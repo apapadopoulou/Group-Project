@@ -259,7 +259,7 @@ public class Evaluation {
 	public static double addTimeScore(double taskLevel, double timeScore) {
 		double scoreNow = 10.0;
 		if (taskLevel > 7.0) {
-			scoreNow = 10 - ((10 - timeScore ) * (taskLevel / 10) + 0.05));
+			scoreNow = 10 - ((10 - timeScore ) * (taskLevel / 10) + 0.05);
 		} else if (taskLevel > 5.5) {
 			scoreNow = 10 - ((10 - timeScore ) * ((taskLevel / 10) + 0.1));
 		} else if (taskLevel > 4.5) {

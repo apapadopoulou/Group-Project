@@ -5,7 +5,8 @@ import java.text.DateFormat;
 
 public class Test {
 	public static void main(String args []) {
-	/*	DBcon.deleteTables();
+		/*
+		DBcon.deleteTables();
 		DBcon.createTables();
 
 		Department dep0 = new Department("Sales");
@@ -39,6 +40,6 @@ public class Test {
 		DBcon.loadMiddleManagers();
 		System.out.println("Succesfully Loaded Middle Managers.");
 		DBcon.loadAccounts();
-		System.out.println("Succesfully Loaded Accounts.");
+		System.out.println("Succesfully Loaded Accounts."); 
 	}
  } 

@@ -13,7 +13,6 @@ import java.util.Random;
 public class Account {
 
     private Employee employee;
-    private String email;
     private String password;
     private static ArrayList<Account> accounts = new ArrayList<Account>();
     private int hasDefaultPass;   
@@ -24,10 +23,9 @@ public class Account {
      * 
      * @param e
      */
-    public Account(Employee e) {
+    public Account(Employee emp) {
         hasDefaultPass = 0;
-        this.employee = e;
-        this.email = e.getEmail();
+        employee = emp;
         password = passwordGenerator();
          /**
           * Account object entered on accounts ArrayList.
@@ -47,11 +45,8 @@ public class Account {
      */
     public Account(String empId, String password, int hasDefaultPass) {
         this.hasDefaultPass = hasDefaultPass;
-        Employee e = Employee.searchEmployeeById(empId);
-        this.employee = e;
-        System.out.println(e.getID());
-        this.email = e.getEmail();
-        password = passwordGenerator();
+        employee = Employee.searchEmployeeById(empId);
+        this.password = password;
          /**
           *Account object entered on accounts ArrayList.
           */
@@ -65,8 +60,8 @@ public class Account {
         return hasDefaultPass;
     }
 
-    public void setHasDefaultPass(int a) {
-        this.hasDefaultPass = a;
+    public void setHasDefaultPass(int dp) {
+        hasDefaultPass = dp;
     }
   
     public Employee getEmployee() {
@@ -78,11 +73,11 @@ public class Account {
     }
 
     public String getEmail() {
-        return email;
+        return employee.getEmail();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        employee.setEmail(email);
     }
 
     public String getPassword() {
@@ -95,13 +90,11 @@ public class Account {
    
    /**
      *This method searches Employees' accounts by their email.
-    */
-    
+    */ 
     public static Account searchAccountByEmail(String email) {
         boolean exists = false;
-
         for (int i = 0; i < accounts.size();) {
-            if (accounts.get(i).email.equals(email)) {
+            if (accounts.get(i).getEmail().equals(email)) {
                 exists = true;
                 break;
             }
@@ -137,33 +130,23 @@ public class Account {
      sc.close();
      return success;
      }*/
-    /**
-     * Start of main method.
-     *//*
-    public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginWindow().setVisible(true);
-            }
-        }
-    }*/
     /** This method returns 1 if the employee is a BasicEmployee, 2 if the 
     * employee is a BasicEmployee who works in HR department, 3 if the employee
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 
     * HR department and 5 if the employee is a TopManager.
     */
-    public int typeOfEmployee(Employee e) {
-        if (e instanceof BasicEmployee) {
-            if (BasicEmployee.HREmployee(e.getName()) == true)
+    public int typeOfEmployee(Employee emp) {
+        if (emp instanceof BasicEmployee) {
+            if (BasicEmployee.HREmployee(emp.getName()) == true)
                 return 2;
-            else if (BasicEmployee.HREmployee(e.getSurname()) == true)
+            else if (BasicEmployee.HREmployee(emp.getSurname()) == true)
                 return 2;
             else
                 return 1;
-        } else if (e instanceof MiddleManager) {
-            if (MiddleManager.HREmployee(e.getName()) == true)
+        } else if (emp instanceof MiddleManager) {
+            if (MiddleManager.HREmployee(emp.getName()) == true)
                 return 4;
-            else if (MiddleManager.HREmployee(e.getSurname()) == true)
+            else if (MiddleManager.HREmployee(emp.getSurname()) == true)
                 return 4;
             else 
                 return 3;

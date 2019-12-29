@@ -211,7 +211,7 @@ public class DBcon {
 				String password = rs.getString("password");
 				int hasDefaultPass = rs.getInt("hasDefaultPass");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new Account(id, password, hasDefaultPass);
+				Account acc = new Account(id, password, hasDefaultPass);
 			}
 			rs.close();
 			stmt.close();
@@ -274,7 +274,7 @@ public class DBcon {
 				String name = rs.getString("nameDep");
 				String managerID = rs.getString("managerID");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new Department(name, id, managerID);
+				Department dep = new Department(name, id, managerID);
 			}
 			rs.close();
 			stmt.close();
@@ -344,7 +344,7 @@ public class DBcon {
 				String empId = rs.getString("empID");
 				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new BasicEmployee(name, surname, telephone, email, birthDate, depId, empId, salary);
+				Employee emp = new BasicEmployee(name, surname, telephone, email, birthDate, depId, empId, salary);
 			}
 			rs.close();
 			stmt.close();
@@ -417,7 +417,7 @@ public class DBcon {
 				String empId = rs.getString("empID");
 				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
-				new MiddleManager(name, surname, telephone, email, birthDate, empId, salary);
+				Employee emp = new MiddleManager(name, surname, telephone, email, birthDate, empId, salary);
 			}
 			rs.close();
 			stmt.close();

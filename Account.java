@@ -13,7 +13,6 @@ import java.util.Random;
 public class Account {
 
     private Employee employee;
-    private String email;
     private String password;
     private static ArrayList<Account> accounts = new ArrayList<Account>();
     private int hasDefaultPass;   
@@ -27,7 +26,6 @@ public class Account {
     public Account(Employee emp) {
         hasDefaultPass = 0;
         employee = emp;
-        this.email = emp.getEmail();
         password = passwordGenerator();
          /**
           * Account object entered on accounts ArrayList.
@@ -47,11 +45,9 @@ public class Account {
      */
     public Account(String empId, String password, int hasDefaultPass) {
         this.hasDefaultPass = hasDefaultPass;
-        Employee e = Employee.searchEmployeeById(empId);
-        employee = e;
-        System.out.println(e.getID());
-        email = e.getEmail();
-        password = passwordGenerator();
+        employee = Employee.searchEmployeeById(empId);
+        this.password = password;
+
          /**
           *Account object entered on accounts ArrayList.
           */
@@ -78,11 +74,11 @@ public class Account {
     }
 
     public String getEmail() {
-        return email;
+        return employee.getEmail();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        employee.setEmail(email);
     }
 
     public String getPassword() {
@@ -99,7 +95,7 @@ public class Account {
     public static Account searchAccountByEmail(String email) {
         boolean exists = false;
         for (int i = 0; i < accounts.size();) {
-            if (accounts.get(i).email.equals(email)) {
+            if (accounts.get(i).getEmail().equals(email)) {
                 exists = true;
                 break;
             }

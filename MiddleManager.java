@@ -26,8 +26,14 @@ public class MiddleManager extends Employee {
 	public MiddleManager(String name, String surname, String telephone,
 		String email, String birthdate, String id, double salary) {
 	    super(name, surname, telephone, email, birthdate, id, salary);
+<<<<<<< HEAD
 	    managingDepartments = getManagingDepartments();
 	    //Adds the managing departments.
+=======
+	    managingDepartments = getManagingDepartments(); //Adds the managing departments.
+	    middleManagers.add(this);
+	    employees.add(this);
+>>>>>>> 509622d3ea6df5fac19e82b116d6f82578a82c39
 	}
 
 	/*

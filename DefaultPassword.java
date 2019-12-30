@@ -14,9 +14,9 @@ public class DefaultPassword extends javax.swing.JFrame {
     /*
      * Creates new form DefaultPassword
      */
-    private int n;
-    public DefaultPassword(int n) {
-        this.n = n;
+    private Employee emp;
+    public DefaultPassword(Employee emp) {
+        this.emp = emp;
         initComponents();
     }
 
@@ -88,7 +88,7 @@ public class DefaultPassword extends javax.swing.JFrame {
             java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
                 }
             });
            this.dispose();
@@ -119,12 +119,12 @@ public class DefaultPassword extends javax.swing.JFrame {
         //</editor-fold>
         
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
 	        public void run() {
                 new DefaultPassword(1).setVisible(true);
             }
-        });
+        });*/
     }
     /**
      * @param args the command line arguments

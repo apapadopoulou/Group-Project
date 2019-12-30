@@ -24,7 +24,9 @@ public class Team extends javax.swing.JFrame {
      * Creates new form Team
      */
     private int n;
-    public Team(int n) {     
+    private Employee emp;
+    public Team(int n, Employee emp) {
+        this.emp = emp;
         this.n = n;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
@@ -210,7 +212,7 @@ public class Team extends javax.swing.JFrame {
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
             }
         });
         this.dispose();
@@ -228,11 +230,11 @@ public class Team extends javax.swing.JFrame {
        
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Team(1).setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

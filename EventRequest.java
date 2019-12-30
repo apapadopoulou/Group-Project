@@ -24,7 +24,9 @@ public class EventRequest extends javax.swing.JFrame {
      * Creates new form EventRequest
      */
     private int n;
-    public EventRequest(int n) {
+    private Employee emp;
+    public EventRequest(int n, Employee emp) {
+        this.emp = emp;
         this.n = n;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
@@ -233,7 +235,7 @@ public class EventRequest extends javax.swing.JFrame {
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
             }
         });
         this.dispose();
@@ -267,11 +269,11 @@ public class EventRequest extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EventRequest(3).setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

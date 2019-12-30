@@ -25,7 +25,9 @@ public class MyEvaluation extends javax.swing.JFrame {
      * Creates new form MyEvaluation
      */
     private int n;
-    public MyEvaluation(int n) {
+    private Employee emp;
+    public MyEvaluation(int n, Employee emp) {
+        this.emp = emp;
         this.n = n; 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
@@ -207,7 +209,7 @@ public class MyEvaluation extends javax.swing.JFrame {
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
             }
         });
         this.dispose();
@@ -241,11 +243,11 @@ public class MyEvaluation extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MyEvaluation(3).setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

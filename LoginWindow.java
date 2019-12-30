@@ -248,24 +248,19 @@ public class LoginWindow extends javax.swing.JFrame {
              passwordField.setText("");
              emailField.requestFocus();
          } else if (ac.getPassword().equals(password)) {
-            n = ac.typeOfEmployee(ac.getEmployee());
+            n = Account.typeOfEmployee(ac.getEmployee());
             ac.setHasDefaultPass(ac.getHasDefaultPass()+1);
             if (ac.getHasDefaultPass() == 1){       
-                DefaultPassword df = new DefaultPassword(n);
-                df.setVisible(true);
-                df.pack();
-                df.setLocationRelativeTo(null);
-                df.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                java.awt.EventQueue.invokeLater(new Runnable() {
+                   java.awt.EventQueue.invokeLater(new Runnable() {
                    public void run() {
-                        new DefaultPassword(n).setVisible(true);
+                        new DefaultPassword(ac.getEmployee()).setVisible(true);
                         }
                     });
                 this.dispose();
             } else {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(ac.getEmployee()).setVisible(true);
                 }
             });
            this.dispose();

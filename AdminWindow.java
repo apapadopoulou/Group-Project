@@ -19,6 +19,9 @@ import javax.swing.JTextPane;
  */
 public class AdminWindow extends JFrame {
 	
+	/**
+	 *The welcome of the application! 
+	 */
 	public void hello() {
 		JFrame jf = new AdminWindow();
 		jf.setBackground(new java.awt.Color(255, 255, 140));
@@ -38,6 +41,10 @@ public class AdminWindow extends JFrame {
             }
         });
 	}
+	
+	/** 
+	 *Administrator settings. 
+	 */
 	public void adminSettingsEntry() {
 		JFrame adminSettings = new JFrame("Admin Settings");
 		adminSettings.setLayout(new BorderLayout());

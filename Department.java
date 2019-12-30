@@ -31,8 +31,8 @@ public class Department {
 		this.name = name;
 		this.managerId = managerId;
 		departments.add(this);
-		//Sets the counter to the current id to be used for
-		new objects that are being created.
+		/*Sets the counter to the current id to be used for
+		new objects that are being created.*/
 		counter = ++id;
 	}
 
@@ -140,6 +140,15 @@ public class Department {
 	public static Department searchDepartmentById(int id) {
 		for (int i = 0; i < departments.size(); i++) {
 			if (departments.get(i).getId() == id) {
+				return departments.get(i);
+			}
+	    }
+	  return null;
+	}
+	
+	public static Department searchDepartmentByName(String name) {
+		for (int i = 0; i < departments.size(); i++) {
+			if (departments.get(i).getName() == name) {
 				return departments.get(i);
 			}
 	    }

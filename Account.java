@@ -142,40 +142,14 @@ public class Account {
         }
         return null;
     }
-
-    /*This method checks if the password and the email of the input
-     are equal to the password and the email of the user.*/
-    /*public static boolean login() {
-     boolean success=false;
-     //System.out.println("Welcome!");
-     Scanner sc = new Scanner(System.in);
-     try {
-     System.out.println("Please insert your email");
-     String email = sc.nextLine();
-     }catch(InputMismatchException e) {
-     System.out.println("Please enter your email");
-     }
-     try{
-     System.out.println("Please insert your password");
-     char password = sc.next().charAt(0);
-     }catch(InputMismatchException e) {
-     System.out.println("Please enter your password");
-     }
-     searchAccountByEmail(new Account().email);
-     if (password.equals(new Account().password)) {
-     success = true;
-     }
-     sc.close();
-     return success;
-     }*/
-    
+     
     /** This method returns 1 if the employee is a BasicEmployee, 2 if the 
     * employee is a BasicEmployee who works in HR department, 3 if the employee
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 
     * HR department and 5 if the employee is a TopManager.
     * @return 1 or 2 or 3 or 4 or 5
     */
-    public int typeOfEmployee(Employee emp) {
+    public static int typeOfEmployee(Employee emp) {
         if (emp instanceof BasicEmployee) {
             if (BasicEmployee.HREmployee(emp.getName()) == true)
                 return 2;

@@ -22,9 +22,11 @@ public class CreateEvent extends javax.swing.JFrame {
     /**
      * Creates new form CreateEvent.
      */
+    private Employee emp;
     private int n;
-    public CreateEvent(int n) {
+    public CreateEvent(Employee emp, int n) {
         this.n = n; 
+        this.emp = emp;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         ShowDate();
@@ -56,7 +58,7 @@ public class CreateEvent extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     /** 
-     *<editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents 
+     *<editor-fold defaultstate="collapsed" desc="Generated Code">                           
      */
     private void initComponents() {
 
@@ -121,12 +123,7 @@ public class CreateEvent extends javax.swing.JFrame {
         jLabel7.setText("Hour:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
+        
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
@@ -318,7 +315,7 @@ public class CreateEvent extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
-    }/** </editor-fold>//GEN-END:initComponents */
+    /** </editor-fold>                           
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {/**GEN-FIRST:event_jComboBox2ActionPerformed*/
         /** TODO add your handling code here:*/
@@ -327,7 +324,7 @@ public class CreateEvent extends javax.swing.JFrame {
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {/**GEN-FIRST:event_jLabel13MouseClicked*/
            java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
                 }
             });
            this.dispose();
@@ -361,14 +358,14 @@ public class CreateEvent extends javax.swing.JFrame {
         /**</editor-fold>*/
 
         /** Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CreateEvent(1).setVisible(true);
             }
-        });
+        });*/
     }
 
-    /** Variables declaration - do not modify//GEN-BEGIN:variables*/
+    /** Variables declaration - do not modify */                     
     private javax.swing.JLabel curdate;
     private javax.swing.JLabel curtime;
     private javax.swing.JTextField fieldTitle;
@@ -401,9 +398,10 @@ public class CreateEvent extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JToggleButton jToggleButton1;
     /**
-     *End of variables declaration//GEN-END:variables 
+     *End of variables declaration                    
      */
 }
+
 /**
 *End of CreateEvent class
 */

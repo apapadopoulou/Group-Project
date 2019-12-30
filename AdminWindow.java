@@ -111,7 +111,9 @@ public class AdminWindow extends JFrame {
         adminSettings.add(tbirthdate);
         JButton button = new JButton("OK");
         adminSettings.add(button, BorderLayout.SOUTH);
-        //button.setVisible(true);
+        /**
+         *button.setVisible(true); 
+         */
         button.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent ae) {
         	String admnSurname = tsurname.getText();

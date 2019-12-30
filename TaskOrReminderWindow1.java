@@ -23,10 +23,12 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
      * Creates new form TaskOrReminderWindow1
      */
     private int n;
+    private Employee emp;
 
-    public TaskOrReminderWindow1(int n) {
+    public TaskOrReminderWindow1(int n, Employee emp) {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.n = n;
+        this.emp = emp;
         initComponents();
         showDate();
         showTime();
@@ -609,7 +611,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
             }
         });
         this.dispose();
@@ -662,11 +664,11 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+      /*  java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TaskOrReminderWindow1(1).setVisible(true);
             }
-        });
+        }); */
     }
 
 

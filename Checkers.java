@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 public class Checkers {
 	/**
 	 *Validate email. 
+	 *@return email or false
 	 */
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
@@ -24,6 +25,7 @@ public class Checkers {
   
 	/** 
 	 *This method validate first name. 
+	 *@return first name
 	 */
 	public static boolean isValidFirstName( String firstName ) {
 		return firstName.matches( "[A-Z][a-z]*" );
@@ -31,6 +33,7 @@ public class Checkers {
 	   
 	/**
 	 *This method validate last name. 
+	 *@return last name
 	 */
 	public static boolean isValidLastName( String lastName ) {
 		return lastName.matches( "[A-Z][a-z]*" );
@@ -38,6 +41,7 @@ public class Checkers {
 
 	/**
 	 *This method validate phone number with specific ways. 
+	 *@return true or false for the phone number
 	 */
 	public static boolean isValidPhoneNumber(String phoneNo) {
 		/**
@@ -58,6 +62,7 @@ public class Checkers {
 	public static boolean isValidPassword(String password) {
 		/**
 		 *Checking password length. 
+		 *@return true or false for the password length
 		 */
 		if ((password.length() >= 6) && (password.length() <= 15)) {
 			return true;
@@ -68,6 +73,7 @@ public class Checkers {
 		
 	/**
 	 *This method validate the event title (speficic titles). 
+	 *@return type of event
 	 */
 	public static boolean isValidType(String type) {
 		return type == "appointment" || type == "meeting" || type == "main event";

@@ -131,6 +131,7 @@ public class Account {
      sc.close();
      return success;
      }*/
+    
     /** This method returns 1 if the employee is a BasicEmployee, 2 if the 
     * employee is a BasicEmployee who works in HR department, 3 if the employee
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 

@@ -58,8 +58,9 @@ public class MiddleManager extends Employee {
     		if (this.getManagingDepartments().get(i).getName() == "HR") {
                     return true;
             }
-            return false;
+            
         }
+    	return false;
     }
 
 	public void setManagingDepartments(ArrayList<Department> managingDepartments) {

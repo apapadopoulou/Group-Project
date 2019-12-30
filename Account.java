@@ -21,13 +21,14 @@ public class Account {
      * Basic constructor for class Account.
      * Use ONLY this constructor to create new Accounts.
      * 
-     * @param e
+     * @param emp
      */
     public Account(Employee emp) {
         hasDefaultPass = 0;
         employee = emp;
         password = passwordGenerator();
-         /**
+         
+        /**
           * Account object entered on accounts ArrayList.
           */ 
         
@@ -57,33 +58,68 @@ public class Account {
     /**
      *Getters and Setters.
      */
+    
+    /** 
+     * Gets the hasDefaultPass.
+     *@return hasDefaultPass  
+     */
     public int getHasDefaultPass() {
         return hasDefaultPass;
     }
+    
+    /**
+     *Sets the hasDefaultPass. 
+     */
 
     public void setHasDefaultPass(int dp) {
         hasDefaultPass = dp;
     }
+    
+    /**
+     *Gets the employee.
+     *@return employee
+     */
   
     public Employee getEmployee() {
         return employee;
     }
+    
+    /**
+     *Sets the employee. 
+     */
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
+    /**
+     *Gets the email.
+     *@return email
+     */
 
     public String getEmail() {
         return employee.getEmail();
     }
+    
+    /**
+     *Sets the email.
+     */
 
     public void setEmail(String email) {
         employee.setEmail(email);
     }
+    
+    /**
+     *Gets the password.
+     *@return password
+     */
 
     public String getPassword() {
         return password;
     }
+    
+    /**
+     *Sets the password.
+     */
 
     public void setPassword(String password) {
         this.password = password;
@@ -91,6 +127,7 @@ public class Account {
    
    /**
      *This method searches Employees' accounts by their email.
+     *@return account if true or null if false
     */ 
     public static Account searchAccountByEmail(String email) {
         boolean exists = false;
@@ -136,6 +173,7 @@ public class Account {
     * employee is a BasicEmployee who works in HR department, 3 if the employee
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 
     * HR department and 5 if the employee is a TopManager.
+    * @return 1 or 2 or 3 or 4 or 5
     */
     public int typeOfEmployee(Employee emp) {
         if (emp instanceof BasicEmployee) {
@@ -187,6 +225,10 @@ public class Account {
             psw[i]  = values.charAt(ran.nextInt(values.length()));
 
         }
+        
+        /**
+         *@return password 
+         */
         for (int i = 0; i < 8; i++) {
             password += psw[i];
         }

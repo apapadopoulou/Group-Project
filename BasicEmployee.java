@@ -93,7 +93,10 @@ public class BasicEmployee extends Employee {
 	  */
 	    employees.add(this); 
 	  }
-
+   
+	/** 
+	 *@return department 
+	 */
 	public Department getDepartment() {
 		return department;
 	}
@@ -108,10 +111,16 @@ public class BasicEmployee extends Employee {
 		 */
 	}
 	
+	/** 
+	 *@return depId 
+	 */
 	public int getDepId() {
 		return department.getId();
 	}
 	
+	/**
+	 *@return null 
+	 */
 	@Override
 	public String getJobTitle() {
 		// TODO Auto-generated method stub
@@ -119,6 +128,7 @@ public class BasicEmployee extends Employee {
 	}
     /**
      *Method that checks if a Basic Employee works in HR department.
+     *@return true or false
      */
 	public static boolean HREmployee(String name) {
 		for (int i = 0; i < basicEmployees.size(); i++) {
@@ -134,6 +144,7 @@ public class BasicEmployee extends Employee {
         
   /** 
    *Method that returns the basic employee we have searched for.
+   *@return employee or null
    */
     public static BasicEmployee searchEmployeeByName2(String name) {
     for (int i = 0; i < basicEmployees.size(); i++) {
@@ -148,10 +159,17 @@ public class BasicEmployee extends Employee {
 	return null;
     }
 	
+    /**
+     * Gets the score.
+     *@return score
+     */
 	public double getScore() {
 	return score;
 }
 
+	/**
+	 *Sets the score.
+	 */
 public void setScore(double score) {
 	this.score = score;
 }

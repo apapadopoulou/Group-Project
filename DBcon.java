@@ -73,7 +73,6 @@ public class DBcon {
 				+ "phonenumber VARCHAR(15),"
 				+ "email VARCHAR(50),"
 				+ "birthdate VARCHAR(30),"
-				+ "depID INT,"
 				+ "salary REAL,"
 			    + "PRIMARY KEY (empID));");
 			System.out.println("TABLE BBTopManager CREATED"); 
@@ -418,6 +417,73 @@ public class DBcon {
 				double salary = rs.getDouble("salary");
 				/*After we find the variables we call the constructor to make the object again.*/
 				Employee emp = new MiddleManager(name, surname, telephone, email, birthDate, empId, salary);
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void saveTopManager(TopManager emp) {
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and
+		 *  executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			stmt.executeUpdate("INSERT INTO BBTopManager (nameEmp, surname, phonenumber, email, birthdate, empID, salary)"
+					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
+					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', '" + emp.getID() + "', " + emp.getSalary() + ");");
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void loadTopManagers() {
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			ResultSet rs;
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			rs = stmt.executeQuery("SELECT nameEmp, surname, phonenumber, email, birthdate, empID, salary FROM BBTopManager");
+			/*Does a loop for every row (object in this case) it finds.*/
+			while (rs.next()) {
+				String name = rs.getString("nameEmp");
+				String surname = rs.getString("surname");
+				String telephone = rs.getString("phonenumber");
+				String email = rs.getString("email");
+				String birthDate = rs.getString("birthDate");
+				String empId = rs.getString("empID");
+				double salary = rs.getDouble("salary");
+				/*After we find the variables we call the constructor to make the object again.*/
+				Employee emp = new TopManager(name, surname, telephone, email, birthDate, empId, salary);
 			}
 			rs.close();
 			stmt.close();

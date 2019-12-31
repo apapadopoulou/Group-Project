@@ -24,15 +24,10 @@ public class Test {
 		Employee emp6 = new MiddleManager("Antonis", "pakas", "6942796775", "alcabilone@gmail.com", "25/07/2000");
 		Employee emp7 = new MiddleManager("Maria", "georgiou", "6942796775", "alcabilone@gmail.com", "25/07/2000");
 		
-		Account acc0 = new Account (emp0);
-		Account acc1 = new Account (emp1);
-		Account acc2 = new Account (emp2);
-		Account acc3 = new Account (emp3);
-		Account acc4 = new Account (emp4);
-		Account acc5 = new Account (emp5);
-		Account acc6 = new Account (emp6);
-		Account acc7 = new Account (emp7); */
-		
+		Employee emp8 = new TopManager("Tasos", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000");
+		Employee emp9 = new TopManager("Mpampis", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000");
+		*/
+	
 		DBcon.loadDepartments();
 		System.out.println("Succesfully Loaded Departments.");
 		DBcon.loadBasicEmployees();
@@ -40,6 +35,9 @@ public class Test {
 		DBcon.loadMiddleManagers();
 		System.out.println("Succesfully Loaded Middle Managers.");
 		DBcon.loadAccounts();
-		System.out.println("Succesfully Loaded Accounts."); 
+		System.out.println("Succesfully Loaded Accounts.");
+		DBcon.loadTopManagers();
+		System.out.println("Succesfully Loaded Top Managers.");
+		 
 	}
  } 

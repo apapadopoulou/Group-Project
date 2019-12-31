@@ -25,7 +25,6 @@ public abstract class Employee {
 		this.birthdate = birthdate;
 		this.id = id;
 		this.salary = salary;
-		new Account(this);
   }
 
   public String getBirthDate() {
@@ -129,7 +128,7 @@ public abstract class Employee {
         } else {
           System.out.println("Employee was not found");
       }
-    }
-            return null;
+   }
+    return null;
   }
 }

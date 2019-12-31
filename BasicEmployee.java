@@ -61,6 +61,7 @@ public class BasicEmployee extends Employee {
          *Saves the object to the Database. 
          */
 		DBcon.saveBasicEmployee(this);
+		Account acc = new Account(this);
 	}
 	
    /**
@@ -91,7 +92,7 @@ public class BasicEmployee extends Employee {
 	 /**
 	  *I dont know what this does. Someone explain it here!!!!
 	  */
-	    employees.add(this); 
+	    employees.add(this);
 	  }
    
 	/** 
@@ -118,14 +119,6 @@ public class BasicEmployee extends Employee {
 		return department.getId();
 	}
 	
-	/**
-	 *@return null 
-	 */
-	@Override
-	public String getJobTitle() {
-		// TODO Auto-generated method stub
-		return null;
-	}
     /**
      *Method that checks if a Basic Employee works in HR department.
      *@return true or false

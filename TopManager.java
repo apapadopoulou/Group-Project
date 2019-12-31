@@ -13,6 +13,8 @@ public class TopManager extends Employee{
 		setID(id);
 		topManagers.add(this);
 		employees.add(this);
+		DBcon.saveTopManager(this);
+		Account acc = new Account(this);
 	}
 	
 	public TopManager( String name, String surname, String phonenumber, String email, String birthdate, String id, double salary){

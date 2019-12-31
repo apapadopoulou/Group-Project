@@ -23,8 +23,10 @@ public class SettingsWindow extends javax.swing.JFrame {
      * Creates new form SettingsWindow
      */
     private int n;
+    private Employee emp;
     
-    public SettingsWindow(int n) {
+    public SettingsWindow(int n, Employee emp) {
+        this.n = n;
         this.n = n;
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -52,6 +54,8 @@ public class SettingsWindow extends javax.swing.JFrame {
         ).start();
     }
 
+    ChangePasswordWindow pas = new ChangePasswordWindow();
+    ChangeEmailWindow em = new ChangeEmailWindow();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -148,10 +152,20 @@ public class SettingsWindow extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jButton1.setText("Change email");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jButton2.setText("Change password");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -259,11 +273,21 @@ public class SettingsWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
             }
         });
-        this.dispose();
+        this.dispose(); 
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        pas.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        em.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,11 +317,11 @@ public class SettingsWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SettingsWindow(1).setVisible(true);
             }
-        });
+        }); */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

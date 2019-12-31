@@ -72,12 +72,20 @@ public class MiddleManager extends Employee {
 		      } else if (middleManagers.get(i).getSurname().equals(name)
 		    		&& middleManagers.get(i).managingHR() == true) {
 		    	  return true;
-		      } else {
-		    	  return false;
-		    }
+		      } 
 		  }
 		 return false;
 	  }
+	 public static MiddleManager searchMiddleManager(String name) {
+	    	for (int i = 0; i < middleManagers.size(); i++) {
+		      if (middleManagers.get(i).getNameSurname().equals(name)) {
+		        return middleManagers.get(i);
+		      } else if (middleManagers.get(i).getSurname().equals(name)) {
+		        return middleManagers.get(i);
+		      }
+			}
+	    	return null;
+	    }
 
 	@Override
 	public String toString() {

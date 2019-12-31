@@ -106,6 +106,15 @@ public abstract class Employee {
     }
     return null;
   }
+  
+  public static ArrayList<String> names (){
+      ArrayList<String> namesOfEmployees = new ArrayList<String>();
+      for (int i = 1; 1 < employees.size(); i++){
+          namesOfEmployees.add(employees.get(i).getNameSurname());
+      }
+      return namesOfEmployees;
+  
+  }
 
 
   // Method toString including a String format for the given data

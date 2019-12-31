@@ -22,7 +22,9 @@ public class MyCalendar extends javax.swing.JFrame {
 
     protected static String year[] = years();
     private int n;
-    public MyCalendar(int n) {
+    private Employee emp;
+    public MyCalendar(int n, Employee emp) {
+        this.emp = emp;
         this.n = n;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
@@ -231,7 +233,7 @@ public class MyCalendar extends javax.swing.JFrame {
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
             }
         });
         this.dispose();
@@ -274,11 +276,11 @@ public class MyCalendar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MyCalendar(4).setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

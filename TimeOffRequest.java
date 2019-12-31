@@ -23,8 +23,10 @@ public class TimeOffRequest extends javax.swing.JFrame {
      * Creates new form TimeOffRequest
      */
     private int n;
+    private Employee emp;
     String years[] = MyCalendar.year;
-    public TimeOffRequest(int n) {
+    public TimeOffRequest(int n, Employee emp) {
+        this.emp = emp;
         this.n = n;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
@@ -229,7 +231,7 @@ public class TimeOffRequest extends javax.swing.JFrame {
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(emp).setVisible(true);
             }
         });
         this.dispose();
@@ -263,11 +265,11 @@ public class TimeOffRequest extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TimeOffRequest(4).setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

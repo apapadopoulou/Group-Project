@@ -22,5 +22,15 @@ public class TopManager extends Employee{
 		topManagers.add(this);
 		employees.add(this);
 	}
+	 public static TopManager searchTopManager(String name) {
+	    	for (int i = 0; i < topManagers.size(); i++) {
+		      if (topManagers.get(i).getNameSurname().equals(name)) {
+		        return topManagers.get(i);
+		      } else if (topManagers.get(i).getSurname().equals(name)) {
+		        return topManagers.get(i);
+		      }
+			}
+	    	return null;
+	    }
 
 }

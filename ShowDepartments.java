@@ -3,8 +3,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.ListModel;
 import javax.swing.Timer;
 
 /*
@@ -23,12 +27,19 @@ public class ShowDepartments extends javax.swing.JFrame {
      * Creates new form ShowDepartments
      */
     private int n;
-    public ShowDepartments(int n) {
+    private MiddleManager mm;
+    public ShowDepartments(int n, Employee emp) {
         this.n = n;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         showDate();
         showTime();
+        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
+        depart.setVisible(false);
+        employeesOfDepartment.setVisible(false);
+        selectEmployee.setVisible(false);
+        depNot.setVisible(false);
+        empNot.setVisible(false);
     }
      void showDate() {
         Date d = new Date();
@@ -66,16 +77,25 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        DefaultListModel model1 = new DefaultListModel();
+        for (int i = 1; i < mm.getManagingDepartments().size(); i++){
+            model1.addElement(mm.getManagingDepartments().get(i).getName());
+        }
+        mmDepartments = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
-        jLabel5 = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        DefaultListModel model2 = new DefaultListModel();
+        ArrayList<BasicEmployee> employeesOfDep = new ArrayList<BasicEmployee>();
+        employeesOfDep = Department.searchDepartmentByName(mmDepartments.getSelectedValue().toString()).getEmployeesOfDepartment();
+        for (int i = 1; i < employeesOfDep.size(); i++){
+            model2.addElement(employeesOfDep.get(i).getNameSurname());
+        }
+        employeesOfDepartment = new javax.swing.JList();
+        depart = new javax.swing.JLabel();
+        selectEmployee = new javax.swing.JToggleButton();
         jLabel13 = new javax.swing.JLabel();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        selectDep = new javax.swing.JToggleButton();
+        depNot = new javax.swing.JLabel();
+        empNot = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(ShowDepartments.class.getResource("/images/smallLogo.PNG")));
@@ -99,29 +119,25 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel4.setText("Managing departments:");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        mmDepartments.setModel(model1);
+        mmDepartments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(mmDepartments);
+
+        employeesOfDepartment.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(employeesOfDepartment);
+
+        depart.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        depart.setText(mmDepartments.getSelectedValue().toString());
+
+        selectEmployee.setText("Select Employee");
+        selectEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selectEmployeeMouseClicked(evt);
+            }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
-
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane2.setViewportView(jList2);
-
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel5.setText("Department");
-
-        jToggleButton1.setText("Select Employee");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        selectEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                selectEmployeeActionPerformed(evt);
             }
         });
 
@@ -135,14 +151,20 @@ public class ShowDepartments extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton2.setText("Select Department");
+        selectDep.setText("Select Department");
+        selectDep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectDepActionPerformed(evt);
+            }
+        });
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel6.setText("Search employee:");
+        depNot.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        depNot.setForeground(new java.awt.Color(255, 0, 0));
+        depNot.setText("Please select a department!");
 
-        jTextField1.setText("jTextField1");
-
-        jToggleButton3.setText("OK");
+        empNot.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        empNot.setForeground(new java.awt.Color(255, 0, 0));
+        empNot.setText("Please select an employee!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,28 +185,25 @@ public class ShowDepartments extends javax.swing.JFrame {
                                     .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(318, 318, 318)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(101, 101, 101)
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jToggleButton3))
+                                    .addComponent(depart)
                                     .addComponent(jLabel3)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jToggleButton1))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jToggleButton2))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(depNot)
+                                            .addComponent(selectDep)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(empNot)
+                                            .addComponent(selectEmployee)))))
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -209,20 +228,19 @@ public class ShowDepartments extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jToggleButton2)
+                            .addComponent(selectDep)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(72, 72, 72)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jToggleButton3))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(depNot)
+                .addGap(47, 47, 47)
+                .addComponent(depart, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jToggleButton1)
+                    .addComponent(selectEmployee)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 474, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(empNot)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 452, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -235,15 +253,37 @@ public class ShowDepartments extends javax.swing.JFrame {
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(n).setVisible(true);
+                new FirstWindow(mm).setVisible(true);
             }
         });
         this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void selectEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEmployeeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_selectEmployeeActionPerformed
+
+    private void selectDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDepActionPerformed
+       if (mmDepartments.getSelectedValue() == null){
+           depNot.setVisible(true);
+       } else {
+            depart.setVisible(true);
+            employeesOfDepartment.setVisible(true);
+            selectEmployee.setVisible(true);           
+       }
+    }//GEN-LAST:event_selectDepActionPerformed
+
+    private void selectEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectEmployeeMouseClicked
+        if (employeesOfDepartment.getSelectedValue() == null){
+            empNot.setVisible(true);
+        } else {        
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new EmployeeOverview(n,BasicEmployee.searchEmployeeByName2(employeesOfDepartment.getSelectedValue().toString())).setVisible(true);
+                }
+            });
+        }
+    }//GEN-LAST:event_selectEmployeeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -273,31 +313,30 @@ public class ShowDepartments extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*ava.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ShowDepartments(3).setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date;
+    private javax.swing.JLabel depNot;
+    private javax.swing.JLabel depart;
+    private javax.swing.JLabel empNot;
+    private javax.swing.JList employeesOfDepartment;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
-    private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JList mmDepartments;
+    private javax.swing.JToggleButton selectDep;
+    private javax.swing.JToggleButton selectEmployee;
     private javax.swing.JLabel time;
     // End of variables declaration//GEN-END:variables
 }

@@ -10,9 +10,61 @@ import javax.swing.*;
 
 public class Day {
   private ArrayList<Program> dailyProgram = new ArrayList<Program>();
-  private Date date;
-  public Day(Date d) {
-    date = d;
+  private String date;
+  private String d;
+	private String mon;
+	private String y;
+	private static final String[] days 
+	=	{"01", "02", "03", "04", "05", 
+          "06", "07", "08", "09", "10", 
+          "11", "12", "13", "14", "15", 
+          "16", "17", "18", "19", "20", 
+          "21", "22", "23", "24", "25", 
+          "26", "27", "28", "29", "30", 
+          "31"};
+	 private static final String months[] 
+		        = { "01", "02", "03", "04", 
+		            "05", "06", "07", "08", 
+		            "09", "10", "11", "12" }; 
+	 private static final String years[] 
+		        = { "2020", "2021", "2022", "2023", 
+		            "2024", "2025", "2026", "2027", 
+		            "2028", "2029", "2030", "2031", 
+		            "2032", "2033", "2034", "2035", 
+		            }; 
+  public Day(String date) {
+    String givenDay = date.substring(0, 2);
+    String givenMonth = date.substring(2, 4);
+    String givenYear = date.substring(4);
+    try {
+    for (int i =0; i < days.length; i++) {
+    	if (givenDay.equals(days[i])) {
+    		d = givenDay;
+    	}
+    	else {
+    		throw new Exception();
+    	}
+    }
+    for (int i =0; i < months.length; i++) {
+    	if (givenMonth.equals(months[i])) {
+    		mon = givenMonth;
+    	}
+    	else {
+    		throw new Exception();
+    	}
+    }
+    for (int i =0; i < years.length; i++) {
+    	if (givenYear.equals(years[i])) {
+    		y = givenYear;
+    	}
+    	else {
+    		throw new Exception();
+    	}
+    }
+    this.date = date;
+    } catch (Exception ex) {
+    	date = null;
+    }
   }
 /**
  *Gets the daily program.
@@ -32,26 +84,36 @@ public class Day {
  *Gets the date.
  *@return date 
  */
-  public Date getDate() {
-    return date;
- }
-
-/**
- *Sets the date.
- */
-  public void setDate(Date date) {
-	this.date = date;
-  }
-
-  /** public void displayDay(LocalDate date) {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyy");
-    System.out.println(date.format(formatter));
-  }
-  String[] options = {"Task", "Event"};*/
+ 
+  
  
   private void addToDailyProgram(Program p) {
     dailyProgram.add(p);
   }
+public String getDate() {
+	return date;
+}
+public void setDate(String date) {
+	this.date = date;
+}
+public String getD() {
+	return d;
+}
+public void setD(String d) {
+	this.d = d;
+}
+public String getMon() {
+	return mon;
+}
+public void setMon(String mon) {
+	this.mon = mon;
+}
+public String getY() {
+	return y;
+}
+public void setY(String y) {
+	this.y = y;
+}
 }
 /** 
 *End of Day class.

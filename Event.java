@@ -9,9 +9,9 @@ public class Event extends Program {
     private String time;
     ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
     private int eventCode;
-    private int type;
+    private String type;
     public Event(String title, Date date, String time,
-    		String description, int type) {
+    		String description, String type) {
 		this.title = title;
         this.description = description;
         this.type = type;
@@ -24,8 +24,7 @@ public class Event extends Program {
 		this.date = date;
 		this.setTime(time);
 		this.eventCode = counter++;
-		this.type = type;
-	}
+    }
 
 	public String getTitle() {
 		return title;

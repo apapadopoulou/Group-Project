@@ -118,7 +118,7 @@ public class BasicEmployee extends Employee {
 	public int getDepId() {
 		return department.getId();
 	}
-	
+
     /**
      *Method that checks if a Basic Employee works in HR department.
      *@return true or false
@@ -140,18 +140,17 @@ public class BasicEmployee extends Employee {
    *@return employee or null
    */
     public static BasicEmployee searchEmployeeByName2(String name) {
-    for (int i = 0; i < basicEmployees.size(); i++) {
-      if (basicEmployees.get(i).getNameSurname().equals(name)) {
-        return basicEmployees.get(i);
-      } else if (basicEmployees.get(i).getSurname().equals(name)) {
-        return basicEmployees.get(i);
-      } else {
-        System.out.println("Employee was not found");
-      }
-    }
-	return null;
+    	for (int i = 0; i < basicEmployees.size(); i++) {
+	      if (basicEmployees.get(i).getNameSurname().equals(name)) {
+	        return basicEmployees.get(i);
+	      } else if (basicEmployees.get(i).getSurname().equals(name)) {
+	        return basicEmployees.get(i);
+	      }
+		}
+    	return null;
     }
 	
+    
     /**
      * Gets the score.
      *@return score

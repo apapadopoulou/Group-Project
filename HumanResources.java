@@ -4,12 +4,9 @@ import java.util.Date;
 
 /*class HumanResources*/
 public class HumanResources extends Employee {
-    /*parameters for class HumanResources*/
-    HumanResources hr = new HumanResources();
-
     /*Constructor for class HumanResources*/
     public HumanResources(String name, String surname, String phonenumber,
-    		String email, String id, date birthdate) {
+    		String email, String id, Date birthdate) {
 		super(name, surname, phonenumber, email, id, birthdate);
 		employees.add(this);
     }

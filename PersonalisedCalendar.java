@@ -37,7 +37,6 @@ public class PersonalisedCalendar /* extends Calendar */ {
 						calendar[month] = new Day[31];
 					}
 				}
-				// hi
 			}
 		}
 	

@@ -403,7 +403,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         if ( num != 1 && num != 2){
             java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CreateEvent(emp, num).setVisible(true);
+                new CrEventOrAddTask(num, emp).setVisible(true);
             }
         });
         } else {

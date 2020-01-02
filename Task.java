@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-//import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Task extends Program {
+
 	
 	private String startDate;
 	private String dueDate;
@@ -66,7 +66,6 @@ public class Task extends Program {
 		this.empId = empId;
 		this.id = taskID; //Needed for the DataBase.
 		counter = id + 1;
-		System.out.println("correct single task loading");
 	}
   
   /**
@@ -111,23 +110,7 @@ public class Task extends Program {
 		this.empIds = empIds;
 		this.id = taskID; //Needed for the DataBase.
 		counter = id + 1;
-		System.out.println("correct multi task loading");
 	}
-	
-	/*Constructor for single employee task that is not being evaluated*/
-	/*public Task(String startDate, String dueDate, String desc, int importance, int difficulty, String empid) {
-		super();
-		this.desc = desc;
-		this.startDate = startDate;
-		this.dueDate = dueDate;
-		done = false;
-		isGroupTask = false;
-		this.importance = importance;
-		this.difficulty = difficulty;
-		this.empid = empid;
-		this.id = counter++; //Needed for the DataBase. 
-	}*/
-  
 	
 	public String getDueDate() {
 		return dueDate;
@@ -152,7 +135,8 @@ public class Task extends Program {
 		return done;
 	}
 
-	public void setStatus(boolean done) { //Used to indicate when a task is completed
+	//Used to indicate when a task is completed.
+	public void setStatus(boolean done) {
 		Date compDate = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
 		completionDate = formatter.format(compDate);
@@ -167,71 +151,38 @@ public class Task extends Program {
 	public ArrayList<String> getEmpIDs() {
 		return empIds;
 	}
-
-	public int getImportance() {
-		return importance;
-	}
-
-	public void setImportance(int weight) {
-		this.importance = importance;
-	}
-  
-	public void setTaskScore(double score) {
-		this.score = score;
-	}
-  
-	public int getDifficulty() {
-		return difficulty;
-	}
-	public void setTaskScore(double [] score) {
-		this.scores = scores;
-	}
-
-	public boolean isGroupTask() {
-		return isGroupTask;
-	}
-  
-	public int getTaskID() {
-		return id;  
-	}
-	
-	public String getDesc() {
-		return desc;
-	}
-	
-	public void setDesc(String desc) {
-		this.desc = desc;
-	}
-	
-	/*Method newTask creates a new task, using the Task class constructor. An option is also offered, in case
-  	you need to create a group task.*/
-	/*public void newTask() { 
+	/*Method newTask creates a new task, using the Task class constructor.
+	 * An option is also offered, in case you need to create a group task.*/
+	/*public void newTask() {
     Scanner sc = new Scanner(System.in);
     System.out.println("You are about to create a Task.");
     do {
     	try {
-    		System.out.println("Please insert due date:/n Note: Due date should be inserted according to the format dd-mm-yyy!");
+    		System.out.println("Please insert due date:/n Note:"
+    	+ "Due date should be inserted according to the format dd-mm-yyy!");
     		String inputDate = sc.nextLine();
     	}catch(InputMismatchException e) {
-    		System.out.println("Please insert due date correctly!/n Note: Due date should be inserted according to the format dd-mm-yyy!")
+    		System.out.println("Please insert due date correctly!/n Note:"
+    	+ "Due date should be inserted according to the format dd-mm-yyy!")
     	}
     }while(inputDate !instanceof String );
     	input.nextLine();
-    	
+
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     LocalDate dueDate = LocalDate.parse(inputDate);
     do{
     	try {
-   
-    		System.out.println("Please insert level of importance for this task:");
+    		System.out.println("Please insert level of"
+    		+ "importance for this task:");
     		int weight = sc.nextInt();
     }catch (InputMismatchException e) {
-    	System.out.println("Please insert level of importance for this task again")
+    	System.out.println("Please insert level of importance for"
+    	+ "this task again")
     }
     }while(weight !instanceof Integer);
   } */
-  
-  /*This method lets the user choose in how many parts the task should be devided.*/
+  /*This method lets the user choose in how many parts the task
+   * should be devided.*/
  /* public void taskSegmentation() {
     System.out.println("In how many parts should the task be devided?");
         Scanner sc = new Scanner(System.in);
@@ -240,7 +191,9 @@ public class Task extends Program {
             this.parts = parts;
             Date[] partdates = new Date[parts];
             for (int i = 0; i < parts; i++) {
-                System.out.println("which is the date until which the part : " + i + 1 + " needs to be completed? Please insert the date according to the formt dd-mm-yyy.");
+                System.out.println("which is the date until which the part :
+                + " " + i + 1 + " needs to be completed? Please insert the date"
+                + "according to the formt dd-mm-yyy.");
                 String dt = sc.nextLine();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                 LocalDate dueDate = LocalDate.parse(dt);

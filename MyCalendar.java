@@ -40,9 +40,9 @@ public class MyCalendar extends javax.swing.JFrame {
         new Timer(0, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                Date d = new Date();
-                SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
-                jLabelTime.setText(s.format(d));
+              Date d = new Date();
+              SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
+              jLabelTime.setText(s.format(d));
                
             }
                
@@ -51,12 +51,12 @@ public class MyCalendar extends javax.swing.JFrame {
     }
     public static String[] years(){
       String years[] = new String[100];
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        for (int i = 1; i < years.length; i++) {
-        	years[i]= String.valueOf(year);
-        	year++;        	
-        }
-        return years;    
+      int year = Calendar.getInstance().get(Calendar.YEAR);
+      for (int i = 1; i < years.length; i++) {
+        years[i]= String.valueOf(year);
+        year++;        	
+      }
+      return years;    
     }
 
     /**

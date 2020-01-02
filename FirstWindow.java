@@ -35,6 +35,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         ShowDate();
         ShowTime();
     }
+
     void ShowDate(){
         Date d = new Date();
         SimpleDateFormat s = new SimpleDateFormat("EEEE dd-MM-yyyy");
@@ -461,7 +462,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void arrow2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow2MouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TaskOrReminderWindow1(num).setVisible(true);
+                new TaskOrReminderWindow1(num, emp).setVisible(true);
             }
         });
         this.dispose();
@@ -471,7 +472,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         if ( num == 2 || num == 4){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TimeOffWindow(num).setVisible(true);
+                new TimeOffWindow(num, emp).setVisible(true);
             }
         });
         this.dispose();

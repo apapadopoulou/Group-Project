@@ -7,10 +7,6 @@ import javax.swing.JFrame;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/**
- *
- * @author Κατερίνα
- */
 public class WelcomeWindow extends javax.swing.JFrame {
 
     /**

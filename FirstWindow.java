@@ -35,6 +35,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         ShowDate();
         ShowTime();
     }
+
     void ShowDate(){
         Date d = new Date();
         SimpleDateFormat s = new SimpleDateFormat("EEEE dd-MM-yyyy");

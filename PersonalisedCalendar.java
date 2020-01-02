@@ -6,21 +6,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 
-public class PersonalisedCalendar /* extends Calendar */ {
-
-	private Day day;
-	private Task task;
-	private Event event;
-
-	/*
-	 * Creating a 2X2 table named calendar of type Day and containing every day of
-	 * the year
-	 */
-	private Day[][] calendar = new Day[12][];
-
-	/*
-	 * PersonalisedCalendar method inputs the specific amount of days each month has
-	 */
+public class PersonalisedCalendar {
 	public PersonalisedCalendar() {
 		for (int month = 0; month <= 11; month++) {
 			if (month <= 6 & month != 1) {
@@ -37,34 +23,8 @@ public class PersonalisedCalendar /* extends Calendar */ {
 						calendar[month] = new Day[31];
 					}
 				}
-				// hi
 			}
 		}
-	
-
-	/* displayCalendar method which prints the calendar on the screen 
-	public void displayCalendar() {
-		for (int month = 0; month <= 11; month++) {
-			JFrame f = new JFrame("Month");
-			f.setBounds(month, calendar[month].length, 4, 5);
-			f.setVisible(true);
-		}
-		/* This loop displaying if an employee has a task or event */
-		/* By searching every cell of the list */
-		/* If the name of the employee exists, it's shown */
-
-		/* name is username of the employee */
-		/*for (int i = 0; i < calendar[i].dailyProgram.size(); i++) {
-=======
-		/* name is username of the employee 
-		for (int i = 0; i < calendar[monthdailyProgram.size(); i++) {
->>>>>>> 7747656e7db2b98f3212638f7d969fbc7f4c5c12
-			if (dailyProgram.contains(name)) {
-				System.out.println(dailyProgram.get(i));
-			}else {
-				System.out.println("None");
-			}
-		}*/
 	}
         /** This method returns the daily program of the employee for the date given*/
     public ArrayList <Program> today (Date d) {

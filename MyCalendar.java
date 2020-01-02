@@ -242,7 +242,7 @@ public class MyCalendar extends javax.swing.JFrame {
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
          java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TaskOrReminderWindow1(n).setVisible(true);
+                new TaskOrReminderWindow1(n, emp).setVisible(true);
             }
         });
          this.dispose();

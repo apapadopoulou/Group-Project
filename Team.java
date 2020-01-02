@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 /*
@@ -23,11 +24,23 @@ public class Team extends javax.swing.JFrame {
     /**
      * Creates new form Team
      */
+    private int numberOfdepartments;
     private int n;
-    private Employee emp;
+    private MiddleManager mm;
+    private double teamScore;
     public Team(int n, Employee emp) {
-        this.emp = emp;
+        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
+        numberOfdepartments = mm.getManagingDepartments().size();
+        if (numberOfdepartments == 1) {
+            selectDepartments.setVisible(false);
+            managingDepartments.setVisible(false);
+            OKButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            OKButton.setVisible(false);
+            depNot.setVisible(false);
+            nameOfDepartment.setText(mm.getManagingDepartments().get(0).getName());
+        }
         this.n = n;
+        teamScore = 0.0;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         ShowDate();
@@ -72,8 +85,28 @@ public class Team extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         JTableHeader Theader = table.getTableHeader();
         Theader.setFont(new Font("Arial",Font.BOLD, 18));
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        int i;
+        if (numberOfdepartments == 1) {
+            for (i = 0; i < mm.getManagingDepartments().get(0).getEmployeesOfDepartment().size(); i++){
+                String name = mm.getManagingDepartments().get(0).getEmployeesOfDepartment().get(i).getNameSurname();
+                double score = mm.getManagingDepartments().get(0).getEmployeesOfDepartment().get(i).getScore();
+                teamScore += score;
+                Object[] row = {name, String.valueOf(score)};
+                model.addRow(row);
+            }
+            teamScore = teamScore / (i + 1);    
+        }
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        selectDepartments = new javax.swing.JLabel();
+        managingDepartments = new javax.swing.JComboBox();
+        for (i = 0; i < mm.getManagingDepartments().size(); i++){
+            managingDepartments.addItem(mm.getManagingDepartments().get(i).getName());
+        }
+        OKButton = new javax.swing.JToggleButton();
+        depNot = new javax.swing.JLabel();
+        nameOfDepartment = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,7 +172,31 @@ public class Team extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setText("Total Team score out of 10");
 
+        jLabel5.setText(String.valueOf(teamScore)
+        );
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        selectDepartments.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        selectDepartments.setText("Select Department:");
+
+        OKButton.setText("OK");
+        OKButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        OKButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OKButtonMouseClicked(evt);
+            }
+        });
+        OKButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKButtonActionPerformed(evt);
+            }
+        });
+
+        depNot.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        depNot.setForeground(new java.awt.Color(255, 0, 0));
+        depNot.setText("Please select a department!");
+
+        nameOfDepartment.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,7 +212,7 @@ public class Team extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 570, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(597, 597, 597)
                                 .addComponent(home))
@@ -167,14 +224,27 @@ public class Team extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(522, 522, 522))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(548, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(523, 523, 523))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(selectDepartments)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(managingDepartments, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(OKButton)
+                                            .addComponent(depNot)))
+                                    .addComponent(nameOfDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(487, 487, 487))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,22 +256,29 @@ public class Team extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)))
                     .addComponent(home, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(da, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(240, 240, 240))))
+                .addGap(5, 5, 5)
+                .addComponent(da, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selectDepartments)
+                    .addComponent(managingDepartments, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(OKButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(depNot, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nameOfDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(240, 240, 240))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -212,11 +289,36 @@ public class Team extends javax.swing.JFrame {
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(emp).setVisible(true);
+                new FirstWindow(mm).setVisible(true);
             }
         });
         this.dispose();
     }//GEN-LAST:event_homeMouseClicked
+
+    private void OKButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKButtonMouseClicked
+        if (managingDepartments.getSelectedItem() == null) {
+            depNot.setVisible(true);
+        } else {
+            String dep = managingDepartments.getSelectedItem().toString();
+            Department department = Department.searchDepartmentByName(dep);
+            nameOfDepartment.setText(department.getName());
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            int i;
+            for (i = 0; i < department.getEmployeesOfDepartment().size(); i++){
+                String name = department.getEmployeesOfDepartment().get(i).getNameSurname();
+                double score = department.getEmployeesOfDepartment().get(i).getScore();
+                teamScore += score;
+                Object[] row = {name, String.valueOf(score)};
+                model.addRow(row);
+            }
+            teamScore = teamScore / (i + 1);
+                    
+        }
+    }//GEN-LAST:event_OKButtonMouseClicked
+
+    private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OKButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,7 +340,9 @@ public class Team extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton OKButton;
     private javax.swing.JLabel da;
+    private javax.swing.JLabel depNot;
     private javax.swing.JLabel home;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -247,6 +351,9 @@ public class Team extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox managingDepartments;
+    private javax.swing.JLabel nameOfDepartment;
+    private javax.swing.JLabel selectDepartments;
     private javax.swing.JLabel t;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables

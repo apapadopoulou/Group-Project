@@ -4,27 +4,63 @@ import java.util.Date;
 public class Event extends Program {
     private String title;
     private String description;
-    private Date date;
+    private String date;
     private static int counter = 1;
     private String time;
-    ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
+    private ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
     private int eventCode;
     private String type;
-    public Event(String title, Date date, String time,
-    		String description, String type) {
+    public Event(String title, String date, String time,
+    		String description, String type, ArrayList<Employee> employees) {
 		this.title = title;
         this.description = description;
         this.type = type;
-		/*do {
-			if (Checkers.isValidType(type))
-				System.out.println("Valid Title");
-			else
-		System.out.println("Invalid Title! Insert a new one");
-		} while (Checkers.isValidTitle(title));*/
+		listOfEmployeesInThisEvent = employees;
 		this.date = date;
 		this.setTime(time);
 		this.eventCode = counter++;
     }
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+    @Override
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public ArrayList<Employee> getListOfEmployeesInThisEvent() {
+		return listOfEmployeesInThisEvent;
+	}
+
+	public void setListOfEmployeesInThisEvent(ArrayList<Employee> listOfEmployeesInThisEvent) {
+		this.listOfEmployeesInThisEvent = listOfEmployeesInThisEvent;
+	}
+
+	public int getEventCode() {
+		return eventCode;
+	}
+
+	public void setEventCode(int eventCode) {
+		this.eventCode = eventCode;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	public String getTitle() {
 		return title;

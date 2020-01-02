@@ -5,14 +5,14 @@ import java.util.Date;
 /*This class creates Event and Task objects.*/
 public abstract class Program {
 	Calendar c;
-	protected Date date;
+	protected String date;
 	public static ArrayList<Program> allPrograms = new ArrayList<Program>();
 	public Program() {}
 	/*current_date = calendar.get(Calendar.DATE)+"/"+calendar.get(Calendar.MONTH)+"/"+calendar.get(Calendar.YEAR); na to tsekaroume an xreiazetai kapou*/
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date=date;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 }

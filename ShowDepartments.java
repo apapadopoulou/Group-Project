@@ -283,6 +283,7 @@ public class ShowDepartments extends javax.swing.JFrame {
                 }
             });
         }
+                
     }//GEN-LAST:event_selectEmployeeMouseClicked
 
     /**

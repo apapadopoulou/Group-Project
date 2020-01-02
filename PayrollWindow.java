@@ -23,9 +23,11 @@ public class PayrollWindow extends javax.swing.JFrame {
      * Creates new form PayrollWindow
      */
     private int n;
- 
+    /* private Employee emp; */
+
     public PayrollWindow(int n) {
         this.n = n;
+        /* this.emp = emp; */
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         showDate();
@@ -51,7 +53,8 @@ public class PayrollWindow extends javax.swing.JFrame {
         }
         ).start();
     }
- 
+    SalaryModificationWindow sal = new SalaryModificationWindow();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -147,9 +150,22 @@ public class PayrollWindow extends javax.swing.JFrame {
             new String [] {
                 "Employee", "Salary"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 22)); // NOI18N
@@ -234,23 +250,36 @@ public class PayrollWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/*
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(() -> {
             new FirstWindow(n).setVisible(true);
         });
-        this.dispose();
+        this.dispose(); 
     }//GEN-LAST:event_jLabel2MouseClicked
-
+*/
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        new SalaryModificationWindow().setVisible(true);
-        int index = jTable1.getSelectedRow();
-        TableModel model = jTable1.getModel();
-        String employee = (String) model.getValueAt(index, 0);
-        String salary = (String) model.getValueAt(index, 1);
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        if (jButton1.isSelected()) {
+            sal.setVisible(true);
+            int index = jTable1.getSelectedRow();
+            TableModel model = jTable1.getModel();
+            String emp = (String) model.getValueAt(index, 0);
+            String sala = (String) model.getValueAt(index, 1);
+            sal.setVisible(true);
+            sal.pack();
+            sal.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            sal.employee.setText(emp);
+            sal.salary.setText(sala);
+        } else {
+            sal.setVisible(true);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -269,13 +298,13 @@ public class PayrollWindow extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SalaryWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalaryModificationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SalaryWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalaryModificationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SalaryWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalaryModificationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SalaryWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalaryModificationWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

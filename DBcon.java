@@ -85,16 +85,14 @@ public class DBcon {
 			System.out.println("TABLE BBAccount CREATED"); 
 			
 			stmt.executeUpdate("CREATE TABLE BBTask "
-				+ "(taskCode INT not null,"
-				+ "startDate DATE not null,"
-				+ "dueDate DATE not null, "
-				+ "description VARCHAR(40) not null,"
-				+ "parts INTEGER not null,"
+				+ "(taskID INT not null,"
+				+ "startDate VARCHAR(20) not null,"
+				+ "dueDate VARCHAR(20) not null, "
+				+ "completionDate VARCHAR(20), "
+				+ "description VARCHAR(100) not null,"
 				+ "importance INT not null,"
 				+ "difficulty INT not null,"
-				+ "empID VARCHAR(20) not null,"
-				+ "PRIMARY KEY (taskCode),"
-				+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
+				+ "PRIMARY KEY (taskID));");
 			System.out.println("TABLE BBTask CREATED");
 			
 			stmt.executeUpdate("CREATE TABLE BBEvent "
@@ -108,13 +106,21 @@ public class DBcon {
 			System.out.println("TABLE BBEvent CREATED");
 			
 			stmt.executeUpdate("CREATE TABLE BBEvaluation "
-				+ "(taskID INT not null,"
-				+ "empID VARCHAR(20) not null,"
-				+ "evaluation REAL not null,"
-				+ "PRIMARY KEY (taskID, empID),"
+				+ "(taskID INT not null, "
+				+ "empID VARCHAR(20) not null, "
+				+ "evaluation REAL not null, "
+				+ "PRIMARY KEY (taskID, empID), "
 				+ "FOREIGN KEY (empID) REFERENCES BBAccount,"
 				+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
 			System.out.println("TABLE BBEvaluation CREATED");
+			
+			stmt.executeUpdate("CREATE TABLE BBAssignedToTask "
+					+ "(taskID INT not null, "
+					+ "empID VARCHAR(20) not null, "
+					+ "PRIMARY KEY (taskID, empID), "
+					+ "FOREIGN KEY (empID) REFERENCES BBAccount,"
+					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
+			System.out.println("TABLE BBAssignedToTask CREATED");
 		/*Catch block if an exception occurs and the specified driver is not found.*/
 		} catch (Exception e) {
 			System.out.print("SQLExcpetion: ");
@@ -140,6 +146,7 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
+			stmt.executeUpdate("DROP TABLE BBAssignedToTask;");
 			stmt.executeUpdate("DROP TABLE BBEvaluation;");
 			stmt.executeUpdate("DROP TABLE BBEvent;");
 			stmt.executeUpdate("DROP TABLE BBTask;");
@@ -521,8 +528,6 @@ public class DBcon {
 					stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpIDs().get(i) + ", " + score + ");");
 				}
 			}
-				
-	
 			stmt.close(); //Closes the Statement resource.
 			dbcon.close(); //Closes the DataBase conenction resource.
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -535,10 +540,8 @@ public class DBcon {
 	 *Method responsible for retrieving past evaluations of employee's performance on his tasks.
 	 *Returns an ArrayLIst of type Double which contains all of an employee's previous evaluations. 
 	 */
-	public static ArrayList<Double> getEvalHistory(String id) {
-		
-		ArrayList<Double> evalHistory = new ArrayList<Double>(); //ArrayList to save previous evaluations.
-		
+	public static double getEvalAverage(String id) {
+		double evalAverage = 0.0;
 		/*Connection type object to make the connection.*/
 		Connection dbcon;
 		/*Statement type object that contains the statement we will send to the server.*/
@@ -559,12 +562,10 @@ public class DBcon {
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
 			/*Executes the given query that returns the History of Evaluations for the particular BasicEmployee using his ID.*/
-			rs = stmt.executeQuery("SELECT evaluation FROM JEvaluations WHERE empID=" + id );
+			rs = stmt.executeQuery("SELECT AVG(evaluation) AS avg FROM BBEvaluation WHERE empID=" + id );
 			/*Does a loop for every row it finds.*/
 			while (rs.next()) {
-				double evaluation = rs.getDouble("evaluation");//Returns the evalutaion value from this row.
-				evalHistory.add(evaluation);// Adds the evaluation value to the ArrayList.
-				System.out.println("check if its correct!!");//Used for testing.
+				evalAverage = rs.getDouble("avg");//Returns the evalutaion value from this row.
 			}
 			rs.close(); //Closes the ResultSet resource.
 			stmt.close(); //Closes the Statement resource.
@@ -573,6 +574,139 @@ public class DBcon {
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
-		return evalHistory; // Returns the ArrayList.
+		// Returns the evaluation average.
+		return evalAverage;
+	}
+	
+	public static void saveTask(Task task) {
+		/*Connection type object to make the connection.*/
+		Connection dbcon;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt;
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			stmt.executeUpdate("INSERT INTO BBTask (taskID, startDate, dueDate, completionDate, description, importance, difficulty) VALUES ('" + task.getTaskID() + "', '" + task.getStartDate() + "', '" + task.getDueDate() + "', '" + task.getCompletionDate() + "', '" + task.getDesc() + "', " + task.getImportance() + ", " + task.getDifficulty() + ");");
+			stmt.close(); //Closes the Statement resource.
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void loadTasks() {
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			ResultSet rs;
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			rs = stmt.executeQuery("SELECT taskID, startDate, dueDate, completionDate, description, importance, difficulty FROM BBTask");
+			/*Does a loop for every row (object in this case) it finds.*/
+			while (rs.next()) {
+				int taskID = rs.getInt("taskID");
+				String startDate = rs.getString("startDate");
+				String dueDate= rs.getString("dueDate");
+				String completionDate = rs.getString("completionDate");
+				String desc = rs.getString("description");
+				int importance = rs.getInt("importance");
+				int difficulty = rs.getInt("difficulty");
+				ArrayList<String> empids = loadAssignedToTask(taskID);
+				if (empids.size() == 1) {
+					Task task = new Task(taskID, startDate, dueDate, completionDate, desc, importance, difficulty, empids.get(0));
+				} else {
+					Task task = new Task(taskID, startDate, dueDate, completionDate, desc, importance, difficulty, empids);
+				}
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void AssignToTask(int id, String empID) {
+		/*Connection type object to make the connection.*/
+		Connection dbcon;
+		/*Statement type object that contains the statement we will send to the server.*/
+		Statement stmt;
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			stmt.executeUpdate("INSERT INTO BBAssignedToTask (taskID, empID) VALUES (" + id + ", '" + empID + "');");
+			stmt.close(); //Closes the Statement resource.
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static ArrayList<String> loadAssignedToTask(int taskID) {
+		ArrayList<String> empIds = new ArrayList<String>();
+		/*Try block for trying to find the correct Driver to make the DB connection.*/
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		/*Catch block if an exception occurs and the specified driver is not found.*/
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/*Try block for making the DB connection and executing the given statement.*/
+		try {
+			ResultSet rs;
+			/*Makes the actual connection with the server.*/
+			dbcon = DriverManager.getConnection(url);
+			/*Creates the statement*/
+			stmt = dbcon.createStatement();
+			/*Executes the given statement that saves the object's.*/
+			rs = stmt.executeQuery("SELECT empID FROM BBAssignedToTask WHERE taskID = " + taskID);
+			/*Does a loop for every row (object in this case) it finds.*/
+			while (rs.next()) {
+				empIds.add(rs.getString("empID"));
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		return empIds;
 	}
 }

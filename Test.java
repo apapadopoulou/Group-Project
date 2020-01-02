@@ -8,11 +8,11 @@ public class Test {
 		/*
 		DBcon.deleteTables();
 		DBcon.createTables();
-
+		
 		Department dep0 = new Department("Sales");
-		Department dep1 = new Department("Sales");
-		Department dep2 = new Department("Sales");
-		Department dep3 = new Department("Sales");
+		Department dep1 = new Department("Accounting");
+		Department dep2 = new Department("IT");
+		Department dep3 = new Department("R&D");
 		
 		Employee emp0 = new BasicEmployee("vasilis", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 1);
 		Employee emp1 = new BasicEmployee("Tasos", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 2);
@@ -26,8 +26,14 @@ public class Test {
 		
 		Employee emp8 = new TopManager("Tasos", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000");
 		Employee emp9 = new TopManager("Mpampis", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000");
+		//Sosto mexri edw!
+		ArrayList<String> empids = new ArrayList<String>();
+		empids.add("atef0");
+		empids.add("4ioif0");
+		Task task1 = new Task("23/02/1993", "29/02/1993", "New simple task asda", 5, 8, "1asif0");
+		Task task2 = new Task("27/11/2013", "03/12/2013", "New simple task adqwdw", 2, 4, "rewu1");
+		Task task3 = new Task("27/11/2013", "03/12/2013", "New simple task adqwdw", 5, 9, empids);
 		*/
-	
 		DBcon.loadDepartments();
 		System.out.println("Succesfully Loaded Departments.");
 		DBcon.loadBasicEmployees();
@@ -38,6 +44,8 @@ public class Test {
 		System.out.println("Succesfully Loaded Accounts.");
 		DBcon.loadTopManagers();
 		System.out.println("Succesfully Loaded Top Managers.");
+		DBcon.loadTasks();
+		System.out.println("Succesfully Loaded Tasks.");
 		 
 	}
  } 

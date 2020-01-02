@@ -40,19 +40,10 @@ public class Evaluation {
 	}
 	
 	public static double evalSingleTask(Task task) {
-		ArrayList<Double> evalHistory = DBcon.getEvalHistory(task.getEmpID());
-		double evalSum= 0.0;
-		for (int i = 0; i < evalHistory.size(); i++) {
-			//Adds the score for every previous evaluation.
-			evalSum += evalHistory.get(i);
-		}
-		double evalAvg;
-		if (evalHistory.size() != 0) {
-			//Calculates the average score of all the evaluations.
-			evalAvg = evalSum / evalHistory.size();
-		} else {
+		double evalAvg = DBcon.getEvalAverage(task.getEmpID());
+		if (evalAvg == null) {
 			evalAvg = STARTING_EVAL;
-		}
+		} 
 		//Calculates the percentage difference between the completion date of the task and the total available time to complete the task.
 		double percentageDiff = calculateDateDiff(task.getStartDate(), task.getDueDate(),task.getCompletionDate() );
 		//Calculates the Task level based on the difficulty and importance. 
@@ -80,14 +71,8 @@ public class Evaluation {
 	public static double[] evalGroupTask(Task task) {
 		double[] evalAvg = new double [task.getEmpIDs().size()]; 
 		for (int j = 0; j < task.getEmpIDs().size(); j++) {
-			ArrayList<Double> evalHistory = DBcon.getEvalHistory(task.getEmpIDs().get(j));
-			double evalSum= 0.0;
-			for (int i = 0; i < evalHistory.size(); i++) {
-				evalSum += evalHistory.get(i); //Adds the score for every previous evaluation.
-			}
-			if (evalHistory.size() != 0) {
-				evalAvg[j] = evalSum / evalHistory.size(); //Calculates the average score of all the evaluations.
-			}	else {
+			evalAvg[j] = DBcon.getEvalAverage(task.getEmpIDs().get(j));
+			if (evalAvg[j] == 0) {
 				evalAvg[j] = STARTING_EVAL;
 			}
 		}

@@ -7,6 +7,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 
 public class PersonalisedCalendar {
+	private Day[][] calendar;
 	public PersonalisedCalendar() {
 		for (int month = 0; month <= 11; month++) {
 			if (month <= 6 & month != 1) {
@@ -27,13 +28,13 @@ public class PersonalisedCalendar {
 		}
 	}
         /** This method returns the daily program of the employee for the date given*/
-    public ArrayList <Program> today (Date d) {
+    public ArrayList <Program> todaysProgram (Date d) {
     	LocalDate localDate = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     	int month = localDate.getMonthValue();
     	int dayD = localDate.getDayOfMonth();
     	return calendar[month - 1][dayD - 1].getDailyProgram();
     }
-    public void addToCalendar (Program p) {
+    /*public void addToCalendar (Program p) {
         Date d = p.getDate();
         LocalDate localDate = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int month = localDate.getMonthValue();
@@ -41,39 +42,9 @@ public class PersonalisedCalendar {
         calendar[month - 1][dayD - 1] = day; 
                
     }
-    	
-    
-    	
-    
-    
-    
-    
-    
-	/* Main method that assigns a personalised calendar to a user and displays it */
+    */
 
-	public Day getDay() {
-		return day;
-	}
-
-	public void setDay(Day day) {
-		this.day = day;
-	}
-
-	public Task getTask() {
-		return task;
-	}
-
-	public void setTask(Task task) {
-		this.task = task;
-	}
-
-	public Event getEvent() {
-		return event;
-	}
-
-	public void setEvent(Event event) {
-		this.event = event;
-	}
+	
 	
 	/* This method checks if the year is leap */
 	public static boolean leapYear(int year) {

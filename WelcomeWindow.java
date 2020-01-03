@@ -39,14 +39,14 @@ public class WelcomeWindow extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 222, 89));
         jPanel1.setToolTipText("");
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        /*jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel1MouseEntered(evt);
             }
-        });
+        });*/
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel1.setText("Hello! Welcome to BusyB!");

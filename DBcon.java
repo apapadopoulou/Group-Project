@@ -164,6 +164,15 @@ public class DBcon {
 		}
 	}
 	
+	public static void loadData() {
+		DBcon.loadDepartments();
+    	DBcon.loadMiddleManagers();
+    	DBcon.loadBasicEmployees();
+    	DBcon.loadTopManagers();
+    	DBcon.loadAccounts();
+    	DBcon.loadTasks();
+	}
+	
 	//Method to save Accounts to DB.
 	public static void saveAccount(Account acc) {
 		/*Try block for trying to find the correct Driver to make the DB connection.*/
@@ -501,7 +510,7 @@ public class DBcon {
 		}
 	}
 	
-	public static void saveEvaluation(Task task, double score) {
+	public static void saveEvaluation(int taskID, String empID, double score) {
 		/*Connection type object to make the connection.*/
 		Connection dbcon;
 		/*Statement type object that contains the statement we will send to the server.*/
@@ -520,14 +529,7 @@ public class DBcon {
 			dbcon = DriverManager.getConnection(url);
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
-			if (!task.getIsGroupTask()) { //Checks if its a group task or not.
-				/*Executes the given statement that saves the evaluation score and the employee's ID. */
-				stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpID() + ", " + score + ");");
-			} else {
-				for (int i =0; i < task.getEmpIDs().size(); i++) {
-					stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpIDs().get(i) + ", " + score + ");");
-				}
-			}
+			stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + taskID + ", " + empID + ", " + score + ");");}
 			stmt.close(); //Closes the Statement resource.
 			dbcon.close(); //Closes the DataBase conenction resource.
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -708,13 +710,5 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 		return empIds;
-	}
-	public static void loadData() {
-		DBcon.loadDepartments();
-    	DBcon.loadMiddleManagers();
-    	DBcon.loadBasicEmployees();
-    	DBcon.loadTopManagers();
-    	DBcon.loadAccounts();
-    	DBcon.loadTasks();
 	}
 }

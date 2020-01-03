@@ -10,6 +10,27 @@ import java.util.InputMismatchException;
  /* Class Flow manages the main flow of the application and
   * supports data entry and first connection to the database." */
 public class Flow {
+	public static void adminSettingsEntry() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Insert administrator's surname: ");
+		String admnSurname = sc.next();
+		sc.nextLine();
+		System.out.println("Insert administrator's name: ");
+        String admnName = sc.next();
+        sc.nextLine();
+        System.out.println("Insert administrator's phonenumber: ");
+        String admnPhonenumber = sc.next();
+        sc.nextLine();
+        System.out.println("Insert administrator's email: ");
+        String admnEmail = sc.next();
+        sc.nextLine();
+        System.out.println("Insert administrator's birthdate: ");
+        String admnBirthdate = sc.next();
+        sc.nextLine();
+        Department admin = new Department("Administrator");
+        Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
+       
+	}
 public static void dataEntry() throws ParseException {
   Scanner sc = new Scanner(System.in);
       String dname;

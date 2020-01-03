@@ -15,9 +15,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
     private int n;
     private Employee emp;
 
-    public WelcomeWindow(int n, Employee emp) {
-        this.emp = emp;
-        this.n = n;
+    public WelcomeWindow() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }

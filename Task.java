@@ -201,4 +201,20 @@ public class Task extends Program {
             }
         } catch(InputMismatchException e1) {}
   }*/
+
+	public int getTaskID() {
+		return id;
+	}
+
+	public int getImportance() {
+		return importance;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public int getDifficulty() {
+		return difficulty;
+	}
 }

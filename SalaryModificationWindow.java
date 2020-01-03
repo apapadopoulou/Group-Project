@@ -163,7 +163,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        new PayrollWindow(n).setVisible(true);
+        new PayrollWindow(n,emp).setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     /**

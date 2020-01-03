@@ -9,7 +9,11 @@ import java.awt.Toolkit;
 
 /**
  *
+<<<<<<< HEAD
  * @author
+=======
+ * @author BusyB
+>>>>>>> c2f438b344b37effacb1fa121421eb88937314c0
  */
 public class SalaryModificationWindow extends javax.swing.JFrame {
 
@@ -159,7 +163,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        new PayrollWindow(n,emp).setVisible(true);
+        new PayrollWindow(n).setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     /**

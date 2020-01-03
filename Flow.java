@@ -45,6 +45,7 @@ public static void dataEntry() throws ParseException {
               + "In case you have inserted all the"
               + " Departments, please type done.");
           dname = sc.next();
+          sc.nextLine();
           if (!dname.equals("done")) {
               dep = new Department(dname);
               System.out.println("Department created"
@@ -55,21 +56,26 @@ public static void dataEntry() throws ParseException {
               System.out.println("When you are done, please type done.");
               System.out.println("Name: ");
               name = sc.next();
+              sc.nextLine();
               while (!name.equals("done")) {
                 boolean run = true;
                 while (run) {
                    System.out.println("Surname: ");
                    surname = sc.next();
+                   sc.nextLine();
                    System.out.println("Email: ");
                    email = sc.next();
+                   sc.nextLine();
                    System.out.println("Phonenumber: ");
                    phoneNumber = sc.next();
+                   sc.nextLine();
                    System.out.println("Date of Birth: ");
                    boolean con = true;
                    while (!con) {
                 	   try {
                 		   sc.nextLine();
                 		   inputDate = sc.nextLine();
+                		   sc.nextLine();
                 		   break;
                 	   } catch (InputMismatchException ime) { }
                    }
@@ -79,27 +85,35 @@ public static void dataEntry() throws ParseException {
                      System.out.println("Employee "
                      + "created with id: " + emp.getID());
                      //Loop breakes when an Employee is created.
-                     return;
+                     break;
                  }
                 System.out.println("Name: ");
                 name = sc.next();
+                sc.nextLine();
               }
              System.out.println("Insert Department's Manager: ");
              System.out.println("Name: ");
              name = sc.next();
+             sc.nextLine();
              System.out.println("Surname: ");
              surname = sc.next();
+             sc.nextLine();
              System.out.println("Email: ");
              email = sc.next();
+             sc.nextLine();
              System.out.println("Phonenumber: ");
              phoneNumber = sc.next();
+             sc.nextLine();
              System.out.println("Date of Birth: ");
              boolean con = true;
              while (con) {
             	 try {
             		 inputDate = sc.nextLine();
+            		 sc.nextLine();
             		 break;
-            	 } catch (InputMismatchException ime) { }
+            	 } catch (Exception ex) {
+            		 System.out.println("An error occured! Please try again!");
+            	 }
              }
              sc.nextLine();
              MiddleManager emp = new MiddleManager(name, surname,
@@ -118,15 +132,19 @@ public static void dataEntry() throws ParseException {
           while (run) {
              System.out.println("Surname: ");
              surname = sc.next();
+             sc.nextLine();
              System.out.println("Email: ");
              email = sc.next();
+             sc.nextLine();
              System.out.println("Phonenumber: ");
              phoneNumber = sc.next();
+             sc.nextLine();
              System.out.println("Date of Birth: ");
              boolean con = true;
              while (con) {
             	 try {
             		 inputDate = sc.nextLine();
+            		 sc.nextLine();
             		 break;
             	 } catch (InputMismatchException ime) { }
              }

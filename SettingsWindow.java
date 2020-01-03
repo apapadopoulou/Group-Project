@@ -27,7 +27,7 @@ public class SettingsWindow extends javax.swing.JFrame {
     
     public SettingsWindow(int n, Employee emp) {
         this.n = n;
-        this.n = n;
+        this.emp = emp;
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         showDate();

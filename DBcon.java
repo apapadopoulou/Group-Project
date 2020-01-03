@@ -520,7 +520,7 @@ public class DBcon {
 			dbcon = DriverManager.getConnection(url);
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
-			if (!task.isGroupTask()) { //Checks if its a group task or not.
+			if (!task.getIsGroupTask()) { //Checks if its a group task or not.
 				/*Executes the given statement that saves the evaluation score and the employee's ID. */
 				stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + task.getTaskID() + ", " + task.getEmpID() + ", " + score + ");");
 			} else {

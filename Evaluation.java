@@ -1,4 +1,6 @@
 import java.util.Date; //Used to get the Time.
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +23,7 @@ public class Evaluation {
 	 */
 	public static void evaluate(Task task) {
 		//Checks if a task is group task or not.
-		if (!task.isGroupTask()) {
+		if (!task.getIsGroupTask()) {
 			double score = 0.0;
 			//Calls method for evaluating single-employee Tasks.
 			score = evalSingleTask(task);
@@ -259,7 +261,10 @@ public class Evaluation {
 	 * Method to calculate the difference between completion date and due date in percentage.
 	 * Returns the percentage difference between total time to complete the task and remaining time to Due Date.
 	 */
-	public static double calculateDateDiff(Date startDate, Date dueDate, Date completionDate) {
+	public static double calculateDateDiff(String stDate, String dDate, String comDate) throws ParseException {
+		Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(stDate);
+		Date dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dDate);
+		Date completionDate = new SimpleDateFormat("dd/MM/yyyy").parse(comDate);
 		//Calculates the difference between DueDate and startDate in milliseconds.
 		long startDiff = dueDate.getTime() - startDate.getTime();
 		//Calculates the difference between dueDate and startDate in minutes.

@@ -151,6 +151,10 @@ public class Task extends Program {
 	public ArrayList<String> getEmpIDs() {
 		return empIds;
 	}
+	
+	public boolean getIsGroupTask() {
+		return isGroupTask;
+	}
 	/*Method newTask creates a new task, using the Task class constructor.
 	 * An option is also offered, in case you need to create a group task.*/
 	/*public void newTask() {

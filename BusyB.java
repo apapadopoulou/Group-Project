@@ -16,6 +16,7 @@ public class BusyB {
       AdminWindow aw = new AdminWindow();
       aw.hello();
     } else {
+    DBcon.loadData();
       java.awt.EventQueue.invokeLater(new Runnable() {
         @Override
   public void run() {

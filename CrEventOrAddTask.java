@@ -578,7 +578,12 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
             String description = textArea.getText();
-            
+            int importance = (int) comboImp.getSelectedItem();
+            int difficulty = (int) comboDif.getSelectedItem();
+            String employeeId = Employee.searchEmployeeByName2(
+                    String.valueOf(employeesList.getSelectedValue())).getId();
+            new Task(startDate, dueDate, description, importance, difficulty, 
+                employeeId);          
             
         }
     }//GEN-LAST:event_addOrCreateMouseClicked

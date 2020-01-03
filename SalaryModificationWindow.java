@@ -9,7 +9,7 @@ import java.awt.Toolkit;
 
 /**
  *
- * @author Κατερίνα
+ * @author
  */
 public class SalaryModificationWindow extends javax.swing.JFrame {
 

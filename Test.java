@@ -24,7 +24,7 @@ public class Test {
 		Employee emp6 = new MiddleManager("Antonis", "pakas", "6942796775", "alcabilone@gmail.com", "25/07/2000");
 		Employee emp7 = new MiddleManager("Maria", "georgiou", "6942796775", "alcabilone@gmail.com", "25/07/2000");
 		
-		Employee emp8 = new TopManager("Tasos", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000");
+		Employee emp8 = new TopManager("Tasos", "yesaras", "6942796775", "tasos@gmail.com", "25/07/2000");
 		Employee emp9 = new TopManager("Mpampis", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000");
 		//Sosto mexri edw!
 		ArrayList<String> empids = new ArrayList<String>();
@@ -34,16 +34,17 @@ public class Test {
 		Task task2 = new Task("27/11/2013", "03/12/2013", "New simple task adqwdw", 2, 4, "rewu1");
 		Task task3 = new Task("27/11/2013", "03/12/2013", "New simple task adqwdw", 5, 9, empids);
 		*/
+		//Employee emp8 = new TopManager("Tasos", "yesaras", "6942796775", "tasos@gmail.com", "25/07/2000");
 		DBcon.loadDepartments();
 		System.out.println("Succesfully Loaded Departments.");
 		DBcon.loadBasicEmployees();
 		System.out.println("Succesfully Loaded Basic Employees.");
 		DBcon.loadMiddleManagers();
 		System.out.println("Succesfully Loaded Middle Managers.");
-		DBcon.loadAccounts();
-		System.out.println("Succesfully Loaded Accounts.");
 		DBcon.loadTopManagers();
 		System.out.println("Succesfully Loaded Top Managers.");
+		DBcon.loadAccounts();
+		System.out.println("Succesfully Loaded Accounts.");
 		DBcon.loadTasks();
 		System.out.println("Succesfully Loaded Tasks.");
 		 

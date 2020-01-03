@@ -1,4 +1,6 @@
 import java.util.Date; //Used to get the Time.
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -21,27 +23,25 @@ public class Evaluation {
 	 */
 	public static void evaluate(Task task) {
 		//Checks if a task is group task or not.
-		if (!task.isGroupTask()) {
+		if (!task.getIsGroupTask()) {
 			double score = 0.0;
 			//Calls method for evaluating single-employee Tasks.
 			score = evalSingleTask(task);
 			//Saves the result of the evaluation on the database.
-			DBcon.saveEvaluation(task, score);
-			task.setTaskScore(score);
+			DBcon.saveEvaluation(task.getTaskID(), task.getEmpID(), score);
 		} else {
 			double[] scores = new double[task.getEmpIDs().size()];
 			//Calls method for evaluating group Tasks.
 			scores = evalGroupTask(task);
 			for (int i =0; i < task.getEmpIDs().size(); i++) {
-				DBcon.saveEvaluation(task, scores[i]);
+				DBcon.saveEvaluation(task.getTaskID(), task.getEmpIDs().get(i), scores[i]);
 			}
-			task.setTaskScore(scores);
 		}
 	}
 	
 	public static double evalSingleTask(Task task) {
 		double evalAvg = DBcon.getEvalAverage(task.getEmpID());
-		if (evalAvg == null) {
+		if (evalAvg == 0.0) {
 			evalAvg = STARTING_EVAL;
 		} 
 		//Calculates the percentage difference between the completion date of the task and the total available time to complete the task.
@@ -259,7 +259,10 @@ public class Evaluation {
 	 * Method to calculate the difference between completion date and due date in percentage.
 	 * Returns the percentage difference between total time to complete the task and remaining time to Due Date.
 	 */
-	public static double calculateDateDiff(Date startDate, Date dueDate, Date completionDate) {
+	public static double calculateDateDiff(String stDate, String dDate, String comDate) throws ParseException {
+		Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(stDate);
+		Date dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dDate);
+		Date completionDate = new SimpleDateFormat("dd/MM/yyyy").parse(comDate);
 		//Calculates the difference between DueDate and startDate in milliseconds.
 		long startDiff = dueDate.getTime() - startDate.getTime();
 		//Calculates the difference between dueDate and startDate in minutes.

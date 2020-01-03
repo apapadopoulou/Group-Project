@@ -9,7 +9,7 @@ public class TopManager extends Employee{
 		super(name, surname, phonenumber, email, birthdate, null, 0);
 		/*the id is constructed using the first two letters of the manager's name, the first two letters of the managers's surname
 		 * and the number of top managers that already exist */
-		String id = name.substring(1,2) + surname.substring(1,2) + String.valueOf(topManagers.size());
+		String id = name.substring(1,2) + surname.substring(1,3) + String.valueOf(topManagers.size());
 		setID(id);
 		topManagers.add(this);
 		employees.add(this);

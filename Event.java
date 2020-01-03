@@ -20,7 +20,16 @@ public class Event extends Program {
 		this.setTime(time);
 		this.eventCode = counter++;
     }
+    public void addEvent () {
+    	for (int i = 1; i < listOfEmployeesInThisEvent.size(); i++) {
+    		
+    	}
+    }
 
+	@Override
+	public String toString() {
+		return "title:" + title + "description:" + description + ", date:" + date + ", time:" + time;
+	}
 	public String getDescription() {
 		return description;
 	}

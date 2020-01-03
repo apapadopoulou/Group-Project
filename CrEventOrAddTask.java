@@ -570,7 +570,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             } catch (Exception e){
                     jLabel1.setVisible(true);
             }
-        } else if (singleTask.isSelected()){
+        } else {
             Date d = new Date();
             String startDate = d.getDay() + "/" + d.getMonth() + "/" 
                     + d.getYear();
@@ -578,8 +578,24 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
             String description = textArea.getText();
-            
-            
+            int importance = (int) comboImp.getSelectedItem();
+            int difficulty = (int) comboDif.getSelectedItem();
+            if (singleTask.isSelected()){
+                String employeeId = Employee.searchEmployeeByName2(
+                    String.valueOf(employeesList.getSelectedValue())).getId();
+                new Task(startDate, dueDate, description, importance, difficulty, 
+                    employeeId);
+            } else {
+                Object[] employees = employeesList.getSelectedValues();
+                ArrayList <String> empls = new ArrayList <String>();
+                for (int i = 0; i < employees.length; i++){
+                    String em = Employee.searchEmployeeByName2((String) 
+                            employees[i]).getId();
+                    empls.add(em);
+                }   
+                new Task(startDate, dueDate, description, importance, difficulty,
+                    empls);
+            }
         }
     }//GEN-LAST:event_addOrCreateMouseClicked
 

@@ -12,12 +12,8 @@ public class WelcomeWindow extends javax.swing.JFrame {
     /**
      * Creates new form WelcomeWindow
      */
-    private int n;
-    private Employee emp;
-
-    public WelcomeWindow(int n, Employee emp) {
-        this.emp = emp;
-        this.n = n;
+    
+    public WelcomeWindow() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -43,14 +39,14 @@ public class WelcomeWindow extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 222, 89));
         jPanel1.setToolTipText("");
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        /*jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel1MouseEntered(evt);
             }
-        });
+        });*/
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel1.setText("Hello! Welcome to BusyB!");
@@ -96,16 +92,16 @@ public class WelcomeWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+    /*private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FirstWindow(emp).setVisible(true);
+                new LoginWindow().setVisible(true);
             }
         });
         this.dispose();
     }//GEN-LAST:event_jPanel1MouseEntered
-
+*/
     /**
      * @param args the command line arguments
      */
@@ -115,7 +111,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());

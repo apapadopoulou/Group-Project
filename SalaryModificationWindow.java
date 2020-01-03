@@ -10,14 +10,22 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Κατερίνα
+<<<<<<< HEAD
+ * @author
+=======
+ * @author BusyB
+>>>>>>> c2f438b344b37effacb1fa121421eb88937314c0
  */
 public class SalaryModificationWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form SalaryModificationWindow
      */
-    public SalaryModificationWindow() {
+    private int n;
+    private Employee emp;
+    public SalaryModificationWindow(int n, Employee emp) {
+        this.n = n;
+        this.emp = emp;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -160,6 +168,10 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
+<<<<<<< HEAD
+=======
+        new PayrollWindow(n,emp).setVisible(true);
+>>>>>>> e3184ca86eb4266f385258bfbceadd7011ec8d93
     }//GEN-LAST:event_formWindowClosed
 
     /**
@@ -190,11 +202,11 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SalaryModificationWindow().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

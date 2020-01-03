@@ -14,7 +14,7 @@ import javax.swing.Timer;
  */
 /**
  *
- * @author Κατερίνα
+ * @author 
  */
 public class TimeOffWindow extends javax.swing.JFrame {
 

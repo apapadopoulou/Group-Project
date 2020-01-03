@@ -717,4 +717,24 @@ public class DBcon {
     	DBcon.loadAccounts();
     	DBcon.loadTasks();
 	}
+	public static void updateTaskAttributes(String varName, String var, int id) {
+		Connection dbcon;
+		Statement stmt;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		try {
+			dbcon = DriverManager.getConnection(url);
+			stmt = dbcon.createStatement();
+			stmt.executeUpdate("UPDATE BBTask SET " + varName + " = '" + var + "' WHERE TaskID = " + id + ";");
+			stmt.close(); //Closes the Statement resource
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
 }

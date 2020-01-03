@@ -41,7 +41,7 @@ public class Evaluation {
 	
 	public static double evalSingleTask(Task task) {
 		double evalAvg = DBcon.getEvalAverage(task.getEmpID());
-		if (evalAvg == null) {
+		if (evalAvg == 0.0) {
 			evalAvg = STARTING_EVAL;
 		} 
 		//Calculates the percentage difference between the completion date of the task and the total available time to complete the task.

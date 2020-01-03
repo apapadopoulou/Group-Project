@@ -52,6 +52,7 @@ public abstract class Employee {
   }
 
   public String getEmail() {
+	  //System.out.println("33");
       return email;
   }
 
@@ -137,7 +138,7 @@ public void setCalendar(ArrayList<Day> calendar) {
   // Returns the employee we searched for
   public static Employee searchEmployeeById(String id) {
     for (int i = 0; i < employees.size(); i++) {
-      if (employees.get(i).getID() == id) {
+      if (employees.get(i).getID().equals(id)) {
             return employees.get(i);
         }
     }

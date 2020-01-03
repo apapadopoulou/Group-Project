@@ -8,7 +8,7 @@ public abstract class Employee {
 	private String id;
 	private String birthdate;
 	private double salary;
-    private PersonalisedCalendar pc;
+    private ArrayList<Day> calendar;
 	public static ArrayList<Employee> employees = new ArrayList<Employee>();
 
 	// Constructor
@@ -86,8 +86,45 @@ public abstract class Employee {
   public void setSalary(double salary) {
 	  this.salary = salary;
   }
+  
+  public Day searchDay(String date) {
+	  for (int i = 1; i < calendar.size(); i++) {
+		 if (!calendar.get(i).getDate().equals(date)) {
+			 Day d = new Day(date);
+			 calendar.add(d);
+			 return d;
+		 } else {
+			 return calendar.get(i);
+		 }
+	  }
+	return null;
+  }
 
-  // Method toString including a String format for the given data
+  public String getPhonenumber() {
+	return phonenumber;
+}
+
+public void setPhonenumber(String phonenumber) {
+	this.phonenumber = phonenumber;
+}
+
+public String getId() {
+	return id;
+}
+
+public void setId(String id) {
+	this.id = id;
+}
+
+public ArrayList<Day> getCalendar() {
+	return calendar;
+}
+
+public void setCalendar(ArrayList<Day> calendar) {
+	this.calendar = calendar;
+}
+
+// Method toString including a String format for the given data
   @Override
   public String toString() {
     String str_2 = "";

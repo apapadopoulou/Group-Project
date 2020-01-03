@@ -8,7 +8,7 @@ public class Event extends Program {
     private static int counter = 1;
     private String time;
     private ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
-    private int eventCode;
+    private int eventID;
     private String type;
     public Event(String title, String date, String time,
     		String description, String type, ArrayList<Employee> employees) {
@@ -18,7 +18,8 @@ public class Event extends Program {
 		listOfEmployeesInThisEvent = employees;
 		this.date = date;
 		this.setTime(time);
-		this.eventCode = counter++;
+		eventID = counter++;
+		DBcon.saveEvent(this);
     }
     public void addEvent () {
     	for (int i = 1; i < listOfEmployeesInThisEvent.size(); i++) {
@@ -55,12 +56,12 @@ public class Event extends Program {
 		this.listOfEmployeesInThisEvent = listOfEmployeesInThisEvent;
 	}
 
-	public int getEventCode() {
-		return eventCode;
+	public int getEventID() {
+		return eventID;
 	}
 
-	public void setEventCode(int eventCode) {
-		this.eventCode = eventCode;
+	public void setEventID(int eventID) {
+		this.eventID = eventID;
 	}
 
 	public String getType() {

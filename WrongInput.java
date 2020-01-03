@@ -35,7 +35,6 @@ public class WrongInput extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/smallLogo.PNG")));
-        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 140));
 
@@ -86,7 +85,7 @@ public class WrongInput extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        setSize(new java.awt.Dimension(526, 84));
+        setSize(new java.awt.Dimension(542, 123));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,11 +121,11 @@ public class WrongInput extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /*| java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new WrongInput().setVisible(true);
             }
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

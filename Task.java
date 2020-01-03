@@ -114,6 +114,7 @@ public class Task extends Program {
 
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
+		DBcon.updateTaskAttributes("dueDate", dueDate, id);
 	}
 
 	public String getStartDate() {

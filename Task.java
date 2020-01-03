@@ -15,7 +15,6 @@ public class Task extends Program {
 	private String desc;
 	private boolean done;
 	private boolean isGroupTask;
-	private int parts;
 	private int importance; //Importance of a task should be between 1 and 10.
 	private int difficulty; //Difficulty of a task should be between 1 and 10.
 	private String empId; //Employee ID for single-employee Tasks.
@@ -35,7 +34,6 @@ public class Task extends Program {
 		this.dueDate = dueDate;
 		done = false;
 		isGroupTask = false;
-		this.parts = parts;
 		this.importance = importance;
 		this.difficulty = difficulty;
 		this.empId = empId;
@@ -60,7 +58,6 @@ public class Task extends Program {
 			done = true;
 		}
 		isGroupTask = false;
-		this.parts = parts;
 		this.importance = importance;
 		this.difficulty = difficulty;
 		this.empId = empId;
@@ -104,7 +101,6 @@ public class Task extends Program {
 			done = true;
 		}
 		isGroupTask = true;
-		this.parts = parts;
 		this.importance = importance;
 		this.difficulty = difficulty;
 		this.empIds = empIds;
@@ -221,4 +217,13 @@ public class Task extends Program {
 	public int getDifficulty() {
 		return difficulty;
 	}
+
+	@Override
+	public String toString() {
+		if (isGroupTask) {
+			return "Group Task: description: " + desc + ", Due date:" + dueDate;
+		}
+		return "Single Task: description: " + desc + ", Due date:" + dueDate;
+	}
+	
 }

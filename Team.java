@@ -41,6 +41,7 @@ public class Team extends javax.swing.JFrame {
         }
         this.n = n;
         teamScore = 0.0;
+        depNot.setVisible(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         ShowDate();
@@ -299,6 +300,7 @@ public class Team extends javax.swing.JFrame {
         if (managingDepartments.getSelectedItem() == null) {
             depNot.setVisible(true);
         } else {
+            depNot.setVisible(false);
             String dep = managingDepartments.getSelectedItem().toString();
             Department department = Department.searchDepartmentByName(dep);
             nameOfDepartment.setText(department.getName());

@@ -34,8 +34,8 @@ public class Day {
 		            }; 
   public Day(String date) {
     String givenDay = date.substring(0, 2);
-    String givenMonth = date.substring(2, 4);
-    String givenYear = date.substring(4);
+    String givenMonth = date.substring(3, 5);
+    String givenYear = date.substring(6);
     try {
     for (int i =0; i < days.length; i++) {
     	if (givenDay.equals(days[i])) {
@@ -84,7 +84,7 @@ public class Day {
  *Gets the date.
  *@return date 
  */
- 
+  
   
  
   private void addToDailyProgram(Program p) {

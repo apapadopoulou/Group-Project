@@ -10,12 +10,27 @@ public class BusyB {
   * @param args
   */
   public static void main(String[] args) {
+	java.awt.EventQueue.invokeLater(new Runnable() {
+		@Override
+	    public void run() {
+	          new WelcomeWindow().setVisible(true);
+	        }
+	      });
     if (!args[0].equals("0")) {
       DBcon.deleteTables();
       DBcon.createTables();
-      AdminWindow aw = new AdminWindow();
-      aw.hello();
+      Flow.adminSettingsEntry();
+      boolean run = true;
+      while (run) {
+    	  try {
+    		  Flow.dataEntry();
+    		  break;
+    	  } catch (Exception e) {
+    		  System.out.println("An error occured! Try again!");
+    	  }
+      }
     } else {
+    DBcon.loadData();
       java.awt.EventQueue.invokeLater(new Runnable() {
         @Override
   public void run() {

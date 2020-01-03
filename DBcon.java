@@ -709,4 +709,12 @@ public class DBcon {
 		}
 		return empIds;
 	}
+	public static void loadData() {
+		DBcon.loadDepartments();
+    	DBcon.loadMiddleManagers();
+    	DBcon.loadBasicEmployees();
+    	DBcon.loadTopManagers();
+    	DBcon.loadAccounts();
+    	DBcon.loadTasks();
+	}
 }

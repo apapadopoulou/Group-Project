@@ -15,7 +15,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author Κατερίνα
+ * @author 
  */
 public class SettingsWindow extends javax.swing.JFrame {
 

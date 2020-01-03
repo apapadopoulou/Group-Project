@@ -15,8 +15,7 @@ import javax.swing.Timer;
  */
 /**
  *
- * @author Κατερίνα
- */
+ * @author 
 public class TaskOrReminderWindow1 extends javax.swing.JFrame {
 
     /**

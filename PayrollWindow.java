@@ -15,7 +15,7 @@ import javax.swing.table.TableModel;
  */
 /**
  *
- * @author Κατερίνα
+ * 
  */
 public class PayrollWindow extends javax.swing.JFrame {
 
@@ -23,10 +23,15 @@ public class PayrollWindow extends javax.swing.JFrame {
      * Creates new form PayrollWindow
      */
     private int n;
-    /* private Employee emp; */
+    private MiddleManager mm;
+    private BasicEmployee be;
 
-    public PayrollWindow(int n) {
+    public PayrollWindow(int n, Employee emp) {
         this.n = n;
+        if (n == 2)
+            be = BasicEmployee.searchEmployeeByName2(emp.getNameSurname());
+        else
+            mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
         /* this.emp = emp; */
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
@@ -53,7 +58,7 @@ public class PayrollWindow extends javax.swing.JFrame {
         }
         ).start();
     }
-    SalaryModificationWindow sal = new SalaryModificationWindow();
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,7 +74,7 @@ public class PayrollWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         currentDate = new javax.swing.JLabel();
         currentTime = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        home = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -105,13 +110,13 @@ public class PayrollWindow extends javax.swing.JFrame {
         currentTime.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         currentTime.setText("TIME:");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
-        jLabel2.setText("Home");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        home.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
+        home.setText("Home");
+        home.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                homeMouseClicked(evt);
             }
         });
 
@@ -199,7 +204,7 @@ public class PayrollWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addGap(789, 789, 789)
-                                .addComponent(jLabel2)))
+                                .addComponent(home)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(930, 930, 930)
@@ -221,7 +226,7 @@ public class PayrollWindow extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(home)
                         .addGap(47, 47, 47))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,12 +265,29 @@ public class PayrollWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 */
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                if ( n == 4 )
+                    new SalaryModificationWindow(n, mm).setVisible(true);
+                else
+                    new SalaryModificationWindow(n, be).setVisible(true);
+            }
+        });
     }//GEN-LAST:event_jButton1MouseClicked
-
+    private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                if (n == 4)
+                    new FirstWindow(mm).setVisible(true);
+                else 
+                    new FirstWindow(be).setVisible(true);
+            }
+        });
+        this.dispose();
+    }//GEN-LAST:event_homeMouseClicked
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        if (jButton1.isSelected()) {
+       /*/ if (jButton1.isSelected()) {
             sal.setVisible(true);
             int index = jTable1.getSelectedRow();
             TableModel model = jTable1.getModel();
@@ -278,7 +300,7 @@ public class PayrollWindow extends javax.swing.JFrame {
             sal.salary.setText(sala);
         } else {
             sal.setVisible(true);
-        }
+        }*/
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
@@ -309,9 +331,9 @@ public class PayrollWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
+       /* java.awt.EventQueue.invokeLater(() -> {
             new PayrollWindow(4).setVisible(true);
-        });
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -320,7 +342,7 @@ public class PayrollWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel home;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

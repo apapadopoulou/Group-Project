@@ -9,7 +9,7 @@ import javax.swing.JFrame;
  */
 /**
  *
- * @author Κατερίνα
+ * @author 
  */
 public class ChangeEmailWindow extends javax.swing.JFrame {
 

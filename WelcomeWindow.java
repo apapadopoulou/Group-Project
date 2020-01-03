@@ -92,7 +92,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel1MouseClicked
 
-    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+    /*private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -101,7 +101,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         });
         this.dispose();
     }//GEN-LAST:event_jPanel1MouseEntered
-
+*/
     /**
      * @param args the command line arguments
      */

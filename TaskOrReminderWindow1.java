@@ -127,7 +127,6 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(TaskOrReminderWindow1.class.getResource("/images/smallLogo.PNG")));
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.PAGE_AXIS));
 
         jPanel2.setBackground(new java.awt.Color(255, 222, 89));
         jPanel2.setToolTipText("");
@@ -479,7 +478,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         currentDate.getAccessibleContext().setAccessibleName("Date:");
         currentTime.getAccessibleContext().setAccessibleName("Time:");
 
-        getContentPane().add(jPanel2);
+        getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

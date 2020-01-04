@@ -40,7 +40,6 @@ public class ManageEmployeeWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(ManageEmployeeWindow.class.getResource("/images/smallLogo.PNG")));
-        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel1.setBackground(new java.awt.Color(255, 222, 89));
         jPanel1.setPreferredSize(new java.awt.Dimension(908, 629));
@@ -104,7 +103,7 @@ public class ManageEmployeeWindow extends javax.swing.JFrame {
                 .addComponent(jLabel2))
         );
 
-        getContentPane().add(jPanel1);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

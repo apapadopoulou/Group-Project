@@ -497,7 +497,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void jLabelPayrollsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPayrollsMouseClicked
        if ( num == 2|| num == 4){
            java.awt.EventQueue.invokeLater(() -> {
-            new PayrollWindow(num,emp).setVisible(true);
+            new SalaryWindow(num,emp).setVisible(true);
         });
            this.dispose();
        }

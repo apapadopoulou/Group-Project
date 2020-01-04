@@ -236,9 +236,8 @@ public class LoginWindow extends javax.swing.JFrame {
          String email = emailField.getText();
          String password = passwordField.getText();
          int n;
-         Account ac;
-         ac = Account.searchAccountByEmail(email);
-         if ( ac == null){
+         Account acc = Account.checkCredentials(email, password);
+         if ( acc == null){
              WrongInput wi = new WrongInput();
              wi.setVisible(true);
              wi.pack();
@@ -247,20 +246,21 @@ public class LoginWindow extends javax.swing.JFrame {
              emailField.setText("");
              passwordField.setText("");
              emailField.requestFocus();
-         } else if (ac.getPassword().equals(password)) {
-            n = Account.typeOfEmployee(ac.getEmployee());
-            ac.setHasDefaultPass(ac.getHasDefaultPass());
-            if (ac.getHasDefaultPass() == 0){       
+         } else {
+            n = Account.typeOfEmployee(acc.getEmployee());
+            //I dont understand this. Please explain it.
+            acc.setHasDefaultPass(acc.getHasDefaultPass());
+            if (acc.getHasDefaultPass() == 0){       
                    java.awt.EventQueue.invokeLater(new Runnable() {
                    public void run() {
-                        new DefaultPassword(ac.getEmployee()).setVisible(true);
+                        new DefaultPassword(acc.getEmployee()).setVisible(true);
                         }
                     });
                 this.dispose();
             } else {
                 java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                new FirstWindow(ac.getEmployee()).setVisible(true);
+                new FirstWindow(acc.getEmployee()).setVisible(true);
                 }
             });
            this.dispose();

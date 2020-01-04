@@ -5,7 +5,7 @@ import java.text.DateFormat;
 
 public class Test {
 	public static void main(String args []) {
-		/*
+		
 		DBcon.deleteTables();
 		DBcon.createTables();
 		
@@ -33,20 +33,16 @@ public class Test {
 		Task task1 = new Task("23/02/1993", "29/02/1993", "New simple task asda", 5, 8, "1asif0");
 		Task task2 = new Task("27/11/2013", "03/12/2013", "New simple task adqwdw", 2, 4, "rewu1");
 		Task task3 = new Task("27/11/2013", "03/12/2013", "New simple task adqwdw", 5, 9, empids);
-		*/
+		
+		ArrayList<Employee> list = new ArrayList<Employee>();
+		list.add(emp3);
+		list.add(emp5);
+		list.add(emp8);
 		//Employee emp8 = new TopManager("Tasos", "yesaras", "6942796775", "tasos@gmail.com", "25/07/2000");
-		DBcon.loadDepartments();
-		System.out.println("Succesfully Loaded Departments.");
-		DBcon.loadBasicEmployees();
-		System.out.println("Succesfully Loaded Basic Employees.");
-		DBcon.loadMiddleManagers();
-		System.out.println("Succesfully Loaded Middle Managers.");
-		DBcon.loadTopManagers();
-		System.out.println("Succesfully Loaded Top Managers.");
-		DBcon.loadAccounts();
-		System.out.println("Succesfully Loaded Accounts.");
-		DBcon.loadTasks();
-		System.out.println("Succesfully Loaded Tasks.");
-		 
+		
+		Event event = new Event("Conference", "03/10/2013", "22:35:00", "This is a basic conference for all board members", "2", list);
+		/*for (int i = 0; i < Account.accounts.size(); i++ ) {
+			System.out.println(Account.accounts.size() + ", " + Account.accounts.get(i));
+		}*/
 	}
  } 

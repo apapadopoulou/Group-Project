@@ -15,7 +15,7 @@ public class Account {
     private Employee employee;
     private String email;
     private String password;
-    private static ArrayList<Account> accounts = new ArrayList<Account>();
+    public static ArrayList<Account> accounts = new ArrayList<Account>();
     private int hasDefaultPass;   
     
     /**
@@ -27,8 +27,7 @@ public class Account {
     public Account(Employee emp) {
         hasDefaultPass = 0;
         employee = emp;
-        String email = emp.getEmail();
-        System.out.println(email);
+        email = employee.getEmail();
         password = passwordGenerator();
          
         /**
@@ -134,17 +133,23 @@ public class Account {
      *@return account if true or null if false
     */ 
     public static Account searchAccountByEmail(String email) {
-        boolean exists = false;
-        for (int i = 0; i < accounts.size();) {
+    	Account acc = null;
+        for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getEmail().equals(email)) {
-                exists = true;
-                break;
-            }
-            if (exists == true) {
-                return accounts.get(i);
+            	 acc = accounts.get(i);
             }
         }
-        return null;
+        return acc;
+    }
+    
+    public static Account checkCredentials(String email, String password) {
+    	Account acc = null;
+    	for (int i = 0; i < accounts.size(); i++) {
+    		if (accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
+    			acc = accounts.get(i);
+    		}
+    	}
+    	return acc;
     }
      
     /** This method returns 1 if the employee is a BasicEmployee, 2 if the 

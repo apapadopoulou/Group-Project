@@ -15,7 +15,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author Κατερίνα
+ * @author
  */
 public class SalaryWindow extends javax.swing.JFrame {
 
@@ -24,7 +24,7 @@ public class SalaryWindow extends javax.swing.JFrame {
      */
     private int n;
     private Employee emp;
-    
+
     public SalaryWindow(int n, Employee emp) {
         this.n = n;
         this.emp = emp;

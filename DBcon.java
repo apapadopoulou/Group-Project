@@ -102,7 +102,7 @@ public class DBcon {
 				+ "type INT,"
 				+ "title VARCHAR(50),"
 				+ "description VARCHAR(300),"
-				+ "PRIMARY KEY (eventCode));");
+				+ "PRIMARY KEY (eventID));");
 			System.out.println("TABLE BBEvent CREATED");
 			
 			stmt.executeUpdate("CREATE TABLE BBEvaluation "
@@ -166,11 +166,17 @@ public class DBcon {
 	
 	public static void loadData() {
 		DBcon.loadDepartments();
-    	DBcon.loadMiddleManagers();
-    	DBcon.loadBasicEmployees();
-    	DBcon.loadTopManagers();
-    	DBcon.loadAccounts();
-    	DBcon.loadTasks();
+		System.out.println("Succesfully Loaded Departments.");
+		DBcon.loadBasicEmployees();
+		System.out.println("Succesfully Loaded Basic Employees.");
+		DBcon.loadMiddleManagers();
+		System.out.println("Succesfully Loaded Middle Managers.");
+		DBcon.loadTopManagers();
+		System.out.println("Succesfully Loaded Top Managers.");
+		DBcon.loadAccounts();
+		System.out.println("Succesfully Loaded Accounts.");
+		DBcon.loadTasks();
+		System.out.println("Succesfully Loaded Tasks.");
 	}
 	
 	//Method to save Accounts to DB.
@@ -529,7 +535,7 @@ public class DBcon {
 			dbcon = DriverManager.getConnection(url);
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
-			stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + taskID + ", " + empID + ", " + score + ");");}
+			stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + taskID + ", " + empID + ", " + score + ");");
 			stmt.close(); //Closes the Statement resource.
 			dbcon.close(); //Closes the DataBase conenction resource.
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/
@@ -731,7 +737,7 @@ public class DBcon {
 			dbcon = DriverManager.getConnection(url);
 			/*Creates the statement*/
 			stmt = dbcon.createStatement();
-			stmt.executeUpdate("INSERT INTO BBEvent (EventID, title, eventDate, eventTime, description, type) VALUES (" + event.getID() + ", '" + event.getTitle() + "', '" + event.getEventDate() + "', '" + event.getEventTime() + "', '" + event.getDesc() + "', " + event.getType() + ");");
+			stmt.executeUpdate("INSERT INTO BBEvent (EventID, title, eventDate, eventTime, description, type) VALUES (" + event.getEventID() + ", '" + event.getTitle() + "', '" + event.getEventDate() + "', '" + event.getEventTime() + "', '" + event.getDesc() + "', " + event.getType() + ");");
 			stmt.close(); //Closes the Statement resource.
 			dbcon.close(); //Closes the DataBase conenction resource.
 		/*Catch block if an exception occurs while making the connection and executing the statement.*/

@@ -7,22 +7,27 @@ public class Event extends Program {
     private String date;
     private static int counter = 1;
     private String time;
-    private ArrayList<Employee> listOfEmployeesInThisEvent = new ArrayList<Employee>();
+    private ArrayList<Employee> employeesInEvent = new ArrayList<Employee>();
     private int eventID;
     private String type;
-    public Event(String title, String date, String time,
-    		String description, String type, ArrayList<Employee> employees) {
+    
+    /**
+     * Basic Constructor for class Event.
+     * Used to create new Events.
+     */
+    public Event(String title, String date, String time, String description, String type, ArrayList<Employee> employees) {
 		this.title = title;
         this.description = description;
         this.type = type;
-		listOfEmployeesInThisEvent = employees;
+		employeesInEvent = employees;
 		this.date = date;
-		this.setTime(time);
+		this.time= time;
 		eventID = counter++;
 		DBcon.saveEvent(this);
+		//DBcon.saveEmployesInEvent(employeesInEvent);
     }
     public void addEvent () {
-    	for (int i = 1; i < listOfEmployeesInThisEvent.size(); i++) {
+    	for (int i = 1; i < employeesInEvent.size(); i++) {
     		
     	}
     }
@@ -31,29 +36,28 @@ public class Event extends Program {
 	public String toString() {
 		return "title:" + title + "description:" + description + ", date:" + date + ", time:" + time;
 	}
-	public String getDescription() {
+	public String getDesc() {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDesc(String description) {
 		this.description = description;
 	}
 
-    @Override
-	public String getDate() {
+	public String getEventDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setEventDate(String date) {
 		this.date = date;
 	}
 
-	public ArrayList<Employee> getListOfEmployeesInThisEvent() {
-		return listOfEmployeesInThisEvent;
+	public ArrayList<Employee> getEmployeesInEvent() {
+		return employeesInEvent;
 	}
 
-	public void setListOfEmployeesInThisEvent(ArrayList<Employee> listOfEmployeesInThisEvent) {
-		this.listOfEmployeesInThisEvent = listOfEmployeesInThisEvent;
+	public void setEmployeesInEvent(ArrayList<Employee> employeesInEvent) {
+		this.employeesInEvent = employeesInEvent;
 	}
 
 	public int getEventID() {
@@ -80,11 +84,11 @@ public class Event extends Program {
 		this.title = title;
 	}
 
-	public String getTime() {
+	public String getEventTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setEventTime(String time) {
 		this.time = time;
 	}
 

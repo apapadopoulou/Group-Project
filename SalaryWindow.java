@@ -25,9 +25,9 @@ public class SalaryWindow extends javax.swing.JFrame {
     private int n;
     private Employee emp;
     
-    public SalaryWindow(int n) {
+    public SalaryWindow(int n, Employee emp) {
         this.n = n;
-        /*this.emp = emp; */
+        this.emp = emp;
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         showDate();
@@ -271,11 +271,11 @@ public class SalaryWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SalaryWindow(1).setVisible(true);
             }
-        }); 
+        }); */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

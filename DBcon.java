@@ -376,9 +376,47 @@ public class DBcon {
 		}
 	}
 
-	public static void UpdateBasicEmpVar(String varName, String variable, int empid) {} //TODO!!!!
+	public static void updateEmployeeVar(String tableName, String varName, String var, String id) {
+		Connection dbcon;
+		Statement stmt;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		try {
+			dbcon = DriverManager.getConnection(url);
+			stmt = dbcon.createStatement();
+			stmt.executeUpdate("UPDATE BB" + tableName + " SET " + varName + " = '" + var + "' WHERE empID = '" + id + "';");
+			stmt.close(); //Closes the Statement resource
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
 
-	public static void UpdateBasicEmpVar(String varName, int variable, int empId) {} //TODO!!!!
+	public static void updateEmployeeVar(String tableName, String varName, double var, String id) {
+		Connection dbcon;
+		Statement stmt;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		try {
+			dbcon = DriverManager.getConnection(url);
+			stmt = dbcon.createStatement();
+			stmt.executeUpdate("UPDATE BB" + tableName + " SET " + varName + " = " + var + " WHERE empID = '" + id + "';");
+			stmt.close(); //Closes the Statement resource
+			dbcon.close(); //Closes the DataBase conenction resource.
+		/*Catch block if an exception occurs while making the connection and executing the statement.*/
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
 
 	public static void UpdateBasicEmpVar(String varName, java.util.Date variable, int empId) {} //TODO!!!!
 	
@@ -746,7 +784,7 @@ public class DBcon {
 		}
 	}
 
-	public static void updateTaskAttributes(String varName, String var, int id) {
+	public static void updateTaskVar(String varName, String var, int id) {
 		Connection dbcon;
 		Statement stmt;
 		try {
@@ -766,7 +804,7 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 	}
-	public static void updateTaskAttributes(String varName, int var, int id) {
+	public static void updateTaskVar(String varName, int var, int id) {
 		Connection dbcon;
 		Statement stmt;
 		try {

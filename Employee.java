@@ -31,8 +31,10 @@ public abstract class Employee {
     return birthdate;
   }
 
-  public void setBirthdate(String birthdate) {
+  public void setBirthDate(String birthdate) {
     this.birthdate = birthdate;
+    String tableName = typeOfEmployee();
+    DBcon.updateEmployeeVar(tableName, "birthdate", birthdate, id);
   }
 
   public String getName() {
@@ -41,6 +43,7 @@ public abstract class Employee {
 
   public void setName(String name) {
       this.name = name;
+      DBcon.updateEmployeeVar(tableName, "nameEMP", name, id);
   }
 
   public String getSurname() {
@@ -49,15 +52,16 @@ public abstract class Employee {
 
   public void setSurname(String surname) {
       this.surname = surname;
+      DBcon.updateEmployeeVar(tableName, "surname", surname, id);
   }
 
   public String getEmail() {
-	  //System.out.println("33");
       return email;
   }
 
   public void setEmail(String email) {
       this.email = email;
+      DBcon.updateEmployeeVar(tableName, "email", email, id);
   }
 
   public String getID() {
@@ -72,20 +76,13 @@ public abstract class Employee {
       return getName() + getSurname();
   }
 
-  public String getTelephone() {
-    return phonenumber;
-  }
-
-  public void setTelephone(String phonenumber) {
-      this.phonenumber = phonenumber;
-  }
-
   public double getSalary() {
 	  return salary;
   }
 
   public void setSalary(double salary) {
 	  this.salary = salary;
+	  DBcon.updateEmployeeVar(tableName, "salary", salary, id);
   }
   
   public Day searchDay(String date) {
@@ -107,6 +104,7 @@ public abstract class Employee {
 
 public void setPhonenumber(String phonenumber) {
 	this.phonenumber = phonenumber;
+	 DBcon.updateEmployeeVar(tableName, "phonenumber", phonenumber, id);
 }
 
 public String getId() {
@@ -168,5 +166,17 @@ public void setCalendar(ArrayList<Day> calendar) {
       }
    }
     return null;
+  }
+  
+  public String typeOfEmployee() {
+	  if (this instanceof BasicEmployee) {
+		  return "BasicEmployee";
+	  } else if (this instanceof MiddleManager) {
+		  return "MiddleManager";
+	  } else if (this instanceof TopManager) {
+		  return "TopManager";
+	  } else {
+		  return null;
+	  }
   }
 }

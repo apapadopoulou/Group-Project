@@ -23,6 +23,7 @@ public class Task extends Program {
 	private int id;
 	private double score;
 	private double[] scores;
+	public static ArrayList<Task> tasks = new ArrayList<Task>();
   
   /**
    *Constructor for single-employee task.
@@ -37,7 +38,8 @@ public class Task extends Program {
 		this.importance = importance;
 		this.difficulty = difficulty;
 		this.empId = empId;
-		this.id = counter++; //Needed for the DataBase. 
+		this.id = counter++; //Needed for the DataBase.
+		tasks.add(this);
 		DBcon.saveTask(this);
 		DBcon.AssignToTask(id, empId);
 	}
@@ -63,6 +65,7 @@ public class Task extends Program {
 		this.empId = empId;
 		this.id = taskID; //Needed for the DataBase.
 		counter = id + 1;
+		tasks.add(this);
 	}
   
   /**
@@ -79,6 +82,7 @@ public class Task extends Program {
 		this.difficulty = difficulty;
 		this.empIds = empIds;
 		this.id = counter++; //Needed for the DataBase.
+		tasks.add(this);
 		DBcon.saveTask(this);
 		for (int i = 0; i < empIds.size(); i++) {
 			DBcon.AssignToTask(id, empIds.get(i));
@@ -106,6 +110,7 @@ public class Task extends Program {
 		this.empIds = empIds;
 		this.id = taskID; //Needed for the DataBase.
 		counter = id + 1;
+		tasks.add(this);
 	}
 	
 	public String getDueDate() {
@@ -114,7 +119,7 @@ public class Task extends Program {
 
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
-		DBcon.updateTaskAttributes("dueDate", dueDate, id);
+		DBcon.updateTaskVar("dueDate", dueDate, id);
 	}
 
 	public String getStartDate() {
@@ -123,7 +128,7 @@ public class Task extends Program {
   
 	public void setStartDate(String date) {
 		this.startDate = date;
-		DBcon.updateTaskAttributes("startDate", date, id);
+		DBcon.updateTaskVar("startDate", date, id);
 	}
 
 	public String getCompletionDate() {
@@ -156,20 +161,22 @@ public class Task extends Program {
 	
 	public void setCompletionDate(String completionDate) {
 		this.completionDate = completionDate;
-		DBcon.updateTaskAttributes("completionDate", completionDate, id);
+		DBcon.updateTaskVar("completionDate", completionDate, id);
 	}
 
 	public void setDesc(String desc) {
 		this.desc = desc;
-		DBcon.updateTaskAttributes("desc", desc, id);
+		DBcon.updateTaskVar("description", desc, id);
 	}
 
 	public void setImportance(int importance) {
 		this.importance = importance;
+		DBcon.updateTaskVar("importance", importance, id);
 	}
 
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
+		DBcon.updateTaskVar("difficulty", difficulty, id);
 	}
 
 	public int getTaskID() {

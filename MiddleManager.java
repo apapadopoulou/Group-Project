@@ -9,8 +9,8 @@ public class MiddleManager extends Employee {
 	 * Use this if you want to create new Middle Managers.
 	 */
 	public MiddleManager(String name, String surname,
-		String telephone, String email, String birthdate) {
-		super(name, surname, telephone, email, birthdate, null, 0);
+		String phonenumber, String email, String birthdate) {
+		super(name, surname, phonenumber, email, birthdate, null, 0);
 	    String id = name.substring(1, 3) + surname.substring(1, 3) + String.valueOf(middleManagers.size());
 	    setID(id);
 	    middleManagers.add(this);
@@ -90,7 +90,7 @@ public class MiddleManager extends Employee {
 	@Override
 	public String toString() {
 		return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getID()
-		+ ", Email = " + getEmail() + ", Telephone = " + getTelephone()
+		+ ", Email = " + getEmail() + ", Telephone = " + getPhonenumber()
 	/*	+ ", Managing Departments = " + /*getNamesOfManagingDepartments()*/;
 	}
 

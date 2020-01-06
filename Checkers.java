@@ -6,8 +6,9 @@ import java.util.regex.Pattern;
  */
 public class Checkers {
 	/**
-	 *Validate email. 
-	 *@return email or false
+	 *This method validates email. 
+	 *@param email
+	 *@return pat.matcher(email).matches() or false
 	 */
 	public static boolean isValidEmail(String email) {
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
@@ -24,34 +25,37 @@ public class Checkers {
     }
   
 	/** 
-	 *This method validate first name. 
-	 *@return first name
+	 *This method validates first name.
+	 *@param firstName 
+	 *@return firstName.matches("[A-Z][a-z]*")
 	 */
 	public static boolean isValidFirstName( String firstName ) {
 		return firstName.matches( "[A-Z][a-z]*" );
 	}
 	   
 	/**
-	 *This method validate last name. 
-	 *@return last name
+	 *This method validates last name.
+	 *@param lastName 
+	 *@return lastName.matches("[A-Z][a-z]*")
 	 */
 	public static boolean isValidLastName( String lastName ) {
 		return lastName.matches( "[A-Z][a-z]*" );
 	}
 
 	/**
-	 *This method validate phone number with specific ways. 
-	 *@return true or false for the phone number
+	 *This method validates phone number with specific ways.
+	 *@param phoneNo 
+	 *@return true or false 
 	 */
 	public static boolean isValidPhoneNumber(String phoneNo) {
-		/**
-		 *validate phone numbers of format "1234567890".
-		 */
+		
+		 //Validate phone numbers of format "1234567890".
+		
 		if (phoneNo.matches("\\d{10}")) {
 			return true;
-			/**
-			 *validating phone number with -, . or spaces for example 210-96-13-432.
-			 */
+			
+			 //validating phone number with -, . or spaces for example 210-96-13-432.
+			 
 		} else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) {
 			return true;
 		} else {
@@ -59,11 +63,16 @@ public class Checkers {
 		}
 	}
 
+	/**
+	 *This method validates password.
+	 *@param password
+	 *@return true or false 
+	 */
 	public static boolean isValidPassword(String password) {
-		/**
-		 *Checking password length. 
-		 *@return true or false for the password length
-		 */
+		
+		 //Checking password length. 
+		 
+		 
 		if ((password.length() >= 6) && (password.length() <= 15)) {
 			return true;
 		} else {
@@ -72,15 +81,16 @@ public class Checkers {
 	}
 		
 	/**
-	 *This method validate the event title (speficic titles). 
-	 *@return type of event
+	 *This method validates the event title (speficic titles).
+	 *@param type 
+	 *@return type 
 	 */
 	public static boolean isValidType(String type) {
 		return type == "appointment" || type == "meeting" || type == "main event";
 	}
 }
-/** 
- *End of Checkers class. 
- */
+ 
+ //End of Checkers class. 
+ 
 
 

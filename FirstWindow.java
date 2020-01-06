@@ -63,13 +63,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        try {
-            jPanel1 =(javax.swing.JPanel)java.beans.Beans.instantiate(getClass().getClassLoader(), "FirstWindow_jPanel1");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
+    	jPanel1 = new javax.swing.JPanel();
         currentDate = new javax.swing.JLabel();
         today_label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -494,7 +488,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void jLabelPayrollsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPayrollsMouseClicked
        if ( num == 2|| num == 4){
            java.awt.EventQueue.invokeLater(() -> {
-            new SalaryWindow(num,emp).setVisible(true);
+            new SalaryModificationWindow().setVisible(true);
         });
            this.dispose();
        }

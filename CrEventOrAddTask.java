@@ -25,7 +25,7 @@ import javax.swing.event.ListSelectionListener;
 public class CrEventOrAddTask extends javax.swing.JFrame {
 
     /**
-     * Creates new form CrEventOrAddTask
+     * Creates new form CrEventOrAddTask.
      */
     private int n;
     private MiddleManager mm;
@@ -674,3 +674,4 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
     private javax.swing.JComboBox years;
     // End of variables declaration//GEN-END:variables
 }
+//End of CrEventOrAddTask class.

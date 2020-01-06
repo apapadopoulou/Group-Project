@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 public class AddEmployeeWindow extends javax.swing.JFrame {
 
     /**
-     * Creates new form AddEmployeeWindow
+     * Creates new form AddEmployeeWindow.
      */
     public AddEmployeeWindow() {
         initComponents();
@@ -149,3 +149,4 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
+//End of AddEmployeeWindow class.

@@ -9,13 +9,13 @@ import java.util.ArrayList;
 public class BasicEmployee extends Employee {
 	
     private double score = 10;
-  /**
-   *Department instance variable.
-   */
+  
+   //Department instance variable.
+   
 	private Department department; 
-	/**
-	 *An ArrayList that contains all Basic Employees. 
-	 */
+	
+	 //An ArrayList that contains all Basic Employees. 
+	 
 	public static ArrayList <BasicEmployee> basicEmployees = new ArrayList <BasicEmployee>(); 
 	
 	/**
@@ -24,20 +24,19 @@ public class BasicEmployee extends Employee {
 	 * 
 	 *@param name
 	 *@param surname
-	 *@param phonenumber
+	 *@param telephone
 	 *@param email
 	 *@param birthdate
 	 *@param depID
-	 *@param salary
 	 */
 	public BasicEmployee(String name, String surname, String telephone, String email, String birthdate, int depID) {
-        /**
-         *Calls the constructor for the superclass Employee. 
-         */
+        
+         //Calls the constructor for the superclass Employee. 
+         
 		super(name, surname, telephone, email, birthdate, null, 0);
-		/**
-		 *Gets the Department object using the Department id.
-		 */
+		
+		 //Gets the Department object using the Department id.
+		 
 		this.department = Department.getDepartment(depID);
 		/**
 		 * The id is constructed using the department's id,
@@ -49,17 +48,17 @@ public class BasicEmployee extends Employee {
 			+ surname.substring(1,3) 
 			+ String.valueOf(department.getEmployeesOfDepartment().size());
 		setID(id);
-		/**
-		 *Adds the object in the ArrayList of BasicEmployees. 
-		 */
+		
+		 //Adds the object in the ArrayList of BasicEmployees. 
+		 
 		basicEmployees.add(this);
-		/**
-		 *Adds the object in the ArrayList of Employees. 
-		 */
+		
+		 //Adds the object in the ArrayList of Employees. 
+		 
 		employees.add(this);
-        /**
-         *Saves the object to the Database. 
-         */
+        
+         //Saves the object to the Database. 
+        
 		DBcon.saveBasicEmployee(this);
 		Account acc = new Account(this);
 	}
@@ -77,21 +76,18 @@ public class BasicEmployee extends Employee {
 	* @param salary
 	*/
 	public BasicEmployee(String name, String surname, String telephone, String email, String birthdate, int depID, String id, double salary) {
-		/**
-		 *Calls the constructor for the superclass Employee.
-		 */
+		
+		 //Calls the constructor for the superclass Employee.
+		 
 	    super(name, surname, telephone, email, birthdate, id, salary); 
-	  /**
-	   *Gets the Department object using the Department id.
-	   */
+	  
+	   //Gets the Department object using the Department id.
+	   
 	    this.department = Department.getDepartment(depID); 
-	  /**
-	   *Adds the object in the ArrayList of BasicEmployees.
-	   */
-	    basicEmployees.add(this); 
-	 /**
-	  *I dont know what this does. Someone explain it here!!!!
-	  */
+	  
+	   //Adds the object in the ArrayList of BasicEmployees.
+	   
+	    basicEmployees.add(this);  
 	    employees.add(this);
 	  }
    
@@ -102,16 +98,19 @@ public class BasicEmployee extends Employee {
 		return department;
 	}
 	
-	/**
-	 *Method that changes the employee's department using the department object. 
-	 */
+	
+	 /**
+	  *Method that changes the employee's department using the department object.
+	  *@param depID  
+	  */
+	 
 	public void setDepartment(int depID) {
 		this.department = Department.searchDepartmentById(depID);
 		DBcon.updateEmployeeVar("BasicEmployee", "depID", depID, getID());
 	}
 	
 	/** 
-	 *@return depId 
+	 *@return department.getId() 
 	 */
 	public int getDepId() {
 		return department.getId();
@@ -119,6 +118,7 @@ public class BasicEmployee extends Employee {
 
     /**
      *Method that checks if a Basic Employee works in HR department.
+     *@param name
      *@return true or false
      */
 	public static boolean HREmployee(String name) {
@@ -135,7 +135,8 @@ public class BasicEmployee extends Employee {
         
   /** 
    *Method that returns the basic employee we have searched for.
-   *@return employee or null
+   *@param name
+   *@return basicEmployees.get(i) or null
    */
     public static BasicEmployee searchEmployeeByName2(String name) {
     	for (int i = 0; i < basicEmployees.size(); i++) {
@@ -157,29 +158,34 @@ public class BasicEmployee extends Employee {
 	return score;
 }
 
-	/**
-	 *Sets the score.
-	 */
+	
+	 /**
+	  *Sets the score.
+	  *@param score 
+	  */
+	 
 public void setScore(double score) {
 	this.score = score;
 }
 
 	/**
 	 *Method that changes the employee's department.
+	 *@param empName
+	 *@param depId
 	 */
 	public void changeDepartmentAndId(String empName, int depId) {
 		BasicEmployee e = BasicEmployee.searchEmployeeByName2(empName);
 		e.getDepartment().deleteEmployeeByName(empName);
 		e.setDepartment(depId);
 		Department.searchDepartmentById(depId).addEmployee(e);
-		/**
-		 *Change employee's id based on his new department.
-		 */
+		
+		 //Change employee's id based on his new department.
+		 
 		e.setID(String.valueOf(depId) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(Department.searchDepartmentById(depId).getEmployeesOfDepartment().size()));
 	}
 
 }
-/**
- *End of BasicEmployee class.
- */
+
+ //End of BasicEmployee class.
+ 
  

@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 public class ChangeEmailWindow extends javax.swing.JFrame {
 
     /**
-     * Creates new form ChangeEmailWindow
+     * Creates new form ChangeEmailWindow.
      */
     public ChangeEmailWindow() {
         initComponents();
@@ -151,3 +151,4 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
+//End of ChangeEmailWindow class.

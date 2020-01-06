@@ -43,6 +43,7 @@ public abstract class Employee {
 
   public void setName(String name) {
       this.name = name;
+      String tableName = typeOfEmployee();
       DBcon.updateEmployeeVar(tableName, "nameEMP", name, id);
   }
 
@@ -52,6 +53,7 @@ public abstract class Employee {
 
   public void setSurname(String surname) {
       this.surname = surname;
+      String tableName = typeOfEmployee();
       DBcon.updateEmployeeVar(tableName, "surname", surname, id);
   }
 
@@ -61,6 +63,7 @@ public abstract class Employee {
 
   public void setEmail(String email) {
       this.email = email;
+      String tableName = typeOfEmployee();
       DBcon.updateEmployeeVar(tableName, "email", email, id);
   }
 
@@ -82,6 +85,7 @@ public abstract class Employee {
 
   public void setSalary(double salary) {
 	  this.salary = salary;
+	  String tableName = typeOfEmployee();
 	  DBcon.updateEmployeeVar(tableName, "salary", salary, id);
   }
   
@@ -104,15 +108,8 @@ public abstract class Employee {
 
 public void setPhonenumber(String phonenumber) {
 	this.phonenumber = phonenumber;
-	 DBcon.updateEmployeeVar(tableName, "phonenumber", phonenumber, id);
-}
-
-public String getId() {
-	return id;
-}
-
-public void setId(String id) {
-	this.id = id;
+	String tableName = typeOfEmployee();
+	DBcon.updateEmployeeVar(tableName, "phonenumber", phonenumber, id);
 }
 
 public ArrayList<Day> getCalendar() {

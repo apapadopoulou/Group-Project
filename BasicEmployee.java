@@ -87,10 +87,7 @@ public class BasicEmployee extends Employee {
 	  
 	   //Adds the object in the ArrayList of BasicEmployees.
 	   
-	    basicEmployees.add(this); 
-	 
-	  //I dont know what this does. Someone explain it here!!!!
-	  
+	    basicEmployees.add(this);  
 	    employees.add(this);
 	  }
    
@@ -109,10 +106,7 @@ public class BasicEmployee extends Employee {
 	 
 	public void setDepartment(int depID) {
 		this.department = Department.searchDepartmentById(depID);
-		
-		 //DBcon.UpdateBasicEmpVar("department", department.getId(), id); 
-		//Saves the change to the Database.
-		 
+		DBcon.updateEmployeeVar("BasicEmployee", "depID", depID, getID());
 	}
 	
 	/** 

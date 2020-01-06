@@ -1,10 +1,19 @@
 import java.util.ArrayList;
 
 public class TopManager extends Employee{
+	/**
+	 * This class is rensponsible for creating Top Manager Objects.
+	 * 
+	 */
 
 	//private ArrayList <MiddleManager> managingManagers = new ArrayList <MiddleManager>();
 	public static ArrayList <TopManager> topManagers = new ArrayList <TopManager>();
-  
+	
+	/**
+	 * Basic constructor for Top Managers.
+	 * Used to create new Top Manager objects.
+	 *
+	 */
 	public TopManager( String name, String surname, String phonenumber, String email, String birthdate){
 		super(name, surname, phonenumber, email, birthdate, null, 0);
 		/*the id is constructed using the first two letters of the manager's name, the first two letters of the managers's surname
@@ -17,6 +26,10 @@ public class TopManager extends Employee{
 		Account acc = new Account(this);
 	}
 	
+	/**
+	 * Database constructor for Top Managers.
+	 * Used to create Top Manager objects after they are loaded from the Database.
+	 */
 	public TopManager( String name, String surname, String phonenumber, String email, String birthdate, String id, double salary){
 		super(name, surname, phonenumber, email, birthdate, id, salary);
 		topManagers.add(this);

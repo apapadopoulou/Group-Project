@@ -64,6 +64,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void initComponents() {
 
     	jPanel1 = new javax.swing.JPanel();
+    	jPanel1.setBackground(new java.awt.Color(255, 230, 110));
         currentDate = new javax.swing.JLabel();
         today_label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();

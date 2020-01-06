@@ -326,7 +326,7 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
 			stmt.executeUpdate("INSERT INTO BBBasicEmployee (nameEmp, surname, phonenumber, email, birthdate, depID, empID, salary)"
-					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
+					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getPhonenumber()
 					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', " + emp.getDepId() + ", '" + emp.getID() + "', " + emp.getSalary() + ");");
 			stmt.close();
 			dbcon.close();
@@ -438,7 +438,7 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
 			stmt.executeUpdate("INSERT INTO BBMiddleManager (nameEmp, surname, phonenumber, email, birthdate, empID, salary)"
-					+ " VALUES ('" + emp.getName() + "','" + emp.getSurname() + "', '" + emp.getTelephone()
+					+ " VALUES ('" + emp.getName() + "','" + emp.getSurname() + "', '" + emp.getPhonenumber()
 					+ "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', '" + emp.getID() + "', " + emp.getSalary() + ");");
 			stmt.close();
 			dbcon.close();
@@ -505,7 +505,7 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			/*Executes the given statement that saves the object's.*/
 			stmt.executeUpdate("INSERT INTO BBTopManager (nameEmp, surname, phonenumber, email, birthdate, empID, salary)"
-					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getTelephone()
+					+ " VALUES ('" + emp.getName() + "', '" + emp.getSurname() + "', '" + emp.getPhonenumber()
 					+  "', '" + emp.getEmail() + "', '" + emp.getBirthDate() + "', '" + emp.getID() + "', " + emp.getSalary() + ");");
 			stmt.close();
 			dbcon.close();

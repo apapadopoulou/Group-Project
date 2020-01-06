@@ -90,7 +90,7 @@ public class MiddleManager extends Employee {
 	@Override
 	public String toString() {
 		return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getID()
-		+ ", Email = " + getEmail() + ", Telephone = " + getTelephone()
+		+ ", Email = " + getEmail() + ", Telephone = " + getPhonenumber()
 	/*	+ ", Managing Departments = " + /*getNamesOfManagingDepartments()*/;
 	}
 

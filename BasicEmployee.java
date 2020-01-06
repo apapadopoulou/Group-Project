@@ -107,9 +107,7 @@ public class BasicEmployee extends Employee {
 	 */
 	public void setDepartment(int depID) {
 		this.department = Department.searchDepartmentById(depID);
-		/**
-		 *DBcon.UpdateBasicEmpVar("department", department.getId(), id); //Saves the change to the Database.
-		 */
+		DBcon.updateEmployeeVar("BasicEmployee", "depID", depID, getID());
 	}
 	
 	/** 

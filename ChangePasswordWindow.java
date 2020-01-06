@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 public class ChangePasswordWindow extends javax.swing.JFrame {
 
     /**
-     * Creates new form ChangePasswordWindow
+     * Creates new form ChangePasswordWindow.
      */
     public ChangePasswordWindow() {
         initComponents();
@@ -169,3 +169,4 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField jPasswordField3;
     // End of variables declaration//GEN-END:variables
 }
+//End of ChangePasswordWindow class.

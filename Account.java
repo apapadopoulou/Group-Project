@@ -29,12 +29,7 @@ public class Account {
         employee = emp;
         email = employee.getEmail();
         password = passwordGenerator();
-         
-        /**
-          * Account object entered on accounts ArrayList.
-          */ 
-        
-        accounts.add(this);
+        accounts.add(this); //Account object entered on accounts ArrayList.
         DBcon.saveAccount(this);
     }
 
@@ -51,16 +46,12 @@ public class Account {
         employee = Employee.searchEmployeeById(empId);
         email = employee.getEmail();
         this.password = password;
-
-         /**
-          *Account object entered on accounts ArrayList.
-          */
-        accounts.add(this);
+        accounts.add(this); //Account object entered on accounts ArrayList.
     }
 
-    /**
-     *Getters and Setters.
-     */
+    
+     //Getters and Setters.
+     
     
     /** 
      * Gets the hasDefaultPass.
@@ -70,9 +61,9 @@ public class Account {
         return hasDefaultPass;
     }
     
-    /**
-     *Sets the hasDefaultPass. 
-     */
+    
+     //Sets the hasDefaultPass. 
+     
 
     public void setHasDefaultPass(int dp) {
         hasDefaultPass = dp;
@@ -87,9 +78,9 @@ public class Account {
         return employee;
     }
     
-    /**
-     *Sets the employee. 
-     */
+    
+     //Sets the employee. 
+    
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
@@ -103,9 +94,9 @@ public class Account {
         return email;
     }
     
-    /**
-     *Sets the email.
-     */
+    
+     //Sets the email.
+     
 
     public void setEmail(String email) {
         this.email = email;
@@ -120,9 +111,9 @@ public class Account {
         return password;
     }
     
-    /**
-     *Sets the password.
-     */
+    
+     //Sets the password.
+     
 
     public void setPassword(String password) {
         this.password = password;
@@ -130,7 +121,7 @@ public class Account {
    
    /**
      *This method searches Employees' accounts by their email.
-     *@return account if true or null if false
+     *@return acc
     */ 
     public static Account searchAccountByEmail(String email) {
     	Account acc = null;
@@ -142,6 +133,10 @@ public class Account {
         return acc;
     }
     
+    /**
+     *This method is used to check the credentials(email and password).
+     *@return acc 
+     */
     public static Account checkCredentials(String email, String password) {
     	Account acc = null;
     	for (int i = 0; i < accounts.size(); i++) {
@@ -179,9 +174,9 @@ public class Account {
 
     }
 
-    /**
-     *  This method generates Employee's password.
-     */
+    
+     
+   //This method generates Employee's password.  
     public static String passwordGenerator() {
         String password = "";
         String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -190,21 +185,15 @@ public class Account {
         String symbols = "!@#$%^&*_=+-/.?<>)";
         String values = Capital_chars + Small_chars
                 + numbers + symbols;
-
-        /** 
-         * Using Random method.
-         */
+          //Using Random method.
         Random ran = new Random();
         char[] psw = new char[8];
 
         for (int i = 0; i < 8; i++) {
-            /**
-             * Use of charAt() method : to get character value.
-             */
-        	
-            /**
-             * Use of nextInt() as it is scanning the value as int.
-             */
+            
+              //Use of charAt() method : to get character value.
+             //Use of nextInt() as it is scanning the value as int.
+             
             psw[i]  = values.charAt(ran.nextInt(values.length()));
 
         }

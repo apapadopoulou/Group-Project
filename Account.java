@@ -207,6 +207,5 @@ public class Account {
         return password;
     }
 }
-/** 
- * End of Account class.
- */
+ 
+ //End of Account class.

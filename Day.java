@@ -75,46 +75,78 @@ public class Day {
   }
  /**
   *Sets the daily program.
+  *@param dailyProgram
   */
   public void setDailyProgram(ArrayList<Program> dailyProgram) {
     this.dailyProgram = dailyProgram;
   }
 
-/**
- *Gets the date.
- *@return date 
- */
+
   
   
- 
+ /**
+  *Adds to daily program.
+  * @param p
+  */
   private void addToDailyProgram(Program p) {
     dailyProgram.add(p);
   }
+  /**
+   *Gets the date.
+   *@return date 
+   */
 public String getDate() {
 	return date;
 }
+/**
+ *Sets the date.
+ *@param date 
+ */
 public void setDate(String date) {
 	this.date = date;
 }
+/**
+ *Gets the day.
+ *@return d 
+ */
 public String getD() {
 	return d;
 }
+/**
+ *Sets the day.
+ *@param d 
+ */
 public void setD(String d) {
 	this.d = d;
 }
+/**
+ *Gets the month.
+ *@return mon 
+ */
 public String getMon() {
 	return mon;
 }
+/**
+ *Sets the month.
+ *@param mon 
+ */
 public void setMon(String mon) {
 	this.mon = mon;
 }
+/**
+ * Gets the year.
+ * @return y
+ */
 public String getY() {
 	return y;
 }
+/**
+ * Sets the year.
+ * @param y
+ */
 public void setY(String y) {
 	this.y = y;
 }
 }
-/** 
-*End of Day class.
-*/
+
+//End of Day class.

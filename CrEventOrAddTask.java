@@ -582,7 +582,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             int difficulty = (int) comboDif.getSelectedItem();
             if (singleTask.isSelected()){
                 String employeeId = Employee.searchEmployeeByName2(
-                    String.valueOf(employeesList.getSelectedValue())).getId();
+                    String.valueOf(employeesList.getSelectedValue())).getID();
                 new Task(startDate, dueDate, description, importance, difficulty, 
                     employeeId);
             } else {
@@ -590,7 +590,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 ArrayList <String> empls = new ArrayList <String>();
                 for (int i = 0; i < employees.length; i++){
                     String em = Employee.searchEmployeeByName2((String) 
-                            employees[i]).getId();
+                            employees[i]).getID();
                     empls.add(em);
                 }   
                 new Task(startDate, dueDate, description, importance, difficulty,

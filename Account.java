@@ -62,7 +62,10 @@ public class Account {
     }
     
     
-     //Sets the hasDefaultPass. 
+     /**
+      *Sets the setHasDefaultPass.
+      *@param dp 
+      */
      
 
     public void setHasDefaultPass(int dp) {
@@ -79,7 +82,10 @@ public class Account {
     }
     
     
-     //Sets the employee. 
+     /**
+      *Sets the employee.
+      *@param employee
+      */
     
 
     public void setEmployee(Employee employee) {
@@ -95,7 +101,10 @@ public class Account {
     }
     
     
-     //Sets the email.
+     /**
+      *Sets the email.
+      *@param email 
+      */
      
 
     public void setEmail(String email) {
@@ -112,7 +121,10 @@ public class Account {
     }
     
     
-     //Sets the password.
+     /**
+      *Sets the password.
+      *@param password
+      */
      
 
     public void setPassword(String password) {
@@ -121,6 +133,7 @@ public class Account {
    
    /**
      *This method searches Employees' accounts by their email.
+     *@param email
      *@return acc
     */ 
     public static Account searchAccountByEmail(String email) {
@@ -135,6 +148,8 @@ public class Account {
     
     /**
      *This method is used to check the credentials(email and password).
+     *@param email
+     *@param password
      *@return acc 
      */
     public static Account checkCredentials(String email, String password) {
@@ -151,6 +166,7 @@ public class Account {
     * employee is a BasicEmployee who works in HR department, 3 if the employee
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 
     * HR department and 5 if the employee is a TopManager.
+    * @param emp
     * @return 1 or 2 or 3 or 4 or 5
     */
     public static int typeOfEmployee(Employee emp) {

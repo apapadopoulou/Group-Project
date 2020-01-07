@@ -48,7 +48,7 @@ public class MiddleManager extends Employee {
 	/** Method that checks if the Manager manages the HR department*/
     public static boolean managingHR(MiddleManager midman) {
     	for (int i = 0; i < midman.getManagingDepartments().size(); i++) {
-    		if (midman.getManagingDepartments().get(i).getName() == "HR") {
+    		if (midman.getManagingDepartments().get(i).getName().equals("HR")) {
                     return true;
             }
             

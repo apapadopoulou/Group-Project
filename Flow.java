@@ -168,7 +168,7 @@ public static void dataEntry() throws ParseException {
                    System.out.println("Date of Birth (dd/mm/yyyy): ");
                    while (run) {
                 	   try {
-                		   inputDate = sc.nextLine();
+                		   inputDate = sc.next();
                 		   sc.nextLine();
                 		   break;
                 	   } catch (Exception ex) {
@@ -254,7 +254,7 @@ public static void dataEntry() throws ParseException {
              System.out.println("Date of Birth (dd/mm/yyy): ");
              while (run) {
             	 try {
-            		 inputDate = sc.nextLine();
+            		 inputDate = sc.next();
             		 sc.nextLine();
             		 break;
             	 } catch (Exception ex) {
@@ -331,7 +331,7 @@ public static void dataEntry() throws ParseException {
              System.out.println("Date of Birth (dd/mm/yyyy): ");
              while (run) {
             	 try {
-            		 inputDate = sc.nextLine();
+            		 inputDate = sc.next();
             		 sc.nextLine();
             		 break;
             	 } catch (Exception ex) {

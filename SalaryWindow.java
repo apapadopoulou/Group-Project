@@ -12,7 +12,6 @@ import javax.swing.Timer;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author
@@ -34,8 +33,8 @@ public class SalaryWindow extends javax.swing.JFrame {
         showTime();
         jLabel7.setVisible(false);
     }
- 
-     void showDate() {
+
+    void showDate() {
         Date d = new Date();
         SimpleDateFormat s = new SimpleDateFormat("EEEE dd-MM-yyyy");
         currentDate.setText(s.format(d));
@@ -53,6 +52,7 @@ public class SalaryWindow extends javax.swing.JFrame {
         }
         ).start();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,8 +219,8 @@ public class SalaryWindow extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (jTable1.getSelectionModel() == null){
-            jLabel7 .setVisible(true);
+        if (jTable1.getSelectionModel() == null) {
+            jLabel7.setVisible(true);
         } else {
             jLabel7.setVisible(false);
             java.awt.EventQueue.invokeLater(new Runnable() {
@@ -236,11 +236,8 @@ public class SalaryWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        /*  java.awt.EventQueue.invokeLater(() -> {
-            new FirstWindow(n).setVisible(true);
-        });
-        this.dispose(); */
+        new FirstWindow(emp).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
@@ -271,11 +268,11 @@ public class SalaryWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SalaryWindow(1).setVisible(true);
             }
-        }); */
+        });*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

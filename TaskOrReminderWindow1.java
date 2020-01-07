@@ -24,12 +24,12 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
      * Creates new form TaskOrReminderWindow1
      */
     private int n;
-    private Employee emp; 
+    private Employee emp;
 
     public TaskOrReminderWindow1(int n, Employee emp) {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.n = n;
-        this.emp = emp; 
+        this.emp = emp;
         initComponents();
         showDate();
         showTime();
@@ -637,13 +637,9 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-      /*  java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-         new FirstWindow(emp).setVisible(true);
-         }
-         });
-         this.dispose(); */
+        new FirstWindow(emp).setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
@@ -693,13 +689,12 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-      /*  java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TaskOrReminderWindow1(1).setVisible(true);
-            }
-        }); */
+        /* java.awt.EventQueue.invokeLater(new Runnable() {
+         public void run() {
+         new TaskOrReminderWindow1(1).setVisible(true);
+         }
+         }); */
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currentDate;

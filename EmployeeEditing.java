@@ -27,7 +27,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
     private Employee emp;
     private BasicEmployee empb;
 
-    public EmployeeEditing(int n) {
+    public EmployeeEditing(int n, Employee emp) {
         this.n = n;
         this.emp = emp;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -293,11 +293,11 @@ public class EmployeeEditing extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+      /*  java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EmployeeEditing(2).setVisible(true);
             }
-        });
+        }); */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

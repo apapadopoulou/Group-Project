@@ -38,8 +38,7 @@ public class MiddleManager extends Employee {
 	public ArrayList<Department> getManagingDepartments() {
 	    ArrayList<Department> departments = new ArrayList<Department>();
 	    for (int i = 0; i < Department.departments.size(); i++) {
-			if (Department.departments.get(i).getManagerId()
-				== getID()) {
+			if (Department.departments.get(i).getManagerId().equals(getID())) {				
 				departments.add(Department.departments.get(i));
 			}
 	    }

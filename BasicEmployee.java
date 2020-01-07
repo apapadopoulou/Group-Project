@@ -122,7 +122,7 @@ public class BasicEmployee extends Employee {
      *@return true or false
      */
 	public static boolean isHREmployee(BasicEmployee emp) {
-		if (emp.getDepartment().getName() == "HR") {
+		if (emp.getDepartment().getName().equals("HR")) {
 			return true;
 		} else {
 			return false;

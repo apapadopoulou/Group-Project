@@ -63,8 +63,13 @@ public final class FirstWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-    	jPanel1 = new javax.swing.JPanel();
-    	jPanel1.setBackground(new java.awt.Color(255, 230, 110));
+        try {
+            jPanel1 =(javax.swing.JPanel)java.beans.Beans.instantiate(getClass().getClassLoader(), "FirstWindow_jPanel1");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
         currentDate = new javax.swing.JLabel();
         today_label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -175,7 +180,7 @@ public final class FirstWindow extends javax.swing.JFrame {
 
         arrow3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
-        arrow3.setText("Time off Request");
+        arrow3.setText("Vacation Request");
         arrow3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -385,7 +390,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }        
-        new TimeOffRequest(num, emp).setVisible(true);        
+        new VacationRequest(num, emp).setVisible(true);        
         this.setVisible(false);
     }//GEN-LAST:event_arrow3MouseClicked
 

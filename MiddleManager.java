@@ -8,9 +8,8 @@ public class MiddleManager extends Employee {
 	 * Basic constructor for class MiddleManager.
 	 * Use this if you want to create new Middle Managers.
 	 */
-	public MiddleManager(String name, String surname,
-		String phonenumber, String email, String birthdate) {
-		super(name, surname, phonenumber, email, birthdate, null, 0);
+	public MiddleManager(String name, String surname, String phonenumber, String email, String birthdate, double salary) {
+		super(name, surname, phonenumber, email, birthdate, null, salary);
 	    String id = name.substring(1, 3) + surname.substring(1, 3) + String.valueOf(middleManagers.size());
 	    setID(id);
 	    middleManagers.add(this);
@@ -24,8 +23,7 @@ public class MiddleManager extends Employee {
 	 * This constructor is used to load Middle Managers
 	 * from the database when the program opens.
 	 */
-	public MiddleManager(String name, String surname, String telephone,
-		String email, String birthdate, String id, double salary) {
+	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, String id, double salary) {
 	    super(name, surname, telephone, email, birthdate, id, salary);
 	    managingDepartments = getManagingDepartments(); //Adds the managing departments.
 	    middleManagers.add(this);

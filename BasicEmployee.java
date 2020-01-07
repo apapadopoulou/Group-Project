@@ -29,11 +29,11 @@ public class BasicEmployee extends Employee {
 	 *@param birthdate
 	 *@param depID
 	 */
-	public BasicEmployee(String name, String surname, String telephone, String email, String birthdate, int depID) {
+	public BasicEmployee(String name, String surname, String telephone, String email, String birthdate, int depID, double salary) {
         
          //Calls the constructor for the superclass Employee. 
          
-		super(name, surname, telephone, email, birthdate, null, 0);
+		super(name, surname, telephone, email, birthdate, null, salary);
 		
 		 //Gets the Department object using the Department id.
 		 

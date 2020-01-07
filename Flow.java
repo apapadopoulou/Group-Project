@@ -276,6 +276,7 @@ public static void dataEntry() throws ParseException {
              MiddleManager emp = new MiddleManager(name, surname,
              phoneNumber, email, inputDate, salary);
              emp.getManagingDepartments().add(dep);
+             dep.setManagerId(emp.getID());
              System.out.println("Manager "
               + "created with id: " + emp.getID());
           }

@@ -62,22 +62,22 @@ public class WelcomeWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(489, 489, 489)
+                .addGap(586, 586, 586)
                 .addComponent(jLabel3)
-                .addContainerGap(490, Short.MAX_VALUE))
+                .addContainerGap(539, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(764, 764, 764))
+                .addGap(814, 814, 814))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(148, 148, 148)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
                 .addComponent(jLabel2))
         );
 

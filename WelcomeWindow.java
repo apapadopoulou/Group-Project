@@ -41,9 +41,6 @@ public class WelcomeWindow extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel1MouseEntered(evt);
-            }
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N

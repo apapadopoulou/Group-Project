@@ -44,8 +44,8 @@ public class BasicEmployee extends Employee {
 		 * the first two letters of the employee's surname
 	     * and the number of employees existing already in the department.
 	     */
-		String id = String.valueOf(department.getId()) + name.substring(1,3)
-			+ surname.substring(1,3) 
+		String id = String.valueOf(department.getId()) + name.substring(0,2)
+			+ surname.substring(0,2) 
 			+ String.valueOf(department.getEmployeesOfDepartment().size());
 		setID(id);
 		

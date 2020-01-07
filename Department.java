@@ -6,7 +6,7 @@ public class Department {
 
 	private int id;
 	private String name;
-	private static int counter = 1; /** counter*/
+	private static int counter = 0; /** counter*/
 	private String managerId;
 	private ArrayList<BasicEmployee> employeesOfDepartment = new ArrayList<BasicEmployee>(); 
 	/** A list that contains the employees of each department separately*/

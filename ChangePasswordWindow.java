@@ -49,15 +49,15 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jLabel2.setText("Current password:");
+        jLabel2.setText("Type current password:");
 
         jPasswordField1.setSelectionColor(new java.awt.Color(0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jLabel3.setText("New password:");
+        jLabel3.setText("Type new password:");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jLabel4.setText("New password again:");
+        jLabel4.setText("Retype new password:");
 
         jPasswordField2.setSelectionColor(new java.awt.Color(0, 0, 0));
 
@@ -120,6 +120,7 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

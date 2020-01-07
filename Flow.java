@@ -22,6 +22,7 @@ public class Flow {
         		 break;
         	 } catch (Exception ex) {
         		 System.out.println("An error occurred! Please try again!");
+        		 sc.nextLine();
         	 }
          }
 		System.out.println("Insert administrator's name: ");
@@ -33,6 +34,7 @@ public class Flow {
        		 break;
        	 } catch (Exception ex) {
        		 System.out.println("An error occurred! Please try again!");
+       		 sc.nextLine();
        	 }
         }
         System.out.println("Insert administrator's phonenumber: ");
@@ -44,6 +46,7 @@ public class Flow {
        		 break;
        	 } catch (Exception ex) {
        		 System.out.println("An error occurred! Please try again!");
+       		 sc.nextLine();
        	 }
         }
         System.out.println("Insert administrator's email: ");
@@ -55,6 +58,7 @@ public class Flow {
        		 break;
        	 } catch (Exception ex) {
        		 System.out.println("An error occurred! Please try again!");
+       		 sc.nextLine();
        	 }
         }
         System.out.println("Insert administrator's birthdate (dd/mm/yyyy): ");
@@ -105,6 +109,7 @@ public static void dataEntry() throws ParseException {
          		 break;
          	 } catch (Exception ex) {
          		 System.out.println("An error occurred! Please try again!");
+         		 sc.nextLine();
          	 }
           }
           if (!dname.equals("done")) {
@@ -122,6 +127,7 @@ public static void dataEntry() throws ParseException {
              		 break;
              	 } catch (Exception ex) {
              		 System.out.println("An error occurred! Please try again!");
+             		 sc.nextLine();
              	 }
               }
               while (!name.equals("done")) {
@@ -134,6 +140,7 @@ public static void dataEntry() throws ParseException {
                   		 break;
                   	 } catch (Exception ex) {
                   		 System.out.println("An error occurred! Please try again!");
+                  		 sc.nextLine();
                   	 }
                    }
                    System.out.println("Email: ");
@@ -144,6 +151,7 @@ public static void dataEntry() throws ParseException {
                   		 break;
                   	 } catch (Exception ex) {
                   		 System.out.println("An error occurred! Please try again!");
+                  		 sc.nextLine();
                   	 }
                    }
                    System.out.println("Phonenumber: ");
@@ -154,6 +162,7 @@ public static void dataEntry() throws ParseException {
                   		 break;
                   	 } catch (Exception ex) {
                   		 System.out.println("An error occurred! Please try again!");
+                  		 sc.nextLine();
                   	 }
                    }
                    System.out.println("Date of Birth: ");
@@ -165,6 +174,7 @@ public static void dataEntry() throws ParseException {
                 		   break;
                 	   } catch (Exception ex) {
                 		   System.out.println("An error occurred! Please try again!");
+                		   sc.nextLine();
                 	   }
                    }
                    System.out.println("Salary: ");
@@ -175,6 +185,7 @@ public static void dataEntry() throws ParseException {
                 		   break;
                 	   } catch (Exception ex) {
                 		   System.out.println("An error occurred! Please try again!");
+                		   sc.nextLine();
                 	   }
                    }
                      BasicEmployee emp = new BasicEmployee(name,
@@ -192,6 +203,7 @@ public static void dataEntry() throws ParseException {
              		   break;
              	   } catch (Exception ex) {
              		   System.out.println("An error occurred! Please try again!");
+             		  sc.nextLine();
              	   }
                 }
               }
@@ -204,6 +216,7 @@ public static void dataEntry() throws ParseException {
            		     break;
            	     } catch (Exception ex) {
            		     System.out.println("An error occurred! Please try again!");
+           		     sc.nextLine();
            	     }
               }
              sc.nextLine();
@@ -215,6 +228,7 @@ public static void dataEntry() throws ParseException {
            		     break;
            	     } catch (Exception ex) {
            		     System.out.println("An error occurred! Please try again!");
+           		     sc.nextLine();
            	     }
               }
              System.out.println("Email: ");
@@ -225,6 +239,7 @@ public static void dataEntry() throws ParseException {
            		     break;
            	     } catch (Exception ex) {
            		     System.out.println("An error occurred! Please try again!");
+           		     sc.nextLine();
            	     }
               }
              System.out.println("Phonenumber: ");
@@ -235,6 +250,7 @@ public static void dataEntry() throws ParseException {
             		 break;
             	 } catch (Exception ex) {
             		 System.out.println("An error occurred! Please try again!");
+            		 sc.nextLine();
             	 }
              }
              System.out.println("Date of Birth: ");
@@ -245,6 +261,7 @@ public static void dataEntry() throws ParseException {
             		 break;
             	 } catch (Exception ex) {
             		 System.out.println("An error occurred! Please try again!");
+            		 sc.nextLine();
             	 }
              }
              System.out.println("Salary: ");
@@ -255,6 +272,7 @@ public static void dataEntry() throws ParseException {
           		     break;
           	     } catch (Exception ex) {
           	    	 System.out.println("An error occurred! Please try again!");
+          	    	 sc.nextLine();
           	     }
              }
              sc.nextLine();
@@ -275,6 +293,7 @@ public static void dataEntry() throws ParseException {
     		   break;
     	   } catch (Exception ex) {
     		   System.out.println("An error occurred! Please try again!");
+    		   sc.nextLine();
     	   }
        }
         while (!name.equals("done")) {
@@ -287,6 +306,7 @@ public static void dataEntry() throws ParseException {
            		   break;
            	   } catch (Exception ex) {
            		   System.out.println("An error occurred! Please try again!");
+           		   sc.nextLine();
            	   }
               }
              System.out.println("Email: ");
@@ -297,6 +317,7 @@ public static void dataEntry() throws ParseException {
            		   break;
            	   } catch (Exception ex) {
            		   System.out.println("An error occurred! Please try again!");
+           		   sc.nextLine();
            	   }
               }
              System.out.println("Phonenumber: ");
@@ -307,6 +328,7 @@ public static void dataEntry() throws ParseException {
            		   break;
            	   } catch (Exception ex) {
            		   System.out.println("An error occurred! Please try again!");
+           		   sc.nextLine();
            	   }
               }
              System.out.println("Date of Birth: ");
@@ -317,6 +339,7 @@ public static void dataEntry() throws ParseException {
             		 break;
             	 } catch (Exception ex) {
             		 System.out.println("An error occurred! Please try again!");
+            		 sc.nextLine();
             	 }
              }
              while (run) {
@@ -326,6 +349,7 @@ public static void dataEntry() throws ParseException {
           		   break;
           	   } catch (Exception ex) { 
           		 System.out.println("An error occurred! Please try again!");
+          		 sc.nextLine();
           	   }
              }
              TopManager emp = new TopManager(name, surname,
@@ -343,6 +367,7 @@ public static void dataEntry() throws ParseException {
        		   break;
        	   } catch (Exception ex) {
        		   System.out.println("An error occurred! Please try again!");
+       		   sc.nextLine();
        	   }
           }
         }

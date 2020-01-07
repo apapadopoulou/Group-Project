@@ -73,12 +73,12 @@ public class Flow {
         double admnSalary;
         while (run) {
        	 try {
-       		System.out.println("Insert administrator's salary: ");
        		 admnSalary = sc.nextDouble();
        		 sc.nextLine();
        		 break;
        	 } catch (Exception ex) {
        		 System.out.println("An error occurred! Please try again!");
+       		 sc.nextLine();
        	 }
         }
         Department admin = new Department("Administrator");

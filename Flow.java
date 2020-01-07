@@ -72,6 +72,7 @@ public class Flow {
         double admnSalary;
         while (run) {
        	 try {
+       		 sc.nextLine();
        		 admnSalary = sc.nextDouble();
        		 sc.nextLine();
        		 break;

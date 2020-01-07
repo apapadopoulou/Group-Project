@@ -651,29 +651,19 @@ public class DBcon {
 	}
 
 	public static void saveEvaluation(int taskID, String empID, double score) {
-		/* Connection type object to make the connection. */
 		Connection dbcon;
-		/*
-		 * Statement type object that contains the statement we will send to the server.
-		 */
 		Statement stmt;
-		/* Try block for trying to find the correct Driver to make the DB connection. */
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			/* Catch block if an exception occurs and the specified driver is not found. */
 		} catch (java.lang.ClassNotFoundException e) {
 			System.out.print("test: ");
 			System.out.println(e.getMessage());
 		}
-		/* Try block for making the DB connection and executing the given statement. */
 		try {
-			/* Makes the actual connection with the server. */
 			dbcon = DriverManager.getConnection(url);
-			/* Creates the statement */
 			stmt = dbcon.createStatement();
-			stmt.executeUpdate("INSERT INTO BBEvaluation (taskID, empID, evaluation) VALUES (" + taskID + ", " + empID
-					+ ", " + score + ");");
-			stmt.close(); // Closes the Statement resource.
+			stmt.executeUpdate("UPDATE BBAssignedToTask SET evaluation = " + score + " WHERE TaskID = " + id + " AND empID = '" + empID + "';");
+			stmt.close(); // Closes the Statement resource
 			dbcon.close(); // Closes the DataBase conenction resource.
 			/*
 			 * Catch block if an exception occurs while making the connection and executing

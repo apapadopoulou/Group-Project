@@ -165,10 +165,9 @@ public static void dataEntry() throws ParseException {
                   		 sc.nextLine();
                   	 }
                    }
-                   System.out.println("Date of Birth: ");
+                   System.out.println("Date of Birth (dd/mm/yyyy): ");
                    while (run) {
                 	   try {
-                		   sc.nextLine();
                 		   inputDate = sc.nextLine();
                 		   sc.nextLine();
                 		   break;
@@ -219,7 +218,6 @@ public static void dataEntry() throws ParseException {
            		     sc.nextLine();
            	     }
               }
-             sc.nextLine();
              System.out.println("Surname: ");
              while (run) {
            	     try {
@@ -253,7 +251,7 @@ public static void dataEntry() throws ParseException {
             		 sc.nextLine();
             	 }
              }
-             System.out.println("Date of Birth: ");
+             System.out.println("Date of Birth (dd/mm/yyy): ");
              while (run) {
             	 try {
             		 inputDate = sc.nextLine();
@@ -275,7 +273,6 @@ public static void dataEntry() throws ParseException {
           	    	 sc.nextLine();
           	     }
              }
-             sc.nextLine();
              MiddleManager emp = new MiddleManager(name, surname,
              phoneNumber, email, inputDate, salary);
              emp.getManagingDepartments().add(dep);
@@ -331,7 +328,7 @@ public static void dataEntry() throws ParseException {
            		   sc.nextLine();
            	   }
               }
-             System.out.println("Date of Birth: ");
+             System.out.println("Date of Birth (dd/mm/yyyy): ");
              while (run) {
             	 try {
             		 inputDate = sc.nextLine();

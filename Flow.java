@@ -66,6 +66,7 @@ public class Flow {
        		 break;
        	 } catch (Exception ex) {
        		 System.out.println("An error occurred! Please try again!");
+       		 sc.nextLine();
        	 }
         }
         System.out.println("Insert administrator's salary: ");

@@ -385,121 +385,66 @@ public final class FirstWindow extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TimeOffRequest(num, emp).setVisible(true);
-            }
-        });
-        this.dispose();
+        new TimeOffRequest(num, emp).setVisible(true);        
+        this.setVisible(false);
     }//GEN-LAST:event_arrow3MouseClicked
 
     private void arrow1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow1MouseClicked
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-         
-            public void run() {
-                new MyCalendar(num, emp).setVisible(true);
-            }
-        });
-        this.dispose();
+        new MyCalendar(num, emp).setVisible(true);            
+        this.setVisible(false);
     }//GEN-LAST:event_arrow1MouseClicked
 
     private void arrow4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow4MouseClicked
         if ( num != 1 && num != 2){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CrEventOrAddTask(num, emp).setVisible(true);
-            }
-        });
+           new CrEventOrAddTask(num, emp).setVisible(true);
         } else {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EventRequest(num, emp).setVisible(true);
+            new EventRequest(num, emp).setVisible(true);
             }
-        });
-        
-        
-        }
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_arrow4MouseClicked
 
     private void arrow5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow5MouseClicked
         if ( num != 3 && num != 4){
-             java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MyEvaluation(num, emp).setVisible(true);
-            }
-        });
+            new MyEvaluation(num, emp).setVisible(true);
         } else {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ShowDepartments(num, emp).setVisible(true);
+            new ShowDepartments(num, emp).setVisible(true);
             }
-        });
-        }
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_arrow5MouseClicked
 
     private void arrow6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow6MouseClicked
        if (num == 3 || num == 4) {
-             java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MyEvaluation(num, emp).setVisible(true);
-            }
-        });     
+            new MyEvaluation(num, emp).setVisible(true);
        }
-        this.dispose();
+       this.setVisible(false);
     }//GEN-LAST:event_arrow6MouseClicked
 
     private void jLabelTeamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTeamMouseClicked
-        if (num == 3 || num == 4) {
-         /* Create and display the form */
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new Team(num, emp).setVisible(true);
-                }
-            });
-            this.dispose();
-        }
-        
+        if (num == 3 || num == 4)
+            new Team(num, emp).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabelTeamMouseClicked
 
     private void arrow2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow2MouseClicked
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TaskOrReminderWindow1(num, emp).setVisible(true);
-            }
-        });
-        this.dispose();
+        new TaskOrReminderWindow1(num, emp).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_arrow2MouseClicked
 
     private void jLabelTimeoffsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTimeoffsMouseClicked
-        if ( num == 2 || num == 4){
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TimeOffWindow(num, emp).setVisible(true);
-            }
-        });
-        this.dispose();
-        }
+        if ( num == 2 || num == 4)
+            new TimeOffWindow(num, emp).setVisible(true);
+        this.setVisible(false);        
     }//GEN-LAST:event_jLabelTimeoffsMouseClicked
 
     private void jLabelPayrollsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPayrollsMouseClicked
-       if ( num == 2|| num == 4){
-           java.awt.EventQueue.invokeLater(() -> {
-            new SalaryModificationWindow().setVisible(true);
-        });
-           this.dispose();
-       }
+        if ( num == 2|| num == 4)
+           new SalaryModificationWindow().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabelPayrollsMouseClicked
 
     private void settingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseClicked
-        java.awt.EventQueue.invokeLater(() -> {
-            new SettingsWindow(num, emp).setVisible(true);
-        });
-           this.dispose();
+        new SettingsWindow(num, emp).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_settingsMouseClicked
 
     /**
@@ -532,7 +477,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             Department d = new Department("HR");
-            BasicEmployee e = new BasicEmployee("Kostakis", "Mereos", "6971717171", "hdjshdjes@gmail.com", "19/09/2018",1);
+            BasicEmployee e = new BasicEmployee("Kostakis", "Mereos", "6971717171", "hdjshdjes@gmail.com", "19/09/2018",1, 500.0);
 		
             public void run() {
                 new FirstWindow(e).setVisible(true);

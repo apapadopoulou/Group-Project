@@ -24,7 +24,7 @@ public class SettingsWindow extends javax.swing.JFrame {
     private int n;
     private Employee emp;
 
-    public SettingsWindow(int n) {
+    public SettingsWindow(int n, Employee emp) {
         this.n = n;
         this.emp = emp;
         initComponents();
@@ -313,11 +313,11 @@ public class SettingsWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+       /* java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SettingsWindow(1).setVisible(true);
             }
-        });
+        }); */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

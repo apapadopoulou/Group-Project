@@ -109,15 +109,6 @@ public class DBcon {
 					+ "PRIMARY KEY (eventID));");
 			System.out.println("TABLE BBEvent CREATED");
 
-			stmt.executeUpdate("CREATE TABLE BBEvaluation "
-					+ "(taskID INT not null, " 
-					+ "empID VARCHAR(20) not null, "
-					+ "evaluation REAL not null, " 
-					+ "PRIMARY KEY (taskID, empID), "
-					+ "FOREIGN KEY (empID) REFERENCES BBAccount," 
-					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
-			System.out.println("TABLE BBEvaluation CREATED");
-
 			stmt.executeUpdate("CREATE TABLE BBAssignedToTask " 
 					+ "(taskID INT not null, "
 					+ "empID VARCHAR(20) not null, "
@@ -154,7 +145,6 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			/* Executes the given statement that saves the object's. */
 			stmt.executeUpdate("DROP TABLE BBAssignedToTask;");
-			stmt.executeUpdate("DROP TABLE BBEvaluation;");
 			stmt.executeUpdate("DROP TABLE BBEvent;");
 			stmt.executeUpdate("DROP TABLE BBTask;");
 			stmt.executeUpdate("DROP TABLE BBAccount;");

@@ -121,16 +121,12 @@ public class BasicEmployee extends Employee {
      *@param name
      *@return true or false
      */
-	public static boolean HREmployee(String name) {
-		for (int i = 0; i < basicEmployees.size(); i++) {
-			if (basicEmployees.get(i).getNameSurname().equals(name) && basicEmployees.get(i).getDepartment().getName() == "HR") {
-		        return true;
-		      } else if (basicEmployees.get(i).getSurname().equals(name) && basicEmployees.get(i).getDepartment().getName() == "HR") {
-		    	  return true;
-		      } else 
-		    	  return false;
-		    }
-            return false;
+	public static boolean isHREmployee(BasicEmployee emp) {
+		if (emp.getDepartment().getName() == "HR") {
+			return true;
+		} else {
+			return false;
+		}
 	}
         
   /** 

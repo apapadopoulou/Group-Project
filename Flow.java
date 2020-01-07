@@ -10,6 +10,7 @@ import java.util.InputMismatchException;
  /* Class Flow manages the main flow of the application and
   * supports data entry and first connection to the database." */
 public class Flow {
+	public static final boolean run = true;
 	public static void adminSettingsEntry() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Insert administrator's surname: ");
@@ -27,6 +28,9 @@ public class Flow {
         System.out.println("Insert administrator's birthdate: ");
         String admnBirthdate = sc.next();
         sc.nextLine();
+        System.out.println("Insert administrator's salary: ");
+        double admnSalary = sc.nextDouble();
+        sc.nextLine();
         Department admin = new Department("Administrator");
         Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
        
@@ -40,6 +44,7 @@ public static void dataEntry() throws ParseException {
       String phoneNumber;
       String inputDate = null;
       Department dep;
+      double salary;
       do {
           System.out.println("Insert name of Department. "
               + "In case you have inserted all the"
@@ -58,7 +63,6 @@ public static void dataEntry() throws ParseException {
               name = sc.next();
               sc.nextLine();
               while (!name.equals("done")) {
-                boolean run = true;
                 while (run) {
                    System.out.println("Surname: ");
                    surname = sc.next();
@@ -75,6 +79,14 @@ public static void dataEntry() throws ParseException {
                 	   try {
                 		   sc.nextLine();
                 		   inputDate = sc.nextLine();
+                		   sc.nextLine();
+                		   break;
+                	   } catch (InputMismatchException ime) { }
+                   }
+                   System.out.println("Salary: ");
+                   while (!con) {
+                	   try {
+                		   salary = sc.nextDouble();
                 		   sc.nextLine();
                 		   break;
                 	   } catch (InputMismatchException ime) { }
@@ -115,6 +127,13 @@ public static void dataEntry() throws ParseException {
             		 System.out.println("An error occured! Please try again!");
             	 }
              }
+             while (!con) {
+          	   try {
+          		   salary = sc.nextDouble();
+          		   sc.nextLine();
+          		   break;
+          	   } catch (InputMismatchException ime) { }
+             }
              sc.nextLine();
              MiddleManager emp = new MiddleManager(name, surname,
              phoneNumber, email, inputDate);
@@ -147,6 +166,13 @@ public static void dataEntry() throws ParseException {
             		 sc.nextLine();
             		 break;
             	 } catch (InputMismatchException ime) { }
+             }
+             while (!con) {
+          	   try {
+          		   salary = sc.nextDouble();
+          		   sc.nextLine();
+          		   break;
+          	   } catch (InputMismatchException ime) { }
              }
              TopManager emp = new TopManager(name, surname,
                  phoneNumber, email, inputDate);

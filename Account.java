@@ -171,23 +171,22 @@ public class Account {
     */
     public static int typeOfEmployee(Employee emp) {
         if (emp instanceof BasicEmployee) {
-            if (BasicEmployee.HREmployee(emp.getName()) == true)
+        	BasicEmployee be = (BasicEmployee) emp;
+            if (BasicEmployee.isHREmployee(be) == true) {
                 return 2;
-            else if (BasicEmployee.HREmployee(emp.getSurname()) == true)
-                return 2;
-            else
+            } else {
                 return 1;
+            }
         } else if (emp instanceof MiddleManager) {
-            if (MiddleManager.HREmployee(emp.getName()) == true)
+        	MiddleManager midman = (MiddleManager) emp;
+            if (MiddleManager.managingHR(midman) == true) {
                 return 4;
-            else if (MiddleManager.HREmployee(emp.getSurname()) == true)
-                return 4;
-            else 
+            } else {
                 return 3;
+            }
         } else {
             return 5;
         }
-
     }
 
     

@@ -47,9 +47,9 @@ public class MiddleManager extends Employee {
 	}
 
 	/** Method that checks if the Manager manages the HR department*/
-    public boolean managingHR() {
-    	for (int i = 0; i < this.getManagingDepartments().size(); i++) {
-    		if (this.getManagingDepartments().get(i).getName() == "HR") {
+    public static boolean managingHR(MiddleManager midman) {
+    	for (int i = 0; i < midman.getManagingDepartments().size(); i++) {
+    		if (midman.getManagingDepartments().get(i).getName() == "HR") {
                     return true;
             }
             
@@ -61,19 +61,6 @@ public class MiddleManager extends Employee {
 		this.managingDepartments = managingDepartments;
 	}
 
-    /** Method that returns true if the manager works in the HR department*/
-	public static boolean HREmployee(String name) {
-		  for (int i = 0; i < middleManagers.size(); i++) {
-		      if (middleManagers.get(i).getNameSurname().equals(name)
-		    		&& middleManagers.get(i).managingHR() == true) {
-                        return true;
-		      } else if (middleManagers.get(i).getSurname().equals(name)
-		    		&& middleManagers.get(i).managingHR() == true) {
-		    	  return true;
-		      } 
-		  }
-		 return false;
-	  }
 	 public static MiddleManager searchMiddleManager(String name) {
 	    	for (int i = 0; i < middleManagers.size(); i++) {
 		      if (middleManagers.get(i).getNameSurname().equals(name)) {

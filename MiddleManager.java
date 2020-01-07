@@ -58,6 +58,9 @@ public class MiddleManager extends Employee {
 
 	public void setManagingDepartments(ArrayList<Department> managingDepartments) {
 		this.managingDepartments = managingDepartments;
+		for (int i = 0; i < managingDepartments.size(); i++) {
+			DBcon.updateDepartmentVar("managerID", getID(), managingDepartments.get(i).getId());
+		}
 	}
 
 	 public static MiddleManager searchMiddleManager(String name) {

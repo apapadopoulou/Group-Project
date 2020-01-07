@@ -32,7 +32,7 @@ public class Flow {
         double admnSalary = sc.nextDouble();
         sc.nextLine();
         Department admin = new Department("Administrator");
-        Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId());
+        Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId(), admnSalary);
        
 	}
 public static void dataEntry() throws ParseException {
@@ -44,7 +44,7 @@ public static void dataEntry() throws ParseException {
       String phoneNumber;
       String inputDate = null;
       Department dep;
-      double salary;
+      double salary = 0;
       do {
           System.out.println("Insert name of Department. "
               + "In case you have inserted all the"
@@ -93,7 +93,7 @@ public static void dataEntry() throws ParseException {
                    }
                 	  sc.nextLine();
                      BasicEmployee emp = new BasicEmployee(name,
-                    	surname, phoneNumber, email, inputDate, dep.getId());
+                    	surname, phoneNumber, email, inputDate, dep.getId(), salary);
                      System.out.println("Employee "
                      + "created with id: " + emp.getID());
                      //Loop breakes when an Employee is created.
@@ -136,7 +136,7 @@ public static void dataEntry() throws ParseException {
              }
              sc.nextLine();
              MiddleManager emp = new MiddleManager(name, surname,
-             phoneNumber, email, inputDate);
+             phoneNumber, email, inputDate, salary);
              emp.getManagingDepartments().add(dep);
              System.out.println("Manager "
               + "created with id: " + emp.getID());
@@ -175,7 +175,7 @@ public static void dataEntry() throws ParseException {
           	   } catch (InputMismatchException ime) { }
              }
              TopManager emp = new TopManager(name, surname,
-                 phoneNumber, email, inputDate);
+                 phoneNumber, email, inputDate, salary);
              System.out.println("Top Manager "
               + "created with id: " + emp.getID());
              //Loop breakes when an Employee is created.

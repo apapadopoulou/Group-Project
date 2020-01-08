@@ -652,7 +652,7 @@ public class DBcon {
 		try {
 			dbcon = DriverManager.getConnection(url);
 			stmt = dbcon.createStatement();
-			stmt.executeUpdate("UPDATE BBAssignedToTask SET evaluation = " + score + " WHERE TaskID = " + id + " AND empID = '" + empID + "';");
+			stmt.executeUpdate("UPDATE BBAssignedToTask SET evaluation = " + score + " WHERE TaskID = " + taskID + " AND empID = '" + empID + "';");
 			stmt.close(); // Closes the Statement resource
 			dbcon.close(); // Closes the DataBase conenction resource.
 			/*

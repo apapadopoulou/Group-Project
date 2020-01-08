@@ -31,7 +31,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
         initComponents();
         showDate();
         showTime();
-        jLabel5.setVisible(false);
+        warning.setVisible(false);
     }
 
     void showDate() {
@@ -70,15 +70,16 @@ public class EmployeeEditing extends javax.swing.JFrame {
         currentTime = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        DefaultListModel model1 = new DefaultListModel();
-        for (int i = 0; i < Employee.employees.size(); i++){
-            model1.addElement(Employee.employees.get(i).getNameSurname());
+        DefaultListModel model2 = new DefaultListModel();
+        ArrayList<BasicEmployee> employeesOfDep = new ArrayList<BasicEmployee>();
+        for (int i = 1; i < employeesOfDep.size(); i++){
+            model2.addElement(employeesOfDep.get(i).getNameSurname());
         }
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        employees_list = new javax.swing.JList();
+        manage_button = new javax.swing.JButton();
+        add_button = new javax.swing.JButton();
+        delete_button = new javax.swing.JButton();
+        warning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(EmployeeEditing.class.getResource("/images/smallLogo.PNG")));
@@ -109,42 +110,43 @@ public class EmployeeEditing extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel4.setText("Manage employees");
 
-        jList1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        jList1.setModel(model1);
-        jList1.setToolTipText("");
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jList1.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jList1);
+        employees_list.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        employees_list.setModel(model2);
+        employees_list.setToolTipText("");
+        employees_list.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        employees_list.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(employees_list);
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jButton1.setText("Manage employee's personal data");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        manage_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        manage_button.setText("Manage employee's personal data");
+        manage_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manage_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                manage_buttonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jButton2.setText("Add employee");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        add_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        add_button.setText("Add employee");
+        add_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                add_buttonActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jButton3.setText("Delete employee");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        delete_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        delete_button.setText("Delete employee");
+        delete_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        delete_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                delete_buttonActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Arial", 2, 13)); // NOI18N
-        jLabel5.setText("You haven't selected any employee!");
+        warning.setFont(new java.awt.Font("Arial", 2, 13)); // NOI18N
+        warning.setForeground(new java.awt.Color(255, 0, 0));
+        warning.setText("You haven't selected any employee!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,12 +163,12 @@ public class EmployeeEditing extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(114, 114, 114)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3)
-                                    .addComponent(jButton1)
-                                    .addComponent(jButton2)))
+                                    .addComponent(delete_button)
+                                    .addComponent(manage_button)
+                                    .addComponent(add_button)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(96, 96, 96)
-                                .addComponent(jLabel5)))
+                                .addComponent(warning)))
                         .addGap(521, 521, 521))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -201,13 +203,13 @@ public class EmployeeEditing extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jButton1)
+                        .addComponent(manage_button)
                         .addGap(131, 131, 131)
-                        .addComponent(jButton3)
+                        .addComponent(delete_button)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
+                        .addComponent(warning)
                         .addGap(125, 125, 125)
-                        .addComponent(jButton2))
+                        .addComponent(add_button))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -229,12 +231,12 @@ public class EmployeeEditing extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
         // TODO add your handling code here:
-        if (jList1.getSelectedValue() == null) {
-            jLabel5.setVisible(true);
+        if (employees_list.getSelectedValue() == null) {
+            warning.setVisible(true);
         } else {
-            jLabel5.setVisible(false);
+            warning.setVisible(false);
            /* java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     
@@ -242,19 +244,19 @@ public class EmployeeEditing extends javax.swing.JFrame {
                 }
             });*/
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_delete_buttonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddEmployeeWindow().setVisible(true);
             }
         });
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_add_buttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        String employeeName = String.valueOf(jList1.getSelectedValue());
+        String employeeName = String.valueOf(employees_list.getSelectedValue());
         Employee emp = Employee.searchEmployeeByName2(employeeName);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -262,7 +264,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
             }
         });
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }                                        
 
     /**
      * @param args the command line arguments
@@ -300,18 +302,18 @@ public class EmployeeEditing extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton add_button;
     private javax.swing.JLabel currentDate;
     private javax.swing.JLabel currentTime;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton delete_button;
+    private javax.swing.JList employees_list;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton manage_button;
+    private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }

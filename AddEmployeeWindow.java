@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Κατερίνα
+ * @author BusyB
  */
 public class AddEmployeeWindow extends javax.swing.JFrame {
 

@@ -39,7 +39,7 @@ public class ManageEmployeeWindow extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        save_button = new javax.swing.JButton();
         warning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,9 +69,9 @@ public class ManageEmployeeWindow extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jButton1.setText("Save");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        save_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        save_button.setText("Save");
+        save_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         warning.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 0, 0));
@@ -97,7 +97,7 @@ public class ManageEmployeeWindow extends javax.swing.JFrame {
                         .addGap(410, 410, 410)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(warning)
-                            .addComponent(jButton1))))
+                            .addComponent(save_button))))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -108,7 +108,7 @@ public class ManageEmployeeWindow extends javax.swing.JFrame {
                 .addGap(97, 97, 97)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
-                .addComponent(jButton1)
+                .addComponent(save_button)
                 .addGap(29, 29, 29)
                 .addComponent(warning)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
@@ -157,12 +157,12 @@ public class ManageEmployeeWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton save_button;
     private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }

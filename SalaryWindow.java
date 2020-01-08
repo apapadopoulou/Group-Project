@@ -31,7 +31,7 @@ public class SalaryWindow extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         showDate();
         showTime();
-        jLabel7.setVisible(false);
+        warning.setVisible(false);
     }
 
     void showDate() {
@@ -71,10 +71,10 @@ public class SalaryWindow extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        modify_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel7 = new javax.swing.JLabel();
+        warning = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -111,17 +111,17 @@ public class SalaryWindow extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel6.setText("If you would like to modify an Employee's salary, select one from the table below and then press Modify");
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jButton1.setText("Modify");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        modify_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        modify_button.setText("Modify");
+        modify_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modify_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                modify_buttonMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        modify_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                modify_buttonActionPerformed(evt);
             }
         });
 
@@ -140,8 +140,9 @@ public class SalaryWindow extends javax.swing.JFrame {
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel7.setFont(new java.awt.Font("Arial", 2, 13)); // NOI18N
-        jLabel7.setText("You haven't selected any employee!");
+        warning.setFont(new java.awt.Font("Arial", 2, 13)); // NOI18N
+        warning.setForeground(new java.awt.Color(255, 0, 0));
+        warning.setText("You haven't selected any employee!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,11 +178,11 @@ public class SalaryWindow extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(modify_button)
                 .addGap(930, 930, 930))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(348, 348, 348)
-                .addComponent(jLabel7)
+                .addComponent(warning)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -205,9 +206,9 @@ public class SalaryWindow extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(modify_button)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addComponent(warning)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                 .addComponent(jLabel3))
         );
@@ -217,23 +218,23 @@ public class SalaryWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void modify_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modify_buttonActionPerformed
         // TODO add your handling code here:
         if (jTable1.getSelectionModel() == null) {
-            jLabel7.setVisible(true);
+            warning.setVisible(true);
         } else {
-            jLabel7.setVisible(false);
+            warning.setVisible(false);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new SalaryModificationWindow().setVisible(true);
                 }
             });
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_modify_buttonActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void modify_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modify_buttonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_modify_buttonMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         new FirstWindow(emp).setVisible(true);
@@ -278,16 +279,16 @@ public class SalaryWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currentDate;
     private javax.swing.JLabel currentTime;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton modify_button;
+    private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }

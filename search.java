@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author user
+ * @author BusyB
  */
 public class search extends javax.swing.JFrame {
 

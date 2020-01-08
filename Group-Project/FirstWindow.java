@@ -20,7 +20,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author User
+ * @author BusyB
  */
 public final class FirstWindow extends javax.swing.JFrame {
 

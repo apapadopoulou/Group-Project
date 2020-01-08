@@ -118,6 +118,16 @@ public class DBcon {
 					+ "FOREIGN KEY (taskID) "
 					+ "REFERENCES BBTask);");
 			System.out.println("TABLE BBAssignedToTask CREATED");
+			
+			stmt.executeUpdate("CREATE TABLE BBManagingDepartments " 
+					+ "(empID VARCHAR(20) not null, "
+					+ "depID INT not null,"
+					+ "PRIMARY KEY (empID, depID), "
+					+ "FOREIGN KEY (empID) "
+					+ "REFERENCES BBMiddleManager,"
+					+ "FOREIGN KEY (depID) "
+					+ "REFERENCES BBDepartments);");
+			System.out.println("TABLE BBManagingDepartments CREATED");
 			/* Catch block if an exception occurs and the specified driver is not found. */
 		} catch (Exception e) {
 			System.out.print("SQLExcpetion: ");
@@ -144,6 +154,7 @@ public class DBcon {
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
 			/* Executes the given statement that saves the object's. */
+			stmt.executeUpdate("DROP TABLE BBManagingDepartments;");
 			stmt.executeUpdate("DROP TABLE BBAssignedToTask;");
 			stmt.executeUpdate("DROP TABLE BBEvent;");
 			stmt.executeUpdate("DROP TABLE BBTask;");
@@ -155,10 +166,6 @@ public class DBcon {
 			System.out.println("SUCCESFULLY DELETED TABLES");
 			stmt.close();
 			dbcon.close();
-			/*
-			 * Catch block if an exception occurs while making the connection and executing
-			 * the statement.
-			 */
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}

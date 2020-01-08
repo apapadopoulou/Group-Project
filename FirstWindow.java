@@ -470,7 +470,7 @@ public final class FirstWindow extends javax.swing.JFrame {
        if (num == 3 || num == 4) {
             new MyEvaluation(num, emp).setVisible(true);
        } else if (num == 2)
-           new EmployeeEditing().setVisible(true);
+           new EmployeeEditing(emp).setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_arrow6MouseClicked
 
@@ -504,7 +504,7 @@ public final class FirstWindow extends javax.swing.JFrame {
 
     private void arrow7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow7MouseClicked
         if (num == 4){
-            new EmployeeEditing().setVisible(true);
+            new EmployeeEditing(emp).setVisible(true);
             this.setVisible(false);
         }
     }//GEN-LAST:event_arrow7MouseClicked

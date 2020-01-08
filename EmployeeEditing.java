@@ -16,7 +16,7 @@ import javax.swing.Timer;
  */
 /**
  *
- * @author Κατερίνα
+ * @author 
  */
 public class EmployeeEditing extends javax.swing.JFrame {
 
@@ -25,7 +25,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
      */
     
     private Employee emp;
-    public EmployeeEditing(Employee emp) {
+    public EmployeeEditing(int n, Employee emp) {
         this.emp = emp;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
@@ -70,12 +70,11 @@ public class EmployeeEditing extends javax.swing.JFrame {
         currentTime = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        DefaultListModel model2 = new DefaultListModel();
-        ArrayList<BasicEmployee> employeesOfDep = new ArrayList<BasicEmployee>();
-        for (int i = 1; i < employeesOfDep.size(); i++){
-            model2.addElement(employeesOfDep.get(i).getNameSurname());
-        }
         jList1 = new javax.swing.JList();
+        DefaultListModel model1 = new DefaultListModel();
+        for (int i = 0; i < Employee.employees.size(); i++){
+            model1.addElement(Employee.employees.get(i).getNameSurname());
+        }
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -111,7 +110,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
         jLabel4.setText("Manage employees");
 
         jList1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        jList1.setModel(model2);
+        jList1.setModel(model1);
         jList1.setToolTipText("");
         jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jList1.setSelectionBackground(new java.awt.Color(0, 0, 0));
@@ -246,7 +245,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:     
+        // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddEmployeeWindow().setVisible(true);
@@ -254,10 +253,12 @@ public class EmployeeEditing extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        String employeeName = String.valueOf(jList1.getSelectedValue());
+        Employee emp = Employee.searchEmployeeByName2(employeeName);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManageEmployeeWindow().setVisible(true);
+                new ManageEmployeeWindow(emp).setVisible(true);
             }
         });
 

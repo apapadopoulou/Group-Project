@@ -123,6 +123,7 @@ public class ShowDepartments extends javax.swing.JFrame {
         mmDepartments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(mmDepartments);
 
+        employeesOfDepartment.setModel(model2);
         employeesOfDepartment.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(employeesOfDepartment);
 

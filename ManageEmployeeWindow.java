@@ -10,14 +10,16 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Κατερίνα
+ * @author 
  */
 public class ManageEmployeeWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form ManageEmployeeWindow
      */
-    public ManageEmployeeWindow() {
+    private Employee emp;
+    public ManageEmployeeWindow(Employee emp) {
+        this.emp = emp;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }

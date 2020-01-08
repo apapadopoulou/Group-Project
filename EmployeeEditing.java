@@ -23,12 +23,9 @@ public class EmployeeEditing extends javax.swing.JFrame {
     /**
      * Creates new form EmployeeEditing
      */
-    private int n;
+    
     private Employee emp;
-    private BasicEmployee empb;
-
-    public EmployeeEditing(int n, Employee emp) {
-        this.n = n;
+    public EmployeeEditing(Employee emp) {
         this.emp = emp;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
@@ -239,11 +236,12 @@ public class EmployeeEditing extends javax.swing.JFrame {
             jLabel5.setVisible(true);
         } else {
             jLabel5.setVisible(false);
-            java.awt.EventQueue.invokeLater(new Runnable() {
+           /* java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new DeleteEmployee(empb).setVisible(true);
+                    
+                    new DeleteEmployee(emp).setVisible(true);
                 }
-            });
+            });*/
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -293,9 +291,9 @@ public class EmployeeEditing extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-      /*  java.awt.EventQueue.invokeLater(new Runnable() {
+        /*java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmployeeEditing(2).setVisible(true);
+                new EmployeeEditing().setVisible(true);
             }
         }); */
     }

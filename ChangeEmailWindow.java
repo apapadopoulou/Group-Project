@@ -57,7 +57,7 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
         jTextField2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jButton1.setText("ΟΚ");
+        jButton1.setText("OK");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

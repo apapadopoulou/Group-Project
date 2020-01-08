@@ -91,7 +91,7 @@ public class EventRequest extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 222, 89));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setText("Event Request");
+        jLabel1.setText("Event Notice");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("Select Date:");
@@ -186,7 +186,7 @@ public class EventRequest extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 935, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 966, Short.MAX_VALUE)
                                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
@@ -285,7 +285,7 @@ public class EventRequest extends javax.swing.JFrame {
             new Request(type, date2, 0, desc, empId);
         }
     }//GEN-LAST:event_submitButMouseClicked
-
+ 
     /**
      * @param args the command line arguments
      */

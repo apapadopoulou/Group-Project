@@ -207,12 +207,8 @@ public class MyEvaluation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FirstWindow(emp).setVisible(true);
-            }
-        });
-        this.dispose();
+        new FirstWindow(emp).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_homeMouseClicked
 
     /**

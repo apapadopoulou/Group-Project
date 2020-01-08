@@ -876,18 +876,13 @@ public class DBcon {
 		}
 		return empIds;
 	}
+	
 
 	public static void saveEvent(Event event) {
-		/* Connection type object to make the connection. */
 		Connection dbcon;
-		/*
-		 * Statement type object that contains the statement we will send to the server.
-		 */
 		Statement stmt;
-		/* Try block for trying to find the correct Driver to make the DB connection. */
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			/* Catch block if an exception occurs and the specified driver is not found. */
 		} catch (java.lang.ClassNotFoundException e) {
 			System.out.print("test: ");
 			System.out.println(e.getMessage());

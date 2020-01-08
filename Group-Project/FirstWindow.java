@@ -142,20 +142,20 @@ public final class FirstWindow extends javax.swing.JFrame {
         taskAndRem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        eventsList2 = new javax.swing.JList();
         DefaultListModel model2 = new DefaultListModel();
-        ArrayList<String> events = new ArrayList<String>();
+        ArrayList<String> eventsList = new ArrayList<String>();
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = formatter.format(date);
         for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
             if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
                 Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
-                events.add(ev.toString());
+                eventsList.add(ev.toString());
             }
         }
-        for (int i = 0; i < events.size(); i++){
-            model2.addElement(events.get(i));
+        for (int i = 0; i < eventsList.size(); i++){
+            model2.addElement(String.valueOf(eventsList.get(i)));
         }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -344,8 +344,8 @@ public final class FirstWindow extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Events");
 
-        jList2.setModel(model2);
-        jScrollPane2.setViewportView(jList2);
+        eventsList2.setModel(model2);
+        jScrollPane2.setViewportView(eventsList2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -570,6 +570,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel busyBicon;
     private javax.swing.JLabel currentDate;
     private javax.swing.JLabel currentTime;
+    private javax.swing.JList eventsList2;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
@@ -579,7 +580,6 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTeam;
     private javax.swing.JLabel jLabelTimeoffs;
     private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

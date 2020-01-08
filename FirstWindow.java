@@ -4,9 +4,11 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -140,7 +142,21 @@ public final class FirstWindow extends javax.swing.JFrame {
         taskAndRem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        eventsList2 = new javax.swing.JList();
+        DefaultListModel model2 = new DefaultListModel();
+        ArrayList<String> eventsList = new ArrayList<String>();
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = formatter.format(date);
+        for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
+            if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
+                Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
+                eventsList.add(ev.toString());
+            }
+        }
+        for (int i = 0; i < eventsList.size(); i++){
+            model2.addElement(String.valueOf(eventsList.get(i)));
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/smallLogo.PNG")));
@@ -329,12 +345,8 @@ public final class FirstWindow extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setText("Events");
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jList2);
+        eventsList2.setModel(model2);
+        jScrollPane2.setViewportView(eventsList2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -568,7 +580,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTeam;
     private javax.swing.JLabel jLabelTimeoffs;
     private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
+    private javax.swing.JList eventsList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

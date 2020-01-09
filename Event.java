@@ -42,6 +42,7 @@ public class Event extends Program {
 
 	public void setDesc(String description) {
 		this.description = description;
+		DBcon.updateEventVar("description", description, eventID);
 	}
 
 	public String getEventDate() {
@@ -50,6 +51,7 @@ public class Event extends Program {
 
 	public void setEventDate(String date) {
 		this.date = date;
+		DBcon.updateEventVar("EventDate", date, eventID);
 	}
 
 	public ArrayList<Employee> getEmployeesInEvent() {
@@ -74,6 +76,7 @@ public class Event extends Program {
 
 	public void setType(String type) {
 		this.type = type;
+		DBcon.updateEventVar("type", type, eventID);
 	}
 
 	public String getTitle() {
@@ -82,6 +85,7 @@ public class Event extends Program {
 
 	public void setTitle(String title) {
 		this.title = title;
+		DBcon.updateEventVar("title", title, eventID);
 	}
 
 	public String getEventTime() {
@@ -90,6 +94,7 @@ public class Event extends Program {
 
 	public void setEventTime(String time) {
 		this.time = time;
+		DBcon.updateEventVar("EventTime", time, eventID);
 	}
 
 }

@@ -70,6 +70,7 @@ public class Account {
 
     public void setHasDefaultPass(int dp) {
         hasDefaultPass = dp;
+        DBcon.updateAccountVar("hasDefaultPass", dp, getEmployee().getID());
     }
     
     /**
@@ -129,6 +130,7 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+        DBcon.updateAccountVar("password", password, getEmployee().getID());
     }
    
    /**

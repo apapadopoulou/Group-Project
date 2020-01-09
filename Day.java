@@ -9,6 +9,9 @@ import javax.swing.*;
  */
 
 public class Day {
+	public static int counter = 1;
+	private String empID;
+	private int dayID;
   private ArrayList<Program> dailyProgram = new ArrayList<Program>();
   private String date;
   private String d;
@@ -32,7 +35,9 @@ public class Day {
 		            "2028", "2029", "2030", "2031", 
 		            "2032", "2033", "2034", "2035", 
 		            }; 
-  public Day(String date) {
+  public Day(String date, String empID) {
+	dayID = counter++;
+	this.empID = empID;
     String givenDay = date.substring(0, 2);
     String givenMonth = date.substring(3, 5);
     String givenYear = date.substring(6);
@@ -65,7 +70,50 @@ public class Day {
     } catch (Exception ex) {
     	date = null;
     }
+    DBcon.saveDay(this);
   }
+  
+  /**
+   * Database constructor for class Day.
+   * Used to create Day objects loaded from the database.
+   */
+  public Day(String date, String empID, int dayID) {
+		this.dayID = dayID;
+		counter = dayID + 1;
+		this.empID = empID;
+	    String givenDay = date.substring(0, 2);
+	    String givenMonth = date.substring(3, 5);
+	    String givenYear = date.substring(6);
+	    try {
+	    for (int i =0; i < days.length; i++) {
+	    	if (givenDay.equals(days[i])) {
+	    		d = givenDay;
+	    	}
+	    	else {
+	    		throw new Exception();
+	    	}
+	    }
+	    for (int i =0; i < months.length; i++) {
+	    	if (givenMonth.equals(months[i])) {
+	    		mon = givenMonth;
+	    	}
+	    	else {
+	    		throw new Exception();
+	    	}
+	    }
+	    for (int i =0; i < years.length; i++) {
+	    	if (givenYear.equals(years[i])) {
+	    		y = givenYear;
+	    	}
+	    	else {
+	    		throw new Exception();
+	    	}
+	    }
+	    this.date = date;
+	    } catch (Exception ex) {
+	    	date = null;
+	    }
+	  }
 /**
  *Gets the daily program.
  *@return daily program
@@ -77,12 +125,10 @@ public class Day {
   *Sets the daily program.
   *@param dailyProgram
   */
-  public void setDailyProgram(ArrayList<Program> dailyProgram) {
-    this.dailyProgram = dailyProgram;
-  }
-
-
-  
+ 	public void setDailyProgram(ArrayList<Program> dailyProgram) {
+ 		this.dailyProgram = dailyProgram;
+ 		//DBcon.setDailyProgram(ArrayList<Program> dailyProgram); TODO!!
+    }
   
  /**
   *Adds to daily program.
@@ -109,6 +155,15 @@ public void setDate(String date) {
  *Gets the day.
  *@return d 
  */
+
+	public int getID() {
+		return dayID;
+	}
+	
+	public String getEmpID() {
+		return empID;
+	}
+	
 public String getD() {
 	return d;
 }
@@ -148,5 +203,4 @@ public void setY(String y) {
 	this.y = y;
 }
 }
-
 //End of Day class.

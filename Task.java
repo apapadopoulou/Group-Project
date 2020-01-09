@@ -141,11 +141,12 @@ public class Task extends Program implements Comparable<Task>{
 
 	//Used to indicate when a task is completed.
 	public void setStatus(boolean done) {
-		Date compDate = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
-		completionDate = formatter.format(compDate);
 		this.done = done;
-    
+		if (done) {
+			Date compDate = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
+			setCompletionDate(formatter.format(compDate));
+		}
 	}
   
 	public String getEmpID() {

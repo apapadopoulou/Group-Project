@@ -94,7 +94,7 @@ public class Department {
 	}
 	
 /**
- *Sets the manager id.
+ *Sets the manager's id.
  */
 	public void setManagerId(String id) {
 		managerId = id;

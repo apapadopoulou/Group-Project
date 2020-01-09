@@ -92,7 +92,7 @@ public abstract class Employee {
   public Day searchDay(String date) {
 	  for (int i = 1; i < calendar.size(); i++) {
 		 if (!calendar.get(i).getDate().equals(date)) {
-			 Day d = new Day(date);
+			 Day d = new Day(date, getID());
 			 calendar.add(d);
 			 return d;
 		 } else {

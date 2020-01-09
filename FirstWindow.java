@@ -152,19 +152,19 @@ public final class FirstWindow extends javax.swing.JFrame {
         eventsList2 = new javax.swing.JList();
         DefaultListModel model2 = new DefaultListModel();
         ArrayList<String> eventsList = new ArrayList<String>();
-        for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
-            if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
-                Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
-                eventsList.add(ev.toString());
+        if (!emp.searchDay(strDate).getDailyProgram().isEmpty()){
+            for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
+                    if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
+                    Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
+                    eventsList.add(ev.toString());
+                }
             }
-        }
-        if (eventsList.size() == 0)
-            model2.addElement("No events for today");
-        else {
             for (int i = 0; i < eventsList.size(); i++){
             model2.addElement(String.valueOf(eventsList.get(i)));
             }
-        }
+        } else 
+            model2.addElement("No events for today");
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/smallLogo.PNG")));
@@ -537,7 +537,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         ArrayList<Task> tasks = new ArrayList<Task>();
         tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
         DefaultListModel model = new DefaultListModel();
-        if (tasks.size() == 0){
+        if (tasks.isEmpty()){
             model.addElement("No Tasks or Reminders for today");
         } else {
             int i;

@@ -5,10 +5,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
-public class Task extends Program {
+public class Task extends Program implements Comparable<Task>{
 
-	
 	private String startDate;
 	private String dueDate;
 	private String completionDate;
@@ -194,5 +195,52 @@ public class Task extends Program {
 	public int getDifficulty() {
 		return difficulty;
 	}
-	
+
+    @Override
+    public int compareTo(Task o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public static ArrayList<Task> onlyTasksList(ArrayList<Program> calendar){
+	ArrayList<Task> tasksList = new ArrayList<Task>();
+            for (int i = 0; i < calendar.size(); i++) {
+                if (calendar.get(i) instanceof Task) {
+                    tasksList.add((Task) calendar.get(i));			 
+		}
+	}
+	return tasksList;
+    }
+    static Comparator<Task> taskCompByDueDate = new Comparator<Task>() {
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getDueDate().compareTo(t2.getDueDate());
+        }        
+    };
+    static Comparator<Task> taskCompByImp = new Comparator<Task>() {
+    	@Override
+    	public int compare(Task t1, Task t2) {
+    		return t2.getImportance() - t1.getImportance();
+    	}
+    };
+    static Comparator<Task> taskCompByDesc = new Comparator<Task>() {
+    	@Override
+    	public int compare(Task t1, Task t2) {
+    		return t2.getDesc().compareTo(t1.getDesc());
+    	}
+    };
+    
+    public static ArrayList<Task> sortByDate(ArrayList<Task> taskList){
+    	Collections.sort(taskList, taskCompByDueDate);
+    	return taskList;
+    }
+    
+    public static ArrayList<Task> sortByImp(ArrayList<Task> taskList){
+    	Collections.sort(taskList, taskCompByImp);
+    	return taskList;
+    }
+    
+    public static ArrayList<Task> sortByDesc(ArrayList<Task> taskList){
+    	Collections.sort(taskList, taskCompByDesc);
+    	return taskList;
+    }
+
 }

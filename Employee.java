@@ -90,6 +90,8 @@ public abstract class Employee {
   }
   
   public Day searchDay(String date) {
+	  if (calendar.isEmpty())
+		  return null;
 	  for (int i = 0; i < calendar.size(); i++) {
 		 if (calendar.get(i).getDate().equals(date)) {
 			 return calendar.get(i);

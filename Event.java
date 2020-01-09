@@ -108,7 +108,7 @@ public class Event extends Program implements Comparable<Event>{
             return e2.getEventTime().compareTo(e1.getEventTime());
         }        
     };
-    public static ArrayList<Event> sortByDesc(ArrayList<Event> eventList){
+    public static ArrayList<Event> sortByTime(ArrayList<Event> eventList){
     	Collections.sort(eventList, eventCompByTime);
     	return eventList;
     }
@@ -116,5 +116,4 @@ public class Event extends Program implements Comparable<Event>{
     public int compareTo(Event o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

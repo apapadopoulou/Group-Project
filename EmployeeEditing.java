@@ -120,11 +120,6 @@ public class EmployeeEditing extends javax.swing.JFrame {
         manage_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         manage_button.setText("Manage employee's personal data");
         manage_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        manage_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manage_buttonActionPerformed(evt);
-            }
-        });
 
         add_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         add_button.setText("Add employee");

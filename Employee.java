@@ -91,15 +91,12 @@ public abstract class Employee {
   
   public Day searchDay(String date) {
 	  for (int i = 0; i < calendar.size(); i++) {
-		 if (!calendar.get(i).getDate().equals(date)) {
-			 Day d = new Day(date);
-			 calendar.add(d);
-			 return d;
-		 } else {
+		 if (calendar.get(i).getDate().equals(date)) {
 			 return calendar.get(i);
 		 }
 	  }
-	return null;
+	  calendar.add(new Day(date));
+	return calendar.get(calendar.size()-1);
   }
 
   public String getPhonenumber() {

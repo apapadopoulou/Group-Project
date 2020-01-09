@@ -1,5 +1,3 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Timer;
 
 /**
@@ -27,7 +25,7 @@ public class BusyB {
     		 catch (Exception ex) {
     			 System.out.println("An error occurred! Please try again!");
     		 }
-	         //welcomeWindow.dispose();
+	         welcomeWindow.dispose();
 	        }
 	      });
     if (!args[0].equals("0")) {

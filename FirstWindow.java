@@ -137,10 +137,14 @@ public final class FirstWindow extends javax.swing.JFrame {
         String strDate = formatter.format(date);
         ArrayList<Task> tasks = new ArrayList<Task>();
         tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
-        tasks = Task.sortByDate(tasks);
         DefaultListModel model1 = new DefaultListModel();
-        for (int i = 0; i < tasks.size(); i++){
-            model1.addElement(tasks.get(i));
+        if (tasks.size() == 0){
+            model1.addElement("No Tasks Or Remider for Today");
+        } else {
+            tasks = Task.sortByDate(tasks);
+            for (int i = 0; i < tasks.size(); i++){
+                model1.addElement(tasks.get(i));
+            }
         }
         taskAndRem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -154,8 +158,12 @@ public final class FirstWindow extends javax.swing.JFrame {
                 eventsList.add(ev.toString());
             }
         }
-        for (int i = 0; i < eventsList.size(); i++){
+        if (eventsList.size() == 0)
+            model2.addElement("No events for today");
+        else {
+            for (int i = 0; i < eventsList.size(); i++){
             model2.addElement(String.valueOf(eventsList.get(i)));
+            }
         }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -528,17 +536,21 @@ public final class FirstWindow extends javax.swing.JFrame {
         String strDate = formatter.format(date);
         ArrayList<Task> tasks = new ArrayList<Task>();
         tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
-        int i;
         DefaultListModel model = new DefaultListModel();
-        if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){
-            tasks = Task.sortByDate(tasks);
-        } else if (String.valueOf(jComboBox2.getSelectedItem()).equals("Description")){
-            tasks = Task.sortByDesc(tasks);
+        if (tasks.size() == 0){
+            model.addElement("No Tasks or Reminders for today");
         } else {
-            tasks = Task.sortByImp(tasks);
-        }
-        for (i = 0; i < tasks.size(); i++){
-            model.addElement(tasks.get(i));
+            int i;
+            if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){
+                tasks = Task.sortByDate(tasks);
+            } else if (String.valueOf(jComboBox2.getSelectedItem()).equals("Description")){
+                tasks = Task.sortByDesc(tasks);
+            } else {
+                tasks = Task.sortByImp(tasks);
+            }
+            for (i = 0; i < tasks.size(); i++){
+                model.addElement(tasks.get(i));
+            }
         }
         tasksList.setModel(model);
     }                                          

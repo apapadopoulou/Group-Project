@@ -1,3 +1,7 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Timer;
+
 /**
  * This is the main class of the application. User runs the app for the first time from the command line, 
  * using an argument.
@@ -15,7 +19,9 @@ public class BusyB {
 	    public void run() {
 	         WelcomeWindow welcomeWindow = new WelcomeWindow();
 	         welcomeWindow.setVisible(true);
+	         Timer timer = new Timer();
 	         try {
+		         timer.wait();
     			 Thread.sleep(5000);
     		 }
     		 catch (Exception ex) {

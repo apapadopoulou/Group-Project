@@ -1,30 +1,30 @@
 import java.util.ArrayList;
 
 public abstract class Employee {
-	private String name;
-	private String surname;
-	private String phonenumber;
-	private String email;
-	private String id;
-	private String birthdate;
-	private double salary;
+  private String name;
+  private String surname;
+  private String phonenumber;
+  private String email;
+  private String id;
+  private String birthdate;
+  private double salary;
     private ArrayList<Day> calendar;
-	public static ArrayList<Employee> employees = new ArrayList<Employee>();
+  public static ArrayList<Employee> employees = new ArrayList<Employee>();
 
-	// Constructor
-	public Employee(String name, String surname, String phonenumber,
-	    String email, String birthdate, String id, double salary) {
-		if (!Checkers.isValidPhoneNumber(phonenumber)) {
-			throw new IllegalArgumentException(
-				"phone number is not valid");
-		}
-		this.name = name;
-		this.surname = surname;
-		this.phonenumber = phonenumber;
-		this.email = email;
-		this.birthdate = birthdate;
-		this.id = id;
-		this.salary = salary;
+  // Constructor
+  public Employee(String name, String surname, String phonenumber,
+      String email, String birthdate, String id, double salary) {
+    if (!Checkers.isValidPhoneNumber(phonenumber)) {
+      throw new IllegalArgumentException(
+        "phone number is not valid");
+    }
+    this.name = name;
+    this.surname = surname;
+    this.phonenumber = phonenumber;
+    this.email = email;
+    this.birthdate = birthdate;
+    this.id = id;
+    this.salary = salary;
   }
 
   public String getBirthDate() {
@@ -72,51 +72,51 @@ public abstract class Employee {
   }
 
   public void setID(String id) {
-	    this.id = id;
-	  }
+      this.id = id;
+    }
 
   public String getNameSurname() {
       return getName() + getSurname();
   }
 
   public double getSalary() {
-	  return salary;
+    return salary;
   }
 
   public void setSalary(double salary) {
-	  this.salary = salary;
-	  String tableName = typeOfEmployee();
-	  DBcon.updateEmployeeVar(tableName, "salary", salary, id);
+    this.salary = salary;
+    String tableName = typeOfEmployee();
+    DBcon.updateEmployeeVar(tableName, "salary", salary, id);
   }
   
   public Day searchDay(String date) {
-	  if (!calendar.isEmpty()) {
-		  for (int i = 0; i < calendar.size(); i++) {
-			  if (calendar.get(i).getDate().equals(date)) {
-				  return calendar.get(i);
-			  }
-	 	}
-	  }
-	  calendar.add(new Day(date));
-	  return calendar.get(calendar.size()-1);
+    if (!calendar.isEmpty()) {
+      for (int i = 0; i < calendar.size(); i++) {
+        if (calendar.get(i).getDate().equals(date)) {
+          return calendar.get(i);
+        }
+    }
+    }
+    calendar.add(new Day(date, this.getID()));
+    return calendar.get(calendar.size()-1);
   }
 
   public String getPhonenumber() {
-	return phonenumber;
+  return phonenumber;
 }
 
 public void setPhonenumber(String phonenumber) {
-	this.phonenumber = phonenumber;
-	String tableName = typeOfEmployee();
-	DBcon.updateEmployeeVar(tableName, "phonenumber", phonenumber, id);
+  this.phonenumber = phonenumber;
+  String tableName = typeOfEmployee();
+  DBcon.updateEmployeeVar(tableName, "phonenumber", phonenumber, id);
 }
 
 public ArrayList<Day> getCalendar() {
-	return calendar;
+  return calendar;
 }
 
 public void setCalendar(ArrayList<Day> calendar) {
-	this.calendar = calendar;
+  this.calendar = calendar;
 }
 
 // Method toString including a String format for the given data
@@ -124,7 +124,7 @@ public void setCalendar(ArrayList<Day> calendar) {
   public String toString() {
     String str_2 = "";
       String.format("%30s%30s%30s%30s%30s", name, surname,
-    		  phonenumber, email, id);
+          phonenumber, email, id);
       return str_2;
   }
   //public abstract String getJobTitle();
@@ -165,14 +165,14 @@ public void setCalendar(ArrayList<Day> calendar) {
   }
   
   public String typeOfEmployee() {
-	  if (this instanceof BasicEmployee) {
-		  return "BasicEmployee";
-	  } else if (this instanceof MiddleManager) {
-		  return "MiddleManager";
-	  } else if (this instanceof TopManager) {
-		  return "TopManager";
-	  } else {
-		  return null;
-	  }
+    if (this instanceof BasicEmployee) {
+      return "BasicEmployee";
+    } else if (this instanceof MiddleManager) {
+      return "MiddleManager";
+    } else if (this instanceof TopManager) {
+      return "TopManager";
+    } else {
+      return null;
+    }
   }
 }

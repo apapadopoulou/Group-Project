@@ -121,12 +121,6 @@ public class WelcomeWindow extends javax.swing.JFrame {
          java.awt.EventQueue.invokeLater(new Runnable() {
         	 public void run() {
         		 new WelcomeWindow().setVisible(true);
-        		 try {
-        			 Thread.sleep(5000);
-        		 }
-        		 catch (Exception ex) {
-        			 System.out.println("An error occurred! Please try again!");
-        		 }
         	 }
          	});  
     	}

@@ -13,7 +13,15 @@ public class BusyB {
 	java.awt.EventQueue.invokeLater(new Runnable() {
 		@Override
 	    public void run() {
-	          new WelcomeWindow().setVisible(true);
+	         WelcomeWindow welcomeWindow = new WelcomeWindow();
+	         welcomeWindow.setVisible(true);
+	         try {
+    			 Thread.sleep(5000);
+    		 }
+    		 catch (Exception ex) {
+    			 System.out.println("An error occurred! Please try again!");
+    		 }
+	         welcomeWindow.dispose();
 	        }
 	      });
     if (!args[0].equals("0")) {

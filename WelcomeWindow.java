@@ -31,7 +31,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(WelcomeWindow.class.getResource("/images/smallLogo.PNG")));
 
         jPanel1.setBackground(new java.awt.Color(255, 222, 89));
@@ -40,9 +40,6 @@ public class WelcomeWindow extends javax.swing.JFrame {
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel1MouseEntered(evt);
             }
         });
 
@@ -122,11 +119,13 @@ public class WelcomeWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
          java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-         new WelcomeWindow().setVisible(true);
-         }
-         });  
-    }
+        	 public void run() {
+        		 new WelcomeWindow().setVisible(true);
+        	 }
+         	});  
+    	}
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

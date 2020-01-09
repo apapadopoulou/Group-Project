@@ -1,3 +1,5 @@
+import java.util.Timer;
+
 /**
  * This is the main class of the application. User runs the app for the first time from the command line, 
  * using an argument.
@@ -13,7 +15,17 @@ public class BusyB {
 	java.awt.EventQueue.invokeLater(new Runnable() {
 		@Override
 	    public void run() {
-	          new WelcomeWindow().setVisible(true);
+	         WelcomeWindow welcomeWindow = new WelcomeWindow();
+	         welcomeWindow.setVisible(true);
+	         Timer timer = new Timer();
+	         try {
+		         Thread.currentThread().sleep(6000);
+    			 Thread.sleep(5000);
+    		 }
+    		 catch (Exception ex) {
+    			 System.out.println("An error occurred! Please try again!");
+    		 }
+	         welcomeWindow.dispose();
 	        }
 	      });
     if (!args[0].equals("0")) {

@@ -90,15 +90,15 @@ public abstract class Employee {
   }
   
   public Day searchDay(String date) {
-	  if (calendar.isEmpty())
-		  return null;
-	  for (int i = 0; i < calendar.size(); i++) {
-		 if (calendar.get(i).getDate().equals(date)) {
-			 return calendar.get(i);
-		 }
+	  if (!calendar.isEmpty()) {
+		  for (int i = 0; i < calendar.size(); i++) {
+			  if (calendar.get(i).getDate().equals(date)) {
+				  return calendar.get(i);
+			  }
+		  }
 	  }
 	  calendar.add(new Day(date));
-	return calendar.get(calendar.size()-1);
+	  return calendar.get(calendar.size()-1);
   }
 
   public String getPhonenumber() {

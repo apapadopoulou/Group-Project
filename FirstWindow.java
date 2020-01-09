@@ -1,13 +1,10 @@
 
-import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -20,7 +17,7 @@ import javax.swing.Timer;
 
 /**
  *
- * @author User
+ * @author BusyB
  */
 public final class FirstWindow extends javax.swing.JFrame {
 
@@ -36,6 +33,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         initComponents();
         ShowDate();
         ShowTime();
+        
     }
 
     void ShowDate(){
@@ -99,7 +97,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         else {
             jLabelTimeoffs.setFont(new java.awt.Font("Arial", 1, 24));
             jLabelTimeoffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelTimeoffs.setText("Time offs");
+            jLabelTimeoffs.setText("Vacations Requests");
         }
         SortBy = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -138,16 +136,23 @@ public final class FirstWindow extends javax.swing.JFrame {
             arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         }
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        tasksList = new javax.swing.JList();        
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = formatter.format(date);
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
+        tasks = Task.sortByDate(tasks);
+        DefaultListModel model1 = new DefaultListModel();
+        for (int i = 0; i < tasks.size(); i++){
+            model1.addElement(tasks.get(i));
+        }
         taskAndRem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         eventsList2 = new javax.swing.JList();
         DefaultListModel model2 = new DefaultListModel();
         ArrayList<String> eventsList = new ArrayList<String>();
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String strDate = formatter.format(date);
         for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
             if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
                 Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
@@ -196,6 +201,11 @@ public final class FirstWindow extends javax.swing.JFrame {
         SortBy.setText("Sort By:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 222, 89));
         jPanel2.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
@@ -332,12 +342,8 @@ public final class FirstWindow extends javax.swing.JFrame {
                 .addGap(35, 35, 35))
         );
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        tasksList.setModel(model1); 
+        jScrollPane1.setViewportView(tasksList);
 
         taskAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         taskAndRem.setText("Tasks and Reminders");
@@ -520,6 +526,28 @@ public final class FirstWindow extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_arrow7MouseClicked
+    
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) { 
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = formatter.format(date);
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
+        int i;
+        DefaultListModel model = new DefaultListModel();
+        if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){
+            tasks = Task.sortByDate(tasks);
+        } else if (String.valueOf(jComboBox2.getSelectedItem()).equals("Description")){
+            tasks = Task.sortByDesc(tasks);
+        } else {
+            tasks = Task.sortByImp(tasks);
+        }
+        for (i = 0; i < tasks.size(); i++){
+            model.addElement(tasks.get(i));
+        }
+        tasksList.setModel(model);
+    }                                          
+
 
     /**
      * @param args the command line arguments
@@ -579,7 +607,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPayrolls;
     private javax.swing.JLabel jLabelTeam;
     private javax.swing.JLabel jLabelTimeoffs;
-    private javax.swing.JList jList1;
+    private javax.swing.JList tasksList;
     private javax.swing.JList eventsList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

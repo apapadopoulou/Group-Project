@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MiddleManager extends Employee {
+	
     private ArrayList<Department> managingDepartments = new ArrayList<Department>();
 	public static ArrayList<MiddleManager> middleManagers = new ArrayList<MiddleManager>();
 	/**
@@ -25,7 +26,7 @@ public class MiddleManager extends Employee {
 	 */
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, String id, double salary) {
 	    super(name, surname, telephone, email, birthdate, id, salary);
-	    managingDepartments = getManagingDepartments(); //Adds the managing departments.
+	    this.managingDepartments = getManagingDepartments();
 	    middleManagers.add(this);
 	    employees.add(this);
 	}
@@ -38,11 +39,20 @@ public class MiddleManager extends Employee {
 	public ArrayList<Department> getManagingDepartments() {
 	    ArrayList<Department> departments = new ArrayList<Department>();
 	    for (int i = 0; i < Department.departments.size(); i++) {
-			if (Department.departments.get(i).getManagerId().equals(getID())) {				
-				departments.add(Department.departments.get(i));
-			}
+	    	if (Department.departments.get(i).getManagerId() != null) { 
+	    		if (Department.departments.get(i).getManagerId().equals(getID())) {				
+	    			departments.add(Department.departments.get(i));
+	    		}
+	    	}
 	    }
 		return departments;
+	}
+	
+	public void setManagingDepartments(ArrayList<Department> managingDepartments) {
+		this.managingDepartments = managingDepartments;
+		for (int i = 0; i < managingDepartments.size(); i++) {
+			managingDepartments.get(i).setManagerId(getID());
+		}
 	}
 
 	/** Method that checks if the Manager manages the HR department*/
@@ -55,13 +65,6 @@ public class MiddleManager extends Employee {
         }
     	return false;
     }
-
-	public void setManagingDepartments(ArrayList<Department> managingDepartments) {
-		this.managingDepartments = managingDepartments;
-		for (int i = 0; i < managingDepartments.size(); i++) {
-			DBcon.updateDepartmentVar("managerID", getID(), managingDepartments.get(i).getId());
-		}
-	}
 
 	 public static MiddleManager searchMiddleManager(String name) {
 	    	for (int i = 0; i < middleManagers.size(); i++) {

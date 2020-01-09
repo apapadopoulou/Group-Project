@@ -31,7 +31,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(WelcomeWindow.class.getResource("/images/smallLogo.PNG")));
 
         jPanel1.setBackground(new java.awt.Color(255, 222, 89));
@@ -119,11 +119,19 @@ public class WelcomeWindow extends javax.swing.JFrame {
 
         /* Create and display the form */
          java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-         new WelcomeWindow().setVisible(true);
-         }
-         });  
-    }
+        	 public void run() {
+        		 new WelcomeWindow().setVisible(true);
+        		 try {
+        			 Thread.sleep(5000);
+        		 }
+        		 catch (Exception ex) {
+        			 System.out.println("An error occurred! Please try again!");
+        		 }
+        	 }
+         	});  
+    	}
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

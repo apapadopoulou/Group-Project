@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
-public class Event extends Program {
+public class Event extends Program implements Comparable<Event>{
     private String title;
     private String description;
     private String date;
@@ -91,5 +93,28 @@ public class Event extends Program {
 	public void setEventTime(String time) {
 		this.time = time;
 	}
+        public static ArrayList<Event> onlyEventsList(ArrayList<Program> calendar){
+	ArrayList<Event> eventsList = new ArrayList<Event>();
+            for (int i = 0; i < calendar.size(); i++) {
+                if (calendar.get(i) instanceof Event) {
+                    eventsList.add((Event) calendar.get(i));			 
+		}             
+	}
+	return eventsList;
+    }
+    static Comparator<Event> eventCompByTime = new Comparator<Event>() {
+        
+        public int compare(Event e1, Event e2) {
+            return e2.getEventTime().compareTo(e1.getEventTime());
+        }        
+    };
+    public static ArrayList<Event> sortByDesc(ArrayList<Event> eventList){
+    	Collections.sort(eventList, eventCompByTime);
+    	return eventList;
+    }
+    @Override
+    public int compareTo(Event o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

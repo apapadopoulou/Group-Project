@@ -19,9 +19,6 @@ public class WelcomeWindow extends javax.swing.JFrame {
     public WelcomeWindow() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        Timer t = new Timer(5000, (ActionListener) this);
-               t.start();
-
     }
 
     /**

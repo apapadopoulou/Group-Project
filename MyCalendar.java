@@ -3,8 +3,10 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -76,7 +78,6 @@ public class MyCalendar extends javax.swing.JFrame {
         date1 = new javax.swing.JLabel();
         showCale = new javax.swing.JLabel();
         select = new javax.swing.JLabel();
-        jLabelDPro = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         days = new javax.swing.JComboBox();
@@ -89,7 +90,14 @@ public class MyCalendar extends javax.swing.JFrame {
         dateNot = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
-
+        taskAndRem = new javax.swing.JLabel();	
+        jScrollPane1 = new javax.swing.JScrollPane();	
+        jList1 = new javax.swing.JList();	
+        jLabel3 = new javax.swing.JLabel();	
+        jScrollPane2 = new javax.swing.JScrollPane();	
+        eventsList2 = new javax.swing.JList();	
+        	
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 222, 89));
         setIconImage(Toolkit.getDefaultToolkit().getImage(MyCalendar.class.getResource("/images/smallLogo.PNG")));
@@ -152,6 +160,11 @@ public class MyCalendar extends javax.swing.JFrame {
 
         OKButton.setText("OK");
         OKButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        OKButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                OKButtonMouseClicked(evt);
+            }
+        });
 
         dateNot.setForeground(new java.awt.Color(255, 0, 0));
         dateNot.setText("Not valid date. Please try again!");
@@ -160,7 +173,19 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel2.setText("Sort by:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
-        jComboBox1.setSelectedIndex(-1);
+        jComboBox1.setSelectedIndex(1);
+        taskAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
+        taskAndRem.setText("Tasks and Reminders");	
+        jList1.setModel(new javax.swing.AbstractListModel() {	
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };	
+            public int getSize() { return strings.length; }	
+            public Object getElementAt(int i) { return strings[i]; }	
+        });	
+        jScrollPane1.setViewportView(jList1);	
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
+        jLabel3.setText("Events");	
+        eventsList2.setModel(model2);	
+        jScrollPane2.setViewportView(eventsList2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -182,45 +207,52 @@ public class MyCalendar extends javax.swing.JFrame {
                             .addComponent(today, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(date1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(showCale)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(select)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(27, 27, 27)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(days, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(slash1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(slash2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(years, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(628, 628, 628)
-                                .addComponent(jLabel13))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateNot)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(48, 48, 48)
-                                        .addComponent(OKButton)))))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)	
+                            .addGroup(jPanel1Layout.createSequentialGroup()	
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)	
+                                    .addComponent(showCale)	
+                                    .addGroup(jPanel1Layout.createSequentialGroup()	
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)	
+                                            .addGroup(jPanel1Layout.createSequentialGroup()	
+                                                .addComponent(select)	
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))	
+                                            .addGroup(jPanel1Layout.createSequentialGroup()	
+                                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                                                .addGap(27, 27, 27)))	
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)	
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                                            .addGroup(jPanel1Layout.createSequentialGroup()	
+                                                .addComponent(days, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
+                                                .addComponent(slash1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
+                                                .addComponent(month, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
+                                                .addComponent(slash2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
+                                                .addComponent(years, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))	
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()	
+                                        .addGap(10, 10, 10)	
+                                        .addComponent(taskAndRem)))	
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)	
+                                    .addGroup(jPanel1Layout.createSequentialGroup()	
+                                        .addGap(628, 628, 628)	
+                                        .addComponent(jLabel13))	
+                                    .addGroup(jPanel1Layout.createSequentialGroup()	
+                                        .addGap(18, 18, 18)	
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)	
+                                            .addComponent(dateNot)	
+                                            .addGroup(jPanel1Layout.createSequentialGroup()	
+                                                .addGap(48, 48, 48)	
+                                                .addComponent(OKButton))))))	
+                            .addGroup(jPanel1Layout.createSequentialGroup()	
+                                .addGap(10, 10, 10)	
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)	
+                                    .addComponent(jLabel3)	
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))))))	
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(245, 245, 245)
-                .addComponent(jLabelDPro, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+            );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -255,9 +287,15 @@ public class MyCalendar extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
-                .addComponent(jLabelDPro, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 394, Short.MAX_VALUE)
+                .addGap(18, 18, 18)	
+                .addComponent(taskAndRem)	
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
+                .addComponent(jLabel3)	
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)	
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 426, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -280,6 +318,50 @@ public class MyCalendar extends javax.swing.JFrame {
         new TaskOrReminderWindow1(n, emp).setVisible(true);        
         this.setVisible(false);
     }//GEN-LAST:event_jLabel4MouseClicked
+    
+    private void OKButtonMouseClicked(java.awt.event.MouseEvent evt) { 
+        String date1;
+        if (days.getSelectedItem() == null || month.getSelectedItem() == null 
+                || years.getSelectedItem() == null)
+            dateNot.setVisible(true);
+        else 
+            dateNot.setVisible(false);
+            date1 = days.getSelectedItem().toString() + "/" + 
+                        month.getSelectedItem().toString() + "/" +
+                        years.getSelectedItem().toString();
+            if (!Day.validDate(date1))
+                dateNot.setVisible(true);
+            else
+                model1.removeAllElements();
+                model2.removeAllElements();
+                dateNot.setVisible(false);
+                ArrayList<Task> tasks = new ArrayList<Task>();
+                tasks = Task.onlyTasksList(emp.searchDay(date1).getDailyProgram());               
+                if (tasks.isEmpty()){
+                    model1.addElement("No Tasks or Reminders for today");
+                } else {
+                    int i;
+                    if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+                        tasks = Task.sortByDate(tasks);
+                    } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
+                        tasks = Task.sortByDesc(tasks);
+                    } else {
+                        tasks = Task.sortByImp(tasks);
+                    }
+                    for (i = 0; i < tasks.size(); i++){
+                        model1.addElement(tasks.get(i));
+                    }
+                }
+                jList1.setModel(model1);
+                ArrayList<String> eventsList = Event.onlyEventsList(emp.searchDay(date1).getDailyProgram());
+                if (!eventsList.isEmpty()){
+                    for (int i = 0; i < eventsList.size(); i++){
+                        model2.addElement(eventsList.get(i));
+                    }
+                } else 
+                    model2.addElement("No events for today");    
+
+    }       
 
     /**
      * @param args the command line arguments
@@ -337,5 +419,14 @@ public class MyCalendar extends javax.swing.JFrame {
     private javax.swing.JLabel time1;
     private javax.swing.JLabel today;
     private javax.swing.JComboBox years;
+    private javax.swing.JLabel taskAndRem;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList jList1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList eventsList2;
+    DefaultListModel model1 = new DefaultListModel();
+    DefaultListModel model2 = new DefaultListModel();
+               
     // End of variables declaration//GEN-END:variables
 }

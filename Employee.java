@@ -76,7 +76,7 @@ public abstract class Employee {
     }
 
   public String getNameSurname() {
-      return getName() + getSurname();
+      return getName() + " " + getSurname();
   }
 
   public double getSalary() {

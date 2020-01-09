@@ -16,7 +16,7 @@ public class BusyB {
 	         WelcomeWindow welcomeWindow = new WelcomeWindow();
 	         welcomeWindow.setVisible(true);
 	         try {
-    			 Thread.sleep(5000);
+    			 Thread.sleep(9000);
     		 }
     		 catch (Exception ex) {
     			 System.out.println("An error occurred! Please try again!");

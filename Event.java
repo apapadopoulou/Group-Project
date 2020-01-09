@@ -38,6 +38,11 @@ public class Event extends Program implements Comparable<Event>{
   public String toString() {
     return "date:" + date + ", time:" + time + ", title:" + title + ", description:" + description;
   }
+  
+  public String toStringWithoutDesc() {
+      return "date:" + date + ", time:" + time + ", title:" + title;
+  }
+  
   public String getDesc() {
     return description;
   }

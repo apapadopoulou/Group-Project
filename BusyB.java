@@ -19,7 +19,7 @@ public class BusyB {
 	         welcomeWindow.setVisible(true);
 	         Timer timer = new Timer();
 	         try {
-		         timer.wait();
+		         Thread.currentThread().sleep(6000);
     			 Thread.sleep(5000);
     		 }
     		 catch (Exception ex) {

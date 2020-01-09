@@ -202,5 +202,36 @@ public String getY() {
 public void setY(String y) {
 	this.y = y;
 }
+public static boolean leapYear(int year) {
+		boolean leap = false;
+		if (year % 4 == 0) {
+			if (year % 100 == 0) {
+				if (year % 400 == 0) {
+					leap = true;
+				}
+			} else {
+				leap = true;
+			}
+		}
+		return leap;
+	}
+public static boolean validDate(String date){
+    int day = Integer.parseInt(date.substring(0, 2));
+    int month = Integer.parseInt(date.substring(3, 5));
+    int year = Integer.parseInt(date.substring(6));
+    if(day > 28 && month == 2){
+        if (Day.leapYear(year))
+            return false;
+        else {
+            if (day > 29)
+                return false;
+        }    
+    } else if (day > 30){
+        if (month == 4 || month == 6 || month == 9 || month == 11){
+            return false;
+        }
+    }
+    return true;    
+}
 }
 //End of Day class.

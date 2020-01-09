@@ -63,13 +63,8 @@ public final class FirstWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        try {
-            jPanel1 =(javax.swing.JPanel)java.beans.Beans.instantiate(getClass().getClassLoader(), "FirstWindow_jPanel1");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
+        
+        jPanel1 = new javax.swing.JPanel();
         currentDate = new javax.swing.JLabel();
         today_label = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -142,10 +137,14 @@ public final class FirstWindow extends javax.swing.JFrame {
         String strDate = formatter.format(date);
         ArrayList<Task> tasks = new ArrayList<Task>();
         tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
-        tasks = Task.sortByDate(tasks);
         DefaultListModel model1 = new DefaultListModel();
-        for (int i = 0; i < tasks.size(); i++){
-            model1.addElement(tasks.get(i));
+        if (tasks.size() == 0){
+            model1.addElement("No Tasks Or Remider for Today");
+        } else {
+            tasks = Task.sortByDate(tasks);
+            for (int i = 0; i < tasks.size(); i++){
+                model1.addElement(tasks.get(i));
+            }
         }
         taskAndRem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -153,15 +152,19 @@ public final class FirstWindow extends javax.swing.JFrame {
         eventsList2 = new javax.swing.JList();
         DefaultListModel model2 = new DefaultListModel();
         ArrayList<String> eventsList = new ArrayList<String>();
-        for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
-            if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
-                Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
-                eventsList.add(ev.toString());
+        if (!emp.searchDay(strDate).getDailyProgram().isEmpty()){
+            for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
+                    if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
+                    Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
+                    eventsList.add(ev.toString());
+                }
             }
-        }
-        for (int i = 0; i < eventsList.size(); i++){
+            for (int i = 0; i < eventsList.size(); i++){
             model2.addElement(String.valueOf(eventsList.get(i)));
-        }
+            }
+        } else 
+            model2.addElement("No events for today");
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/smallLogo.PNG")));
@@ -200,7 +203,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         SortBy.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         SortBy.setText("Sort By:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Description", "Level of importance" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -533,17 +536,21 @@ public final class FirstWindow extends javax.swing.JFrame {
         String strDate = formatter.format(date);
         ArrayList<Task> tasks = new ArrayList<Task>();
         tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
-        int i;
         DefaultListModel model = new DefaultListModel();
-        if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){
-            tasks = Task.sortByDate(tasks);
-        } else if (String.valueOf(jComboBox2.getSelectedItem()).equals("Description")){
-            tasks = Task.sortByDesc(tasks);
+        if (tasks.isEmpty()){
+            model.addElement("No Tasks or Reminders for today");
         } else {
-            tasks = Task.sortByImp(tasks);
-        }
-        for (i = 0; i < tasks.size(); i++){
-            model.addElement(tasks.get(i));
+            int i;
+            if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){
+                tasks = Task.sortByDate(tasks);
+            } else if (String.valueOf(jComboBox2.getSelectedItem()).equals("Description")){
+                tasks = Task.sortByDesc(tasks);
+            } else {
+                tasks = Task.sortByImp(tasks);
+            }
+            for (i = 0; i < tasks.size(); i++){
+                model.addElement(tasks.get(i));
+            }
         }
         tasksList.setModel(model);
     }                                          

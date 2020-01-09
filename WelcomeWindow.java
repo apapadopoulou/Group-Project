@@ -1,13 +1,16 @@
 
 import java.awt.Toolkit;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-public class WelcomeWindow extends javax.swing.JFrame {
+public class WelcomeWindow extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form WelcomeWindow
@@ -16,6 +19,9 @@ public class WelcomeWindow extends javax.swing.JFrame {
     public WelcomeWindow() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        Timer t = new Timer(5000, this);
+               t.start();
+
     }
 
     /**

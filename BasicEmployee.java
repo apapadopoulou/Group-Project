@@ -154,16 +154,6 @@ public class BasicEmployee extends Employee {
 	return score;
 }
 
-	
-	 /**
-	  *Sets the score.
-	  *@param score 
-	  */
-	 
-public void setScore(double score) {
-	this.score = score;
-}
-
 	/**
 	 *Method that changes the employee's department.
 	 *@param empName

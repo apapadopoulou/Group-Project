@@ -10,7 +10,7 @@ import javax.swing.Timer;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-public class WelcomeWindow extends javax.swing.JFrame implements ActionListener {
+public class WelcomeWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form WelcomeWindow
@@ -19,7 +19,7 @@ public class WelcomeWindow extends javax.swing.JFrame implements ActionListener 
     public WelcomeWindow() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        Timer t = new Timer(5000, this);
+        Timer t = new Timer(5000, (ActionListener) this);
                t.start();
 
     }

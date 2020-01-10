@@ -264,7 +264,7 @@ public static void dataEntry() throws ParseException {
            				   sc.nextLine();
            			   }
            		   }
-           		   System.out.println("Date of Birth (dd/mm/yyy): ");
+           		   System.out.println("Date of Birth (dd/mm/yyyy): ");
            		   while (run) {
            			   try {
            				   inputDate = sc.next();

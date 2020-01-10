@@ -353,7 +353,7 @@ public class MyCalendar extends javax.swing.JFrame {
                     }
                 }
                 jList1.setModel(model1);
-                ArrayList<String> eventsList = Event.onlyEventsList(emp.searchDay(date1).getDailyProgram());
+                ArrayList<String> eventsList = Event.onlyEventsList(emp.searchDay(date1).getDailyProgram().toString());
                 if (!eventsList.isEmpty()){
                     for (int i = 0; i < eventsList.size(); i++){
                         model2.addElement(eventsList.get(i));

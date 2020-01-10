@@ -176,11 +176,7 @@ public class MyCalendar extends javax.swing.JFrame {
         jComboBox1.setSelectedIndex(1);
         taskAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
         taskAndRem.setText("Tasks and Reminders");	
-        jList1.setModel(new javax.swing.AbstractListModel() {	
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };	
-            public int getSize() { return strings.length; }	
-            public Object getElementAt(int i) { return strings[i]; }	
-        });	
+        jList1.setModel(model1);
         jScrollPane1.setViewportView(jList1);	
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
         jLabel3.setText("Events");	

@@ -42,7 +42,7 @@ public class Flow {
         while (run) {
        	 try {
        		 admnPhonenumber = sc.next();
-       	    if (!Checkers.isValidPhoneNumber(phonenumber)) {
+       	    if (!Checkers.isValidPhoneNumber(admnPhonenumber)) {
        	      throw new IllegalArgumentException();
        	    }
        		 sc.nextLine();
@@ -161,7 +161,7 @@ public static void dataEntry() throws ParseException {
                    while (run) {
                   	 try {
                   		 phoneNumber = sc.next();
-                  		if (!Checkers.isValidPhoneNumber(phonenumber)) {
+                  		if (!Checkers.isValidPhoneNumber(phoneNumber)) {
                      	      throw new IllegalArgumentException();
                      	    }
                   		 sc.nextLine();
@@ -263,7 +263,7 @@ public static void dataEntry() throws ParseException {
            		   while (run) {
            			   try {
            				   phoneNumber = sc.next();
-           				if (!Checkers.isValidPhoneNumber(phonenumber)) {
+           				if (!Checkers.isValidPhoneNumber(phoneNumber)) {
            	       	      throw new IllegalArgumentException();
            	       	    }
            				   break;
@@ -361,7 +361,7 @@ public static void dataEntry() throws ParseException {
              while (run) {
            	   try {
            		   phoneNumber = sc.next();
-           		if (!Checkers.isValidPhoneNumber(phonenumber)) {
+           		if (!Checkers.isValidPhoneNumber(phoneNumber)) {
              	      throw new IllegalArgumentException();
              	    }
            		   sc.nextLine();

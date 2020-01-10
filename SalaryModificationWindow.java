@@ -71,7 +71,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         jLabel1.setText("Employee's name:");
 
         employee.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        employee.setText("gg");
+        employee.setText(emp.getNameSurname());
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel4.setText("Old salary:");
@@ -80,18 +80,18 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         jLabel5.setText("New salary:");
 
         salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        salary.setText(" g");
+        salary.setText(String.valueOf(emp.getSalary()));
 
         new_salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        new_salary.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new_salaryActionPerformed(evt);
-            }
-        });
-
+        
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         ok_button.setText("OK");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ok_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ok_buttonMouseClicked(evt);
+            }
+        });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
@@ -151,11 +151,17 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    private void ok_buttonMouseClicked(java.awt.event.MouseEvent evt) {
+        String text = new_salary.getText();
+        try {
+          double d = Double.parseDouble(text);
+          emp.setSalary(d);
+        } catch (NumberFormatException nfe) {
+          new_salary.setText("");
+        }
+    }
 
-    private void new_salaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_new_salaryActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_new_salaryActionPerformed
-
+    
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
 

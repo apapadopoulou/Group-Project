@@ -42,6 +42,9 @@ public class Flow {
         while (run) {
        	 try {
        		 admnPhonenumber = sc.next();
+       	    if (!Checkers.isValidPhoneNumber(phonenumber)) {
+       	      throw new IllegalArgumentException();
+       	    }
        		 sc.nextLine();
        		 break;
        	 } catch (Exception ex) {
@@ -158,6 +161,9 @@ public static void dataEntry() throws ParseException {
                    while (run) {
                   	 try {
                   		 phoneNumber = sc.next();
+                  		if (!Checkers.isValidPhoneNumber(phonenumber)) {
+                     	      throw new IllegalArgumentException();
+                     	    }
                   		 sc.nextLine();
                   		 break;
                   	 } catch (Exception ex) {
@@ -257,7 +263,9 @@ public static void dataEntry() throws ParseException {
            		   while (run) {
            			   try {
            				   phoneNumber = sc.next();
-           				   sc.nextLine();
+           				if (!Checkers.isValidPhoneNumber(phonenumber)) {
+           	       	      throw new IllegalArgumentException();
+           	       	    }
            				   break;
            			   } catch (Exception ex) {
            				   System.out.println("An error occurred! Please try again!");
@@ -353,6 +361,9 @@ public static void dataEntry() throws ParseException {
              while (run) {
            	   try {
            		   phoneNumber = sc.next();
+           		if (!Checkers.isValidPhoneNumber(phonenumber)) {
+             	      throw new IllegalArgumentException();
+             	    }
            		   sc.nextLine();
            		   break;
            	   } catch (Exception ex) {

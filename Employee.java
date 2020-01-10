@@ -14,10 +14,6 @@ public abstract class Employee {
   // Constructor
   public Employee(String name, String surname, String phonenumber,
       String email, String birthdate, String id, double salary) {
-    if (!Checkers.isValidPhoneNumber(phonenumber)) {
-      throw new IllegalArgumentException(
-        "phone number is not valid");
-    }
     this.name = name;
     this.surname = surname;
     this.phonenumber = phonenumber;

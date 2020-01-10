@@ -39,8 +39,6 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         employee = new javax.swing.JLabel();
@@ -50,10 +48,6 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         new_salary = new javax.swing.JTextField();
         ok_button = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-
-        jLabel3.setText("jLabel3");
-
-        jLabel6.setText("jLabel6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Salary Modification");
@@ -71,7 +65,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         jLabel1.setText("Employee's name:");
 
         employee.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        employee.setText(emp.getNameSurname());
+        employee.setText("gg");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel4.setText("Old salary:");
@@ -80,18 +74,19 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         jLabel5.setText("New salary:");
 
         salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        salary.setText(String.valueOf(emp.getSalary()));
+        salary.setText(" g");
 
         new_salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        
+        new_salary.setSelectionColor(new java.awt.Color(0, 0, 0));
+        new_salary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new_salaryActionPerformed(evt);
+            }
+        });
+
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         ok_button.setText("OK");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        ok_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ok_buttonMouseClicked(evt);
-            }
-        });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
@@ -170,10 +165,8 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel employee;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField new_salary;

@@ -1,29 +1,35 @@
 import java.util.ArrayList;
 
 public class Request {
-	private String date;
-	private int days;
-	private String desc;
-	private String type;
-	private String empId;
-	public static ArrayList<Request> vacRequests = new ArrayList<Request>();
-	public static ArrayList<Request> evRequests = new ArrayList<Request>();
+    private boolean accepted;
+    private String date;
+    private String comments;
+    private int days;
+    private String desc;
+    private String type;
+    private String empId;
+    public static ArrayList<Request> vacRequests = new ArrayList<Request>();
+    public static ArrayList<Request> evRequests = new ArrayList<Request>();
 	
-	public Request(String type, String date, int days, String desc, String empId) {
-		this.type = type;
-		this.date = date;
-		this.days = days;
-		this.desc = desc;
-		this.empId = empId;
-		if (type.equals("Vacation"))
-			vacRequests.add(this);
-		else
-			evRequests.add(this);
-	}
+    public Request(String date, int days, String desc, String empId) {
+    	accepted = false;
+	this.date = date;
+	this.days = days;
+	this.desc = desc;
+	this.empId = empId;
+	vacRequests.add(this);	
+    }
+    
+    public String getComments(){
+        return comments;
+    }
+    public void setComments(String comments){
+        this.comments = comments;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public String getType() {
+	return type;
+    }
 
 	public void setType(String type) {
 		this.type = type;

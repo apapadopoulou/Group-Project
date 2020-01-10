@@ -165,9 +165,11 @@ public class DBcon {
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
 			/* Executes the given statement that saves the object's. */
+			stmt.executeUpdate("DROP TABLE BBAssignedToEvent;");
 			stmt.executeUpdate("DROP TABLE BBDay;");
 			stmt.executeUpdate("DROP TABLE BBAssignedToTask;");
 			stmt.executeUpdate("DROP TABLE BBEvent;");
+			stmt.executeUpdate("DROP TABLE BBProgram;");
 			stmt.executeUpdate("DROP TABLE BBTask;");
 			stmt.executeUpdate("DROP TABLE BBAccount;");
 			stmt.executeUpdate("DROP TABLE BBTopManager;");

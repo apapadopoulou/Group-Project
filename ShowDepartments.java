@@ -268,6 +268,7 @@ public class ShowDepartments extends javax.swing.JFrame {
        if (mmDepartments.getSelectedValue() == null){
            depNot.setVisible(true);
        } else {
+           depNot.setVisible(false);
             depart.setVisible(true);
             employeesOfDepartment.setVisible(true);
             selectEmployee.setVisible(true);           

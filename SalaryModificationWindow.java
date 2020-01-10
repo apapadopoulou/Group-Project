@@ -27,6 +27,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         this.emp = emp;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        warning.setVisible(false);
     }
 
     /**
@@ -48,6 +49,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         new_salary = new javax.swing.JTextField();
         ok_button = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        warning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Salary Modification");
@@ -78,22 +80,26 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
 
         new_salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         new_salary.setSelectionColor(new java.awt.Color(0, 0, 0));
-        new_salary.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new_salaryActionPerformed(evt);
-            }
-        });
-
+       
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         ok_button.setText("OK");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
+        warning.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        warning.setForeground(new java.awt.Color(255, 0, 0));
+        warning.setText("Not valid salary!");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(warning)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel8))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -115,10 +121,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGap(27, 27, 27)
                         .addComponent(employee)))
-                .addContainerGap(200, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel8))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,10 +138,12 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(new_salary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(71, 71, 71)
+                .addGap(70, 70, 70)
                 .addComponent(ok_button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(warning)))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -149,10 +154,12 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
     private void ok_buttonMouseClicked(java.awt.event.MouseEvent evt) {
         String text = new_salary.getText();
         try {
-          double d = Double.parseDouble(text);
-          emp.setSalary(d);
+            warning.setVisible(false);
+            double d = Double.parseDouble(text);
+            emp.setSalary(d);
         } catch (NumberFormatException nfe) {
-          new_salary.setText("");
+            new_salary.setText("");
+            warning.setVisible(true);
         }
     }
 
@@ -172,5 +179,6 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
     private javax.swing.JTextField new_salary;
     private javax.swing.JButton ok_button;
     public javax.swing.JLabel salary;
+    private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }

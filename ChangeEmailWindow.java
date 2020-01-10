@@ -16,9 +16,12 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
     /**
      * Creates new form ChangeEmailWindow.
      */
-    public ChangeEmailWindow() {
+    private Employee emp; 
+    public ChangeEmailWindow(Employee emp) {
+        this.emp = emp;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        warning.setVisible(false);
     }
 
     /**
@@ -60,6 +63,11 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         ok_button.setText("ΟΚ");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ok_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ok_buttonMouseClicked(evt);
+            }
+        });
 
         warning.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 0, 0));
@@ -117,40 +125,22 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    private void ok_buttonMouseClicked(java.awt.event.MouseEvent evt) {
+        String mail = email.getText();
+        if (mail.equals(emp.getEmail())){
+            warning.setVisible(false);
+            if (Checkers.isValidEmail(new_email.getText())){
+                emp.setEmail(new_email.getText());
+            } else {
+                warning.setText("The new email you entered is not valid");
+                warning.setVisible(true);
+                new_email.setText("");
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangeEmailWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangeEmailWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangeEmailWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangeEmailWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChangeEmailWindow().setVisible(true);
-            }
-        });
+        } else {
+            warning.setText("The current email you entered is not valid");
+            warning.setVisible(true);
+            email.setText("");
+        }        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

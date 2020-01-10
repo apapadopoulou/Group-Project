@@ -327,7 +327,6 @@ public static void dataEntry() throws ParseException {
     	   }
        }
         while (!name.equals("done")) {
-          while (run) {
              System.out.println("Surname: ");
              while (run) {
            	   try {
@@ -386,9 +385,6 @@ public static void dataEntry() throws ParseException {
                  phoneNumber, email, inputDate, salary);
              System.out.println("Top Manager "
               + "created with id: " + emp.getID());
-             //Loop breakes when an Employee is created.
-             break;
-           }
           System.out.println("Name: ");
           while (run) {
        	   try {

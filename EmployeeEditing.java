@@ -70,10 +70,9 @@ public class EmployeeEditing extends javax.swing.JFrame {
         currentTime = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        DefaultListModel model2 = new DefaultListModel();
-        ArrayList<BasicEmployee> employeesOfDep = new ArrayList<BasicEmployee>();
-        for (int i = 1; i < employeesOfDep.size(); i++){
-            model2.addElement(employeesOfDep.get(i).getNameSurname());
+        DefaultListModel model = new DefaultListModel();
+         for (int i = 1; i < Employee.employees.size(); i++){
+            model.addElement(Employee.employees.get(i).getNameSurname());
         }
         employees_list = new javax.swing.JList();
         manage_button = new javax.swing.JButton();
@@ -111,9 +110,10 @@ public class EmployeeEditing extends javax.swing.JFrame {
         jLabel4.setText("Manage employees");
 
         employees_list.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        employees_list.setModel(model2);
+        employees_list.setModel(model);
         employees_list.setToolTipText("");
         employees_list.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        employees_list.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         employees_list.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(employees_list);
 
@@ -124,18 +124,18 @@ public class EmployeeEditing extends javax.swing.JFrame {
         add_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         add_button.setText("Add employee");
         add_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                add_buttonActionPerformed(evt);
+        add_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_buttonMouseClicked(evt);
             }
         });
 
         delete_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         delete_button.setText("Delete employee");
         delete_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        delete_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delete_buttonActionPerformed(evt);
+        delete_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delete_buttonMouseClicked(evt);
             }
         });
 
@@ -226,22 +226,23 @@ public class EmployeeEditing extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
+    private void delete_buttonMouseClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
         // TODO add your handling code here:
         if (employees_list.getSelectedValue() == null) {
             warning.setVisible(true);
         } else {
             warning.setVisible(false);
-           /* java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    
-                    new DeleteEmployee(emp).setVisible(true);
+            String name = employees_list.getSelectedValue().toString();
+            Employee e = Employee.searchEmployeeByName2(name);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {                    
+                    new DeleteEmployee(e).setVisible(true);
                 }
-            });*/
+            });
         }
     }//GEN-LAST:event_delete_buttonActionPerformed
 
-    private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
+    private void add_buttonMouseClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

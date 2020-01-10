@@ -472,8 +472,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
     }//GEN-LAST:event_hoursActionPerformed
 
     private void OKButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKButtonMouseClicked
-        employeesList.setVisible(true);
-        employeesList.setSelectionMode(NORMAL);
+        employeesList.setVisible(true);        
         jScrollPane2.setVisible(true);
         if (event.isSelected()) {
             addOrCreate.setText("Create event");
@@ -486,13 +485,12 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             slash1.setVisible(true);
             slash2.setVisible(true);
             description.setVisible(true);
-           
+            employeesList.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             time1.setVisible(true);
             hours.setVisible(true);
             twoDots.setVisible(true);
             minutes.setVisible(true);
-            jScrollPane1.setVisible(true);
-            
+            jScrollPane1.setVisible(true);            
             select.setVisible(true);
             textArea.setVisible(true);
             title.setVisible(true);
@@ -510,7 +508,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             days.setVisible(true);
             description.setVisible(true);
             employeesList.setSelectionMode(
-                    ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);            
+                    ListSelectionModel.SINGLE_SELECTION);            
             levOfDif.setVisible(true);
             levOfimp.setVisible(true);
             months.setVisible(true);
@@ -537,11 +535,10 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             date1.setText("Due Date:");
             date1.setVisible(true);
             days.setVisible(true);
-            description.setVisible(true);
-            
+            description.setVisible(true);            
             levOfDif.setVisible(true);
             levOfimp.setVisible(true);
-            
+            employeesList.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             months.setVisible(true);
             select.setVisible(true);
             slash1.setVisible(true);
@@ -619,41 +616,6 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         new FirstWindow(mm).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel13MouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrEventOrAddTask.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrEventOrAddTask.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrEventOrAddTask.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrEventOrAddTask.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-       /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CrEventOrAddTask().setVisible(true);
-            }
-        });*/
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OKButton;

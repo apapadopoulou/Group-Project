@@ -113,7 +113,8 @@ public class DBcon {
 					+ "(eventID INT not null, "
 					+ "empID VARCHAR(20) not null, "
 					+ "PRIMARY KEY (eventID, empID), "
-					+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
+					+ "FOREIGN KEY (empID) REFERENCES BBAccount);"
+					+ "FOREIGN KEY (eventID) REFERENCES BBEvent);");
 			System.out.println("TABLE BBAssignedToEvent CREATED");
 
 			stmt.executeUpdate("CREATE TABLE BBAssignedToTask " 

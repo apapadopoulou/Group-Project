@@ -16,8 +16,8 @@ public class DeleteEmployee extends javax.swing.JFrame {
     /**
      * Creates new form DeleteEmployee
      */
-    private BasicEmployee emp;
-    public DeleteEmployee(BasicEmployee emp) {
+    private Employee emp;
+    public DeleteEmployee(Employee emp) {
         this.emp = emp;
         initComponents();
     }
@@ -105,7 +105,12 @@ public class DeleteEmployee extends javax.swing.JFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) { /**GEN-FIRST:event_jToggleButton1ActionPerformed*/
         Employee.employees.remove(emp);
-        BasicEmployee.basicEmployees.remove(emp);
+        if (emp instanceof BasicEmployee)
+            BasicEmployee.basicEmployees.remove((BasicEmployee)emp);
+        else if (emp instanceof MiddleManager)
+            MiddleManager.middleManagers.remove((MiddleManager) emp);
+        else
+            TopManager.topManagers.remove((MiddleManager) emp);
     } /**GEN-LAST:event_jToggleButton1ActionPerformed */
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) { /**GEN-FIRST:event_jToggleButton2ActionPerformed*/

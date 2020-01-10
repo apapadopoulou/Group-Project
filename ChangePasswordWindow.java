@@ -16,7 +16,9 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     /**
      * Creates new form ChangePasswordWindow.
      */
-    public ChangePasswordWindow() {
+    private Employee emp;
+    public ChangePasswordWindow(Employee emp) {
+        this.emp = emp;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         warning.setVisible(false);
@@ -64,14 +66,20 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         new_password2.setSelectionColor(new java.awt.Color(0, 0, 0));
 
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        ok_button.setText("OK");
+        ok_button.setText("Change password");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ok_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ok_buttonMouseClicked(evt);
+            }
+        });
+
 
         new_password1.setSelectionColor(new java.awt.Color(0, 0, 0));
 
         warning.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 0, 0));
-        warning.setText("Invalid inputs!");
+        warning.setText("Invalid inputs!Please try again");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,41 +142,27 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void ok_buttonMouseClicked(java.awt.event.MouseEvent evt) {
+        warning.setVisible(false);
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            String pas_emp = password.getText();
+            boolean  b = new_password1.getText().equals(new_password2.getText());
+            if(Checkers.isValidPassword(new_password1.getText()) && b){
+                String newPass = new_password1.getText();
+                Account.searchAccountByEmail(emp.getEmail()).setPassword(newPass);
+            } else {
+                if (!Checkers.isValidEmail(new_password1.getText()))
+                    warning.setText("Invalid new password. Password's length"+
+                        "must be between 6 and 15.");
+                else
+                    warning.setText("Invalid inputs");
+                warning.setVisible(true);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangePasswordWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (NullPointerException e){
+            warning.setText("Please enter your current password");
+            warning.setVisible(true);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChangePasswordWindow().setVisible(true);
-            }
-        });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -42,7 +42,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel9.setVisible(false);
         due_day.setVisible(false);
         due_month.setVisible(false);
-        jComboBox3.setVisible(false);
+        due_year.setVisible(false);
         jLabel10.setVisible(false);
         reminder_text.setVisible(false);
         description.setVisible(false);
@@ -109,7 +109,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         due_month = new javax.swing.JComboBox();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox();
+        due_year = new javax.swing.JComboBox();
         jLabel10 = new javax.swing.JLabel();
         reminder_text = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -226,8 +226,8 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel9.setText("/");
 
-        jComboBox3.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(MyCalendar.year));
+        due_year.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        due_year.setModel(new javax.swing.DefaultComboBoxModel(MyCalendar.year));
 
         jLabel10.setFont(new java.awt.Font("Arial", 3, 20)); // NOI18N
         jLabel10.setText("Don't forget!");
@@ -385,7 +385,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
                                 .addComponent(minutes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(due_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
                                 .addComponent(jLabel12)
@@ -490,7 +490,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(due_month, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(due_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(70, 70, 70)
                 .addComponent(warning)
@@ -530,7 +530,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
             jLabel9.setVisible(true);
             due_day.setVisible(true);
             due_month.setVisible(true);
-            jComboBox3.setVisible(true);
+            due_year.setVisible(true);
             jLabel10.setVisible(false);
             reminder_text.setVisible(false);
             jLabel11.setVisible(true);
@@ -557,7 +557,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
             jLabel9.setVisible(true);
             due_day.setVisible(true);
             due_month.setVisible(true);
-            jComboBox3.setVisible(true);
+            due_year.setVisible(true);
             jLabel10.setVisible(false);
             reminder_text.setVisible(false);
             jLabel11.setVisible(true);
@@ -584,7 +584,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
             jLabel9.setVisible(false);
             due_day.setVisible(false);
             due_month.setVisible(false);
-            jComboBox3.setVisible(false);
+            due_year.setVisible(false);
             jLabel10.setVisible(true);
             reminder_text.setVisible(true);
             jLabel11.setVisible(false);
@@ -611,7 +611,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
             jLabel9.setVisible(false);
             due_day.setVisible(false);
             due_month.setVisible(false);
-            jComboBox3.setVisible(false);
+            due_year.setVisible(false);
             jLabel10.setVisible(false);
             reminder_text.setVisible(false);
             description.setVisible(true);
@@ -701,10 +701,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
     private javax.swing.JTextField description;
     private javax.swing.JComboBox due_day;
     private javax.swing.JComboBox due_month;
+    private javax.swing.JComboBox due_year;
     private javax.swing.JRadioButton event;
     private javax.swing.JRadioButton grouptask;
     private javax.swing.JComboBox hours;
-    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

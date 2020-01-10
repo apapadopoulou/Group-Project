@@ -37,6 +37,7 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         new_email = new javax.swing.JTextField();
         ok_button = new javax.swing.JButton();
+        warning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(ChangeEmailWindow.class.getResource("/images/smallLogo.PNG")));
@@ -57,8 +58,12 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
         new_email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        ok_button.setText("OK!");
+        ok_button.setText("ΟΚ");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        warning.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        warning.setForeground(new java.awt.Color(255, 0, 0));
+        warning.setText("Invalid inputs!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,8 +86,12 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
                             .addComponent(new_email, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(ok_button)
-                                .addGap(107, 107, 107)))))
+                                .addGap(123, 123, 123)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(warning)
+                .addGap(153, 153, 153))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +106,9 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
                     .addComponent(new_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(ok_button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(warning)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
 
@@ -150,6 +161,7 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField new_email;
     private javax.swing.JButton ok_button;
+    private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }
 //End of ChangeEmailWindow class.

@@ -19,6 +19,7 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     public ChangePasswordWindow() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        warning.setVisible(false);
     }
 
     /**
@@ -39,6 +40,7 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         new_password2 = new javax.swing.JPasswordField();
         ok_button = new javax.swing.JButton();
         new_password1 = new javax.swing.JPasswordField();
+        warning = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(ChangePasswordWindow.class.getResource("/images/smallLogo.PNG")));
@@ -67,6 +69,10 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
 
         new_password1.setSelectionColor(new java.awt.Color(0, 0, 0));
 
+        warning.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        warning.setForeground(new java.awt.Color(255, 0, 0));
+        warning.setText("Invalid inputs!");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,8 +99,11 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
                                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(198, 198, 198)
-                        .addComponent(ok_button)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(ok_button))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(warning)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +122,9 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
                     .addComponent(new_password2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(ok_button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(warning)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
 
@@ -168,6 +179,7 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
     private javax.swing.JPasswordField new_password2;
     private javax.swing.JButton ok_button;
     private javax.swing.JPasswordField password;
+    private javax.swing.JLabel warning;
     // End of variables declaration//GEN-END:variables
 }
 //End of ChangePasswordWindow class.

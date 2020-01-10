@@ -19,9 +19,7 @@ public class Task extends Program implements Comparable<Task>{
 	private int importance; //Importance of a task should be between 1 and 10.
 	private int difficulty; //Difficulty of a task should be between 1 and 10.
 	private String empId; //Employee ID for single-employee Tasks.
-	private ArrayList<String> empIds; //Employee IDs ArrayList for Group Tasks. 
-	public static int counter = 1; //Needed to create the Task IDs. 
-	private int id;
+	private ArrayList<String> empIds; //Employee IDs ArrayList for Group Tasks.
 	private double score;
 	private double[] scores;
 	public static ArrayList<Task> tasks = new ArrayList<Task>();
@@ -39,10 +37,9 @@ public class Task extends Program implements Comparable<Task>{
 		this.importance = importance;
 		this.difficulty = difficulty;
 		this.empId = empId;
-		this.id = counter++; //Needed for the DataBase.
 		tasks.add(this);
 		DBcon.saveTask(this);
-		DBcon.AssignToTask(id, empId);
+		DBcon.AssignToTask(getProgramID(), empId);
 	}
 	
 	/**
@@ -50,7 +47,7 @@ public class Task extends Program implements Comparable<Task>{
 	 * Used to load Task objects from Database.
 	 */
 	public Task(int taskID, String startDate, String dueDate, String completionDate, String desc, int importance, int difficulty, String empId) {
-		super();
+		super(taskID);
 		this.desc = desc;
 		this.startDate = startDate;
 		this.dueDate = dueDate;
@@ -64,8 +61,6 @@ public class Task extends Program implements Comparable<Task>{
 		this.importance = importance;
 		this.difficulty = difficulty;
 		this.empId = empId;
-		this.id = taskID; //Needed for the DataBase.
-		counter = id + 1;
 		tasks.add(this);
 	}
   
@@ -82,11 +77,10 @@ public class Task extends Program implements Comparable<Task>{
 		this.importance = importance;
 		this.difficulty = difficulty;
 		this.empIds = empIds;
-		this.id = counter++; //Needed for the DataBase.
 		tasks.add(this);
 		DBcon.saveTask(this);
 		for (int i = 0; i < empIds.size(); i++) {
-			DBcon.AssignToTask(id, empIds.get(i));
+			DBcon.AssignToTask(getProgramID(), empIds.get(i));
 		}
 	}
 	
@@ -95,7 +89,7 @@ public class Task extends Program implements Comparable<Task>{
 	 * Used to load multi-employee Tasks from the Database.
 	 */
 	public Task(int taskID, String startDate, String dueDate, String completionDate, String desc, int importance, int difficulty, ArrayList<String> empIds) {
-		super();
+		super(taskID);
 		this.desc = desc;
 		this.startDate = startDate;
 		this.dueDate = dueDate;
@@ -109,8 +103,6 @@ public class Task extends Program implements Comparable<Task>{
 		this.importance = importance;
 		this.difficulty = difficulty;
 		this.empIds = empIds;
-		this.id = taskID; //Needed for the DataBase.
-		counter = id + 1;
 		tasks.add(this);
 	}
 	
@@ -120,7 +112,7 @@ public class Task extends Program implements Comparable<Task>{
 
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
-		DBcon.updateTaskVar("dueDate", dueDate, id);
+		DBcon.updateTaskVar("dueDate", dueDate, getProgramID());
 	}
 
 	public String getStartDate() {
@@ -129,7 +121,7 @@ public class Task extends Program implements Comparable<Task>{
   
 	public void setStartDate(String date) {
 		this.startDate = date;
-		DBcon.updateTaskVar("startDate", date, id);
+		DBcon.updateTaskVar("startDate", date, getProgramID());
 	}
 
 	public String getCompletionDate() {
@@ -163,26 +155,22 @@ public class Task extends Program implements Comparable<Task>{
 	
 	public void setCompletionDate(String completionDate) {
 		this.completionDate = completionDate;
-		DBcon.updateTaskVar("completionDate", completionDate, id);
+		DBcon.updateTaskVar("completionDate", completionDate, getProgramID());
 	}
 
 	public void setDesc(String desc) {
 		this.desc = desc;
-		DBcon.updateTaskVar("description", desc, id);
+		DBcon.updateTaskVar("description", desc, getProgramID());
 	}
 
 	public void setImportance(int importance) {
 		this.importance = importance;
-		DBcon.updateTaskVar("importance", importance, id);
+		DBcon.updateTaskVar("importance", importance, getProgramID());
 	}
 
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
-		DBcon.updateTaskVar("difficulty", difficulty, id);
-	}
-
-	public int getTaskID() {
-		return id;
+		DBcon.updateTaskVar("difficulty", difficulty, getProgramID());
 	}
 
 	public int getImportance() {

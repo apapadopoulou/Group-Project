@@ -127,7 +127,7 @@ public class Day {
   */
  	public void setDailyProgram(ArrayList<Program> dailyProgram) {
  		this.dailyProgram = dailyProgram;
- 		//DBcon.setDailyProgram(ArrayList<Program> dailyProgram); TODO!!
+ 		//DBcon.saveDailyProgram(ArrayList<Program> dailyProgram, dayID);
     }
   
  /**

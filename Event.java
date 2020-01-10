@@ -7,10 +7,8 @@ public class Event extends Program implements Comparable<Event>{
     private String title;
     private String description;
     private String date;
-    private static int counter = 1;
     private String time;
     private ArrayList<Employee> employeesInEvent = new ArrayList<Employee>();
-    private int eventID;
     private String type;
     
     /**
@@ -18,17 +16,17 @@ public class Event extends Program implements Comparable<Event>{
      * Used to create new Events.
      */
     public Event(String title, String date, String time, String description, String type, ArrayList<Employee> employees) {
-    this.title = title;
-        this.description = description;
-        this.type = type;
-    employeesInEvent = employees;
-    this.date = date;
-    this.time= time;
-    eventID = counter++;
-    DBcon.saveEvent(this);
-    for (int i = 0; i < employees.size(); i++) {
-		DBcon.AssignToEvent(eventID, employees.get(i).getID());
-	}
+    	super();
+    	this.title = title;
+       	this.description = description;
+       	this.type = type;
+       	employeesInEvent = employees;
+    	this.date = date;
+    	this.time= time;
+    	DBcon.saveEvent(this);
+    	for (int i = 0; i < employees.size(); i++) {
+    		DBcon.AssignToEvent(getProgramID(), employees.get(i).getID());
+    	}
     }
     
     /**
@@ -36,7 +34,8 @@ public class Event extends Program implements Comparable<Event>{
      * Used to create new Events that are loaded from the database.
      */
     public Event(String title, String date, String time, String description, String type, int eventID, ArrayList<String> empIDs) {
-		this.title = title;
+		super(eventID);
+    	this.title = title;
         this.description = description;
         this.type = type;
         for (int i = 0; i < empIDs.size(); i++) {
@@ -44,8 +43,6 @@ public class Event extends Program implements Comparable<Event>{
         }
 		this.date = date;
 		this.time= time;
-		this.eventID = eventID;
-		counter = eventID + 1;
 		DBcon.saveEvent(this);
     }
     
@@ -70,7 +67,7 @@ public class Event extends Program implements Comparable<Event>{
 
   public void setDesc(String description) {
     this.description = description;
-    DBcon.updateEventVar("description", description, eventID);
+    DBcon.updateEventVar("description", description, getProgramID());
   }
 
   public String getEventDate() {
@@ -79,7 +76,7 @@ public class Event extends Program implements Comparable<Event>{
 
   public void setEventDate(String date) {
     this.date = date;
-    DBcon.updateEventVar("EventDate", date, eventID);
+    DBcon.updateEventVar("EventDate", date, getProgramID());
   }
 
   public ArrayList<Employee> getEmployeesInEvent() {
@@ -90,21 +87,13 @@ public class Event extends Program implements Comparable<Event>{
     this.employeesInEvent = employeesInEvent;
   }
 
-  public int getEventID() {
-    return eventID;
-  }
-
-  public void setEventID(int eventID) {
-    this.eventID = eventID;
-  }
-
   public String getType() {
     return type;
   }
 
   public void setType(String type) {
     this.type = type;
-    DBcon.updateEventVar("type", type, eventID);
+    DBcon.updateEventVar("type", type, getProgramID());
   }
 
   public String getTitle() {
@@ -113,7 +102,7 @@ public class Event extends Program implements Comparable<Event>{
 
   public void setTitle(String title) {
     this.title = title;
-    DBcon.updateEventVar("title", title, eventID);
+    DBcon.updateEventVar("title", title, getProgramID());
   }
 
   public String getEventTime() {
@@ -122,7 +111,7 @@ public class Event extends Program implements Comparable<Event>{
 
   public void setEventTime(String time) {
     this.time = time;
-    DBcon.updateEventVar("EventTime", time, eventID);
+    DBcon.updateEventVar("EventTime", time, getProgramID());
   }
         public static ArrayList<Event> onlyEventsList(ArrayList<Program> calendar){
   ArrayList<Event> eventsList = new ArrayList<Event>();

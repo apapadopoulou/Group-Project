@@ -133,10 +133,10 @@ public class DBcon {
 					+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
 			System.out.println("TABLE BBDay CREATED");
 			
-			stmt.executeUpdate("CREATE TABLE BBDayTasks " 
+			stmt.executeUpdate("CREATE TABLE BBProgram " 
 					+ "(dayID INT not null, "
 					+ "taskID INT not null,"
-					+ "PRIMARY KEY (dayID, taskID)"
+					+ "PRIMARY KEY (dayID, taskID), "
 					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
 			System.out.println("TABLE BBDayTasks CREATED");
 			/* Catch block if an exception occurs and the specified driver is not found. */
@@ -877,7 +877,7 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			stmt.executeUpdate(
 					"INSERT INTO BBTask (taskID, startDate, dueDate, completionDate, description, importance, difficulty) VALUES ('"
-							+ task.getTaskID() + "', '" + task.getStartDate() + "', '" + task.getDueDate() + "', '"
+							+ task.getProgramID() + "', '" + task.getStartDate() + "', '" + task.getDueDate() + "', '"
 							+ task.getCompletionDate() + "', '" + task.getDesc() + "', " + task.getImportance() + ", "
 							+ task.getDifficulty() + ");");
 			stmt.close(); // Closes the Statement resource.
@@ -1026,7 +1026,7 @@ public class DBcon {
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
 			stmt.executeUpdate("INSERT INTO BBEvent (eventID, title, eventDate, eventTime, description, type) VALUES ("
-					+ event.getEventID() + ", '" + event.getTitle() + "', '" + event.getEventDate() + "', '"
+					+ event.getProgramID() + ", '" + event.getTitle() + "', '" + event.getEventDate() + "', '"
 					+ event.getEventTime() + "', '" + event.getDesc() + "', " + event.getType() + ");");
 			stmt.close(); // Closes the Statement resource.
 			dbcon.close(); // Closes the DataBase conenction resource.

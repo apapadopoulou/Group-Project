@@ -1,11 +1,15 @@
 
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.ListSelectionModel;
 import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -47,7 +51,6 @@ public class SalaryWindow extends javax.swing.JFrame {
                 Date d = new Date();
                 SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
                 currentTime.setText(s.format(d));
-
             }
         }
         ).start();
@@ -74,6 +77,17 @@ public class SalaryWindow extends javax.swing.JFrame {
         modify_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        JTableHeader Theader = jTable1.getTableHeader();
+        Theader.setFont(new Font("Arial",Font.BOLD, 18));
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < Employee.employees.size(); i++){
+            String fullname = Employee.employees.get(i).getNameSurname();
+            String salary = String.valueOf(Employee.employees.get(i).getSalary());
+            Object[] row = {fullname, salary};
+            model.addRow(row);
+        }
+        ListSelectionModel cellSelectionModel = jTable1.getSelectionModel();
+        cellSelectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         warning = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -126,17 +140,7 @@ public class SalaryWindow extends javax.swing.JFrame {
         });
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Employee", "Salary"
-            }
-        ));
+        jTable1.setModel(model);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(jTable1);
 
@@ -233,7 +237,16 @@ public class SalaryWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_modify_buttonActionPerformed
 
     private void modify_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modify_buttonMouseClicked
-        // TODO add your handling code here:
+        if (jTable1.getSelectedColumn() != 0 || jTable1.getSelectedRow() == -1)
+            warning.setVisible(true);
+        else
+            warning.setVisible(false);
+            Employee emp = Employee.searchEmployeeByName2(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new SalaryModificationWindow(emp).setVisible(true);
+                }
+            });
     }//GEN-LAST:event_modify_buttonMouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked

@@ -100,7 +100,7 @@ public class DBcon {
 			System.out.println("TABLE BBTask CREATED");
 
 			stmt.executeUpdate("CREATE TABLE BBEvent " 
-					+ "(eventID VARCHAR(15) not null," 
+					+ "(eventID INT not null," 
 					+ "eventDate DATE not null,"
 					+ "eventTime VARCHAR(13)not null," 
 					+ "type INT," 
@@ -108,12 +108,12 @@ public class DBcon {
 					+ "description VARCHAR(300),"
 					+ "PRIMARY KEY (eventID));");
 			System.out.println("TABLE BBEvent CREATED");
-			
+
 			stmt.executeUpdate("CREATE TABLE BBAssignedToEvent " 
 					+ "(eventID INT not null, "
 					+ "empID VARCHAR(20) not null, "
 					+ "PRIMARY KEY (eventID, empID), "
-					+ "FOREIGN KEY (empID) REFERENCES BBAccount);"
+					+ "FOREIGN KEY (empID) REFERENCES BBAccount, "
 					+ "FOREIGN KEY (eventID) REFERENCES BBEvent);");
 			System.out.println("TABLE BBAssignedToEvent CREATED");
 
@@ -139,7 +139,7 @@ public class DBcon {
 					+ "taskID INT not null,"
 					+ "PRIMARY KEY (dayID, taskID), "
 					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
-			System.out.println("TABLE BBDayTasks CREATED");
+			System.out.println("TABLE BBProgram CREATED");
 			/* Catch block if an exception occurs and the specified driver is not found. */
 		} catch (Exception e) {
 			System.out.print("SQLExcpetion: ");

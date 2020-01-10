@@ -53,9 +53,6 @@ public class SettingsWindow extends javax.swing.JFrame {
         ).start();
     }
 
-    ChangePasswordWindow pas = new ChangePasswordWindow();
-    ChangeEmailWindow em = new ChangeEmailWindow();
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,19 +131,19 @@ public class SettingsWindow extends javax.swing.JFrame {
         jLabel10.setText("Phone number:");
 
         name.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        name.setText("jLabel11");
+        name.setText(emp.getName());
 
         surname.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        surname.setText("jLabel12");
+        surname.setText(emp.getSurname());
 
         email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        email.setText("jLabel13");
+        email.setText(emp.getEmail());
 
         birthdate.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        birthdate.setText("jLabel14");
+        birthdate.setText(emp.getBirthDate());
 
         phone.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        phone.setText("jLabel15");
+        phone.setText(emp.getPhonenumber());
 
         change_e.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         change_e.setText("Change email");
@@ -277,12 +274,12 @@ public class SettingsWindow extends javax.swing.JFrame {
 
     private void change_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_pActionPerformed
         // TODO add your handling code here:
-        pas.setVisible(true);
+        new ChangeEmailWindow().setVisible(true);
     }//GEN-LAST:event_change_pActionPerformed
 
     private void change_eActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_eActionPerformed
         // TODO add your handling code here:
-        em.setVisible(true);
+        new ChangePasswordWindow().setVisible(true);
     }//GEN-LAST:event_change_eActionPerformed
 
     /**

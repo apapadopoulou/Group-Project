@@ -201,12 +201,14 @@ public class Task extends Program implements Comparable<Task>{
     public int compareTo(Task o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
     public static ArrayList<Task> onlyTasksList(ArrayList<Program> calendar){
 	ArrayList<Task> tasksList = new ArrayList<Task>();
             for (int i = 0; i < calendar.size(); i++) {
                 if (calendar.get(i) instanceof Task) {
                     tasksList.add((Task) calendar.get(i));			 
 		}
+             
 	}
 	return tasksList;
     }

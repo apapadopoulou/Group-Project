@@ -71,6 +71,7 @@ public class VacationRequest extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel6 = new javax.swing.JLabel();
         curt = new javax.swing.JLabel();
         curd1 = new javax.swing.JLabel();
@@ -108,6 +109,11 @@ public class VacationRequest extends javax.swing.JFrame {
         jLabel5.setText("Comments");
 
         jToggleButton1.setText("Submit your request");
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
         jLabel6.setText("Today");
@@ -141,7 +147,7 @@ public class VacationRequest extends javax.swing.JFrame {
         });
 
         dateNot.setForeground(new java.awt.Color(255, 0, 0));
-        dateNot.setText("Not valid date. Please try again!");
+        dateNot.setText("Date or number of days is invalid. Please try again!");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -242,6 +248,22 @@ public class VacationRequest extends javax.swing.JFrame {
         new FirstWindow(emp).setVisible(true);       
         this.setVisible(false);
     }//GEN-LAST:event_jLabel13MouseClicked
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {
+        String date1;
+        if (jComboBox1.getSelectedItem() == null || jComboBox2.getSelectedItem()
+                == null || jComboBox3.getSelectedItem() == null || jSpinner1.getValue()
+                == null){
+            dateNot.setVisible(true);
+        } else {
+            dateNot.setVisible(false);
+            date1 = jComboBox1.getSelectedItem().toString() + "/" + 
+                        jComboBox2.getSelectedItem().toString() + "/" +
+                        jComboBox3.getSelectedItem().toString();
+            int number = Integer.parseInt(jSpinner1.getValue().toString());
+            String comments = jTextArea1.getText();
+            new Request("Vacation", date1, number, comments, emp.getID());            
+        }
+    }  
 
     /**
      * @param args the command line arguments

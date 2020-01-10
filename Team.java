@@ -17,7 +17,7 @@ import javax.swing.table.JTableHeader;
 
 /**
  *
- * @author User
+ * @author BusyB
  */
 public class Team extends javax.swing.JFrame {
 

@@ -28,6 +28,26 @@ public class Event extends Program implements Comparable<Event>{
 		DBcon.saveEvent(this);
 		//DBcon.saveEmployesInEvent(employeesInEvent);
     }
+    
+    /**
+     * Database constructor for class Event.
+     * Used to create new Events that are loaded from the database.
+     */
+    public Event(String title, String date, String time, String description, String type, int eventID, ArrayList<String> empIDs) {
+		this.title = title;
+        this.description = description;
+        this.type = type;
+        for (int i = 0; i < empIDs.size(); i++) {
+        	employeesInEvent.add(Employee.searchEmployeeById(empIDs.get(i)));
+        }
+		this.date = date;
+		this.time= time;
+		this.eventID = eventID;
+		counter = eventID + 1;
+		DBcon.saveEvent(this);
+		//DBcon.saveEmployesInEvent(employeesInEvent);
+    }
+    
     public void addEvent () {
     	for (int i = 1; i < employeesInEvent.size(); i++) {
     		

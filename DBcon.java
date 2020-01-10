@@ -108,6 +108,13 @@ public class DBcon {
 					+ "description VARCHAR(300),"
 					+ "PRIMARY KEY (eventID));");
 			System.out.println("TABLE BBEvent CREATED");
+			
+			stmt.executeUpdate("CREATE TABLE BBAssignedToEvent " 
+					+ "(eventID INT not null, "
+					+ "empID VARCHAR(20) not null, "
+					+ "PRIMARY KEY (eventID, empID), "
+					+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
+			System.out.println("TABLE BBAssignedToEvent CREATED");
 
 			stmt.executeUpdate("CREATE TABLE BBAssignedToTask " 
 					+ "(taskID INT not null, "
@@ -115,16 +122,23 @@ public class DBcon {
 					+ "evaluation REAL, "
 					+ "PRIMARY KEY (taskID, empID), "
 					+ "FOREIGN KEY (empID) REFERENCES BBAccount,"
-					+ "FOREIGN KEY (taskID) "
-					+ "REFERENCES BBTask);");
+					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
 			System.out.println("TABLE BBAssignedToTask CREATED");
 			
 			stmt.executeUpdate("CREATE TABLE BBDay " 
 					+ "(dayID INT not null, "
 					+ "date VARCHAR(15),"
-					+ "empID VARCHAR(20)"
-					+ "PRIMARY KEY (day));");
-			System.out.println("TABLE BBManagingDepartments CREATED");
+					+ "empID VARCHAR(20), "
+					+ "PRIMARY KEY (dayID), "
+					+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
+			System.out.println("TABLE BBDay CREATED");
+			
+			stmt.executeUpdate("CREATE TABLE BBDayTasks " 
+					+ "(dayID INT not null, "
+					+ "taskID INT not null,"
+					+ "PRIMARY KEY (dayID, taskID)"
+					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
+			System.out.println("TABLE BBDayTasks CREATED");
 			/* Catch block if an exception occurs and the specified driver is not found. */
 		} catch (Exception e) {
 			System.out.print("SQLExcpetion: ");
@@ -1011,7 +1025,7 @@ public class DBcon {
 			dbcon = DriverManager.getConnection(url);
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
-			stmt.executeUpdate("INSERT INTO BBEvent (EventID, title, eventDate, eventTime, description, type) VALUES ("
+			stmt.executeUpdate("INSERT INTO BBEvent (eventID, title, eventDate, eventTime, description, type) VALUES ("
 					+ event.getEventID() + ", '" + event.getTitle() + "', '" + event.getEventDate() + "', '"
 					+ event.getEventTime() + "', '" + event.getDesc() + "', " + event.getType() + ");");
 			stmt.close(); // Closes the Statement resource.
@@ -1023,6 +1037,83 @@ public class DBcon {
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getMessage());
 		}
+	}
+	
+	public static void loadEvents() {
+		/* Try block for trying to find the correct Driver to make the DB connection. */
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			/* Catch block if an exception occurs and the specified driver is not found. */
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/* Try block for making the DB connection and executing the given statement. */
+		try {
+			ResultSet rs;
+			/* Makes the actual connection with the server. */
+			dbcon = DriverManager.getConnection(url);
+			/* Creates the statement */
+			stmt = dbcon.createStatement();
+			/* Executes the given statement that saves the object's. */
+			rs = stmt.executeQuery("SELECT eventID, title, eventDate, eventTime, description, type FROM BBEvent;");
+			/* Does a loop for every row (object in this case) it finds. */
+			while (rs.next()) {
+				int eventID = rs.getInt("eventID");
+				String title = rs.getString("title");
+				String eventDate = rs.getString("eventDate");
+				String eventTime = rs.getString("eventTime");
+				String description = rs.getString("description");
+				String type = rs.getString("type");
+				ArrayList<String> empIDs = loadAssignedToEvent(eventID);
+				Event event = new Event(title, eventDate, eventTime, description, type, eventID, empIDs);
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static ArrayList<String> loadAssignedToEvent(int eventID) {
+		ArrayList<String> empIds = new ArrayList<String>();
+		/* Try block for trying to find the correct Driver to make the DB connection. */
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			/* Catch block if an exception occurs and the specified driver is not found. */
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/* Try block for making the DB connection and executing the given statement. */
+		try {
+			ResultSet rs;
+			/* Makes the actual connection with the server. */
+			dbcon = DriverManager.getConnection(url);
+			/* Creates the statement */
+			stmt = dbcon.createStatement();
+			/* Executes the given statement that saves the object's. */
+			rs = stmt.executeQuery("SELECT empID FROM BBAssignedToEvent WHERE eventID = " + eventID);
+			/* Does a loop for every row (object in this case) it finds. */
+			while (rs.next()) {
+				empIds.add(rs.getString("empID"));
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		return empIds;
 	}
 	
 	public static void updateEventVar(String varName, String var, int id) {

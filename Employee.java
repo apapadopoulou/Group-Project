@@ -97,7 +97,7 @@ public abstract class Employee {
 			  }
 	 	}
 	  }
-	  calendar.add(new Day(date));
+	  calendar.add(new Day(date, getID()));
 	  return calendar.get(calendar.size()-1);
   }
 

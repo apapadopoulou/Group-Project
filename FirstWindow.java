@@ -84,7 +84,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         else {
             jLabelPayrolls.setFont(new java.awt.Font("Arial", 1, 24));
             jLabelPayrolls.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelPayrolls.setText("Payrolls");
+            jLabelPayrolls.setText("Payroll");
         }
         jLabelTimeoffs = new javax.swing.JLabel();
         if ( num != 2 && num != 4)
@@ -111,7 +111,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow5.setText("Manage Departments");
         arrow6 = new javax.swing.JLabel();
         if (num == 1 || num == 5)
-        arrow6.setText("");
+            arrow6.setText("");
         else if (num == 3 || num == 4) {
             arrow6.setFont(new java.awt.Font("Arial", 1, 24));
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));

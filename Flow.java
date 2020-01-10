@@ -90,13 +90,13 @@ public class Flow {
 	}
 public static void dataEntry() throws ParseException {
   Scanner sc = new Scanner(System.in);
-      String dname;
-      String name;
-      String surname;
-      String email;
-      String phoneNumber;
+      String dname = null;
+      String name = null;
+      String surname = null;
+      String email = null;
+      String phoneNumber = null;
       String inputDate = null;
-      Department dep;
+      Department dep = null;
       double salary = 0;
       do {
           System.out.println("Insert name of Department. "
@@ -206,73 +206,105 @@ public static void dataEntry() throws ParseException {
              	   }
                 }
               }
-             System.out.println("Insert Department's Manager: ");
-             System.out.println("Name: ");
+             System.out.println("Does the department's manager already exists? (Y for yes, N for no): ");
+             String ans;
              while (run) {
-           	     try {
-           	    	 name = sc.next();
-           		     sc.nextLine();
-           		     break;
-           	     } catch (Exception ex) {
-           		     System.out.println("An error occurred! Please try again!");
-           		     sc.nextLine();
-           	     }
-              }
-             System.out.println("Surname: ");
-             while (run) {
-           	     try {
-           		     surname = sc.next();
-           		     sc.nextLine();
-           		     break;
-           	     } catch (Exception ex) {
-           		     System.out.println("An error occurred! Please try again!");
-           		     sc.nextLine();
-           	     }
-              }
-             System.out.println("Email: ");
-             while (run) {
-           	     try {
-           		     email = sc.next();
-           		     sc.nextLine();
-           		     break;
-           	     } catch (Exception ex) {
-           		     System.out.println("An error occurred! Please try again!");
-           		     sc.nextLine();
-           	     }
-              }
-             System.out.println("Phonenumber: ");
-             while (run) {
-            	 try {
-            		 phoneNumber = sc.next();
-            		 sc.nextLine();
-            		 break;
-            	 } catch (Exception ex) {
-            		 System.out.println("An error occurred! Please try again!");
-            		 sc.nextLine();
-            	 }
+           	   try {
+           		   ans = sc.next();
+           		   sc.nextLine();
+           		   break;
+           	   } catch (Exception ex) {
+           		   System.out.println("An error occurred! Please try again!");
+           		  sc.nextLine();
+           	   }
              }
-             System.out.println("Date of Birth (dd/mm/yyy): ");
-             while (run) {
-            	 try {
-            		 inputDate = sc.next();
-            		 sc.nextLine();
-            		 break;
-            	 } catch (Exception ex) {
-            		 System.out.println("An error occurred! Please try again!");
-            		 sc.nextLine();
-            	 }
-             }
-             System.out.println("Salary: ");
-             while (run) {
-          	     try {
-          		     salary = sc.nextDouble();
-          		     sc.nextLine();
-          		     break;
-          	     } catch (Exception ex) {
-          	    	 System.out.println("An error occurred! Please try again!");
-          	    	 sc.nextLine();
-          	     }
-             }
+           	 if (ans.contentEquals(("N"))) {
+           		 System.out.println("Insert Department's Manager: ");
+           		 System.out.println("Name: ");
+           		 while (run) {
+           			 try {
+           				 name = sc.next();
+           				 sc.nextLine();
+           				 break;
+           			 } catch (Exception ex) {
+           				 System.out.println("An error occurred! Please try again!");
+           			     sc.nextLine();
+           			  }
+           		   }
+           		   System.out.println("Surname: ");
+           		   while (run) {
+           			   try {
+           				   surname = sc.next();
+           				   sc.nextLine();
+           				   break;
+           			   } catch (Exception ex) {
+           				   System.out.println("An error occurred! Please try again!");
+           				   sc.nextLine();
+           			   }
+           		   }
+           		   System.out.println("Email: ");
+           		   while (run) {
+           			   try {
+           				   email = sc.next();
+           				   sc.nextLine();
+           				   break;
+           			   } catch (Exception ex) {
+           				   System.out.println("An error occurred! Please try again!");
+           				   sc.nextLine();
+           			   }
+           		   }
+           		   System.out.println("Phonenumber: ");
+           		   while (run) {
+           			   try {
+           				   phoneNumber = sc.next();
+           				   sc.nextLine();
+           				   break;
+           			   } catch (Exception ex) {
+           				   System.out.println("An error occurred! Please try again!");
+           				   sc.nextLine();
+           			   }
+           		   }
+           		   System.out.println("Date of Birth (dd/mm/yyy): ");
+           		   while (run) {
+           			   try {
+           				   inputDate = sc.next();
+           				   sc.nextLine();
+           				   break;
+           			   } catch (Exception ex) {
+           				   System.out.println("An error occurred! Please try again!");
+           				   sc.nextLine();
+           			   }
+           		   }
+           		   System.out.println("Salary: ");
+           		   while (run) {
+           			   try {
+           				   salary = sc.nextDouble();
+           				   sc.nextLine();
+           				   break;
+           			   } catch (Exception ex) {
+           				   System.out.println("An error occurred! Please try again!");
+           				   sc.nextLine();
+           			   }
+           		   }
+           	   } else if (ans.equals("Y")) {
+           		   System.out.println("Insert Manager's ID: ");
+           		   String id;
+           		   while (run) {
+        			   try {
+        				   id = sc.next();
+        				   sc.nextLine();
+        				   break;
+        			   } catch (Exception ex) {
+        				   System.out.println("An error occurred! Please try again!");
+        				   sc.nextLine();
+        			   }
+        		   }
+           		   for (int count = 0; count < MiddleManager.middleManagers.size(); count++) {
+           			   if (MiddleManager.middleManagers.get(count).getID().equals(id)){
+           				MiddleManager.middleManagers.get(count).getManagingDepartments().add(dep);
+           			   }
+           		   }
+           	   }
              MiddleManager emp = new MiddleManager(name, surname,
              phoneNumber, email, inputDate, salary);
              emp.getManagingDepartments().add(dep);

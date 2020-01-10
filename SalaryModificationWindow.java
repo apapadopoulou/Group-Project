@@ -80,12 +80,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
 
         new_salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         new_salary.setSelectionColor(new java.awt.Color(0, 0, 0));
-        new_salary.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new_salaryActionPerformed(evt);
-            }
-        });
-
+       
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         ok_button.setText("OK");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -159,10 +154,12 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
     private void ok_buttonMouseClicked(java.awt.event.MouseEvent evt) {
         String text = new_salary.getText();
         try {
-          double d = Double.parseDouble(text);
-          emp.setSalary(d);
+            warning.setVisible(false);
+            double d = Double.parseDouble(text);
+            emp.setSalary(d);
         } catch (NumberFormatException nfe) {
-          new_salary.setText("");
+            new_salary.setText("");
+            warning.setVisible(true);
         }
     }
 

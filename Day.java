@@ -136,6 +136,7 @@ public class Day {
   */
   private void addToDailyProgram(Program p) {
     dailyProgram.add(p);
+    //DBcon.saveDailyProgram(
   }
   /**
    *Gets the date.

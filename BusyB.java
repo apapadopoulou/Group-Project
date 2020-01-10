@@ -24,14 +24,10 @@ public class BusyB {
       DBcon.deleteTables();
       DBcon.createTables();
       Flow.adminSettingsEntry();
-      boolean run = true;
-      while (run) {
-    	  try {
-    		  Flow.dataEntry();
-    		  break;
-    	  } catch (Exception e) {
-    		  System.out.println("An error occured! Try again!");
-    	  }
+      try {
+    	  Flow.dataEntry();
+      } catch (Exception e) {
+    	  System.out.println("An error occured! Try again!");
       }
     } else {
     DBcon.loadData();

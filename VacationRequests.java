@@ -70,7 +70,7 @@ public class VacationRequests extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        requests = new javax.swing.JList();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -118,16 +118,16 @@ public class VacationRequests extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel5.setText("Requests:");
 
-        jList1.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        requests.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
+        requests.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jList1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jList1.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jList1);
+        requests.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        requests.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        requests.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(requests);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel6.setText("Date:");
@@ -385,10 +385,10 @@ public class VacationRequests extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel month;
+    private javax.swing.JList requests;
     private javax.swing.JLabel year;
     // End of variables declaration//GEN-END:variables
 }

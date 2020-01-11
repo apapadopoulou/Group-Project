@@ -67,11 +67,7 @@ public class Task extends Program implements Comparable<Task>{
 		this.startDate = startDate;
 		this.dueDate = dueDate;
 		this.completionDate = completionDate;
-		if (completionDate == null) {
-			done = false;
-		} else {
-			done = true;
-		}
+		done = false;
 		isGroupTask = false;
 		this.importance = importance;
 		this.difficulty = difficulty;

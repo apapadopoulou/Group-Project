@@ -96,6 +96,8 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();	
         jScrollPane2 = new javax.swing.JScrollPane();	
         eventsList2 = new javax.swing.JList();	
+        doneButton = new javax.swing.JButton();
+        help = new javax.swing.JLabel();
         	
         
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -171,6 +173,10 @@ public class MyCalendar extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Sort by:");
+        doneButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        doneButton.setText("Done");        
+
+        help.setText("Please select every task that is completed and then click Done Button!");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
         jComboBox1.setSelectedIndex(1);
@@ -245,7 +251,12 @@ public class MyCalendar extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)	
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)	
                                     .addComponent(jLabel3)	
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                                        .addGap(32, 32, 32)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(doneButton)
+                                            .addComponent(help)))
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))))))	
                 .addContainerGap())
             );
@@ -284,13 +295,20 @@ public class MyCalendar extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)	
-                .addComponent(taskAndRem)	
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)	
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)	
-                .addComponent(jLabel3)	
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)	
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)	
+                .addComponent(taskAndRem)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(help)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(doneButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 426, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -423,6 +441,8 @@ public class MyCalendar extends javax.swing.JFrame {
     private javax.swing.JList eventsList2;
     DefaultListModel model1 = new DefaultListModel();
     DefaultListModel model2 = new DefaultListModel();
+    private javax.swing.JButton doneButton;
+    private javax.swing.JLabel help;
                
     // End of variables declaration//GEN-END:variables
 }

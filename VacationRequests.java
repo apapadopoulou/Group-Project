@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -85,6 +87,12 @@ public class VacationRequests extends javax.swing.JFrame {
         day = new javax.swing.JLabel();
         month = new javax.swing.JLabel();
         year = new javax.swing.JLabel();
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < Request.vacRequests.size(); i++) {
+        	String employee = Employee.searchEmployeeById(Request.vacRequests.get(i).getEmpId()).getNameSurname();
+        	model.addElement(employee);
+        }
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(VacationRequests.class.getResource("/images/smallLogo.PNG")));
@@ -119,14 +127,15 @@ public class VacationRequests extends javax.swing.JFrame {
         jLabel5.setText("Requests:");
 
         requests.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        requests.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        requests.setModel(model);
         requests.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         requests.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         requests.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        requests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestsActionPerformed(evt);
+            }
+        });
         jScrollPane1.setViewportView(requests);
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -140,9 +149,16 @@ public class VacationRequests extends javax.swing.JFrame {
 
         accept_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         accept_button.setText("Accept");
+        accept_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        accept_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accept_buttonActionPerformed(evt);
+            }
+        });
 
         decline_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         decline_button.setText("Decline");
+        decline_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         decline_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decline_buttonActionPerformed(evt);
@@ -156,12 +172,7 @@ public class VacationRequests extends javax.swing.JFrame {
         comment_field.setForeground(new java.awt.Color(204, 204, 204));
         comment_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         comment_field.setText("Optional");
-        comment_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comment_fieldActionPerformed(evt);
-            }
-        });
-
+       
         days.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         days.setText("days");
 
@@ -321,14 +332,29 @@ public class VacationRequests extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_jLabel3MouseClicked
+    private void requestsActionPerformed(java.awt.event.ActionEvent evt) {
+    	Employee emp = Employee.searchEmployeeByName2(requests.getSelectedValue().toString());
+    	Request req = Request.searchRequest(emp.getID());
+    	day.setText(req.getDate().substring(0, 2));
+    	month.setText(req.getDate().substring(3, 5));
+    	year.setText(req.getDate().substring(6));
+    	days.setText(String.valueOf(req.getDays()));
+    	comments.setText(req.getDesc());
+    }
 
-    private void comment_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comment_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comment_fieldActionPerformed
-
-    private void decline_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decline_buttonActionPerformed
-        // TODO add your handling code here:
+    private void decline_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+    	Employee emp = Employee.searchEmployeeByName2(requests.getSelectedValue().toString());
+    	Request req = Request.searchRequest(emp.getID());
+    	req.setAccepted(false);
+    	req.setDesc(comment_field.getText()); 
     }//GEN-LAST:event_decline_buttonActionPerformed
+    
+    private void accept_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+    	Employee emp = Employee.searchEmployeeByName2(requests.getSelectedValue().toString());
+    	Request req = Request.searchRequest(emp.getID());
+    	req.setAccepted(true);
+    	req.setDesc(comment_field.getText()); 
+    }
 
     /**
      * @param args the command line arguments

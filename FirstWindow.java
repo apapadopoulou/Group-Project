@@ -92,7 +92,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         else {
             jLabelTimeoffs.setFont(new java.awt.Font("Arial", 1, 24));
             jLabelTimeoffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelTimeoffs.setText("Vacations Requests");
+            jLabelTimeoffs.setText("Vacation Requests");
         }
         SortBy = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
@@ -104,14 +104,21 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow1 = new javax.swing.JLabel();
         arrow4 = new javax.swing.JLabel();
         busyBicon = new javax.swing.JLabel();
+        arrow8 = new javax.swing.JLabel();
         arrow5 = new javax.swing.JLabel();
         if (num != 3 && num != 4)
         arrow5.setText("My Evaluation");
         else
         arrow5.setText("Manage Departments");
         arrow6 = new javax.swing.JLabel();
-        if (num == 1 || num == 5)
+        if (num == 1)
             arrow6.setText("");
+	else if (num == 5) {
+	    arrow6.setFont(new java.awt.Font("Arial", 1, 24));
+            arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
+            arrow6.setText("Notifications");
+            arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
+	}
         else if (num == 3 || num == 4) {
             arrow6.setFont(new java.awt.Font("Arial", 1, 24));
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
@@ -129,6 +136,21 @@ public final class FirstWindow extends javax.swing.JFrame {
             arrow7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow7.setText("Manage Employees");
             arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        } else if (num == 3) {
+	    arrow7.setFont(new java.awt.Font("Arial", 1, 24));
+            arrow7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
+            arrow7.setText("Notifications");
+            arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		
+        if (num == 4) {
+            arrow8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N	
+            arrow8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
+	    arrow8.setText("Notifications");
+            arrow8.addMouseListener(new java.awt.event.MouseAdapter() {	
+               public void mouseClicked(java.awt.event.MouseEvent evt) {	
+                   arrow8MouseClicked(evt);	
+               }	
+           });
         }
         jScrollPane1 = new javax.swing.JScrollPane();
         tasksList = new javax.swing.JList();        
@@ -136,21 +158,22 @@ public final class FirstWindow extends javax.swing.JFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = formatter.format(date);
         ArrayList<Task> tasks = new ArrayList<Task>();
-        tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
-        DefaultListModel model1 = new DefaultListModel();
-        if (tasks.size() == 0){
+        for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
+            if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Task)
+                tasks.add((Task) emp.searchDay(strDate).getDailyProgram().get(i));
+        }
+        if (tasks.isEmpty()){
             model1.addElement("No Tasks Or Remider for Today");
         } else {
             tasks = Task.sortByDate(tasks);
             for (int i = 0; i < tasks.size(); i++){
-                model1.addElement(tasks.get(i));
+                model1.addElement(tasks.get(i).toString());
             }
         }
         taskAndRem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        eventsList2 = new javax.swing.JList();
-        DefaultListModel model2 = new DefaultListModel();
+        eventsList2 = new javax.swing.JList();        
         ArrayList<String> eventsList = new ArrayList<String>();
         if (!emp.searchDay(strDate).getDailyProgram().isEmpty()){
             for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
@@ -160,7 +183,7 @@ public final class FirstWindow extends javax.swing.JFrame {
                 }
             }
             for (int i = 0; i < eventsList.size(); i++){
-            model2.addElement(String.valueOf(eventsList.get(i)));
+            model2.addElement(eventsList.get(i));
             }
         } else 
             model2.addElement("No events for today");
@@ -256,11 +279,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        arrow4.addContainerListener(new java.awt.event.ContainerAdapter() {
-            public void componentAdded(java.awt.event.ContainerEvent evt) {
-                arrow4ComponentAdded(evt);
-            }
-        });
+       
         arrow4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow4MouseClicked(evt);
@@ -292,7 +311,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         });
 
         if ( num != 4 && num != 5 && num != 3) {
-            arrow4.setText("Event Notice");
+            arrow4.setText("Notifications");
             arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
         } else {
             arrow4.setText("Create Event or Add Task");
@@ -318,7 +337,8 @@ public final class FirstWindow extends javax.swing.JFrame {
                         .addComponent(arrow3, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(arrow4, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
                         .addComponent(arrow5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(arrow6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(arrow6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(arrow8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(367, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -339,6 +359,7 @@ public final class FirstWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(arrow7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(arrow8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(busyBicon)
                     .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -439,10 +460,6 @@ public final class FirstWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void arrow4ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_arrow4ComponentAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_arrow4ComponentAdded
-
     private void arrow3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow3MouseClicked
          try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -472,9 +489,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void arrow4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow4MouseClicked
         if ( num != 1 && num != 2){
            new CrEventOrAddTask(num, emp).setVisible(true);
-        } else {
-            new EventRequest(num, emp).setVisible(true);
-            }
+        } 
         this.setVisible(false);
     }//GEN-LAST:event_arrow4MouseClicked
 
@@ -529,27 +544,35 @@ public final class FirstWindow extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_arrow7MouseClicked
+    private void arrow8MouseClicked(java.awt.event.MouseEvent evt) {
+    }
     
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) { 
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = formatter.format(date);
         ArrayList<Task> tasks = new ArrayList<Task>();
-        tasks = Task.onlyTasksList(emp.searchDay(strDate).getDailyProgram());
+        for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
+            if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Task)
+                tasks.add((Task) emp.searchDay(strDate).getDailyProgram().get(i));
+        }
         DefaultListModel model = new DefaultListModel();
         if (tasks.isEmpty()){
             model.addElement("No Tasks or Reminders for today");
         } else {
             int i;
             if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){
+                model.removeAllElements();
                 tasks = Task.sortByDate(tasks);
             } else if (String.valueOf(jComboBox2.getSelectedItem()).equals("Description")){
+                model.removeAllElements();
                 tasks = Task.sortByDesc(tasks);
             } else {
+                model.removeAllElements();
                 tasks = Task.sortByImp(tasks);
             }
             for (i = 0; i < tasks.size(); i++){
-                model.addElement(tasks.get(i));
+                model.addElement(tasks.get(i).toString());
             }
         }
         tasksList.setModel(model);
@@ -560,11 +583,7 @@ public final class FirstWindow extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+      
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -623,5 +642,8 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel settings;
     private javax.swing.JLabel taskAndRem;
     private javax.swing.JLabel today_label;
+    private javax.swing.JLabel arrow8;
+    DefaultListModel model2 = new DefaultListModel();
+    DefaultListModel model1 = new DefaultListModel();
     // End of variables declaration//GEN-END:variables
 }

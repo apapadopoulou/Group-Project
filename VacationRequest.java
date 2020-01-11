@@ -261,7 +261,7 @@ public class VacationRequest extends javax.swing.JFrame {
                         jComboBox3.getSelectedItem().toString();
             int number = Integer.parseInt(jSpinner1.getValue().toString());
             String comments = jTextArea1.getText();
-            new Request("Vacation", date1, number, comments, emp.getID());            
+            new Request(date1, number, comments, emp.getID());            
         }
     }  
 

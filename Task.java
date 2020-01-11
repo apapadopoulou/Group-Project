@@ -211,8 +211,7 @@ public class Task extends Program implements Comparable<Task>{
             for (int i = 0; i < calendar.size(); i++) {
                 if (calendar.get(i) instanceof Task) {
                     tasksList.add((Task) calendar.get(i));			 
-		}
-             
+		}             
 	}
 	return tasksList;
     }
@@ -244,10 +243,16 @@ public class Task extends Program implements Comparable<Task>{
     	Collections.sort(taskList, taskCompByImp);
     	return taskList;
     }
-    
     public static ArrayList<Task> sortByDesc(ArrayList<Task> taskList){
     	Collections.sort(taskList, taskCompByDesc);
     	return taskList;
     }
+	public String toStringEvaluatedTask() {
+		return "Due Date=" + dueDate + ", Description=" + desc + ", Importance=" + importance + ", Difficulty="
+				+ difficulty;
+	}
+	public String toStringSimpleTask() {
+		return "Due Date=" + dueDate + ", Description=" + desc;
+	}
 
 }

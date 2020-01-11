@@ -19,6 +19,9 @@ public class Flow {
         	 try {
         		 admnSurname = sc.next();
         		 sc.nextLine();
+        		 if (!Checkers.isValidLastName(admnSurname)) {
+        			 throw new Exception();
+        		 }
         		 break;
         	 } catch (Exception ex) {
         		 System.out.println("An error occurred! Please try again!");
@@ -31,6 +34,9 @@ public class Flow {
        	 try {
        		 admnName = sc.next();
        		 sc.nextLine();
+       		if (!Checkers.isValidFirstName(admnName)) {
+   			 throw new Exception();
+   		 }
        		 break;
        	 } catch (Exception ex) {
        		 System.out.println("An error occurred! Please try again!");
@@ -58,6 +64,9 @@ public class Flow {
        	 try {
        		 admnEmail = sc.next();
        		 sc.nextLine();
+       		 if (!Checkers.isValidEmail(admnEmail)) {
+       			 throw new Exception();
+       		 }
        		 break;
        	 } catch (Exception ex) {
        		 System.out.println("An error occurred! Please try again!");
@@ -91,7 +100,7 @@ public class Flow {
         Department admin = new Department("Administrator");
         Employee admn = new BasicEmployee(admnName, admnSurname, admnPhonenumber, admnEmail, admnBirthdate, admin.getId(), admnSalary);
 	}
-public static void dataEntry() throws ParseException {
+public static void dataEntry() {
   Scanner sc = new Scanner(System.in);
       String dname = null;
       String name = null;
@@ -104,7 +113,7 @@ public static void dataEntry() throws ParseException {
       do {
           System.out.println("Insert name of Department. "
               + "In case you have inserted all the"
-              + " Departments, please type done.");
+              + " Departments, please type 'Done'.");
           while (run) {
          	 try {
          		 dname = sc.next();
@@ -115,31 +124,37 @@ public static void dataEntry() throws ParseException {
          		 sc.nextLine();
          	 }
           }
-          if (!dname.equals("done")) {
+          if (!dname.equals("Done")) {
               dep = new Department(dname);
               System.out.println("Department created"
                   + " with id: " + dep.getId());
               System.out.println("It's time to insert the "
                   + "Employees of the department!");
-              System.out.println("When you are done, please type done.");
+              System.out.println("When you are done, please type 'Done'.");
               System.out.println("Name: ");
               while (run) {
              	 try {
              		 name = sc.next();
              		 sc.nextLine();
+             		 if (!Checkers.isValidFirstName(name)) {
+             			 throw new Exception();
+             		 }
              		 break;
              	 } catch (Exception ex) {
              		 System.out.println("An error occurred! Please try again!");
              		 sc.nextLine();
              	 }
               }
-              while (!name.equals("done")) {
+              while (!name.equals("Done")) {
                 while (run) {
                    System.out.println("Surname: ");
                    while (run) {
                   	 try {
                   		 surname = sc.next();
                   		 sc.nextLine();
+                  		 if (!Checkers.isValidLastName(surname)) {
+                  			 throw new Exception();
+                  		 }
                   		 break;
                   	 } catch (Exception ex) {
                   		 System.out.println("An error occurred! Please try again!");
@@ -151,6 +166,9 @@ public static void dataEntry() throws ParseException {
                   	 try {
                   		 email = sc.next();
                   		 sc.nextLine();
+                  		 if (!Checkers.isValidEmail(email)) {
+                 			 throw new Exception();
+                 		 }
                   		 break;
                   	 } catch (Exception ex) {
                   		 System.out.println("An error occurred! Please try again!");
@@ -205,6 +223,9 @@ public static void dataEntry() throws ParseException {
              	   try {
              		   name = sc.next();
              		   sc.nextLine();
+             		   if (!Checkers.isValidFirstName(name)) {
+               			 throw new Exception();
+               		  }
              		   break;
              	   } catch (Exception ex) {
              		   System.out.println("An error occurred! Please try again!");
@@ -231,6 +252,9 @@ public static void dataEntry() throws ParseException {
            			 try {
            				 name = sc.next();
            				 sc.nextLine();
+           				 if (!Checkers.isValidFirstName(name)) {
+                 			 throw new Exception();
+                 		 }
            				 break;
            			 } catch (Exception ex) {
            				 System.out.println("An error occurred! Please try again!");
@@ -242,6 +266,9 @@ public static void dataEntry() throws ParseException {
            			   try {
            				   surname = sc.next();
            				   sc.nextLine();
+           				   if (!Checkers.isValidLastName(surname)) {
+                			   throw new Exception();
+                		   }
            				   break;
            			   } catch (Exception ex) {
            				   System.out.println("An error occurred! Please try again!");
@@ -253,6 +280,9 @@ public static void dataEntry() throws ParseException {
            			   try {
            				   email = sc.next();
            				   sc.nextLine();
+           				   if (!Checkers.isValidEmail(email)) {
+                			   throw new Exception();
+           				   }
            				   break;
            			   } catch (Exception ex) {
            				   System.out.println("An error occurred! Please try again!");
@@ -320,26 +350,32 @@ public static void dataEntry() throws ParseException {
              System.out.println("Manager "
               + "created with id: " + emp.getID());
           }
-      } while (!dname.equals("done"));
+      } while (!dname.equals("Done"));
       System.out.println("Now, you are going to add Top Managers."
-      + " Type done to terminate.");
+      + " Type 'Done' to terminate.");
       System.out.println("Name: ");
       while (run) {
     	   try {
     		   name = sc.next();
     		   sc.nextLine();
+    		   if (!Checkers.isValidEmail(email)) {
+       			 throw new Exception();
+    		   }
     		   break;
     	   } catch (Exception ex) {
     		   System.out.println("An error occurred! Please try again!");
     		   sc.nextLine();
     	   }
        }
-        while (!name.equals("done")) {
+        while (!name.equals("Done")) {
              System.out.println("Surname: ");
              while (run) {
            	   try {
            		   surname = sc.next();
            		   sc.nextLine();
+           		   if (!Checkers.isValidLastName(surname)) {
+        			 throw new Exception();
+           		   }
            		   break;
            	   } catch (Exception ex) {
            		   System.out.println("An error occurred! Please try again!");
@@ -351,6 +387,9 @@ public static void dataEntry() throws ParseException {
            	   try {
            		   email = sc.next();
            		   sc.nextLine();
+           		   if (!Checkers.isValidEmail(email)) {
+           			   throw new Exception();
+           		   }
            		   break;
            	   } catch (Exception ex) {
            		   System.out.println("An error occurred! Please try again!");
@@ -401,6 +440,9 @@ public static void dataEntry() throws ParseException {
        	   try {
        		   name = sc.next();
        		   sc.nextLine();
+       		   if (!Checkers.isValidFirstName(name)) {
+       			   throw new Exception();
+       		   }
        		   break;
        	   } catch (Exception ex) {
        		   System.out.println("An error occurred! Please try again!");

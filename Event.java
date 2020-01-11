@@ -51,13 +51,12 @@ public class Event extends Program implements Comparable<Event>{
 
   @Override
   public String toString() {
-    return "date:" + date + ", time:" + time + ", title:" + title + ", description:" + description;
+    return "Date:" + date + ", Time:" + time + ", Title:" + title + ", Description:" + description;
   }
   
-  public String toStringWithoutDesc() {
-      return "date:" + date + ", time:" + time + ", title:" + title;
+  public String toStringWithType() {
+      return "Date:" + date + ", Time:" + time + ", Title:" + title + ", Description:" + description + ", Type:" + type;
   }
-  
   public String getDesc() {
     return description;
   }
@@ -110,13 +109,13 @@ public class Event extends Program implements Comparable<Event>{
     this.time = time;
     DBcon.updateEventVar("EventTime", time, getProgramID());
   }
-        public static ArrayList<Event> onlyEventsList(ArrayList<Program> calendar){
-  ArrayList<Event> eventsList = new ArrayList<Event>();
+    public static ArrayList<Event> onlyEventsList(ArrayList<Program> calendar){
+        ArrayList<Event> eventsList = new ArrayList<Event>();
             for (int i = 0; i < calendar.size(); i++) {
                 if (calendar.get(i) instanceof Event) {
                     eventsList.add((Event) calendar.get(i));       
-    }             
-  }
+        }             
+    }
   return eventsList;
     }
     static Comparator<Event> eventCompByTime = new Comparator<Event>() {

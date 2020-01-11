@@ -113,11 +113,12 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow6 = new javax.swing.JLabel();
         if (num == 1)
             arrow6.setText("");
-	else if (num = 5) {
+	else if (num == 5) {
 	    arrow6.setFont(new java.awt.Font("Arial", 1, 24));
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow6.setText("Notifications");
             arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
+	}
         else if (num == 3 || num == 4) {
             arrow6.setFont(new java.awt.Font("Arial", 1, 24));
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
@@ -161,7 +162,6 @@ public final class FirstWindow extends javax.swing.JFrame {
             if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Task)
                 tasks.add((Task) emp.searchDay(strDate).getDailyProgram().get(i));
         }
-        DefaultListModel model1 = new DefaultListModel();
         if (tasks.isEmpty()){
             model1.addElement("No Tasks Or Remider for Today");
         } else {
@@ -173,8 +173,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         taskAndRem = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        eventsList2 = new javax.swing.JList();
-        DefaultListModel model2 = new DefaultListModel();
+        eventsList2 = new javax.swing.JList();        
         ArrayList<String> eventsList = new ArrayList<String>();
         if (!emp.searchDay(strDate).getDailyProgram().isEmpty()){
             for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
@@ -584,11 +583,7 @@ public final class FirstWindow extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+      
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -648,5 +643,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private javax.swing.JLabel taskAndRem;
     private javax.swing.JLabel today_label;
     private javax.swing.JLabel arrow8;
+    DefaultListModel model2 = new DefaultListModel();
+    DefaultListModel model1 = new DefaultListModel();
     // End of variables declaration//GEN-END:variables
 }

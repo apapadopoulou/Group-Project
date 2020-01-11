@@ -3,6 +3,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -24,7 +25,7 @@ public class VacationRequest extends javax.swing.JFrame {
      */
     private int n;
     private Employee emp;
-    String years[] = MyCalendar.year;
+    String years[] = years();
     public VacationRequest(int n, Employee emp) {
         this.emp = emp;
         this.n = n;
@@ -51,6 +52,15 @@ public class VacationRequest extends javax.swing.JFrame {
                
         }
         ).start();
+    }
+    public static String[] years(){
+      String years[] = new String[100];
+      int year = Calendar.getInstance().get(Calendar.YEAR);
+      for (int i = 1; i < years.length; i++) {
+        years[i]= String.valueOf(year);
+        year++;        	
+      }
+      return years;    
     }
 
     /**

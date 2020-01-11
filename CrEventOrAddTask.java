@@ -81,7 +81,6 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 Date d = new Date();
                 SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
                 time.setText(s.format(d));
-
             }
         }
         ).start();
@@ -591,8 +590,8 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
             String description = textArea.getText();
-            int importance = (int) comboImp.getSelectedItem();
-            int difficulty = (int) comboDif.getSelectedItem();
+            int importance = Integer.parseInt(String.valueOf(comboImp.getSelectedItem()));
+            int difficulty = Integer.parseInt(String.valueOf(comboDif.getSelectedItem()));
             if (singleTask.isSelected()){
                 String employeeId = Employee.searchEmployeeByName2(
                     String.valueOf(employeesList.getSelectedValue())).getID();

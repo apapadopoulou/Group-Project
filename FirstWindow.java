@@ -458,6 +458,7 @@ public final class FirstWindow extends javax.swing.JFrame {
 
         setSize(new java.awt.Dimension(1660, 917));
         setLocationRelativeTo(null);
+        }
     }// </editor-fold>//GEN-END:initComponents
 
     private void arrow3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow3MouseClicked
@@ -489,7 +490,8 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void arrow4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow4MouseClicked
         if ( num != 1 && num != 2){
            new CrEventOrAddTask(num, emp).setVisible(true);
-        } 
+        } else 
+            new Notifications(emp).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_arrow4MouseClicked
 
@@ -507,6 +509,8 @@ public final class FirstWindow extends javax.swing.JFrame {
             new MyEvaluation(num, emp).setVisible(true);
        } else if (num == 2)
            new EmployeeEditing(num,emp).setVisible(true);
+       else if (num == 5)
+           new Notifications(emp).setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_arrow6MouseClicked
 
@@ -545,6 +549,10 @@ public final class FirstWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_arrow7MouseClicked
     private void arrow8MouseClicked(java.awt.event.MouseEvent evt) {
+        if(num == 4) {
+            new Notifications(emp).setVisible(true);
+            this.setVisible(false);
+        }
     }
     
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) { 

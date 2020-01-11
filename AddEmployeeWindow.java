@@ -1,5 +1,6 @@
 
 import java.awt.Toolkit;
+import java.util.Calendar;
 import javax.swing.JFrame;
 
 /*
@@ -17,14 +18,15 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
     /**
      * Creates new form AddEmployeeWindow.
      */
+    private String[] years = years();
     public AddEmployeeWindow() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         warning.setVisible(false);
     }
-public static String[] years(){
-      String years[] = new String[100];
-      int year = 1900;
+    public static String[] years(){
+      String years[] = new String[150];
+      int year = Calendar.getInstance().get(Calendar.YEAR)-150;
       for (int i = 1; i < years.length; i++) {
         years[i]= String.valueOf(year);
         year++;        	
@@ -131,7 +133,7 @@ public static String[] years(){
         jLabel11.setText("/");
 
         birthyear.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        birthyear.setModel(new javax.swing.DefaultComboBoxModel(birthyear));
+        birthyear.setModel(new javax.swing.DefaultComboBoxModel(years));
         birthyear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N

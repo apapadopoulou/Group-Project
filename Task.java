@@ -227,10 +227,16 @@ public class Task extends Program implements Comparable<Task>{
     	Collections.sort(taskList, taskCompByImp);
     	return taskList;
     }
-    
     public static ArrayList<Task> sortByDesc(ArrayList<Task> taskList){
     	Collections.sort(taskList, taskCompByDesc);
     	return taskList;
     }
+	public String toStringEvaluatedTask() {
+		return "Due Date=" + dueDate + ", Description=" + desc + ", Importance=" + importance + ", Difficulty="
+				+ difficulty;
+	}
+	public String toStringSimpleTask() {
+		return "Due Date=" + dueDate + ", Description=" + desc;
+	}
 
 }

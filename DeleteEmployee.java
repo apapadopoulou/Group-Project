@@ -110,7 +110,7 @@ public class DeleteEmployee extends javax.swing.JFrame {
         else if (emp instanceof MiddleManager)
             MiddleManager.middleManagers.remove((MiddleManager) emp);
         else
-            TopManager.topManagers.remove((MiddleManager) emp);
+            TopManager.topManagers.remove((TopManager) emp);
     } /**GEN-LAST:event_jToggleButton1ActionPerformed */
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) { /**GEN-FIRST:event_jToggleButton2ActionPerformed*/

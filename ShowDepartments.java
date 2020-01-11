@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.ListModel;
 import javax.swing.Timer;
 
 /*
@@ -132,21 +130,18 @@ public class ShowDepartments extends javax.swing.JFrame {
 
         selectEmployee.setText("Select Employee");
         selectEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 selectEmployeeMouseClicked(evt);
             }
         });
-        selectEmployee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectEmployeeActionPerformed(evt);
-            }
-        });
-
+        
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
         jLabel13.setText("Home");
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
@@ -252,17 +247,9 @@ public class ShowDepartments extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FirstWindow(mm).setVisible(true);
-            }
-        });
-        this.dispose();
+        new FirstWindow(mm).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jLabel13MouseClicked
-
-    private void selectEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectEmployeeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_selectEmployeeActionPerformed
 
     private void selectDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDepActionPerformed
        if (mmDepartments.getSelectedValue() == null){
@@ -281,7 +268,9 @@ public class ShowDepartments extends javax.swing.JFrame {
         } else {        
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new EmployeeOverview(n,BasicEmployee.searchEmployeeByName2(employeesOfDepartment.getSelectedValue().toString())).setVisible(true);
+                    new EmployeeOverview(n,BasicEmployee.searchEmployeeByName2(String.
+                            valueOf(employeesOfDepartment.getSelectedValue())))
+                            .setVisible(true);
                 }
             });
         }

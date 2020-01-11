@@ -10,7 +10,6 @@ import javax.swing.DefaultListSelectionModel;
 import javax.swing.JFrame;
 import javax.swing.ListSelectionModel;
 import javax.swing.Timer;
-import javax.swing.event.ListSelectionListener;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -140,8 +139,8 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 }
             }
         } else {
-            for (int i = 0; i < Employee.employees.size(); i++) {
-                model1.addElement(Employee.employees.get(i).getNameSurname());
+            for (Employee employee : Employee.employees) {
+                model1.addElement(employee.getNameSurname());
             }
         }
         jLabel1 = new javax.swing.JLabel();
@@ -194,6 +193,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         OKButton.setText("OK");
         OKButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         OKButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OKButtonMouseClicked(evt);
             }
@@ -259,6 +259,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
 
         addOrCreate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addOrCreate.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addOrCreateMouseClicked(evt);
             }
@@ -289,6 +290,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         jLabel13.setText("Home");
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
@@ -564,25 +566,24 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         if (event.isSelected()){
             try {
                 String type =  types.getSelectedItem().toString();
-                String title = titleText.getText();
+                String title1;
+                title1 = titleText.getText();
                 String date2 = days.getSelectedItem().toString() + "/" + 
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
-                String time = hours.getSelectedItem().toString() + ":" +
+                String time2;
+                time2 = hours.getSelectedItem().toString() + ":" +
                         minutes.getSelectedItem().toString();
-                String description = textArea.getText();
+                String desc;
+                desc = textArea.getText();
                 Object[] employees = employeesList.getSelectedValues();
                 ArrayList <String> empls = new ArrayList <String>();
-                for (int i = 0; i < employees.length; i++){
-                    Employee em = Employee.searchEmployeeByName2((String) 
-                            employees[i]);
-
+                for (Object employee : employees) {
+                    Employee em = Employee.searchEmployeeByName2((String) employee);
                     empls.add(em.getNameSurname());
-
                     empls.add(em.getID());
-
                 }
-                new Event(title, date2, time, description, type, empls);
+                new Event(title1, date2, time2, desc, type, empls);
             } catch (Exception e){
                     jLabel1.setVisible(true);
             }
@@ -593,23 +594,23 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             String dueDate = days.getSelectedItem().toString() + "/" + 
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
-            String description = textArea.getText();
+            String desc;
+            desc = textArea.getText();
             int importance = Integer.parseInt(String.valueOf(comboImp.getSelectedItem()));
             int difficulty = Integer.parseInt(String.valueOf(comboDif.getSelectedItem()));
             if (singleTask.isSelected()){
                 String employeeId = Employee.searchEmployeeByName2(
                     String.valueOf(employeesList.getSelectedValue())).getID();
-                new Task(startDate, dueDate, description, importance, difficulty, 
+                new Task(startDate, dueDate, desc, importance, difficulty, 
                     employeeId);
             } else {
                 Object[] employees = employeesList.getSelectedValues();
                 ArrayList <String> empls = new ArrayList <String>();
-                for (int i = 0; i < employees.length; i++){
-                    String em = Employee.searchEmployeeByName2((String) 
-                            employees[i]).getID();
+                for (Object employee : employees) {
+                    String em = Employee.searchEmployeeByName2((String) employee).getID();
                     empls.add(em);
                 }   
-                new Task(startDate, dueDate, description, importance, difficulty,
+                new Task(startDate, dueDate, desc, importance, difficulty,
                     empls);
             }
         }

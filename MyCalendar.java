@@ -23,8 +23,8 @@ import javax.swing.Timer;
 public class MyCalendar extends javax.swing.JFrame {
 
     protected static String year[] = years();
-    private int n;
-    private Employee emp;
+    private final int n;
+    private final Employee emp;
     public MyCalendar(int n, Employee emp) {
         this.emp = emp;
         this.n = n;
@@ -54,10 +54,11 @@ public class MyCalendar extends javax.swing.JFrame {
     }
     public static String[] years(){
       String years[] = new String[100];
-      int year = Calendar.getInstance().get(Calendar.YEAR);
+      int y;
+        y = Calendar.getInstance().get(Calendar.YEAR);
       for (int i = 1; i < years.length; i++) {
-        years[i]= String.valueOf(year);
-        year++;        	
+        years[i]= String.valueOf(y);
+        y++;        	
       }
       return years;    
     }
@@ -128,6 +129,7 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel4.setText("here");
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
             }
@@ -155,6 +157,7 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel13.setText("Home");
         jLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel13MouseClicked(evt);
             }
@@ -163,6 +166,7 @@ public class MyCalendar extends javax.swing.JFrame {
         OKButton.setText("OK");
         OKButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         OKButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 OKButtonMouseClicked(evt);
             }
@@ -334,23 +338,23 @@ public class MyCalendar extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel4MouseClicked
     
     private void OKButtonMouseClicked(java.awt.event.MouseEvent evt) { 
-        String date1;
+        String date2;
         if (days.getSelectedItem() == null || month.getSelectedItem() == null 
                 || years.getSelectedItem() == null)
             dateNot.setVisible(true);
         else 
             dateNot.setVisible(false);
-            date1 = days.getSelectedItem().toString() + "/" + 
+            date2 = days.getSelectedItem().toString() + "/" + 
                         month.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
-            if (!Day.validDate(date1))
+            if (!Day.validDate(date2))
                 dateNot.setVisible(true);
             else
                 model1.removeAllElements();
                 model2.removeAllElements();
                 dateNot.setVisible(false);
                 ArrayList<Task> tasks = new ArrayList<Task>();
-                tasks = Task.onlyTasksList(emp.searchDay(date1).getDailyProgram());               
+                tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram());               
                 if (tasks.isEmpty()){
                     model1.addElement("No Tasks or Reminders for today");
                 } else {
@@ -367,51 +371,16 @@ public class MyCalendar extends javax.swing.JFrame {
                     }
                 }
                 jList1.setModel(model1);
-                ArrayList<Event> eventsList = Event.onlyEventsList(emp.searchDay(date1).getDailyProgram());
+                ArrayList<Event> eventsList = Event.onlyEventsList(emp.searchDay(date2).getDailyProgram());
                 if (!eventsList.isEmpty()){
-                    for (int i = 0; i < eventsList.size(); i++){
-                        model2.addElement(eventsList.get(i));
+                    for (Event eventsList1 : eventsList) {
+                        model2.addElement(eventsList1);
                     }
                 } else 
                     model2.addElement("No events for today");    
 
     }       
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MyCalendar(4).setVisible(true);
-            }
-        });*/
-    }
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OKButton;
     private javax.swing.JLabel date1;

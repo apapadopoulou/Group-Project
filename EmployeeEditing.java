@@ -121,6 +121,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
         manage_button.setText("Manage employee's personal data");
         manage_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         manage_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 manage_buttonMouseClicked(evt);
             }
@@ -130,6 +131,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
         add_button.setText("Add employee");
         add_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 add_buttonMouseClicked(evt);
             }
@@ -139,6 +141,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
         delete_button.setText("Delete employee");
         delete_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         delete_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 delete_buttonMouseClicked(evt);
             }
@@ -231,13 +234,13 @@ public class EmployeeEditing extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void delete_buttonMouseClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
+    private void delete_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
         // TODO add your handling code here:
         if (employees_list.getSelectedValue() == null) {
             warning.setVisible(true);
         } else {
             warning.setVisible(false);
-            String name = employees_list.getSelectedValue().toString();
+            String name = String.valueOf(employees_list.getSelectedValue());
             final Employee e = Employee.searchEmployeeByName2(name);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {                    
@@ -247,7 +250,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_delete_buttonActionPerformed
 
-    private void add_buttonMouseClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
+    private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_buttonActionPerformed
         // TODO add your handling code here:
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -256,51 +259,20 @@ public class EmployeeEditing extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_add_buttonActionPerformed
 
-    private void manage_buttonMouseClicked(java.awt.event.ActionEvent evt) {
-        String employeeName = String.valueOf(employees_list.getSelectedValue());
-        final Employee emp = Employee.searchEmployeeByName2(employeeName);
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageEmployeeWindow(emp).setVisible(true);
-            }
-        });
-
-    }                                        
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void manage_buttonMouseClicked(java.awt.event.MouseEvent evt) {
+        warning.setVisible(false);        
+        if (employees_list.getSelectedValue() == null)
+            warning.setVisible(true);
+        else {
+            String employeeName = String.valueOf(employees_list.getSelectedValue());
+            final Employee emp = Employee.searchEmployeeByName2(employeeName);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new ManageEmployeeWindow(emp).setVisible(true);
                 }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmployeeEditing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmployeeEditing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmployeeEditing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmployeeEditing.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            });
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EmployeeEditing().setVisible(true);
-            }
-        }); */
-    }
+    }                                        
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_button;

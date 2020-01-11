@@ -24,8 +24,8 @@ public final class FirstWindow extends javax.swing.JFrame {
     /**
      * Creates new form FirstWindow
      */
-    private Employee emp;
-    private int num;
+    private final Employee emp;
+    private final int num;
     public FirstWindow(Employee emp) {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.num = Account.typeOfEmployee(emp);
@@ -83,7 +83,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow5.setText("Manage Departments");
         arrow6 = new javax.swing.JLabel();
         if (num == 1)
-        arrow6.setText("");
+            arrow6.setText("");
         else if (num == 5) {
             arrow6.setFont(new java.awt.Font("Arial", 1, 24));
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
@@ -140,9 +140,9 @@ public final class FirstWindow extends javax.swing.JFrame {
             model1.addElement("No Tasks Or Remider for Today");
         } else {
             tasks = Task.sortByDate(tasks);
-            for (int i = 0; i < tasks.size(); i++){
-                model1.addElement(tasks.get(i).toString());
-            }
+           for (Task task : tasks) {
+               model1.addElement(task.toString());
+           }
         }
         events = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -157,9 +157,9 @@ public final class FirstWindow extends javax.swing.JFrame {
                     eventsList.add(ev.toString());
                 }
             }
-            for (int i = 0; i < eventsList.size(); i++){
-                model2.addElement(eventsList.get(i));
-            }
+           for (String eventsList1 : eventsList) {
+            model2.addElement(eventsList1);
+           }
         } else 
         model2.addElement("No events for today");
         jLabelTeam = new javax.swing.JLabel();
@@ -203,6 +203,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow1.setText("Show Calendar");
         arrow1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow1MouseClicked(evt);
             }
@@ -213,6 +214,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow2.setText("Add To Program");
         arrow2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow2.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow2MouseClicked(evt);
             }
@@ -223,6 +225,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow3.setText("Vacation Request");
         arrow3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow3.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow3MouseClicked(evt);
             }
@@ -232,6 +235,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow4.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow4MouseClicked(evt);
             }
@@ -241,24 +245,28 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow5.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow5MouseClicked(evt);
             }
         });
 
         arrow6.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow6MouseClicked(evt);
             }
         });
 
         arrow7.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow7MouseClicked(evt);
             }
         });
 
         arrow8.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow8MouseClicked(evt);
             }
@@ -269,6 +277,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         settings.setText("Settings");
         settings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         settings.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 settingsMouseClicked(evt);
             }
@@ -342,31 +351,25 @@ public final class FirstWindow extends javax.swing.JFrame {
         events.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         events.setText("Events");
 
-        eventsList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        eventsList2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eventsList2MouseClicked(evt);
-            }
-        });
+        eventsList2.setModel(model2);
         jScrollPane2.setViewportView(eventsList2);
 
         jLabelTeam.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelTeamMouseClicked(evt);
             }
         });
 
         jLabelTimeOffs.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelTimeOffsMouseClicked(evt);
             }
         });
 
         jLabelPayrolls.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelPayrollsMouseClicked(evt);
             }
@@ -454,11 +457,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void arrow2MouseClicked(java.awt.event.MouseEvent evt) {                                    
         new TaskOrReminderWindow1(num, emp).setVisible(true);
         this.setVisible(false);// TODO add your handling code here:
-    }                                   
-
-    private void eventsList2MouseClicked(java.awt.event.MouseEvent evt) {                                         
-        // TODO add your handling code here:
-    }                                        
+    }                                
 
     private void arrow3MouseClicked(java.awt.event.MouseEvent evt) {                                    
         new VacationRequest(num, emp).setVisible(true);        

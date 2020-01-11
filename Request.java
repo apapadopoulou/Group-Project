@@ -9,8 +9,7 @@ public class Request {
     private String type;
     private String empId;
     public static ArrayList<Request> vacRequests = new ArrayList<Request>();
-    public static ArrayList<Request> evRequests = new ArrayList<Request>();
-	
+   
     public Request(String date, int days, String desc, String empId) {
     	accepted = false;
 	this.date = date;
@@ -51,14 +50,6 @@ public class Request {
 		Request.vacRequests = vacRequests;
 	}
 
-	public static ArrayList<Request> getEvRequests() {
-		return evRequests;
-	}
-
-	public static void setEvRequests(ArrayList<Request> evRequests) {
-		Request.evRequests = evRequests;
-	}
-
 	public String getDate() {
 		return date;
 	}
@@ -82,5 +73,20 @@ public class Request {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}	
+	public static Request searchRequest(String empId) {
+		for (int i = 0; i < getVacRequests().size(); i++) {
+			if (getVacRequests().get(i).getEmpId().equals(empId))
+				return getVacRequests().get(i);
+		}
+		return null;
+	}
+
+	public boolean isAccepted() {
+		return accepted;
+	}
+
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
+	}
 
 }

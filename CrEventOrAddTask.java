@@ -576,7 +576,11 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 for (int i = 0; i < employees.length; i++){
                     Employee em = Employee.searchEmployeeByName2((String) 
                             employees[i]);
+
                     empls.add(em.getNameSurname());
+
+                    empls.add(em.getID());
+
                 }
                 new Event(title, date2, time, description, type, empls);
             } catch (Exception e){

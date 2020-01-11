@@ -70,50 +70,8 @@ public class Day {
     } catch (Exception ex) {
     	date = null;
     }
-    DBcon.saveDay(this);
   }
   
-  /**
-   * Database constructor for class Day.
-   * Used to create Day objects loaded from the database.
-   */
-  public Day(String date, String empID, int dayID) {
-		this.dayID = dayID;
-		counter = dayID + 1;
-		this.empID = empID;
-	    String givenDay = date.substring(0, 2);
-	    String givenMonth = date.substring(3, 5);
-	    String givenYear = date.substring(6);
-	    try {
-	    for (int i =0; i < days.length; i++) {
-	    	if (givenDay.equals(days[i])) {
-	    		d = givenDay;
-	    	}
-	    	else {
-	    		throw new Exception();
-	    	}
-	    }
-	    for (int i =0; i < months.length; i++) {
-	    	if (givenMonth.equals(months[i])) {
-	    		mon = givenMonth;
-	    	}
-	    	else {
-	    		throw new Exception();
-	    	}
-	    }
-	    for (int i =0; i < years.length; i++) {
-	    	if (givenYear.equals(years[i])) {
-	    		y = givenYear;
-	    	}
-	    	else {
-	    		throw new Exception();
-	    	}
-	    }
-	    this.date = date;
-	    } catch (Exception ex) {
-	    	date = null;
-	    }
-	  }
 /**
  *Gets the daily program.
  *@return daily program
@@ -127,7 +85,6 @@ public class Day {
   */
  	public void setDailyProgram(ArrayList<Program> dailyProgram) {
  		this.dailyProgram = dailyProgram;
- 		//DBcon.saveDailyProgram(ArrayList<Program> dailyProgram, dayID);
     }
   
  /**
@@ -136,7 +93,6 @@ public class Day {
   */
   private void addToDailyProgram(Program p) {
     dailyProgram.add(p);
-    //DBcon.saveDailyProgram(
   }
   /**
    *Gets the date.

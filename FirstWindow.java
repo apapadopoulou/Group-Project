@@ -32,14 +32,13 @@ public final class FirstWindow extends javax.swing.JFrame {
         this.emp = emp;
         initComponents();
         ShowDate();
-        ShowTime();
-        
+        ShowTime();        
     }
 
     void ShowDate(){
         Date d = new Date();
         SimpleDateFormat s = new SimpleDateFormat("EEEE dd-MM-yyyy");
-        currentDate.setText(s.format(d)); 
+        date1.setText(s.format(d)); 
     }
     void ShowTime(){
         new Timer(0, new ActionListener(){
@@ -47,7 +46,7 @@ public final class FirstWindow extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 Date d = new Date();
                 SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
-                currentTime.setText(s.format(d));
+                time.setText(s.format(d));
                
             }
                
@@ -62,49 +61,21 @@ public final class FirstWindow extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         
-        jPanel1 = new javax.swing.JPanel();
-        currentDate = new javax.swing.JLabel();
-        today_label = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        currentTime = new javax.swing.JLabel();
-        jLabelTeam = new javax.swing.JLabel();
-        if (num != 3 && num != 4) {
-            jLabelTeam.setText("");
-        } else {
-            jLabelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelTeam.setFont(new java.awt.Font("Arial", 1, 24));
-            jLabelTeam.setText("Team");
-        }
-        jLabelPayrolls = new javax.swing.JLabel();
-        if ( num != 2 && num != 4)
-        jLabelPayrolls.setText("");
-        else {
-            jLabelPayrolls.setFont(new java.awt.Font("Arial", 1, 24));
-            jLabelPayrolls.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelPayrolls.setText("Payroll");
-        }
-        jLabelTimeoffs = new javax.swing.JLabel();
-        if ( num != 2 && num != 4)
-        jLabelTimeoffs.setText("");
-        else {
-            jLabelTimeoffs.setFont(new java.awt.Font("Arial", 1, 24));
-            jLabelTimeoffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelTimeoffs.setText("Vacation Requests");
-        }
-        SortBy = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0));
+       jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        busyb = new javax.swing.JLabel();
+        arrow1 = new javax.swing.JLabel();
         arrow2 = new javax.swing.JLabel();
         arrow3 = new javax.swing.JLabel();
-        settings = new javax.swing.JLabel();
-        arrow1 = new javax.swing.JLabel();
         arrow4 = new javax.swing.JLabel();
-        busyBicon = new javax.swing.JLabel();
-        arrow8 = new javax.swing.JLabel();
+        if ( num != 4 && num != 5 && num != 3) {
+            arrow4.setText("Notifications");
+            arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
+        } else {
+            arrow4.setText("Create Event or Add Task");
+            arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
+        }
         arrow5 = new javax.swing.JLabel();
         if (num != 3 && num != 4)
         arrow5.setText("My Evaluation");
@@ -112,14 +83,13 @@ public final class FirstWindow extends javax.swing.JFrame {
         arrow5.setText("Manage Departments");
         arrow6 = new javax.swing.JLabel();
         if (num == 1)
-            arrow6.setText("");
-	else if (num == 5) {
-	    arrow6.setFont(new java.awt.Font("Arial", 1, 24));
+        arrow6.setText("");
+        else if (num == 5) {
+            arrow6.setFont(new java.awt.Font("Arial", 1, 24));
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow6.setText("Notifications");
             arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
-	}
-        else if (num == 3 || num == 4) {
+        } else if (num == 3 || num == 4) {
             arrow6.setFont(new java.awt.Font("Arial", 1, 24));
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow6.setText("My Evaluation");
@@ -137,30 +107,34 @@ public final class FirstWindow extends javax.swing.JFrame {
             arrow7.setText("Manage Employees");
             arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         } else if (num == 3) {
-	    arrow7.setFont(new java.awt.Font("Arial", 1, 24));
+            arrow7.setFont(new java.awt.Font("Arial", 1, 24));
             arrow7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow7.setText("Notifications");
             arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		
+        }
+        arrow8 = new javax.swing.JLabel();
         if (num == 4) {
             arrow8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N	
             arrow8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
-	    arrow8.setText("Notifications");
-            arrow8.addMouseListener(new java.awt.event.MouseAdapter() {	
-               public void mouseClicked(java.awt.event.MouseEvent evt) {	
-                   arrow8MouseClicked(evt);	
-               }	
-           });
+            arrow8.setText("Notifications");
         }
+        settings = new javax.swing.JLabel();
+        today = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
+        date1 = new javax.swing.JLabel();
+        sortBy = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        tasksList = new javax.swing.JList();
         tasksList = new javax.swing.JList();        
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = formatter.format(date);
+        DefaultListModel model1 = new DefaultListModel();
         ArrayList<Task> tasks = new ArrayList<Task>();
         for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
             if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Task)
-                tasks.add((Task) emp.searchDay(strDate).getDailyProgram().get(i));
+            tasks.add((Task) emp.searchDay(strDate).getDailyProgram().get(i));
         }
         if (tasks.isEmpty()){
             model1.addElement("No Tasks Or Remider for Today");
@@ -170,75 +144,73 @@ public final class FirstWindow extends javax.swing.JFrame {
                 model1.addElement(tasks.get(i).toString());
             }
         }
-        taskAndRem = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        events = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        eventsList2 = new javax.swing.JList();
         eventsList2 = new javax.swing.JList();        
         ArrayList<String> eventsList = new ArrayList<String>();
+        DefaultListModel model2 = new DefaultListModel();
         if (!emp.searchDay(strDate).getDailyProgram().isEmpty()){
             for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
-                    if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
+                if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
                     Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
                     eventsList.add(ev.toString());
                 }
             }
             for (int i = 0; i < eventsList.size(); i++){
-            model2.addElement(eventsList.get(i));
+                model2.addElement(eventsList.get(i));
             }
         } else 
-            model2.addElement("No events for today");
-        
+        model2.addElement("No events for today");
+        jLabelTeam = new javax.swing.JLabel();
+        if (num != 3 && num != 4) {
+            jLabelTeam.setText("");
+        } else {
+            jLabelTeam.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jLabelTeam.setFont(new java.awt.Font("Arial", 1, 24));
+            jLabelTeam.setText("Team");
+        }
+        jLabelTimeOffs = new javax.swing.JLabel();
+        if ( num != 2 && num != 4)
+        jLabelTimeOffs.setText("");
+        else {
+            jLabelTimeOffs.setFont(new java.awt.Font("Arial", 1, 24));
+            jLabelTimeOffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jLabelTimeOffs.setText("Vacation Requests");
+        }
+        jLabelPayrolls = new javax.swing.JLabel();
+        if ( num != 2 && num != 4)
+        jLabelPayrolls.setText("");
+        else {
+            jLabelPayrolls.setFont(new java.awt.Font("Arial", 1, 24));
+            jLabelPayrolls.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            jLabelPayrolls.setText("Payroll");
+        }
+        jComboBox2 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/smallLogo.PNG")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow1.class.getResource("/images/smallLogo.PNG")));
 
-        currentDate.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        currentDate.setText("Date");
-
-        today_label.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
-        today_label.setText("TODAY");
-
-        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/list (1).png"))); // NOI18N
-        jLabel2.setText("To Do List!");
-
-        currentTime.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        currentTime.setText("Time");
-
-        jLabelTeam.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelTeamMouseClicked(evt);
-            }
-        });
-
-        jLabelPayrolls.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelPayrollsMouseClicked(evt);
-            }
-        });
-
-        jLabelTimeoffs.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelTimeoffsMouseClicked(evt);
-            }
-        });
-
-        SortBy.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
-        SortBy.setText("Sort By:");
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Description", "Level of importance" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 242, 142));
 
         jPanel2.setBackground(new java.awt.Color(255, 222, 89));
-        jPanel2.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
+
+        busyb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
+
+        arrow1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        arrow1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
+        arrow1.setText("Show Calendar");
+        arrow1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        arrow1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow1MouseClicked(evt);
+            }
+        });
 
         arrow2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
-        arrow2.setText("Add to Program");
+        arrow2.setText("Add To Program");
         arrow2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -256,37 +228,14 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
-        settings.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings_icon.png"))); // NOI18N
-        settings.setText("Settings");
-        settings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        settings.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                settingsMouseClicked(evt);
-            }
-        });
-
-        arrow1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        arrow1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
-        arrow1.setText("Show Calendar");
-        arrow1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        arrow1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                arrow1MouseClicked(evt);
-            }
-        });
-
         arrow4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-       
         arrow4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow4MouseClicked(evt);
             }
         });
-
-        busyBicon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
         arrow5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
@@ -297,7 +246,6 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
-        arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         arrow6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 arrow6MouseClicked(evt);
@@ -310,252 +258,249 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
-        if ( num != 4 && num != 5 && num != 3) {
-            arrow4.setText("Notifications");
-            arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
-        } else {
-            arrow4.setText("Create Event or Add Task");
-            arrow4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
-        }
+        arrow8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arrow8MouseClicked(evt);
+            }
+        });
+
+        settings.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/settings.png"))); // NOI18N
+        settings.setText("Settings");
+        settings.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        settings.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settingsMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(settings)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(busyBicon))
+                .addComponent(busyb, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(arrow7, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(arrow1)
-                        .addComponent(arrow2)
-                        .addComponent(arrow3, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(arrow4, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
-                        .addComponent(arrow5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(arrow6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(arrow8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(367, Short.MAX_VALUE))
+                    .addComponent(arrow6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(arrow3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(arrow1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(arrow2)
+                    .addComponent(arrow4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(arrow5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(arrow7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(arrow8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(511, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(arrow1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(arrow2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(arrow3)
-                .addGap(4, 4, 4)
-                .addComponent(arrow4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(arrow5)
-                .addGap(1, 1, 1)
-                .addComponent(arrow6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(arrow7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
+                .addComponent(arrow1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(arrow2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(arrow3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(arrow4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(arrow5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(arrow6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(arrow7, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(arrow8, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(arrow8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(busyBicon)
-                    .addComponent(settings, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35))
+                    .addComponent(busyb, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settings)))
         );
 
-        tasksList.setModel(model1); 
-        jScrollPane1.setViewportView(tasksList);
+        today.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
+        today.setText("Today");
 
-        taskAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        taskAndRem.setText("Tasks and Reminders");
+        time.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        time.setText("Time");
+
+        date1.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
+        date1.setText("Date");
+
+        sortBy.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        sortBy.setText("Sort by:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setText("Events");
+        jLabel3.setText("Task and Reminders");
 
-        eventsList2.setModel(model2);
+        tasksList.setModel(model1);
+        jScrollPane1.setViewportView(tasksList);
+
+        events.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        events.setText("Events");
+
+        eventsList2.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        eventsList2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eventsList2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(eventsList2);
+
+        jLabelTeam.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTeamMouseClicked(evt);
+            }
+        });
+
+        jLabelTimeOffs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTimeOffsMouseClicked(evt);
+            }
+        });
+
+        jLabelPayrolls.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPayrollsMouseClicked(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Description", "Level Of importance" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
+        jLabel1.setText("Today's program");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(currentTime)
-                    .addComponent(today_label)
-                    .addComponent(currentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTimeoffs, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(today, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(date1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(time, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(events)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeOffs, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPayrolls, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(SortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sortBy)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(taskAndRem)
-                                .addComponent(jLabel3)))
-                        .addGap(90, 90, 90)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelPayrolls, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(today_label)
+                .addGap(23, 23, 23)
+                .addComponent(today, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(date1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(currentDate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(currentTime)
-                .addGap(9, 9, 9)
-                .addComponent(jLabel2)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sortBy)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(taskAndRem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelPayrolls, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelTimeoffs, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(73, Short.MAX_VALUE))))
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(events)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(jLabelTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabelTimeOffs, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelPayrolls, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        setSize(new java.awt.Dimension(1660, 917));
-        setLocationRelativeTo(null);
-        }
-    }// </editor-fold>//GEN-END:initComponents
+        pack();
+    }// </editor-fold>                        
 
-    private void arrow3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow3MouseClicked
-         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MyCalendar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }        
-        new VacationRequest(num, emp).setVisible(true);        
-        this.setVisible(false);
-    }//GEN-LAST:event_arrow3MouseClicked
-
-    private void arrow1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow1MouseClicked
+    private void arrow1MouseClicked(java.awt.event.MouseEvent evt) {                                    
         new MyCalendar(num, emp).setVisible(true);            
-        this.setVisible(false);
-    }//GEN-LAST:event_arrow1MouseClicked
+        this.setVisible(false);// TODO add your handling code here:
+    }                                   
 
-    private void arrow4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow4MouseClicked
-        if ( num != 1 && num != 2){
+    private void arrow2MouseClicked(java.awt.event.MouseEvent evt) {                                    
+        new TaskOrReminderWindow1(num, emp).setVisible(true);
+        this.setVisible(false);// TODO add your handling code here:
+    }                                   
+
+    private void eventsList2MouseClicked(java.awt.event.MouseEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
+
+    private void arrow3MouseClicked(java.awt.event.MouseEvent evt) {                                    
+        new VacationRequest(num, emp).setVisible(true);        
+        this.setVisible(false);// TODO add your handling code here:
+    }                                   
+
+    private void arrow4MouseClicked(java.awt.event.MouseEvent evt) {                                    
+         if ( num != 1 && num != 2){
            new CrEventOrAddTask(num, emp).setVisible(true);
         } else 
             new Notifications(emp).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_arrow4MouseClicked
+        this.setVisible(false);// TODO add your handling code here:
+    }                                   
 
-    private void arrow5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow5MouseClicked
+    private void arrow5MouseClicked(java.awt.event.MouseEvent evt) {                                    
         if ( num != 3 && num != 4){
             new MyEvaluation(num, emp).setVisible(true);
         } else {
             new ShowDepartments(num, emp).setVisible(true);
             }
-        this.setVisible(false);
-    }//GEN-LAST:event_arrow5MouseClicked
+        this.setVisible(false);// TODO add your handling code here:
+    }                                   
 
-    private void arrow6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow6MouseClicked
-       if (num == 3 || num == 4) {
-            new MyEvaluation(num, emp).setVisible(true);
-       } else if (num == 2)
-           new EmployeeEditing(num,emp).setVisible(true);
-       else if (num == 5)
-           new Notifications(emp).setVisible(true);
-       this.setVisible(false);
-    }//GEN-LAST:event_arrow6MouseClicked
-
-    private void jLabelTeamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTeamMouseClicked
+    private void jLabelTeamMouseClicked(java.awt.event.MouseEvent evt) {                                        
         if (num == 3 || num == 4)
             new Team(num, emp).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabelTeamMouseClicked
+        this.setVisible(false);// TODO add your handling code here:
+    }                                       
 
-    private void arrow2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow2MouseClicked
-        new TaskOrReminderWindow1(num, emp).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_arrow2MouseClicked
-
-    private void jLabelTimeoffsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTimeoffsMouseClicked
-        if ( num == 2 || num == 4)
+    private void jLabelTimeOffsMouseClicked(java.awt.event.MouseEvent evt) {                                            
+       if ( num == 2 || num == 4)
             new VacationRequests(num, emp).setVisible(true);
-        this.setVisible(false);        
-    }//GEN-LAST:event_jLabelTimeoffsMouseClicked
+        this.setVisible(false);  // TODO add your handling code here:
+    }                                           
 
-    private void jLabelPayrollsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPayrollsMouseClicked
+    private void jLabelPayrollsMouseClicked(java.awt.event.MouseEvent evt) {                                            
         if ( num == 2|| num == 4)
            new SalaryWindow(num,emp).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jLabelPayrollsMouseClicked
+        this.setVisible(false);// TODO add your handling code here:
+    }                                           
 
-    private void settingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsMouseClicked
-        new SettingsWindow(num, emp).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_settingsMouseClicked
-
-    private void arrow7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow7MouseClicked
-        if (num == 4){
-            new EmployeeEditing(num,emp).setVisible(true);
-            this.setVisible(false);
-        }
-    }//GEN-LAST:event_arrow7MouseClicked
-    private void arrow8MouseClicked(java.awt.event.MouseEvent evt) {
-        if(num == 4) {
-            new Notifications(emp).setVisible(true);
-            this.setVisible(false);
-        }
-    }
-    
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) { 
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = formatter.format(date);
@@ -583,9 +528,37 @@ public final class FirstWindow extends javax.swing.JFrame {
                 model.addElement(tasks.get(i).toString());
             }
         }
-        tasksList.setModel(model);
+        tasksList.setModel(model);// TODO add your handling code here:
     }                                          
 
+    private void arrow6MouseClicked(java.awt.event.MouseEvent evt) {                                    
+       if (num == 3 || num == 4) {
+            new MyEvaluation(num, emp).setVisible(true);
+       } else if (num == 2)
+           new EmployeeEditing(num,emp).setVisible(true);
+       else if (num == 5)
+           new Notifications(emp).setVisible(true);
+       this.setVisible(false); // TODO add your handling code here:
+    }                                   
+
+    private void arrow7MouseClicked(java.awt.event.MouseEvent evt) {                                    
+        if (num == 4){
+            new EmployeeEditing(num,emp).setVisible(true);
+            this.setVisible(false);
+        }// TODO add your handling code here:
+    }                                   
+
+    private void arrow8MouseClicked(java.awt.event.MouseEvent evt) {                                    
+        if(num == 4) {
+            new Notifications(emp).setVisible(true);
+            this.setVisible(false);
+        }// TODO add your handling code here:
+    }                                   
+
+    private void settingsMouseClicked(java.awt.event.MouseEvent evt) {                                      
+        new SettingsWindow(num, emp).setVisible(true);
+        this.setVisible(false);// TODO add your handling code here:
+    }                                     
 
     /**
      * @param args the command line arguments
@@ -622,36 +595,32 @@ public final class FirstWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel SortBy;
-    private javax.swing.JLabel arrow1;
+      private javax.swing.JLabel arrow1;
     private javax.swing.JLabel arrow2;
     private javax.swing.JLabel arrow3;
     private javax.swing.JLabel arrow4;
     private javax.swing.JLabel arrow5;
     private javax.swing.JLabel arrow6;
     private javax.swing.JLabel arrow7;
-    private javax.swing.JLabel busyBicon;
-    private javax.swing.JLabel currentDate;
-    private javax.swing.JLabel currentTime;
-    private javax.swing.Box.Filler filler1;
+    private javax.swing.JLabel arrow8;
+    private javax.swing.JLabel busyb;
+    private javax.swing.JLabel date1;
+    private javax.swing.JLabel events;
+    private javax.swing.JList eventsList2;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelPayrolls;
     private javax.swing.JLabel jLabelTeam;
-    private javax.swing.JLabel jLabelTimeoffs;
-    private javax.swing.JList tasksList;
-    private javax.swing.JList eventsList2;
+    private javax.swing.JLabel jLabelTimeOffs;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel settings;
-    private javax.swing.JLabel taskAndRem;
-    private javax.swing.JLabel today_label;
-    private javax.swing.JLabel arrow8;
-    DefaultListModel model2 = new DefaultListModel();
-    DefaultListModel model1 = new DefaultListModel();
+    private javax.swing.JLabel sortBy;
+    private javax.swing.JList tasksList;
+    private javax.swing.JLabel time;
+    private javax.swing.JLabel today;
     // End of variables declaration//GEN-END:variables
 }

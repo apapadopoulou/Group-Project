@@ -17,7 +17,6 @@ public class BusyB {
 	    public void run() {
 	         WelcomeWindow welcomeWindow = new WelcomeWindow();
 	         welcomeWindow.setVisible(true);
-	         welcomeWindow.dispose();
 	        }
 	      });
     if (!args[0].equals("0")) {

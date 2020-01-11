@@ -54,13 +54,12 @@ public class Event extends Program implements Comparable<Event>{
 
   @Override
   public String toString() {
-    return "date:" + date + ", time:" + time + ", title:" + title + ", description:" + description;
+    return "Date:" + date + ", Time:" + time + ", Title:" + title + ", Description:" + description;
   }
   
-  public String toStringWithoutDesc() {
-      return "date:" + date + ", time:" + time + ", title:" + title;
+  public String toStringWithType() {
+      return "Date:" + date + ", Time:" + time + ", Title:" + title + ", Description:" + description + ", Type:" + type;
   }
-  
   public String getDesc() {
     return description;
   }

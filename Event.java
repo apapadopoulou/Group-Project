@@ -2,6 +2,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+/**
+ * 
+ * @author BusyB
+ *
+ */
 
 public class Event extends Program implements Comparable<Event>{
     private String title;
@@ -14,6 +19,12 @@ public class Event extends Program implements Comparable<Event>{
     /**
      * Basic Constructor for class Event.
      * Used to create new Events.
+     * @param title
+     * @param date
+     * @param time
+     * @param description
+     * @param type
+     * @param empIDs
      */
     public Event(String title, String date, String time, String description, String type, ArrayList<String> empIDs) {
     	super(empIDs);
@@ -32,6 +43,13 @@ public class Event extends Program implements Comparable<Event>{
     /**
      * Database constructor for class Event.
      * Used to create new Events that are loaded from the database.
+     * @param title
+     * @param date
+     * @param time
+     * @param description
+     * @param type
+     * @param eventID
+     * @param empIDs
      */
     public Event(String title, String date, String time, String description, String type, int eventID, ArrayList<String> empIDs) {
 		super(empIDs, eventID);
@@ -48,76 +66,139 @@ public class Event extends Program implements Comparable<Event>{
         
       }
     }
-
+  /**
+   * toString method returning the date in this format
+   * @return "Date:" + date + ", Time:" + time + ", Title:" + title + ", Description:" + description
+   */
   @Override
   public String toString() {
     return "Date:" + date + ", Time:" + time + ", Title:" + title + ", Description:" + description;
   }
   
+  /**
+   * toString returning the date in a format that contains the type
+   * @return "Date:" + date + ", Time:" + time + ", Title:" + title + ", Description:" + description + ", Type:" + type
+   */
   public String toStringWithType() {
       return "Date:" + date + ", Time:" + time + ", Title:" + title + ", Description:" + description + ", Type:" + type;
   }
+  
+  /**
+   * Gets the description
+   * @return description
+   */
   public String getDesc() {
     return description;
   }
-
+  
+  /**
+   * Sets the description and updates an event with this description
+   * @param description
+   */
   public void setDesc(String description) {
     this.description = description;
     DBcon.updateEventVar("description", description, getProgramID());
   }
 
+  /**
+   * Gets the event date
+   * @return date
+   */
   public String getEventDate() {
     return date;
   }
 
+  /**
+   * Sets the event date and updates an event with this date
+   * @param date
+   */
   public void setEventDate(String date) {
     this.date = date;
     DBcon.updateEventVar("EventDate", date, getProgramID());
   }
 
+  /**
+   * Gets EmpIDsInEvent
+   * @return empIDsInEvent
+   */
   public ArrayList<String> getEmpIDsInEvent() {
     return empIDsInEvent;
   }
 
+  /**
+   * Sets EmpIDsInEvent
+   * @param employeesInEvent
+   */
   public void setEmpIDsInEvent(ArrayList<String> employeesInEvent) {
     this.empIDsInEvent = employeesInEvent;
   }
 
+  /**
+   * Gets the type
+   * @return type
+   */
   public String getType() {
     return type;
   }
 
+  /**
+   * Sets the type
+   * @param type
+   */
   public void setType(String type) {
     this.type = type;
     DBcon.updateEventVar("type", type, getProgramID());
   }
 
+  /**
+   * Gets the title
+   * @return title
+   */
   public String getTitle() {
     return title;
   }
 
+  /**
+   * Sets the title and updates the event with this title
+   * @param title
+   */
   public void setTitle(String title) {
     this.title = title;
     DBcon.updateEventVar("title", title, getProgramID());
   }
 
+  /**
+   * Gets the event time
+   * @return time
+   */
   public String getEventTime() {
     return time;
   }
 
+  /**
+   * Sets the event time
+   * @param time
+   */
   public void setEventTime(String time) {
     this.time = time;
     DBcon.updateEventVar("EventTime", time, getProgramID());
   }
-    public static ArrayList<Event> onlyEventsList(ArrayList<Program> calendar){
-        ArrayList<Event> eventsList = new ArrayList<Event>();
-            for (int i = 0; i < calendar.size(); i++) {
-                if (calendar.get(i) instanceof Event) {
-                    eventsList.add((Event) calendar.get(i));       
-        }             
-    }
-  return eventsList;
-    }
+  
+  /**
+   * Returns the list of Events
+   * @param calendar
+   * @return eventsList
+   */
+   public static ArrayList<Event> onlyEventsList(ArrayList<Program> calendar){
+       ArrayList<Event> eventsList = new ArrayList<Event>();
+           for (int i = 0; i < calendar.size(); i++) {
+               if (calendar.get(i) instanceof Event) {
+                   eventsList.add((Event) calendar.get(i));       
+               }             
+           }
+           return eventsList;
+   }
+   
     static Comparator<Event> eventCompByTime = new Comparator<Event>() {
         
         public int compare(Event e1, Event e2) {

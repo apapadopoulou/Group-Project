@@ -572,11 +572,11 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                         minutes.getSelectedItem().toString();
                 String description = textArea.getText();
                 Object[] employees = employeesList.getSelectedValues();
-                ArrayList <Employee> empls = new ArrayList <Employee>();
+                ArrayList <String> empls = new ArrayList <String>();
                 for (int i = 0; i < employees.length; i++){
                     Employee em = Employee.searchEmployeeByName2((String) 
                             employees[i]);
-                    empls.add(em);
+                    empls.add(em.getID());
                 }
                 new Event(title, date2, time, description, type, empls);
             } catch (Exception e){

@@ -1,10 +1,12 @@
 import java.util.ArrayList;
+/**
+ * This class is rensponsible for creating Top Manager Objects.
+ * @author BusyB
+ *
+ */
 
 public class TopManager extends Employee{
-	/**
-	 * This class is rensponsible for creating Top Manager Objects.
-	 * 
-	 */
+	
 
 	//private ArrayList <MiddleManager> managingManagers = new ArrayList <MiddleManager>();
 	public static ArrayList <TopManager> topManagers = new ArrayList <TopManager>();
@@ -12,7 +14,12 @@ public class TopManager extends Employee{
 	/**
 	 * Basic constructor for Top Managers.
 	 * Used to create new Top Manager objects.
-	 *
+	 * @param name
+	 * @param surname
+	 * @param phonenumber
+	 * @param email
+	 * @param birthdate
+	 * @param salary
 	 */
 	public TopManager( String name, String surname, String phonenumber, String email, String birthdate, double salary){
 		super(name, surname, phonenumber, email, birthdate, null, salary);
@@ -29,12 +36,24 @@ public class TopManager extends Employee{
 	/**
 	 * Database constructor for Top Managers.
 	 * Used to create Top Manager objects after they are loaded from the Database.
+	 * @param name
+	 * @param surname
+	 * @param phonenumber
+	 * @param email
+	 * @param birthdate
+	 * @param id
+	 * @param salary
 	 */
 	public TopManager( String name, String surname, String phonenumber, String email, String birthdate, String id, double salary){
 		super(name, surname, phonenumber, email, birthdate, id, salary);
 		topManagers.add(this);
 		employees.add(this);
 	}
+	/**
+	 * Method that searches a top manager by his name
+	 * @param name
+	 * @return topManagers.get(i) or null
+	 */
 	 public static TopManager searchTopManager(String name) {
 	    	for (int i = 0; i < topManagers.size(); i++) {
 		      if (topManagers.get(i).getNameSurname().equals(name)) {

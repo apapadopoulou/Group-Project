@@ -272,4 +272,11 @@ public abstract class Employee {
       return null;
     }
   }
+  public static double salariesTotal() {
+	  double total = 0.0;
+	  for (int count = 0; count < employees.size(); count++) {
+		  total += employees.get(count).getSalary();
+	  }
+	  return total;
+  }
 }

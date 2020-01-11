@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+/**
+ * 
+ * @author BusyB
+ *
+ */
 
 public class MiddleManager extends Employee {
 	
@@ -8,6 +13,12 @@ public class MiddleManager extends Employee {
 	/**
 	 * Basic constructor for class MiddleManager.
 	 * Use this if you want to create new Middle Managers.
+	 * @param name
+	 * @param surname
+	 * @param phonenumber
+	 * @param email
+	 * @param birthdate
+	 * @param salary
 	 */
 	public MiddleManager(String name, String surname, String phonenumber, String email, String birthdate, double salary) {
 		super(name, surname, phonenumber, email, birthdate, null, salary);
@@ -23,6 +34,13 @@ public class MiddleManager extends Employee {
 	 * Database constructor for class MiddleManager.
 	 * This constructor is used to load Middle Managers
 	 * from the database when the program opens.
+	 * @param name
+	 * @param surname
+	 * @param telephone
+	 * @param email
+	 * @param birthdate
+	 * @param id
+	 * @param salary
 	 */
 	public MiddleManager(String name, String surname, String telephone, String email, String birthdate, String id, double salary) {
 	    super(name, surname, telephone, email, birthdate, id, salary);
@@ -31,10 +49,11 @@ public class MiddleManager extends Employee {
 	    employees.add(this);
 	}
 
-	/*
+	/**
 	 * Returns the managing departments.
 	 * Searches for every department that has the same managerId
-	 * with the managerId of the object that called the method.
+	 * with the managerId of the object that called the method
+	 * @return departments
 	 */
 	public ArrayList<Department> getManagingDepartments() {
 	    ArrayList<Department> departments = new ArrayList<Department>();
@@ -48,6 +67,10 @@ public class MiddleManager extends Employee {
 		return departments;
 	}
 	
+	/**
+	 * Sets ManagingDepartments
+	 * @param managingDepartments
+	 */
 	public void setManagingDepartments(ArrayList<Department> managingDepartments) {
 		this.managingDepartments = managingDepartments;
 		for (int i = 0; i < managingDepartments.size(); i++) {
@@ -55,7 +78,11 @@ public class MiddleManager extends Employee {
 		}
 	}
 
-	/** Method that checks if the Manager manages the HR department*/
+	/**
+	 * Method that checks if the Manager manages the HR department
+	 * @param midman
+	 * @return true or false
+	 */
     public static boolean managingHR(MiddleManager midman) {
     	for (int i = 0; i < midman.getManagingDepartments().size(); i++) {
     		if (midman.getManagingDepartments().get(i).getName().equals("HR")) {
@@ -66,6 +93,11 @@ public class MiddleManager extends Employee {
     	return false;
     }
 
+    /**
+     * Method that searches a Middle Manager by his name
+     * @param name
+     * @return middleManagers.get(i) or null
+     */
 	 public static MiddleManager searchMiddleManager(String name) {
 	    	for (int i = 0; i < middleManagers.size(); i++) {
 		      if (middleManagers.get(i).getNameSurname().equals(name)) {
@@ -77,6 +109,12 @@ public class MiddleManager extends Employee {
 	    	return null;
 	    }
 
+	 /**
+	  * toString method that returns the details of a middle manager
+	  * @return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getID()
+		+ ", Email = " + getEmail() + ", Telephone = " + getPhonenumber()
+		+ ", Managing Departments = " + /*getNamesOfManagingDepartments()
+	  */
 	@Override
 	public String toString() {
 		return "MiddleManager's Name = " + getNameSurname() + ", Id= " + getID()
@@ -84,6 +122,11 @@ public class MiddleManager extends Employee {
 	/*	+ ", Managing Departments = " + /*getNamesOfManagingDepartments()*/;
 	}
 
+	/**
+	 * Method that searches a middle manager by his id
+	 * @param id
+	 * @return ,iddleManagers.get(i) or null
+	 */
 	public static MiddleManager searchMiddleManagerById(String id) {
 		for (int i = 0; i < middleManagers.size(); i++) {
 			if (middleManagers.get(i).getID().contentEquals(id)) {
@@ -93,12 +136,20 @@ public class MiddleManager extends Employee {
 		return null;
 	}
 
+	/**
+	 * Method that prints the departments that are manager by a certain middle manager
+	 * @param mm
+	 */
 	public static void showManagingDepartments(MiddleManager mm) {
 		for (int i = 0; i < mm.managingDepartments.size(); i++) {
 			System.out.println(mm.managingDepartments.get(i).getName());
 		}
 	}
 
+	/**
+	 * Method that prints a message regarding the rating of an employee
+	 * @param rating
+	 */
   public static void evaluation(int rating) {
     for (int i = 0; i < middleManagers.size(); i++) {
       if (rating == 1) {

@@ -91,7 +91,7 @@ public class DBcon {
 			stmt.executeUpdate("CREATE TABLE BBTask " 
 					+ "(taskID INT not null," 
 					+ "startDate VARCHAR(20) not null,"
-					+ "dueDate VARCHAR(20) not null, " 
+					+ "dueDate DATE not null, " 
 					+ "completionDate VARCHAR(20), "
 					+ "description VARCHAR(100) not null,"
 					+ "importance INT not null," 
@@ -101,7 +101,7 @@ public class DBcon {
 
 			stmt.executeUpdate("CREATE TABLE BBEvent " 
 					+ "(eventID INT not null," 
-					+ "eventDate DATE not null,"
+					+ "eventDate VARCHAR(13) not null,"
 					+ "eventTime VARCHAR(13)not null," 
 					+ "type INT," 
 					+ "title VARCHAR(50),"
@@ -125,21 +125,7 @@ public class DBcon {
 					+ "FOREIGN KEY (empID) REFERENCES BBAccount,"
 					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
 			System.out.println("TABLE BBAssignedToTask CREATED");
-			
-			stmt.executeUpdate("CREATE TABLE BBDay " 
-					+ "(dayID INT not null, "
-					+ "date VARCHAR(15),"
-					+ "empID VARCHAR(20), "
-					+ "PRIMARY KEY (dayID), "
-					+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
-			System.out.println("TABLE BBDay CREATED");
-			
-			stmt.executeUpdate("CREATE TABLE BBProgram " 
-					+ "(dayID INT not null, "
-					+ "taskID INT not null,"
-					+ "PRIMARY KEY (dayID, taskID), "
-					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
-			System.out.println("TABLE BBProgram CREATED");
+		
 			/* Catch block if an exception occurs and the specified driver is not found. */
 		} catch (Exception e) {
 			System.out.print("SQLExcpetion: ");
@@ -167,10 +153,8 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			/* Executes the given statement that saves the object's. */
 			stmt.executeUpdate("DROP TABLE BBAssignedToEvent;");
-			stmt.executeUpdate("DROP TABLE BBDay;");
 			stmt.executeUpdate("DROP TABLE BBAssignedToTask;");
 			stmt.executeUpdate("DROP TABLE BBEvent;");
-			stmt.executeUpdate("DROP TABLE BBProgram;");
 			stmt.executeUpdate("DROP TABLE BBTask;");
 			stmt.executeUpdate("DROP TABLE BBAccount;");
 			stmt.executeUpdate("DROP TABLE BBTopManager;");
@@ -1184,6 +1168,101 @@ public class DBcon {
 			dbcon = DriverManager.getConnection(url);
 			stmt = dbcon.createStatement();
 			stmt.executeUpdate("UPDATE BBTask SET " + varName + " = '" + var + "' WHERE TaskID = " + id + ";");
+			stmt.close(); // Closes the Statement resource
+			dbcon.close(); // Closes the DataBase conenction resource.
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static ArrayList<Program> loadDailyProgram(String empID, String date) {
+		ArrayList<Program> dailyProgram = new ArrayList<Program>();
+		ArrayList<Integer> programIDs = new ArrayList<Integer>();
+		ArrayList<Integer> tempProgramIDs = new ArrayList<Integer>();
+		/* Try block for trying to find the correct Driver to make the DB connection. */
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			/* Catch block if an exception occurs and the specified driver is not found. */
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/* Try block for making the DB connection and executing the given statement. */
+		try {
+			ResultSet rs;
+			/* Makes the actual connection with the server. */
+			dbcon = DriverManager.getConnection(url);
+			/* Creates the statement */
+			stmt = dbcon.createStatement();
+			/* Executes the given statement that saves the object's. */
+			rs = stmt.executeQuery("SELECT eventID FROM BBAssignedToEvent WHERE empID = '" + empID + "';");
+			/* Does a loop for every row (object in this case) it finds. */
+			while (rs.next()) {
+				tempProgramIDs.add(rs.getInt("eventID"));
+			}
+			for (int i = 0; i < tempProgramIDs.size(); i++) {
+				rs = stmt.executeQuery("SELECT eventID FROM BBEvent WHERE eventID = " + tempProgramIDs.get(i) + ", AND eventDate = '" + date + "';");
+				/* Does a loop for every row (object in this case) it finds. */
+				while (rs.next()) {
+					programIDs.add(rs.getInt("eventID"));
+				}
+			}
+			tempProgramIDs.clear();
+			rs = stmt.executeQuery("SELECT taskID FROM BBAssignedToTask WHERE empID = '" + empID + "';");
+			/* Does a loop for every row (object in this case) it finds. */
+			while (rs.next()) {
+				tempProgramIDs.add(rs.getInt("taskID"));
+			}
+			String tempDate = date.substring(6) + date.substring(3, 5) + date.substring(0, 2);
+			for (int i = 0; i < tempProgramIDs.size(); i++) {
+				rs = stmt.executeQuery("SELECT taskID FROM BBTask WHERE taskID = " + tempProgramIDs.get(i) + ", AND dueDate >= '" + date + "';");
+				/* Does a loop for every row (object in this case) it finds. */
+				while (rs.next()) {
+					programIDs.add(rs.getInt("taskID"));
+				}
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+			/*Searches the allPrograms list to find the right programs*/
+			for(int i = 0; i < Program.allPrograms.size(); i++) {
+				for (int j = 0; j < programIDs.size(); j++) {
+					if (Program.allPrograms.get(i).getProgramID() == programIDs.get(j)) {
+						dailyProgram.add(Program.allPrograms.get(i));
+					}
+				}
+			}
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		return dailyProgram;
+	}
+	
+	public static void deleteEmployee(Employee emp) {
+		Connection dbcon;
+		Statement stmt;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		try {
+			dbcon = DriverManager.getConnection(url);
+			stmt = dbcon.createStatement();
+			String tableName = emp.typeOfEmployee();
+			stmt.executeUpdate("delete from BB" + tableName + " WHERE empID = '" + emp.getID() + "';");
+			stmt.executeUpdate("delete from BBAccount WHERE empID = '" + emp.getID() + "';");
+			stmt.executeUpdate("delete from BBAssignedToTask WHERE empID = '" + emp.getID() + "';");
+			stmt.executeUpdate("delete from BBAssignedToEvent WHERE empID = '" + emp.getID() + "';");
 			stmt.close(); // Closes the Statement resource
 			dbcon.close(); // Closes the DataBase conenction resource.
 			/*

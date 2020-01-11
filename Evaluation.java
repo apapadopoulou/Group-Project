@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * This class is responsible for evaluating employee performance on a given task.
  * After the evaluation is done and the score calculated , the results get sent to the server for storage.
  * 
- * @author Vasilis Xifaras
+ * @author BusyB
  */
 public class Evaluation {
 	

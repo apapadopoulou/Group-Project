@@ -28,6 +28,8 @@ public class Department {
 	 * Database constructor for class Department.
 	 * This constructor is used to load Departments from the database
 	 * when the program opens.
+	 * Sets the counter to the current id to be used for
+	 * new objects that are being created.
 	 * @param name
 	 * @param id
 	 * @param managerId
@@ -41,9 +43,7 @@ public class Department {
 		/*Sets the counter to the current id to be used for
 		new objects that are being created.*/
 
-		/**Sets the counter to the current id to be used for
-		*new objects that are being created.
-		*/
+		
 
 		counter = ++id;
 	}
@@ -115,7 +115,10 @@ public class Department {
 	public ArrayList<BasicEmployee> getEmployeesOfDepartment() {
 	  return employeesOfDepartment;
 	}
-
+	/**
+	 * Adds the employee to employeesOfDepartment list.
+	 * @param employee
+	 */
 	public void addEmployee(BasicEmployee employee) {
 		employeesOfDepartment.add(employee);
 	}
@@ -187,6 +190,7 @@ public class Department {
 		return str_1;
 	}
   /**
+   * Searches departments list by the department's id and returns the department if it exists.
    *@return department or null 
    */
 	public static Department searchDepartmentById(int id) {
@@ -197,7 +201,11 @@ public class Department {
 	    }
 	  return null;
 	}
-	
+	/**
+	 * Searches departments list  by the department's name and returns the department if it exists.
+	 * @param name
+	 * @return department or null
+	 */
 	public static Department searchDepartmentByName(String name) {
 		for (int i = 0; i < departments.size(); i++) {
 			if (departments.get(i).getName() == name) {

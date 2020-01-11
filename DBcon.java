@@ -1245,4 +1245,32 @@ public class DBcon {
 		}
 		return dailyProgram;
 	}
+	
+	public static void deleteEmployee(Employee emp) {
+		Connection dbcon;
+		Statement stmt;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		try {
+			dbcon = DriverManager.getConnection(url);
+			stmt = dbcon.createStatement();
+			String tableName = emp.typeOfEmployee();
+			stmt.executeUpdate("delete from BB" + tableName + " WHERE empID = '" + emp.getID() + "';");
+			stmt.executeUpdate("delete from BBAccount WHERE empID = '" + emp.getID() + "';");
+			stmt.executeUpdate("delete from BBAssignedToTask WHERE empID = '" + emp.getID() + "';");
+			stmt.executeUpdate("delete from BBAssignedToEvent WHERE empID = '" + emp.getID() + "';");
+			stmt.close(); // Closes the Statement resource
+			dbcon.close(); // Closes the DataBase conenction resource.
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
 }

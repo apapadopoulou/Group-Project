@@ -282,7 +282,7 @@ public class EventRequest extends javax.swing.JFrame {
             String empId = emp.getID();
             String desc = descText.getText();
             String type = "Event Notice";
-            new Request(type, date2, 0, desc, empId);
+            new Request(date2, 0, desc, empId);
         }
     }//GEN-LAST:event_submitButMouseClicked
  

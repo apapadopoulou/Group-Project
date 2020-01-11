@@ -64,9 +64,6 @@ public class Flow {
        	 try {
        		 admnEmail = sc.next();
        		 sc.nextLine();
-       		 if (!Checkers.isValidEmail(admnEmail)) {
-       			 throw new Exception();
-       		 }
        		 break;
        	 } catch (Exception ex) {
        		 System.out.println("An error occurred! Please try again!");
@@ -166,9 +163,6 @@ public static void dataEntry() {
                   	 try {
                   		 email = sc.next();
                   		 sc.nextLine();
-                  		 if (!Checkers.isValidEmail(email)) {
-                 			 throw new Exception();
-                 		 }
                   		 break;
                   	 } catch (Exception ex) {
                   		 System.out.println("An error occurred! Please try again!");
@@ -280,9 +274,6 @@ public static void dataEntry() {
            			   try {
            				   email = sc.next();
            				   sc.nextLine();
-           				   if (!Checkers.isValidEmail(email)) {
-                			   throw new Exception();
-           				   }
            				   break;
            			   } catch (Exception ex) {
            				   System.out.println("An error occurred! Please try again!");
@@ -358,7 +349,7 @@ public static void dataEntry() {
     	   try {
     		   name = sc.next();
     		   sc.nextLine();
-    		   if (!Checkers.isValidEmail(email)) {
+    		   if (!Checkers.isValidFirstName(name)) {
        			 throw new Exception();
     		   }
     		   break;
@@ -387,9 +378,6 @@ public static void dataEntry() {
            	   try {
            		   email = sc.next();
            		   sc.nextLine();
-           		   if (!Checkers.isValidEmail(email)) {
-           			   throw new Exception();
-           		   }
            		   break;
            	   } catch (Exception ex) {
            		   System.out.println("An error occurred! Please try again!");

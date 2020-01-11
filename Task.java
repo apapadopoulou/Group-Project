@@ -195,8 +195,7 @@ public class Task extends Program implements Comparable<Task>{
             for (int i = 0; i < calendar.size(); i++) {
                 if (calendar.get(i) instanceof Task) {
                     tasksList.add((Task) calendar.get(i));			 
-		}
-             
+		}             
 	}
 	return tasksList;
     }

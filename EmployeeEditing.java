@@ -233,7 +233,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
         } else {
             warning.setVisible(false);
             String name = employees_list.getSelectedValue().toString();
-            Employee e = Employee.searchEmployeeByName2(name);
+            final Employee e = Employee.searchEmployeeByName2(name);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {                    
                     new DeleteEmployee(e).setVisible(true);
@@ -253,7 +253,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         String employeeName = String.valueOf(employees_list.getSelectedValue());
-        Employee emp = Employee.searchEmployeeByName2(employeeName);
+        final Employee emp = Employee.searchEmployeeByName2(employeeName);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new ManageEmployeeWindow(emp).setVisible(true);

@@ -222,10 +222,10 @@ public class SalaryWindow extends javax.swing.JFrame {
             warning.setVisible(true);
         else
             warning.setVisible(false);
-            Employee emp = Employee.searchEmployeeByName2(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
+            final Employee e = Employee.searchEmployeeByName2(jTable1.getValueAt(jTable1.getSelectedRow(),0).toString());
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new SalaryModificationWindow(emp).setVisible(true);
+                    new SalaryModificationWindow(e).setVisible(true);
                 }
             });
     }//GEN-LAST:event_modify_buttonMouseClicked

@@ -8,6 +8,8 @@ import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -128,12 +130,18 @@ public class VacationRequests extends javax.swing.JFrame {
 
         requests.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         requests.setModel(model);
-        requests.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        requests.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         requests.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         requests.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        requests.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestsActionPerformed(evt);
+        requests.addListSelectionListener(new ListSelectionListener() {
+           public void valueChanged(ListSelectionEvent e) {
+                Employee emp = Employee.searchEmployeeByName2(requests.getSelectedValue().toString());
+                Request req = Request.searchRequest(emp.getID());
+                day.setText(req.getDate().substring(0, 2));
+                month.setText(req.getDate().substring(3, 5));
+                year.setText(req.getDate().substring(6));
+                days.setText(String.valueOf(req.getDays()));
+                comments.setText(req.getDesc()); 
             }
         });
         jScrollPane1.setViewportView(requests);

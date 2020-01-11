@@ -5,6 +5,11 @@ import java.util.GregorianCalendar;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+/**
+ * 
+ * @author BusyB
+ *
+ */
 
 public class PersonalisedCalendar {
     private Day[][] calendar;
@@ -28,8 +33,12 @@ public class PersonalisedCalendar {
        }
     }
 
-    /** This method returns the daily program of the employee
-     * for the date given*/
+    /**
+     * This method returns the daily program of the employee
+     * for the date given
+     * @param d
+     * @return calendar[month - 1][dayD - 1].getDailyProgram()
+     */
      public ArrayList<Program> todaysProgram(Date d) {
         LocalDate localDate = d.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int month = localDate.getMonthValue();
@@ -46,7 +55,11 @@ public class PersonalisedCalendar {
     }
     */
 
-    /* This method checks if the year is leap */
+    /**
+     * This method checks if a year is leap
+     * @param year
+     * @return leap
+     */
 	public static boolean leapYear(int year) {
 		boolean leap = false;
 		if (year % 4 == 0) {

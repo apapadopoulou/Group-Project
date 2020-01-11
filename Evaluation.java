@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * This class is responsible for evaluating employee performance on a given task.
  * After the evaluation is done and the score calculated , the results get sent to the server for storage.
  * 
- * @author Vasilis Xifaras
+ * @author BusyB
  */
 public class Evaluation {
 	
@@ -20,6 +20,10 @@ public class Evaluation {
 	 * Basic method which is called to evaluate a Task.
 	 * Checks if the task is for single-employee or a group task and calls the corresponding
 	 * method for evaluating the task.
+	 */
+	/**
+	 * Evaluates a task by using by calling and using DBcon's methods
+	 * @param task
 	 */
 	public static void evaluate(Task task) {
 		//Checks if a task is group task or not.
@@ -41,6 +45,11 @@ public class Evaluation {
 		}
 	}
 	
+	/**
+	 * Evaluates a singleTask and returns its finalScore
+	 * @param task
+	 * @return finalScore
+	 */
 	public static double evalSingleTask(Task task) {
 		double evalAvg = DBcon.getEvalAverage(task.getEmpID());
 		if (evalAvg == 0.0) {
@@ -69,7 +78,11 @@ public class Evaluation {
 		}
 		return finalScore; //REturns the final score.
 	}
-	
+	/**
+	 * Evaluates a group task and returns its final score
+	 * @param task
+	 * @return finalScore
+	 */
 	public static double[] evalGroupTask(Task task) {
 		double[] evalAvg = new double [task.getEmpIDs().size()]; 
 		for (int j = 0; j < task.getEmpIDs().size(); j++) {
@@ -121,6 +134,12 @@ public class Evaluation {
 		return timeScore;
 	}
 	
+	/**
+	 * Calculates a score based on the time the task was completed and the task level using a certain way of calculating the timeDiffRate
+	 * @param percentageDiff
+	 * @param taskLevel
+	 * @return timeScore
+	 */
 	public static double calcTimeScoreA(double percentageDiff, double taskLevel) {
 		double timeScore;
 		double timeDiffRate = taskLevel / 10;
@@ -152,6 +171,12 @@ public class Evaluation {
 		return timeScore;
 	}
 	
+	/**
+	 * Calculates a score based on the time the task was completed and the task level using a certain way of calculating the timeDiffRate
+	 * @param percentageDiff
+	 * @param taskLevel
+	 * @return timeScore
+	 */
 	public static double calcTimeScoreB(double percentageDiff, double taskLevel) {
 		double timeScore;
 		double timeDiffRate = (taskLevel / 10) + 0.1;
@@ -181,6 +206,12 @@ public class Evaluation {
 		return timeScore;
 	}
 	
+	/**
+	 * Calculates a score based on the time the task was completed and the task level using a certain way of calculating the timeDiffRate
+	 * @param percentageDiff
+	 * @param taskLevel
+	 * @return timeScore
+	 */
 	public static double calcTimeScoreC(double percentageDiff, double taskLevel) {
 		double timeScore;
 		double timeDiffRate = (taskLevel / 10) + 0.3;
@@ -210,6 +241,12 @@ public class Evaluation {
 		return timeScore;
 	}
 	
+	/**
+	 * Calculates a score based on the time the task was completed and the task level using a certain way of calculating the timeDiffRate
+	 * @param percentageDiff
+	 * @param taskLevel
+	 * @return timeScore
+	 */
 	public static double calcTimeScoreD(double percentageDiff, double taskLevel) {
 		double timeScore;
 		double timeDiffRate = (taskLevel / 10) + 0.45;
@@ -242,7 +279,13 @@ public class Evaluation {
 		}
 		return timeScore;
 	}
-
+	
+	/**
+	 * Uses the timeScore variable that has been calculated to find the scoreNow variable
+	 * @param taskLevel
+	 * @param timeScore
+	 * @return scoreNow
+	 */
 	public static double addTimeScore(double taskLevel, double timeScore) {
 		double scoreNow = 10.0;
 		if (taskLevel > 7.0) {
@@ -257,9 +300,14 @@ public class Evaluation {
 		return scoreNow;
 	}
 	
-	/*
+	/**
 	 * Method to calculate the difference between completion date and due date in percentage.
 	 * Returns the percentage difference between total time to complete the task and remaining time to Due Date.
+	 * @param stDate
+	 * @param dDate
+	 * @param comDate
+	 * @return
+	 * @throws ParseException
 	 */
 	public static double calculateDateDiff(String stDate, String dDate, String comDate) throws ParseException {
 		Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(stDate);

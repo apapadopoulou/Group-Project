@@ -8,24 +8,24 @@ public class Event extends Program implements Comparable<Event>{
     private String description;
     private String date;
     private String time;
-    private ArrayList<Employee> employeesInEvent = new ArrayList<Employee>();
+    private ArrayList<String> empIDsInEvent = new ArrayList<String>();
     private String type;
     
     /**
      * Basic Constructor for class Event.
      * Used to create new Events.
      */
-    public Event(String title, String date, String time, String description, String type, ArrayList<Employee> employees) {
-    	super();
+    public Event(String title, String date, String time, String description, String type, ArrayList<String> empIDs) {
+    	super(empIDs);
     	this.title = title;
        	this.description = description;
        	this.type = type;
-       	employeesInEvent = employees;
+       	empIDsInEvent = empIDs;
     	this.date = date;
     	this.time= time;
     	DBcon.saveEvent(this);
-    	for (int i = 0; i < employees.size(); i++) {
-    		DBcon.AssignToEvent(getProgramID(), employees.get(i).getID());
+    	for (int i = 0; i < empIDs.size(); i++) {
+    		DBcon.AssignToEvent(getProgramID(), empIDs.get(i));
     	}
     }
     
@@ -34,20 +34,17 @@ public class Event extends Program implements Comparable<Event>{
      * Used to create new Events that are loaded from the database.
      */
     public Event(String title, String date, String time, String description, String type, int eventID, ArrayList<String> empIDs) {
-		super(eventID);
+		super(empIDs, eventID);
     	this.title = title;
         this.description = description;
         this.type = type;
-        for (int i = 0; i < empIDs.size(); i++) {
-        	employeesInEvent.add(Employee.searchEmployeeById(empIDs.get(i)));
-        }
+        empIDsInEvent = empIDs;
 		this.date = date;
 		this.time= time;
-		DBcon.saveEvent(this);
     }
     
     public void addEvent () {
-      for (int i = 1; i < employeesInEvent.size(); i++) {
+      for (int i = 1; i < empIDsInEvent.size(); i++) {
         
       }
     }
@@ -78,12 +75,12 @@ public class Event extends Program implements Comparable<Event>{
     DBcon.updateEventVar("EventDate", date, getProgramID());
   }
 
-  public ArrayList<Employee> getEmployeesInEvent() {
-    return employeesInEvent;
+  public ArrayList<String> getEmpIDsInEvent() {
+    return empIDsInEvent;
   }
 
-  public void setEmployeesInEvent(ArrayList<Employee> employeesInEvent) {
-    this.employeesInEvent = employeesInEvent;
+  public void setEmpIDsInEvent(ArrayList<String> employeesInEvent) {
+    this.empIDsInEvent = employeesInEvent;
   }
 
   public String getType() {

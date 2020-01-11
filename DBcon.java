@@ -198,80 +198,8 @@ public class DBcon {
 		System.out.println("Succesfully Loaded Accounts.");
 		DBcon.loadTasks();
 		System.out.println("Succesfully Loaded Tasks.");
-		DBcon.loadDays();
-		System.out.println("Succesfully Loaded Days.");
-	}
-
-	
-	// Method to save Accounts to DB.
-	public static void saveDay(Day day) {
-		/* Try block for trying to find the correct Driver to make the DB connection. */
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		/* Catch block if an exception occurs and the specified driver is not found. */
-		} catch (java.lang.ClassNotFoundException e) {
-			System.out.print("test: ");
-			System.out.println(e.getMessage());
-		}
-		/*
-		 * Try block for making the DB connection and executing the given statement.
-		 */
-		try {
-			/* Makes the actual connection with the server. */
-			dbcon = DriverManager.getConnection(url);
-			/* Creates the statement */
-			stmt = dbcon.createStatement();
-			/* Executes the given statement that saves the object's. */
-			stmt.executeUpdate("INSERT INTO BBDay (dayID, empID, date) VALUES (" + day.getID() + ", '" + day.getEmpID() + "', '" + day.getDate() + "');");
-			stmt.close();
-			dbcon.close();
-			/* 
-			 * Catch block if an exception occurs while making the connection and executing
-			 * the statement.
-			 */
-		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-		}
-	}
-	
-	public static void loadDays() {
-		/* Try block for trying to find the correct Driver to make the DB connection. */
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			/* Catch block if an exception occurs and the specified driver is not found. */
-		} catch (java.lang.ClassNotFoundException e) {
-			System.out.print("test: ");
-			System.out.println(e.getMessage());
-		}
-		/* Try block for making the DB connection and executing the given statement. */
-		try {
-			ResultSet rs;
-			/* Makes the actual connection with the server. */
-			dbcon = DriverManager.getConnection(url);
-			/* Creates the statement */
-			stmt = dbcon.createStatement();
-			/* Executes the given statement that saves the object's. */
-			rs = stmt.executeQuery("SELECT empID, date, dayID FROM BBDay");
-			/* Does a loop for every row (object in this case) it finds. */
-			while (rs.next()) {
-				String empID = rs.getString("empID");
-				String date = rs.getString("date");
-				int dayID = rs.getInt("dayID");
-				/*
-				 * After we find the variables we call the constructor to make the object again.
-				 */
-				Day day = new Day(date, empID, dayID);
-			}
-			rs.close();
-			stmt.close();
-			dbcon.close();
-			/*
-			 * Catch block if an exception occurs while making the connection and executing
-			 * the statement.
-			 */
-		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getMessage());
-		}
+		DBcon.loadEvents();
+		System.out.println("Succesfully Loaded Events.");
 	}
 	
 	// Method to save Accounts to DB.
@@ -922,13 +850,19 @@ public class DBcon {
 				String desc = rs.getString("description");
 				int importance = rs.getInt("importance");
 				int difficulty = rs.getInt("difficulty");
-				ArrayList<String> empids = loadAssignedToTask(taskID);
-				if (empids.size() == 1) {
+				ArrayList<String> empIds = loadAssignedToTask(taskID);
+				if (empIds.size() == 1) {
+					double score = loadTaskScore(empIds.get(0), taskID);
 					Task task = new Task(taskID, startDate, dueDate, completionDate, desc, importance, difficulty,
-							empids.get(0));
+							empIds.get(0), score);
 				} else {
+					double [] scores = new double[empIds.size()];
+					for (int i = 0; i < empIds.size(); i++) {
+						scores[i] = loadTaskScore(empIds.get(i), taskID);
+					}
 					Task task = new Task(taskID, startDate, dueDate, completionDate, desc, importance, difficulty,
-							empids);
+							empIds, scores);
+					
 				}
 			}
 			rs.close();
@@ -1010,6 +944,43 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 		return empIds;
+	}
+	
+	public static double loadTaskScore(String empID, int taskID) {
+		double score = -1;
+		/* Try block for trying to find the correct Driver to make the DB connection. */
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			/* Catch block if an exception occurs and the specified driver is not found. */
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/* Try block for making the DB connection and executing the given statement. */
+		try {
+			ResultSet rs;
+			/* Makes the actual connection with the server. */
+			dbcon = DriverManager.getConnection(url);
+			/* Creates the statement */
+			stmt = dbcon.createStatement();
+			/* Executes the given statement that saves the object's. */
+			rs = stmt.executeQuery("SELECT evaluation FROM BBAssignedToTask WHERE taskID = " + taskID + " AND empID = '" + empID + "';" ) ;
+			/* Does a loop for every row (object in this case) it finds. */
+			while (rs.next()) {
+				score = rs.getDouble("evaluation");
+				return score;
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		return score;
 	}
 	
 
@@ -1104,7 +1075,7 @@ public class DBcon {
 			dbcon = DriverManager.getConnection(url);
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
-			stmt.executeUpdate("INSERT INTO BBAssignedToEevent (eventID, empID) VALUES (" + eventID + ", '" + empID + "');");
+			stmt.executeUpdate("INSERT INTO BBAssignedToEvent (eventID, empID) VALUES (" + eventID + ", '" + empID + "');");
 			stmt.close(); // Closes the Statement resource.
 			dbcon.close(); // Closes the DataBase conenction resource.
 			/*

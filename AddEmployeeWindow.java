@@ -131,7 +131,7 @@ public static String[] years(){
         jLabel11.setText("/");
 
         birthyear.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        birthyear.setModel(new javax.swing.DefaultComboBoxModel(year));
+        birthyear.setModel(new javax.swing.DefaultComboBoxModel(birthyear));
         birthyear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N

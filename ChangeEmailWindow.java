@@ -61,7 +61,7 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
         new_email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        ok_button.setText("ΟΚ");
+        ok_button.setText("OK!");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         ok_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

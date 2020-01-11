@@ -153,6 +153,12 @@ public class Task extends Program implements Comparable<Task>{
 		this.dueDate = dueDate;
 		DBcon.updateTaskVar("dueDate", dueDate, getProgramID());
 	}
+        public boolean getDone(){
+            return done;
+        }
+        public void setDone(boolean done){
+            this.done = done;
+        }
 
 	/**
 	 * Method that gets the startDate

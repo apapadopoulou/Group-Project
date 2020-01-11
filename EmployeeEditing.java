@@ -120,6 +120,11 @@ public class EmployeeEditing extends javax.swing.JFrame {
         manage_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         manage_button.setText("Manage employee's personal data");
         manage_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        manage_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manage_buttonMouseClicked(evt);
+            }
+        });
 
         add_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         add_button.setText("Add employee");
@@ -251,7 +256,7 @@ public class EmployeeEditing extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_add_buttonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void manage_buttonMouseClicked(java.awt.event.ActionEvent evt) {
         String employeeName = String.valueOf(employees_list.getSelectedValue());
         final Employee emp = Employee.searchEmployeeByName2(employeeName);
         java.awt.EventQueue.invokeLater(new Runnable() {

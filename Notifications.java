@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -63,9 +64,38 @@ public class Notifications extends javax.swing.JFrame {
         Tasks = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         vacReqList = new javax.swing.JList();
+        DefaultListModel model1 = new DefaultListModel();
+        for (int i = 0; i < Request.getVacRequests().size(); i++){
+            if (Request.getVacRequests().get(i).getEmpId().equals(emp.getID())){
+                String s;
+                if (Request.getVacRequests().get(i).isAccepted())
+                s = "Your vacation request for " + Request.getVacRequests().get(i).
+                getDate() + " has been accepted. Comments:" +
+                Request.getVacRequests().get(i).getComments();
+                else
+                s = "Your vacation request for " + Request.getVacRequests().get(i).
+                getDate() + " has been rejected. Comments:" +
+                Request.getVacRequests().get(i).getComments();
+                model1.addElement(s);
+            }
+
+        }
         vacReq = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         taskList1 = new javax.swing.JList();
+        DefaultListModel model = new DefaultListModel();
+        Date d = new Date();
+        String date = d.getDay() + "/" + d.getMonth() + "/" 
+        + d.getYear();
+        for (int i = 0; i < emp.searchDay(date).getDailyProgram().size(); i++){
+            if (emp.searchDay(date).getDailyProgram().get(i) instanceof Task){
+                Task t1 = (Task) emp.searchDay(date).getDailyProgram().get(i);
+                if (t1.getDone()){
+                    String st = "You have completed the Task " + t1.getDesc() + "in time!";
+                    model.addElement(st);
+                }        
+            }
+        }
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -88,21 +118,13 @@ public class Notifications extends javax.swing.JFrame {
         Tasks.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         Tasks.setText("Tasks");
 
-        vacReqList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        vacReqList.setModel(model1);
         jScrollPane1.setViewportView(vacReqList);
 
         vacReq.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         vacReq.setText("Vacation Requests");
 
-        taskList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        taskList1.setModel(model);
         jScrollPane2.setViewportView(taskList1);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N

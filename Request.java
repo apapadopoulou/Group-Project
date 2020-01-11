@@ -33,6 +33,12 @@ public class Request {
      * Method that gets the comments
      * @return comments
      */
+    public boolean isAccepted(){
+        return accepted;
+    }
+    public void setAccepted(boolean accepted){
+        this.accepted = accepted;
+    }
     public String getComments(){
         return comments;
     }
@@ -151,14 +157,4 @@ public class Request {
 		}
 		return null;
 	}
-
-	
-	public boolean isAccepted() {
-		return accepted;
-	}
-
-	public void setAccepted(boolean accepted) {
-		this.accepted = accepted;
-	}
-
 }

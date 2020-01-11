@@ -3,8 +3,12 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -23,6 +27,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
     /**
      * Creates new form TaskOrReminderWindow1
      */
+    private String[] years = years();
     private int n;
     private Employee emp;
 
@@ -81,6 +86,15 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         }
         ).start();
     }
+    public static String[] years(){
+      String years[] = new String[150];
+      int year = Calendar.getInstance().get(Calendar.YEAR)-150;
+      for (int i = 1; i < years.length; i++) {
+        years[i]= String.valueOf(year);
+        year++;        	
+      }
+      return years;    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,6 +143,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         title = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         people_list = new javax.swing.JList();
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < Employee.employees.size(); i++){
+            model.addElement(Employee.employees.get(i).getNameSurname());
+        }            
         add_button = new javax.swing.JButton();
         warning = new javax.swing.JLabel();
 
@@ -162,29 +180,16 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         grouptask.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         grouptask.setText("  Group Task");
         grouptask.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        grouptask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                grouptaskActionPerformed(evt);
-            }
-        });
+        
 
         personaltask.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         personaltask.setText("  Personal Task");
         personaltask.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        personaltask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                personaltaskActionPerformed(evt);
-            }
-        });
-
+        
         reminder.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         reminder.setText("  Reminder");
         reminder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        reminder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reminderActionPerformed(evt);
-            }
-        });
+        
 
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         ok_button.setText("OK");
@@ -239,14 +244,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel11.setText("Description:");
 
         day.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        day.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
+        day.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
         );
-        day.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dayActionPerformed(evt);
-            }
-        });
-
+        day.setSelectedIndex(-1);
+        
         jLabel12.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel12.setText("Date:");
 
@@ -254,13 +255,15 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel13.setText("/");
 
         month.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-
+        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        month.setSelectedIndex(-1);
+        
         jLabel14.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel14.setText("/");
 
         year.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        year.setModel(new javax.swing.DefaultComboBoxModel(MyCalendar.year));
+        year.setModel(new javax.swing.DefaultComboBoxModel(years));
+        year.setSelectedIndex(-1);
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel15.setText("Time:");
@@ -277,11 +280,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         event.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         event.setText("  Event");
         event.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        event.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventActionPerformed(evt);
-            }
-        });
+        
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel17.setText("Title:");
@@ -290,16 +289,18 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         title.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         title.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        people_list.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        people_list.setModel(model);
+        people_list.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jScrollPane1.setViewportView(people_list);
 
         add_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         add_button.setText("Add");
         add_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_buttonActionPerformed(evt);
+            }
+        });
 
         warning.setFont(new java.awt.Font("Arial", 2, 13)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 0, 0));
@@ -506,19 +507,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void grouptaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_grouptaskActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_grouptaskActionPerformed
-
-    private void personaltaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personaltaskActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_personaltaskActionPerformed
-
-    private void reminderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reminderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reminderActionPerformed
-
-    private void ok_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_buttonActionPerformed
+        private void ok_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_buttonActionPerformed
         // TODO add your handling code here:
         if (grouptask.isSelected()) {
             add_button.setVisible(true);
@@ -632,20 +621,69 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_ok_buttonActionPerformed
+    private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        warning.setVisible(false);
+        if (grouptask.isSelected()){
+            ArrayList <String> employees = new ArrayList<String>();
+            Object[] em = people_list.getSelectedValues();
+            for (int i = 0; i < em.length; i++){
+                String emp_id = Employee.searchEmployeeByName2(em[i].toString())
+                        .getID();
+                employees.add(emp_id);
+            }
+            String desc = description.getText();
+            String date2 = due_day.getSelectedItem().toString() + "/" + 
+                        due_month.getSelectedItem().toString() + "/" +
+                        due_year.getSelectedItem().toString();
+            if (!Day.validDate(date2))
+                warning.setVisible(true);
+            else {
+                Date d = new Date();
+                String startDate = d.getDay() + "/" + d.getMonth() + "/" 
+                        + d.getYear();
+                new Task(startDate, date2, desc, 0, 0, employees);  
+            }
+        } else if (personaltask.isSelected()){
+            String desc = description.getText();
+            String date2 = due_day.getSelectedItem().toString() + "/" + 
+                        due_month.getSelectedItem().toString() + "/" +
+                        due_year.getSelectedItem().toString();
+            if (!Day.validDate(date2))
+                warning.setVisible(true);
+            else {
+                Date d = new Date();
+                String startDate = d.getDay() + "/" + d.getMonth() + "/" 
+                        + d.getYear();
+                new Task(startDate, date2, desc, 0, 0, emp.getID());             
+            }
+        } else if (reminder.isSelected() || event.isSelected()){
+            String desc = description.getText();
+            String time = hours.getSelectedItem().toString() + "/" +
+                    minutes.getSelectedItem().toString();
+            String date2 = due_day.getSelectedItem().toString() + "/" + 
+                        due_month.getSelectedItem().toString() + "/" +
+                        due_year.getSelectedItem().toString();
+            if (!Day.validDate(date2))
+                warning.setVisible(true);
+            else {
+                ArrayList<String> employee = new ArrayList<String>();
+                    employee.add(emp.getID());
+                if (reminder.isSelected()){
+                    new Event(" ", date2, time, desc, "type", employee);
+                }
+                else {
+                   new Event (title.getText(), date2, time, desc, "" ,employee);
+                }
+            }
+        } 
+        
+    }
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         new FirstWindow(emp).setVisible(true);
         this.setVisible(false);
 
     }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void dayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dayActionPerformed
-
-    private void eventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eventActionPerformed
 
     private void groupButton() {
 

@@ -111,8 +111,13 @@ public final class FirstWindow extends javax.swing.JFrame {
         else
         arrow5.setText("Manage Departments");
         arrow6 = new javax.swing.JLabel();
-        if (num == 1 || num == 5)
+        if (num == 1)
             arrow6.setText("");
+	else if (num = 5) {
+	    arrow6.setFont(new java.awt.Font("Arial", 1, 24));
+            arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
+            arrow6.setText("Notifications");
+            arrow6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
         else if (num == 3 || num == 4) {
             arrow6.setFont(new java.awt.Font("Arial", 1, 24));
             arrow6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
@@ -130,10 +135,16 @@ public final class FirstWindow extends javax.swing.JFrame {
             arrow7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow7.setText("Manage Employees");
             arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        }
+        } else if (num == 3) {
+	    arrow7.setFont(new java.awt.Font("Arial", 1, 24));
+            arrow7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
+            arrow7.setText("Notifications");
+            arrow7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		
         if (num == 4) {
             arrow8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N	
             arrow8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
+	    arrow8.setText("Notifications");
             arrow8.addMouseListener(new java.awt.event.MouseAdapter() {	
                public void mouseClicked(java.awt.event.MouseEvent evt) {	
                    arrow8MouseClicked(evt);	
@@ -479,9 +490,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     private void arrow4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arrow4MouseClicked
         if ( num != 1 && num != 2){
            new CrEventOrAddTask(num, emp).setVisible(true);
-        } else {
-            new EventRequest(num, emp).setVisible(true);
-            }
+        } 
         this.setVisible(false);
     }//GEN-LAST:event_arrow4MouseClicked
 

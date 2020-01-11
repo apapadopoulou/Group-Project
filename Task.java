@@ -28,7 +28,7 @@ public class Task extends Program implements Comparable<Task>{
    *Constructor for single-employee task.
    */
 	public Task(String startDate, String dueDate, String desc, int importance, int difficulty, String empId) {
-		super();
+		super(empId);
 		this.desc = desc;
 		this.startDate = startDate;
 		this.dueDate = dueDate;
@@ -46,8 +46,8 @@ public class Task extends Program implements Comparable<Task>{
 	 * Database Constructor for single employee Tasks.
 	 * Used to load Task objects from Database.
 	 */
-	public Task(int taskID, String startDate, String dueDate, String completionDate, String desc, int importance, int difficulty, String empId) {
-		super(taskID);
+	public Task(int taskID, String startDate, String dueDate, String completionDate, String desc, int importance, int difficulty, String empId, double score) {
+		super(empId, taskID);
 		this.desc = desc;
 		this.startDate = startDate;
 		this.dueDate = dueDate;
@@ -68,7 +68,7 @@ public class Task extends Program implements Comparable<Task>{
    *Basic Constructor for multi-employee group task. 
    */
 	public Task(String startDate, String dueDate, String desc, int importance, int difficulty, ArrayList<String> empIds) {
-		super();
+		super(empIds);
 		this.desc = desc;
 		this.startDate = startDate;
 		this.dueDate = dueDate;
@@ -88,8 +88,9 @@ public class Task extends Program implements Comparable<Task>{
 	 * Database constructor for group Tasks.
 	 * Used to load multi-employee Tasks from the Database.
 	 */
-	public Task(int taskID, String startDate, String dueDate, String completionDate, String desc, int importance, int difficulty, ArrayList<String> empIds) {
-		super(taskID);
+	public Task(int taskID, String startDate, String dueDate, String completionDate, String desc, int importance, int difficulty, ArrayList<String> empIds, double [] scores) {
+		super(empIds, taskID);
+		this.scores = scores;
 		this.desc = desc;
 		this.startDate = startDate;
 		this.dueDate = dueDate;
@@ -185,6 +186,21 @@ public class Task extends Program implements Comparable<Task>{
 		return difficulty;
 	}
 
+	public void setScore(double score) {
+		this.score = score;
+	}
+	
+	public double getScore() {
+		return score;
+	}
+	
+	public void setScores(double [] scores) {
+		this.scores = scores;
+	}
+	
+	public double [] getScores() {
+		return scores;
+	}
     @Override
     public int compareTo(Task o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

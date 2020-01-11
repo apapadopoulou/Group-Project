@@ -10,12 +10,23 @@ public abstract class Program {
 	private String date;
 	public static ArrayList<Program> allPrograms = new ArrayList<Program>();
 	
-	public Program() {
+	public Program(String empId) {
 		programID = counter++;
 		allPrograms.add(this);
 	}
 	
-	public Program(int id) {
+	public Program(ArrayList<String> empIds) {
+		programID = counter++;
+		allPrograms.add(this);
+	}
+	
+	public Program(String empId, int id) {
+		this.programID = id;
+		counter = programID + 1;
+		allPrograms.add(this);
+	}
+	
+	public Program(ArrayList<String> empIds, int id) {
 		this.programID = id;
 		counter = programID + 1;
 		allPrograms.add(this);

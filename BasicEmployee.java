@@ -29,6 +29,12 @@ public class BasicEmployee extends Employee {
 	 *@param birthdate
 	 *@param depID
 	 */
+	/**
+	 * The id is constructed using the department's id,
+	 * the first two letters of the employees's name, 
+	 * the first two letters of the employee's surname
+     * and the number of employees existing already in the department.
+     */
 	public BasicEmployee(String name, String surname, String telephone, String email, String birthdate, int depID, double salary) {
         
          //Calls the constructor for the superclass Employee. 
@@ -38,12 +44,7 @@ public class BasicEmployee extends Employee {
 		 //Gets the Department object using the Department id.
 		 
 		this.department = Department.getDepartment(depID);
-		/**
-		 * The id is constructed using the department's id,
-		 * the first two letters of the employees's name, 
-		 * the first two letters of the employee's surname
-	     * and the number of employees existing already in the department.
-	     */
+		
 		String id = String.valueOf(department.getId()) + name.substring(0,2)
 			+ surname.substring(0,2) 
 			+ String.valueOf(department.getEmployeesOfDepartment().size());

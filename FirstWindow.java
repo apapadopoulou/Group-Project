@@ -190,7 +190,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow1.class.getResource("/images/smallLogo.PNG")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(FirstWindow.class.getResource("/images/smallLogo.PNG")));
 
         jPanel1.setBackground(new java.awt.Color(255, 242, 142));
 

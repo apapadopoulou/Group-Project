@@ -216,6 +216,11 @@ public static boolean leapYear(int year) {
 		}
 		return leap;
 	}
+/**
+ * Validates the date
+ * @param date
+ * @return true or false
+ */
 public static boolean validDate(String date){
     int day = Integer.parseInt(date.substring(0, 2));
     int month = Integer.parseInt(date.substring(3, 5));

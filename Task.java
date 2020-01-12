@@ -210,6 +210,7 @@ public class Task extends Program implements Comparable<Task>{
 			Date compDate = new Date();
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");  
 			setCompletionDate(formatter.format(compDate));
+			Evaluation.evaluate(this);
 		}
 	}
   

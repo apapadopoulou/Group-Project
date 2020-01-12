@@ -9,9 +9,6 @@ import javax.swing.*;
  */
 
 public class Day {
-	public static int counter = 1;
-	private String empID;
-	private int dayID;
 	private ArrayList<Program> dailyProgram = new ArrayList<Program>();
 	private String date;
 	/**
@@ -49,9 +46,7 @@ public class Day {
 	  * @param date
 	  * @param empID
 	  */
-  public Day(String date, String empID) {
-	dayID = counter++;
-	this.empID = empID;
+  public Day(String date) {
     String givenDay = date.substring(0, 2);
     String givenMonth = date.substring(3, 5);
     String givenYear = date.substring(6);
@@ -106,6 +101,17 @@ public class Day {
   private void addToDailyProgram(Program p) {
     dailyProgram.add(p);
   }
+  
+  /**
+   *Adds to daily program.
+   * @param p
+   */
+   private void addToDailyProgram(ArrayList<Program> p) {
+	   for (int i = 0; i < p.size(); i++) {
+		   dailyProgram.add(p.get(i));
+	   }
+   }
+  
   /**
    *Returns the date field.
    *@return date 
@@ -119,20 +125,6 @@ public class Day {
    */
   public void setDate(String date) {
 	  this.date = date;
-  }
-  /**
-   *Gets the dayID field.
-   *@return dayID
-   */
-  public int getID() {
-	  return dayID;
-  }
-  /**
-   * Returns the empID field
-   * @return empID
-   */
-  public String getEmpID() {
-	  return empID;
   }
   /**
    * Returns the d field
@@ -176,6 +168,71 @@ public class Day {
   public void setY(String y) {
 	  this.y = y;
   }
+  
+  public static ArrayList<Day> createCalendar(String empID, String startingDate){
+	  ArrayList<Day> calendar = new ArrayList<Day>();
+	  Day firstDay = new Day(startingDate);
+	  firstDay.addToDailyProgram(DBcon.loadEventsAndReminders(empID, startingDate));
+	  firstDay.addToDailyProgram(DBcon.loadActiveTasks(empID));
+	  calendar.add(firstDay);
+	  String nextDate = nextDate(startingDate);
+	  for (int i = 1; i <= 100; i++) {
+		  if (validDate(startingDate)) {
+			  Day day = new Day(nextDate);
+			  day.setDailyProgram(DBcon.loadEventsAndReminders(empID, nextDate));
+			  calendar.add(day);
+		  }
+		  nextDate = nextDate(nextDate);
+	  }
+	  return calendar;
+  }
+  
+  public static String nextDate(String startingDate) {
+	  String nextDate = null;
+	  int newDay = Integer.parseInt(startingDate.substring(0, 2));
+	  int newMonth = Integer.parseInt(startingDate.substring(3, 5));
+	  int newYear = Integer.parseInt(startingDate.substring(6));
+	  if (newDay <= 30) {
+		  ++newDay;
+	  } else {
+		  if (newMonth < 12) {
+			  ++newMonth;
+		  } else {
+			  ++newYear;
+		  }
+	  }
+	  String tempDay = String.valueOf(newDay);
+	  if (newDay < 10) {
+		  tempDay = "0" + String.valueOf(newDay);
+	  }
+	  String tempMonth = String.valueOf(newMonth);
+	  if (newMonth < 10) {
+		  tempMonth = "0" + String.valueOf(newMonth);
+	  }
+	  nextDate = tempDay + "/" + tempMonth + "/" + String.valueOf(newYear);
+	  if (validDate(nextDate)) {
+		  return nextDate;
+	  } else {
+		  newMonth = Integer.parseInt(startingDate.substring(3, 5));
+		  newYear = Integer.parseInt(startingDate.substring(6));
+		  tempDay = "01";
+		  if (newMonth < 12) {
+			  ++newMonth;
+		  } else {
+			  ++newYear;
+		  }
+		  tempMonth = String.valueOf(newMonth);
+		  if (newMonth < 10) {
+			  tempMonth = "0" + String.valueOf(newMonth);
+		  }
+		  nextDate = tempDay + "/" + tempMonth + "/" + String.valueOf(newYear);
+		  if (validDate(nextDate)) {
+			  return nextDate;
+		  }
+	  }
+	  return nextDate;
+  }
+  
   /**
    * Checks if a year is leap
    * @param year

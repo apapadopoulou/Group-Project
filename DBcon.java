@@ -1179,7 +1179,7 @@ public class DBcon {
 		}
 	}
 	
-	public static ArrayList<Program> loadDailyProgram(String empID, String date) {
+	public static ArrayList<Program> loadEventsAndReminders(String empID, String date) {
 		ArrayList<Program> dailyProgram = new ArrayList<Program>();
 		ArrayList<Integer> programIDs = new ArrayList<Integer>();
 		ArrayList<Integer> tempProgramIDs = new ArrayList<Integer>();
@@ -1211,15 +1211,54 @@ public class DBcon {
 					programIDs.add(rs.getInt("eventID"));
 				}
 			}
-			tempProgramIDs.clear();
-			rs = stmt.executeQuery("SELECT taskID FROM BBAssignedToTask WHERE empID = '" + empID + "';");
+			rs.close();
+			stmt.close();
+			dbcon.close();
+			/*Searches the allPrograms list to find the right programs*/
+			for(int i = 0; i < Program.allPrograms.size(); i++) {
+				for (int j = 0; j < programIDs.size(); j++) {
+					if (Program.allPrograms.get(i).getProgramID() == programIDs.get(j)) {
+						dailyProgram.add(Program.allPrograms.get(i));
+					}
+				}
+			}
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+		return dailyProgram;
+	}
+	
+	public static ArrayList<Program> loadActiveTasks(String empID) {
+		ArrayList<Program> dailyProgram = new ArrayList<Program>();
+		ArrayList<Integer> programIDs = new ArrayList<Integer>();
+		ArrayList<Integer> tempProgramIDs = new ArrayList<Integer>();
+		/* Try block for trying to find the correct Driver to make the DB connection. */
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			/* Catch block if an exception occurs and the specified driver is not found. */
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/* Try block for making the DB connection and executing the given statement. */
+		try {
+			ResultSet rs;
+			/* Makes the actual connection with the server. */
+			dbcon = DriverManager.getConnection(url);
+			/* Creates the statement */
+			stmt = dbcon.createStatement();
+			/* Executes the given statement that saves the object's. */
+			rs = stmt.executeQuery("SELECT eventID FROM BBAssignedToTask WHERE empID = '" + empID + "';");
 			/* Does a loop for every row (object in this case) it finds. */
 			while (rs.next()) {
-				tempProgramIDs.add(rs.getInt("taskID"));
+				tempProgramIDs.add(rs.getInt("eventID"));
 			}
-			String tempDate = date.substring(6) + date.substring(3, 5) + date.substring(0, 2);
 			for (int i = 0; i < tempProgramIDs.size(); i++) {
-				rs = stmt.executeQuery("SELECT taskID FROM BBTask WHERE taskID = " + tempProgramIDs.get(i) + ", AND dueDate >= '" + date + "';");
+				rs = stmt.executeQuery("SELECT taskID FROM BBTask WHERE taskID = " + tempProgramIDs.get(i) + ", AND completionDate = 'NULL';");
 				/* Does a loop for every row (object in this case) it finds. */
 				while (rs.next()) {
 					programIDs.add(rs.getInt("taskID"));

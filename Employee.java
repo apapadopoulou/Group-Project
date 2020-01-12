@@ -163,7 +163,7 @@ public abstract class Employee {
 			  }
 	 	}
 	  }
-	  calendar.add(new Day(date, getID()));
+	  calendar.add(new Day(date));
 	  return calendar.get(calendar.size()-1);
   }
 

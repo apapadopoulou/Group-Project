@@ -32,7 +32,7 @@ public class Evaluation {
 			//Calls method for evaluating single-employee Tasks.
 			score = evalSingleTask(task);
 			//Saves the result of the evaluation on the database.
-			DBcon.saveEvaluation(task.getTaskID(), task.getEmpID(), score);
+			DBcon.saveEvaluation(task.getProgramID(), task.getEmpID(), score);
 			task.setScore(score);
 		} else {
 			double[] scores = new double[task.getEmpIDs().size()];
@@ -41,7 +41,7 @@ public class Evaluation {
 			task.setScores(scores);
 			for (int i =0; i < task.getEmpIDs().size(); i++) {
 				//Saves the result of the evaluation on the database.
-				DBcon.saveEvaluation(task.getTaskID(), task.getEmpIDs().get(i), scores[i]);
+				DBcon.saveEvaluation(task.getProgramID(), task.getEmpIDs().get(i), scores[i]);
 			}
 		}
 	}

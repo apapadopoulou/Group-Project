@@ -73,7 +73,7 @@ public class Day {
   }
   
 /**
- *Gets the daily program.
+ *Returns the daily program.
  *@return daily program
  */
   public ArrayList<Program> getDailyProgram() {

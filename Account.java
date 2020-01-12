@@ -54,7 +54,7 @@ public class Account {
      
     
     /** 
-     * Gets the hasDefaultPass.
+     * Returns the hasDefaultPass field.
      *@return hasDefaultPass  
      */
     public int getHasDefaultPass() {
@@ -63,7 +63,7 @@ public class Account {
     
     
      /**
-      *Sets the setHasDefaultPass.
+      *Sets the setHasDefaultPass field.
       *@param dp 
       */
      
@@ -74,7 +74,7 @@ public class Account {
     }
     
     /**
-     *Gets the employee.
+     *Returns the employee field.
      *@return employee
      */
   
@@ -84,7 +84,7 @@ public class Account {
     
     
      /**
-      *Sets the employee.
+      *Sets the employee field.
       *@param employee
       */
     
@@ -93,7 +93,7 @@ public class Account {
         this.employee = employee;
     }
     /**
-     *Gets the email.
+     *Returns the email field.
      *@return email
      */
 
@@ -103,7 +103,7 @@ public class Account {
     
     
      /**
-      *Sets the email.
+      *Sets the email field.
       *@param email 
       */
      
@@ -113,7 +113,7 @@ public class Account {
     }
     
     /**
-     *Gets the password.
+     *Returns the password field.
      *@return password
      */
 
@@ -123,7 +123,7 @@ public class Account {
     
     
      /**
-      *Sets the password.
+      *Sets the password field.
       *@param password
       */
      
@@ -214,10 +214,6 @@ public class Account {
             psw[i]  = values.charAt(ran.nextInt(values.length()));
 
         }
-        
-        /**
-         *@return password 
-         */
         for (int i = 0; i < 8; i++) {
             password += psw[i];
         }

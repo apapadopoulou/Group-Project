@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
  */
 public class Checkers {
 	/**
-	 *This method validates email. 
+	 *This method checks the given email. 
 	 *@param email
 	 *@return pat.matcher(email).matches() or false
 	 */
@@ -25,7 +25,7 @@ public class Checkers {
     }
   
 	/** 
-	 *This method validates first name.
+	 *This method checks the given first name.
 	 *@param firstName 
 	 *@return firstName.matches("[A-Z][a-z]*")
 	 */
@@ -34,7 +34,7 @@ public class Checkers {
 	}
 	   
 	/**
-	 *This method validates last name.
+	 *This method checks the last name.
 	 *@param lastName 
 	 *@return lastName.matches("[A-Z][a-z]*")
 	 */
@@ -43,19 +43,13 @@ public class Checkers {
 	}
 
 	/**
-	 *This method validates phone number with specific ways.
+	 *This method checks the given phone number.
 	 *@param phoneNo 
 	 *@return true or false 
 	 */
 	public static boolean isValidPhoneNumber(String phoneNo) {
-		
-		 //Validate phone numbers of format "1234567890".
-		
 		if (phoneNo.matches("\\d{10}")) {
 			return true;
-			
-			 //validating phone number with -, . or spaces for example 210-96-13-432.
-			 
 		} else if(phoneNo.matches("\\d{3}[-\\.\\s]\\d{3}[-\\.\\s]\\d{4}")) {
 			return true;
 		} else {
@@ -64,7 +58,7 @@ public class Checkers {
 	}
 
 	/**
-	 *This method validates password.
+	 *This method checks the given password.
 	 *@param password
 	 *@return true or false 
 	 */
@@ -81,12 +75,13 @@ public class Checkers {
 	}
 		
 	/**
-	 *This method validates the event title (speficic titles).
+	 *This method checks the given event title,
+	 * which should be equal to the four event types the application supports.
 	 *@param type 
 	 *@return type 
 	 */
 	public static boolean isValidType(String type) {
-		return type == "appointment" || type == "meeting" || type == "main event";
+		return type == "appointment" || type == "meeting" || type == "main event" || type == "reminder";
 	}
 }
  

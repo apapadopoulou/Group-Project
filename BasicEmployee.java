@@ -93,6 +93,7 @@ public class BasicEmployee extends Employee {
 	  }
    
 	/** 
+	 * Returns the department field.
 	 *@return department 
 	 */
 	public Department getDepartment() {
@@ -111,6 +112,7 @@ public class BasicEmployee extends Employee {
 	}
 	
 	/** 
+	 * Returns the depId field.
 	 *@return department.getId() 
 	 */
 	public int getDepId() {
@@ -148,7 +150,7 @@ public class BasicEmployee extends Employee {
 	
     
     /**
-     * Gets the score.
+     * Returns the score field.
      *@return score
      */
 	public double getScore() {

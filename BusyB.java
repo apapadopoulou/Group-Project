@@ -17,14 +17,6 @@ public class BusyB {
 	    public void run() {
 	         WelcomeWindow welcomeWindow = new WelcomeWindow();
 	         welcomeWindow.setVisible(true);
-	         for (int i = 0; i < 100000; i++) { }
-	         try {
-	        	 Thread.sleep(5000);
-	         }
-	         catch (Exception ex) {
-	        	 System.out.println("An error occured! Please try again!");
-	         }
-	         welcomeWindow.dispose();
 		}
 	      });
     if (!args[0].equals("0")) {

@@ -150,11 +150,11 @@ public abstract class Employee {
     DBcon.updateEmployeeVar(tableName, "salary", salary, id);
   }
   
-  private void updateDailyProgram(Task task) {
+  public void updateDailyProgram(Task task) {
 	  calendar.get(0).addToDailyProgram(task);
   }
   
-  private void updateDailyProgram(Event event) {
+  public void updateDailyProgram(Event event) {
 	  searchDay(event.getEventDate()).addToDailyProgram(event);
   }
   

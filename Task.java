@@ -7,7 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-
+/**
+ *
+ * @author BusyB
+ *
+ */
 public class Task extends Program implements Comparable<Task>{
 
 	private String startDate;
@@ -134,7 +138,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 	
 	/**
-	 * Method that gets the dueDate
+	 * Returns the dueDate field
 	 * @return dueDate
 	 */
 	public String getDueDate() {
@@ -142,22 +146,30 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that sets the dueDate
+	 * Sets the dueDate field
 	 * @param dueDate
 	 */
 	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 		DBcon.updateTaskVar("dueDate", dueDate, getProgramID());
 	}
-        public boolean getDone(){
-            return done;
-        }
-        public void setDone(boolean done){
-            this.done = done;
-        }
+	/**
+	 * Returns the done field
+	 * @return done
+	 */
+    public boolean getDone(){
+    	return done;
+    }
+    /**
+     * Sets the done field
+     * @param done
+     */
+    public void setDone(boolean done){
+    	this.done = done;
+    }
 
 	/**
-	 * Method that gets the startDate
+	 * Returns the startDate field
 	 * @return startDate
 	 */
 	public String getStartDate() {
@@ -165,7 +177,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
   
 	/**
-	 * Method that sets a startDate and updates the Task
+	 * Sets a startDate and updates the Task
 	 * @param date
 	 */
 	public void setStartDate(String date) {
@@ -174,14 +186,14 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that gets the completionDate
+	 * Returns the completionDate field
 	 * @return completionDate
 	 */
 	public String getCompletionDate() {
 		return completionDate;
 	}
 	/**
-	 * Method that gets the status
+	 * Returns the tsk's status by its done field
 	 * @return done
 	 */
 	public boolean getStatus() {
@@ -202,7 +214,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
   
 	/**
-	 * Method that gets the empId
+	 * Returns the empId field
 	 * @return empId
 	 */
 	public String getEmpID() {
@@ -210,7 +222,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
   
 	/**
-	 * Method that gets the empIds list
+	 * Returns the empIds field
 	 * @return empIds
 	 */
 	public ArrayList<String> getEmpIDs() {
@@ -218,7 +230,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 	
 	/**
-	 * Method that gets if a task is a groupTask
+	 * Method that checks and returns if a task is a groupTask
 	 * @return isGroupTask
 	 */
 	public boolean getIsGroupTask() {
@@ -226,7 +238,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 	
 	/**
-	 * Method that sets the coompletionDate and updates the task
+	 * Sets the coompletionDate field and updates the task
 	 * @param completionDate
 	 */
 	public void setCompletionDate(String completionDate) {
@@ -235,7 +247,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that sets the description and updates the task
+	 * Sets the desc field and updates the task
 	 * @param desc
 	 */
 	public void setDesc(String desc) {
@@ -244,7 +256,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that sets the importance and updates the task
+	 * Sets the importance field and updates the task
 	 * @param importance
 	 */
 	public void setImportance(int importance) {
@@ -253,7 +265,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that sets the difficulty and updates the task
+	 * Sets the difficulty field and updates the task
 	 * @param difficulty
 	 */
 	public void setDifficulty(int difficulty) {
@@ -262,7 +274,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that gets the importance of a task
+	 * Returns the importance field
 	 * @return importance
 	 */
 	public int getImportance() {
@@ -270,7 +282,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that gets the description of a task
+	 * Returns the desc field
 	 * @return desc
 	 */
 	public String getDesc() {
@@ -278,7 +290,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that returns the difficulty of a task
+	 * Returns the difficulty field
 	 * @return difficulty
 	 */
 	public int getDifficulty() {
@@ -286,7 +298,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 	/**
-	 * Method that sets the score of a task
+	 * Sets the score field
 	 * @param score
 	 */
 	public void setScore(double score) {
@@ -294,7 +306,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 	
 	/**
-	 * Method that gets the score of a task
+	 * Returns the score field
 	 * @return score 
 	 */
 	public double getScore() {
@@ -302,7 +314,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 	
 	/**
-	 * Method that sets scores
+	 * Sets the scores field
 	 * @param scores
 	 */
 	public void setScores(double [] scores) {
@@ -310,7 +322,7 @@ public class Task extends Program implements Comparable<Task>{
 	}
 	
 	/**
-	 * Method that gets the scores
+	 * Returns the scores field
 	 * @return scores
 	 */
 	public double [] getScores() {
@@ -371,3 +383,6 @@ public class Task extends Program implements Comparable<Task>{
 	}
 
 }
+/**
+ * End of Task class
+*/

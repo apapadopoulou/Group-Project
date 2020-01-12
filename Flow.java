@@ -409,6 +409,7 @@ public static void dataEntry() {
             		 sc.nextLine();
             	 }
              }
+             System.out.println("Salary: ");
              while (run) {
           	   try {
           		   salary = sc.nextDouble();

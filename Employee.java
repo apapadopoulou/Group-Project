@@ -291,6 +291,16 @@ public abstract class Employee {
 	  }
 	  return total;
   }
+  public static double getAvgScore(){
+      double avg = 0;
+      for (Employee employee : Employee.employees) {
+          avg += employee.getScore();
+      }
+      if (Employee.employees.isEmpty())
+          return 0;
+      avg = avg / Employee.employees.size();
+      return avg;
+  }
 }
 /**
  * End of Employee class

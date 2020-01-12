@@ -309,11 +309,10 @@ public class Team extends javax.swing.JFrame {
             for (i = 0; i < department.getEmployeesOfDepartment().size(); i++){
                 String name = department.getEmployeesOfDepartment().get(i).getNameSurname();
                 double score = department.getEmployeesOfDepartment().get(i).getScore();
-                teamScore += score;
                 Object[] row = {name, String.valueOf(score)};
                 model.addRow(row);
             }
-            teamScore = teamScore / (i + 1);
+            teamScore = Department.departmentScore(department);
                     
         }
     }//GEN-LAST:event_OKButtonMouseClicked

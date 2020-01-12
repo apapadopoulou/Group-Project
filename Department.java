@@ -224,6 +224,19 @@ public class Department {
 	    }
 	  return null;
 	}
+        
+        public static double departmentScore(Department dept){
+            double avg = 0;
+            for (BasicEmployee employeesOfDepartment1 : dept.employeesOfDepartment) {
+                avg += employeesOfDepartment1.getScore();
+            }
+            avg += MiddleManager.searchMiddleManagerById(dept.getManagerId())
+                    .getScore();
+            if (dept.employeesOfDepartment.size() + 1 == 0)
+                return 0;
+            avg = avg / (dept.employeesOfDepartment.size() + 1 );
+            return avg;                
+        }
 }
 
 /**

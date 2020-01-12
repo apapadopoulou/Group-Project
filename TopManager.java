@@ -50,7 +50,7 @@ public class TopManager extends Employee{
 		employees.add(this);
 	}
 	/**
-	 * Method that searches a top manager by his name
+	 * Method that searches a top manager by his/her name in topManagers list and returns him/her if he/she exists
 	 * @param name
 	 * @return topManagers.get(i) or null
 	 */

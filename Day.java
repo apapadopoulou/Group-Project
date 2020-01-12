@@ -12,9 +12,9 @@ public class Day {
 	public static int counter = 1;
 	private String empID;
 	private int dayID;
-  private ArrayList<Program> dailyProgram = new ArrayList<Program>();
-  private String date;
-  private String d;
+	private ArrayList<Program> dailyProgram = new ArrayList<Program>();
+	private String date;
+	private String d;
 	private String mon;
 	private String y;
 	private static final String[] days 
@@ -35,6 +35,11 @@ public class Day {
 		            "2028", "2029", "2030", "2031", 
 		            "2032", "2033", "2034", "2035", 
 		            }; 
+	 /**
+	  * Constructor for class Day
+	  * @param date
+	  * @param empID
+	  */
   public Day(String date, String empID) {
 	dayID = counter++;
 	this.empID = empID;
@@ -93,102 +98,104 @@ public class Day {
     dailyProgram.add(p);
   }
   /**
-   *Gets the date.
+   *Returns the date field.
    *@return date 
    */
-public String getDate() {
-	return date;
+  public String getDate() {
+	  return date;
+  }
+  /**
+   *Sets the date.
+   *@param date 
+   */
+  public void setDate(String date) {
+	  this.date = date;
+  }
+  /**
+   *Gets the day.
+   *@return d 
+   */
+  public int getID() {
+	  return dayID;
+  }
+  public String getEmpID() {
+	  return empID;
+  }
+  public String getD() {
+	  return d;
+  }
+  /**
+   *Sets the day.
+   *@param d 
+   */
+  public void setD(String d) {
+	  this.d = d;
+  }
+  /**
+   *Gets the month.
+   *@return mon 
+   */
+  public String getMon() {
+	 return mon;
+  }
+  /**
+   *Sets the month.
+   *@param mon 
+   */
+  public void setMon(String mon) {
+	  this.mon = mon;
+  }
+  /**
+   * Gets the year.
+   * @return y
+   */
+  public String getY() {
+	  return y;
+  }
+  /**
+   * Sets the year.
+   * @param y
+   */
+  public void setY(String y) {
+	  this.y = y;
+  }
+  public static boolean leapYear(int year) {
+	  boolean leap = false;
+	  if (year % 4 == 0) {
+		  if (year % 100 == 0) {
+			  if (year % 400 == 0) {
+				  leap = true;
+			  }
+		  } else {
+			  	leap = true;
+		  	}
+	  }
+	  return leap;
+  }
+  /**
+   * Validates the date
+   * @param date
+   * @return true or false
+   */
+  public static boolean validDate(String date){
+	  int day = Integer.parseInt(date.substring(0, 2));
+	  int month = Integer.parseInt(date.substring(3, 5));
+	  int year = Integer.parseInt(date.substring(6));
+	  if(day > 28 && month == 2){
+		  if (Day.leapYear(year))
+			  return false;
+		  else {
+			  if (day > 29)
+				  return false;
+		  }    
+	  } else if (day > 30){
+		  if (month == 4 || month == 6 || month == 9 || month == 11){
+			  return false;
+		  }
+	  	}
+	  return true;    
+  }
 }
 /**
- *Sets the date.
- *@param date 
+ * End of Day class
  */
-public void setDate(String date) {
-	this.date = date;
-}
-/**
- *Gets the day.
- *@return d 
- */
-	public int getID() {
-		return dayID;
-	}
-	public String getEmpID() {
-		return empID;
-	}
-public String getD() {
-	return d;
-}
-/**
- *Sets the day.
- *@param d 
- */
-public void setD(String d) {
-	this.d = d;
-}
-/**
- *Gets the month.
- *@return mon 
- */
-public String getMon() {
-	return mon;
-}
-/**
- *Sets the month.
- *@param mon 
- */
-public void setMon(String mon) {
-	this.mon = mon;
-}
-/**
- * Gets the year.
- * @return y
- */
-public String getY() {
-	return y;
-}
-/**
- * Sets the year.
- * @param y
- */
-public void setY(String y) {
-	this.y = y;
-}
-public static boolean leapYear(int year) {
-		boolean leap = false;
-		if (year % 4 == 0) {
-			if (year % 100 == 0) {
-				if (year % 400 == 0) {
-					leap = true;
-				}
-			} else {
-				leap = true;
-			}
-		}
-		return leap;
-	}
-/**
- * Validates the date
- * @param date
- * @return true or false
- */
-public static boolean validDate(String date){
-    int day = Integer.parseInt(date.substring(0, 2));
-    int month = Integer.parseInt(date.substring(3, 5));
-    int year = Integer.parseInt(date.substring(6));
-    if(day > 28 && month == 2){
-        if (Day.leapYear(year))
-            return false;
-        else {
-            if (day > 29)
-                return false;
-        }    
-    } else if (day > 30){
-        if (month == 4 || month == 6 || month == 9 || month == 11){
-            return false;
-        }
-    }
-    return true;    
-}
-}
-//End of Day class.

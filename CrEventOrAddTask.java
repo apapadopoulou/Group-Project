@@ -215,7 +215,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         date1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         date1.setText("Date:");
 
-        days.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        days.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         days.setSelectedItem(null);
 
         slash2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -224,7 +224,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         slash1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         slash1.setText("/");
 
-        months.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        months.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         months.setSelectedItem(null
         );
 

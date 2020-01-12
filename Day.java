@@ -98,7 +98,7 @@ public class Day {
   *Adds to daily program.
   * @param p
   */
-  private void addToDailyProgram2(Program p) {
+  public void addToDailyProgram2(Program p) {
     dailyProgram.add(p);
   }
   

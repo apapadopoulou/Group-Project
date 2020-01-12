@@ -1252,7 +1252,7 @@ public class DBcon {
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
 			/* Executes the given statement that saves the object's. */
-			rs = stmt.executeQuery("SELECT eventID FROM BBAssignedToTask WHERE empID = '" + empID + "';");
+			rs = stmt.executeQuery("SELECT taskID FROM BBAssignedToTask WHERE empID = '" + empID + "';");
 			/* Does a loop for every row (object in this case) it finds. */
 			while (rs.next()) {
 				tempProgramIDs.add(rs.getInt("taskID"));

@@ -2,6 +2,7 @@
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.util.Calendar;
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 
 /*
@@ -27,6 +28,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         jLabel12.setVisible(false);
         departments.setVisible(false);
         jScrollPane1.setVisible(false);
+        groupButton();
     }
 
     public static String[] years() {
@@ -39,6 +41,15 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         return years;
     }
 
+    private void groupButton() {
+
+        ButtonGroup bg1 = new ButtonGroup();
+
+        bg1.add(basic);
+        bg1.add(middle);
+        bg1.add(top);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

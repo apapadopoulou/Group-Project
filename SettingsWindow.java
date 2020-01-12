@@ -273,12 +273,13 @@ public class SettingsWindow extends javax.swing.JFrame {
 
     private void change_pActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_pActionPerformed
         // TODO add your handling code here:
-        new ChangeEmailWindow(emp).setVisible(true);
+    	 new ChangePasswordWindow(emp).setVisible(true);
     }//GEN-LAST:event_change_pActionPerformed
 
     private void change_eActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_eActionPerformed
         // TODO add your handling code here:
         new ChangePasswordWindow(emp).setVisible(true);
+        new ChangeEmailWindow(emp).setVisible(true);
     }//GEN-LAST:event_change_eActionPerformed
 
 

@@ -236,7 +236,7 @@ public class LoginWindow extends javax.swing.JFrame {
          String email = emailField.getText();
          String password = passwordField.getText();
          int n;
-         Account acc = Account.checkCredentials(email, password);
+         final Account acc = Account.checkCredentials(email, password);
          if ( acc == null){
              WrongInput wi = new WrongInput();
              wi.setVisible(true);

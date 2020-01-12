@@ -1,8 +1,11 @@
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.JFrame;
 
 /*
@@ -19,7 +22,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
     /**
      * Creates new form AddEmployeeWindow.
      */
-    private String[] years = years();
+    private final String[] years = years();
 
     public AddEmployeeWindow() {
         initComponents();
@@ -87,6 +90,10 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         departments = new javax.swing.JList();
+        DefaultListModel model = new DefaultListModel();
+        for (Department department : Department.departments) {
+            model.addElement(department.getName());
+        }
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 222, 89));
@@ -100,6 +107,12 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         add_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         add_button.setText("Add");
         add_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_buttonMouseClicked(evt);
+            }
+        });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/busyb.jpg"))); // NOI18N
 
@@ -127,12 +140,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
 
         name.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         name.setSelectionColor(new java.awt.Color(0, 0, 0));
-        name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameActionPerformed(evt);
-            }
-        });
-
+       
         surname.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         surname.setSelectionColor(new java.awt.Color(0, 0, 0));
 
@@ -170,6 +178,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         basic.setText("Basic Employee");
         basic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         basic.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 basicMouseClicked(evt);
             }
@@ -178,6 +187,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         middle.setText("Middle Manager");
         middle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         middle.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 middleMouseClicked(evt);
             }
@@ -187,6 +197,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         top.setText("Top Manager");
         top.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         top.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 topMouseClicked(evt);
             }
@@ -195,11 +206,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         jLabel12.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel12.setText("Department:");
 
-        departments.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        departments.setModel(model);
         jScrollPane1.setViewportView(departments);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -325,13 +332,11 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameActionPerformed
-
+   
     private void basicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_basicMouseClicked
         // TODO add your handling code here:
         jLabel12.setVisible(true);
+        departments.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
         departments.setVisible(true);
         jScrollPane1.setVisible(true);
     }//GEN-LAST:event_basicMouseClicked
@@ -339,6 +344,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
     private void middleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_middleMouseClicked
         // TODO add your handling code here:
         jLabel12.setVisible(true);
+        departments.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         departments.setVisible(true);
         jScrollPane1.setVisible(true);
     }//GEN-LAST:event_middleMouseClicked
@@ -349,6 +355,69 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         departments.setVisible(false);
         jScrollPane1.setVisible(false);
     }//GEN-LAST:event_topMouseClicked
+    private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {
+        warning.setVisible(false);
+        String birthdate = day.getSelectedItem().toString() + "/" + 
+                        month.getSelectedItem().toString() + "/" +
+                        birthyear.getSelectedItem().toString();
+        if (!Checkers.isValidFirstName(name.getText())){
+            warning.setText("Please enter a valid name!");
+            warning.setVisible(true);
+            return;
+        } 
+        if (!Checkers.isValidLastName(surname.getText())){
+            warning.setText("Please enter a valid surname!");
+            warning.setVisible(true);
+            return;
+        } 
+        if (!Checkers.isValidPhoneNumber(phone.getText())){
+            warning.setText("Please enter a valid phonenumber!");
+            warning.setVisible(true);
+            return;
+        }
+        if (!Checkers.isValidEmail(email.getText())){
+            warning.setText("Please enter a valid email!");
+            warning.setVisible(true);   
+            return;
+        }
+        if (!Day.validDate(birthdate)) {
+            warning.setText("Please enter a valid birthdate!");
+            warning.setVisible(true);
+            return;
+        }
+        try {
+            double sal = Double.parseDouble(salary.getText());
+        } catch (NumberFormatException e){
+            warning.setText("Please enter a valid salary");
+            warning.setVisible(true);
+            return;
+        }
+        String empName = name.getText();
+        String empSurname = surname.getText();
+        String empPhonenumber = phone.getText();
+        String empEmail = email.getText();
+        double empSal = Double.parseDouble(salary.getText());
+        if (basic.isSelected()){
+           String dep_name = departments.getSelectedValue().toString();
+           Department d = Department.searchDepartmentByName(dep_name);
+           new BasicEmployee(empName, empSurname, empPhonenumber, empEmail, 
+                   birthdate, d.getId(), empSal);
+        } else if (middle.isSelected()){
+            MiddleManager middleManager = new MiddleManager(empName, empSurname, 
+                    empPhonenumber, empEmail, birthdate, empSal);
+            Object[] dep = departments.getSelectedValues();
+            for (Object dep1 : dep) {
+                Department.searchDepartmentByName(dep1.toString())
+                        .setManagerId(middleManager.getID());                
+            }                
+        } else if(top.isSelected()){
+            new TopManager(empName, empSurname, 
+                    empPhonenumber, empEmail, birthdate, empSal);
+        } else {
+            warning.setText("Please select type of employee!");
+            warning.setVisible(true);
+        }
+    }
 
     /**
      * @param args the command line arguments

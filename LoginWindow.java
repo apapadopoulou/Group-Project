@@ -37,7 +37,7 @@ public class LoginWindow extends javax.swing.JFrame {
       */                       
   
     private void initComponents() {
-        /** The font behind the username and the pasword fiels. */
+        /** The font behind the username and the pasword fields. */
         lowerBackground = new javax.swing.JPanel();
         /** Label for the word 'password'.*/
         textPassword = new javax.swing.JLabel();

@@ -5,6 +5,8 @@
 import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JFrame;
 
@@ -263,6 +265,11 @@ public class LoginWindow extends javax.swing.JFrame {
                 new FirstWindow(acc.getEmployee()).setVisible(true);
                 }
             });
+                Date date = new Date();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                String strDate = formatter.format(date);
+                acc.getEmployee().setCalendar(Day.createCalendar(acc
+                		.getEmployee().getID(), strDate));
            this.dispose();
             
             }

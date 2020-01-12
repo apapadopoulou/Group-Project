@@ -132,9 +132,9 @@ public final class FirstWindow extends javax.swing.JFrame {
         String strDate = formatter.format(date);
         DefaultListModel model1 = new DefaultListModel();
         ArrayList<Task> tasks = new ArrayList<Task>();
-        for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
-            if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Task)
-            tasks.add((Task) emp.searchDay(strDate).getDailyProgram().get(i));
+        for (int i = 0; i < emp.getCalendar().get(0).getDailyProgram().size(); i++){
+            if (emp.getCalendar().get(0).getDailyProgram().get(i) instanceof Task)
+            tasks.add((Task) emp.getCalendar().get(0).getDailyProgram().get(i));
         }
         if (tasks.isEmpty()){
             model1.addElement("No Tasks Or Remider for Today");
@@ -150,10 +150,10 @@ public final class FirstWindow extends javax.swing.JFrame {
         eventsList2 = new javax.swing.JList();        
         ArrayList<String> eventsList = new ArrayList<String>();
         DefaultListModel model2 = new DefaultListModel();
-        if (!emp.searchDay(strDate).getDailyProgram().isEmpty()){
-            for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
-                if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Event){
-                    Event ev = (Event) emp.searchDay(strDate).getDailyProgram().get(i);
+        if (!emp.getCalendar().get(0).getDailyProgram().isEmpty()){
+            for (int i = 0; i < emp.getCalendar().get(0).getDailyProgram().size(); i++){
+                if (emp.getCalendar().get(0).getDailyProgram().get(i) instanceof Event){
+                    Event ev = (Event) emp.getCalendar().get(0).getDailyProgram().get(i);
                     eventsList.add(ev.toString());
                 }
             }
@@ -504,9 +504,9 @@ public final class FirstWindow extends javax.swing.JFrame {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = formatter.format(date);
         ArrayList<Task> tasks = new ArrayList<Task>();
-        for (int i = 0; i < emp.searchDay(strDate).getDailyProgram().size(); i++){
-            if (emp.searchDay(strDate).getDailyProgram().get(i) instanceof Task)
-                tasks.add((Task) emp.searchDay(strDate).getDailyProgram().get(i));
+        for (int i = 0; i < emp.getCalendar().get(0).getDailyProgram().size(); i++){
+            if (emp.getCalendar().get(0).getDailyProgram().get(i) instanceof Task)
+                tasks.add((Task) emp.getCalendar().get(0).getDailyProgram().get(i));
         }
         DefaultListModel model = new DefaultListModel();
         if (tasks.isEmpty()){

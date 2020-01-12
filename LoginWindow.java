@@ -249,6 +249,11 @@ public class LoginWindow extends javax.swing.JFrame {
              passwordField.setText("");
              emailField.requestFocus();
          } else {
+        	Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String strDate = formatter.format(date);
+            acc.getEmployee().setCalendar(Day.createCalendar(acc
+             		.getEmployee().getID(), strDate));
             n = Account.typeOfEmployee(acc.getEmployee());
             //I dont understand this. Please explain it.
             acc.setHasDefaultPass(acc.getHasDefaultPass());
@@ -265,11 +270,6 @@ public class LoginWindow extends javax.swing.JFrame {
                 new FirstWindow(acc.getEmployee()).setVisible(true);
                 }
             });
-                Date date = new Date();
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                String strDate = formatter.format(date);
-                acc.getEmployee().setCalendar(Day.createCalendar(acc
-                		.getEmployee().getID(), strDate));
            this.dispose();
             
             }

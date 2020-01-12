@@ -131,6 +131,7 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
         DBcon.updateAccountVar("password", password, getEmployee().getID());
+        setHasDefaultPass(1);
     }
    
    /**

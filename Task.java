@@ -50,6 +50,7 @@ public class Task extends Program implements Comparable<Task>{
 		tasks.add(this);
 		DBcon.saveTask(this);
 		DBcon.AssignToTask(getProgramID(), empId);
+		Employee.searchEmployeeById(empId).updateDailyProgram(this);
 	}
 	
 	/**
@@ -102,6 +103,7 @@ public class Task extends Program implements Comparable<Task>{
 		DBcon.saveTask(this);
 		for (int i = 0; i < empIds.size(); i++) {
 			DBcon.AssignToTask(getProgramID(), empIds.get(i));
+			Employee.searchEmployeeById(empIds.get(i)).updateDailyProgram(this);
 		}
 	}
 	

@@ -36,6 +36,7 @@ public class Event extends Program implements Comparable<Event>{
     	this.time= time;
     	DBcon.saveEvent(this);
     	for (int i = 0; i < empIDs.size(); i++) {
+    		Employee.searchEmployeeById(empIDs.get(i)).updateDailyProgram(this);
     		DBcon.AssignToEvent(getProgramID(), empIDs.get(i));
     	}
     }

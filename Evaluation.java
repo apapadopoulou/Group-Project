@@ -328,7 +328,7 @@ public class Evaluation {
 			percentageDiff = completionDiffMins / startDiffMins;
 			//Returns the percentage difference.
 			return percentageDiff;
-		} catch(ParseException ex) {
+		} catch (ParseException ex) {
 			System.out.println("Parse Exception: " + ex.getMessage());
 		}
 		return percentageDiff;

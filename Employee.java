@@ -150,6 +150,14 @@ public abstract class Employee {
     DBcon.updateEmployeeVar(tableName, "salary", salary, id);
   }
   
+  private void updateDailyProgram(Task task) {
+	  calendar.get(0).addToDailyProgram2(task);
+  }
+  
+  private void updateDailyProgram(Event event) {
+	  searchDay(event.getEventDate()).addToDailyProgram2(event);
+  }
+  
   /**
    * Searches calendar field by day and returns the calendar object
    * @param date
@@ -214,9 +222,7 @@ public abstract class Employee {
           phonenumber, email, id);
       return str_2;
   }
-  //public abstract String getJobTitle();
-
-  // Returns the employee we searched for
+  
   /**
    * Searches employees list by id and returns the employee if he/she exists
    * @param id

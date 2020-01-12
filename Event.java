@@ -84,7 +84,7 @@ public class Event extends Program implements Comparable<Event>{
   }
   
   /**
-   * Gets the description
+   * Returns an event's description
    * @return description
    */
   public String getDesc() {
@@ -101,7 +101,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Gets the event date
+   * Returns an event's date
    * @return date
    */
   public String getEventDate() {
@@ -118,7 +118,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Gets EmpIDsInEvent
+   * Returns the EmpIDsInEvent field
    * @return empIDsInEvent
    */
   public ArrayList<String> getEmpIDsInEvent() {
@@ -126,7 +126,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Sets EmpIDsInEvent
+   * Sets the EmpIDsInEvent field
    * @param employeesInEvent
    */
   public void setEmpIDsInEvent(ArrayList<String> employeesInEvent) {
@@ -134,7 +134,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Gets the type
+   * Returns the type field
    * @return type
    */
   public String getType() {
@@ -142,7 +142,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Sets the type
+   * Sets the type field
    * @param type
    */
   public void setType(String type) {
@@ -151,7 +151,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Gets the title
+   * Returns the title field
    * @return title
    */
   public String getTitle() {
@@ -159,7 +159,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Sets the title and updates the event with this title
+   * Sets the title field and updates the event with this title
    * @param title
    */
   public void setTitle(String title) {
@@ -168,7 +168,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Gets the event time
+   * Returns the time field
    * @return time
    */
   public String getEventTime() {
@@ -176,7 +176,7 @@ public class Event extends Program implements Comparable<Event>{
   }
 
   /**
-   * Sets the event time
+   * Sets the time field
    * @param time
    */
   public void setEventTime(String time) {
@@ -214,3 +214,6 @@ public class Event extends Program implements Comparable<Event>{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
+/**
+ * End of Event class
+*/

@@ -83,10 +83,20 @@ public class Team extends javax.swing.JFrame {
         home = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
+         String [] col = {"Employee", "Score"};
+        DefaultTableModel model = new DefaultTableModel(col, 0){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               //all cells false
+               return false;
+            }
+        };
+;
+        table = new javax.swing.JTable(model);
         JTableHeader Theader = table.getTableHeader();
         Theader.setFont(new Font("Arial",Font.BOLD, 18));
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
         int i;
         if (numberOfdepartments == 1) {
             for (i = 0; i < mm.getManagingDepartments().get(0).getEmployeesOfDepartment().size(); i++){
@@ -138,32 +148,7 @@ public class Team extends javax.swing.JFrame {
         jLabel2.setText("Team");
 
         table.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Employee", "Score"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Double.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
             table.getColumnModel().getColumn(0).setResizable(false);

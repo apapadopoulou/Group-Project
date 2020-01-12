@@ -182,10 +182,10 @@ public class VacationRequests extends javax.swing.JFrame {
         comment_field.setText("Optional");
        
         days.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        days.setText("days");
+        days.setText("");
 
         comments.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        comments.setText("com");
+        comments.setText("");
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel12.setText("/");
@@ -194,13 +194,13 @@ public class VacationRequests extends javax.swing.JFrame {
         jLabel13.setText("/");
 
         day.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        day.setText("day");
+        day.setText("");
 
         month.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        month.setText("month");
+        month.setText("");
 
         year.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        year.setText("year");
+        year.setText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

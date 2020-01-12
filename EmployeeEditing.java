@@ -236,11 +236,12 @@ public class EmployeeEditing extends javax.swing.JFrame {
 
     private void delete_buttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
         // TODO add your handling code here:
-        if (employees_list.getSelectedValue() == null) {
+        if (employees_list.getSelectedIndex() == -1) {
             warning.setVisible(true);
         } else {
             warning.setVisible(false);
-            String name = String.valueOf(employees_list.getSelectedValue());
+            String name = String.valueOf(employees_list.getModel().getElementAt(employees_list
+            		.getSelectedIndex()));
             final Employee e = Employee.searchEmployeeByName2(name);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {                    
@@ -261,10 +262,11 @@ public class EmployeeEditing extends javax.swing.JFrame {
 
     private void manage_buttonMouseClicked(java.awt.event.MouseEvent evt) {
         warning.setVisible(false);        
-        if (employees_list.getSelectedValue() == null)
+        if (employees_list.getSelectedIndex() == -1)
             warning.setVisible(true);
         else {
-            String employeeName = String.valueOf(employees_list.getSelectedValue());
+            String employeeName = String.valueOf(employees_list.getModel().getElementAt(employees_list
+            		.getSelectedIndex()));
             final Employee emp = Employee.searchEmployeeByName2(employeeName);
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {

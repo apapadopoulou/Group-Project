@@ -12,9 +12,12 @@ public class Request {
     private String desc;
     private String type;
     private String empId;
+    private int requestID;
+    public static int counter = 1;
     public static ArrayList<Request> vacRequests = new ArrayList<Request>();
    /**
-    * Constructor of class Request
+    * Basic constructor of class Request.
+    * Used to create new Request objects.
     * @param date
     * @param days
     * @param desc
@@ -22,13 +25,42 @@ public class Request {
     */
     public Request(String date, int days, String desc, String empId) {
     	accepted = false;
-	this.date = date;
-	this.days = days;
-	this.desc = desc;
-	this.empId = empId;
-	vacRequests.add(this);	
+    	this.date = date;
+    	this.days = days;
+    	this.desc = desc;
+    	this.empId = empId;
+    	requestID = counter++;
+    	vacRequests.add(this);
+    	DBcon.saveRequest(this);
     }
     
+    /**
+     * Dastabase constructor of class Request.
+     * Used to create Request objects that are loaded from the database.
+     * @param date
+     * @param days
+     * @param desc
+     * @param empId
+     */
+     public Request(String date, int days, String desc, String empId, int accepted, int requestID) {
+    	 if (accepted == 0) {
+    		 this.accepted = false; 
+    	 } else if (accepted == 1) {
+    		 this.accepted = true;
+    	 }
+    	 this.date = date;
+    	 this.days = days;
+    	 this.desc = desc;
+    	 this.empId = empId;
+    	 requestID = counter++;
+    	 vacRequests.add(this);
+    	 DBcon.saveRequest(this);
+     }
+    
+     public int getRequestID(){
+    	 return requestID;
+     }
+     
     /**
      *Returns the accepted field
      * @return accepted

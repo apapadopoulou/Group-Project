@@ -156,15 +156,12 @@ public abstract class Employee {
    * @return calendar.get(i) or calendar.get(calendar.size()-1)
    */
   public Day searchDay(String date) {
-	  if (!calendar.isEmpty()) {
 		  for (int i = 0; i < calendar.size(); i++) {
 			  if (calendar.get(i).getDate().equals(date)) {
 				  return calendar.get(i);
 			  }
 	 	}
-	  }
-	  calendar.add(new Day(date));
-	  return calendar.get(calendar.size()-1);
+	  return null;
   }
 
   /**

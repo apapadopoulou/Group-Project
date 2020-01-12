@@ -1258,7 +1258,7 @@ public class DBcon {
 				tempProgramIDs.add(rs.getInt("eventID"));
 			}
 			for (int i = 0; i < tempProgramIDs.size(); i++) {
-				rs = stmt.executeQuery("SELECT taskID FROM BBTask WHERE taskID = " + tempProgramIDs.get(i) + ", AND completionDate = 'NULL';");
+				rs = stmt.executeQuery("SELECT taskID FROM BBTask WHERE taskID = " + tempProgramIDs.get(i) + ", AND completionDate = 'null';");
 				/* Does a loop for every row (object in this case) it finds. */
 				while (rs.next()) {
 					programIDs.add(rs.getInt("taskID"));

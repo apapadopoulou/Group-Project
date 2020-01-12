@@ -311,20 +311,26 @@ public class Evaluation {
 	 * @throws ParseException
 	 */
 	public static double calculateDateDiff(String stDate, String dDate, String comDate) throws ParseException {
-		Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(stDate);
-		Date dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dDate);
-		Date completionDate = new SimpleDateFormat("dd/MM/yyyy").parse(comDate);
-		//Calculates the difference between DueDate and startDate in milliseconds.
-		long startDiff = dueDate.getTime() - startDate.getTime();
-		//Calculates the difference between dueDate and startDate in minutes.
-		long startDiffMins = startDiff / (60 * 1000) % 60;
-		//Calculates the difference between the completion date and the due date.
-		long completionDiff = dueDate.getTime() - completionDate.getTime();
-		//Calculates the completion time difference in minutes.
-		long completionDiffMins =completionDiff / (60 * 1000) % 60;
-		// Calculates the percentage difference between total time to complete the task and completion time.
-		double percentageDiff = completionDiffMins / startDiffMins;
-		//Returns the percentage difference.
+		double percentageDiff = -1;
+		try {
+			Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(stDate);
+			Date dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dDate);
+			Date completionDate = new SimpleDateFormat("dd/MM/yyyy").parse(comDate);
+			//Calculates the difference between DueDate and startDate in milliseconds.
+			long startDiff = dueDate.getTime() - startDate.getTime();
+			//Calculates the difference between dueDate and startDate in minutes.
+			long startDiffMins = startDiff / (60 * 1000) % 60;
+			//Calculates the difference between the completion date and the due date.
+			long completionDiff = dueDate.getTime() - completionDate.getTime();
+			//Calculates the completion time difference in minutes.
+			long completionDiffMins =completionDiff / (60 * 1000) % 60;
+			// Calculates the percentage difference between total time to complete the task and completion time.
+			percentageDiff = completionDiffMins / startDiffMins;
+			//Returns the percentage difference.
+			return percentageDiff;
+		} catch(ParseException ex) {
+			System.out.println("Parse Exception: " + ex.getMessage());
+		}
 		return percentageDiff;
 	}
 }

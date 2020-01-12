@@ -132,14 +132,14 @@ public final class FirstWindow extends javax.swing.JFrame {
         String strDate = formatter.format(date);
         DefaultListModel model1 = new DefaultListModel();
         ArrayList<Task> tasks = new ArrayList<Task>();
-        for (int i = 0; i < emp.getCalendar().get(0).getDailyProgram().size(); i++){
-            if (emp.getCalendar().get(0).getDailyProgram().get(i) instanceof Task)
-            tasks.add((Task) emp.getCalendar().get(0).getDailyProgram().get(i));
-        }
-        if (tasks.isEmpty()){
-            model1.addElement("No Tasks Or Remider for Today");
-        } else {
-            tasks = Task.sortByDate(tasks);
+        if (emp.getCalendar().get(0).getDailyProgram().isEmpty())
+        	 model1.addElement("No Tasks Or Remider for Today");
+        else {
+	        for (int i = 0; i < emp.getCalendar().get(0).getDailyProgram().size(); i++){
+	            if (emp.getCalendar().get(0).getDailyProgram().get(i) instanceof Task)
+	            tasks.add((Task) emp.getCalendar().get(0).getDailyProgram().get(i));
+	        }
+	                    tasks = Task.sortByDate(tasks);
            for (Task task : tasks) {
                model1.addElement(task.toString());
            }

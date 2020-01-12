@@ -56,14 +56,14 @@ public abstract class Program {
 	
 	/*current_date = calendar.get(Calendar.DATE)+"/"+calendar.get(Calendar.MONTH)+"/"+calendar.get(Calendar.YEAR); na to tsekaroume an xreiazetai kapou*/
 	/**
-	 * Method that sets a date
+	 * Sets the date field
 	 * @param date
 	 */
 	public void setDate(String date) {
 		this.date=date;
 	}
 	/**
-	 * Method that gets a date
+	 * Gets the date field
 	 * @return date
 	 */
 	public String getDate() {
@@ -71,7 +71,7 @@ public abstract class Program {
 	}
 
 	/**
-	 * Method that gets a programID
+	 * Method that gets the programID field
 	 * @return programID
 	 */
 	public int getProgramID() {

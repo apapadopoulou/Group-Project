@@ -85,7 +85,9 @@ public class Checkers {
 	}
 }
  
- //End of Checkers class. 
+ /**
+  * End of Checkers class
+  */
  
 
 

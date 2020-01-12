@@ -50,9 +50,8 @@ public class MiddleManager extends Employee {
 	}
 
 	/**
-	 * Returns the managing departments.
 	 * Searches for every department that has the same managerId
-	 * with the managerId of the object that called the method
+	 * with the managerId of the object that called the method and returns it
 	 * @return departments
 	 */
 	public ArrayList<Department> getManagingDepartments() {
@@ -68,7 +67,7 @@ public class MiddleManager extends Employee {
 	}
 	
 	/**
-	 * Sets ManagingDepartments
+	 * Sets the managingDepartments field
 	 * @param managingDepartments
 	 */
 	public void setManagingDepartments(ArrayList<Department> managingDepartments) {
@@ -94,7 +93,7 @@ public class MiddleManager extends Employee {
     }
 
     /**
-     * Method that searches a Middle Manager by his name
+     * Method that searches a middle manager by his/her name in middleManagers list and returns him/her if he/she exists
      * @param name
      * @return middleManagers.get(i) or null
      */
@@ -123,7 +122,7 @@ public class MiddleManager extends Employee {
 	}
 
 	/**
-	 * Method that searches a middle manager by his id
+	 * Method that searches a middle manager by his/her id in middleManagers list and returns him/her if he/she exists
 	 * @param id
 	 * @return ,iddleManagers.get(i) or null
 	 */
@@ -137,7 +136,7 @@ public class MiddleManager extends Employee {
 	}
 
 	/**
-	 * Method that prints the departments that are manager by a certain middle manager
+	 * Method that prints the departments that are managed by a certain middle manager
 	 * @param mm
 	 */
 	public static void showManagingDepartments(MiddleManager mm) {
@@ -171,3 +170,6 @@ public class MiddleManager extends Employee {
 	}
   }
 }
+/**
+ * End of MiddleManager class
+*/

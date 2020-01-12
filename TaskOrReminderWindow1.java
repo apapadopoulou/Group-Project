@@ -176,20 +176,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         grouptask.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         grouptask.setText("  Group Task");
         grouptask.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        grouptask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                grouptaskActionPerformed(evt);
-            }
-        });
 
         personaltask.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         personaltask.setText("  Personal Task");
         personaltask.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        personaltask.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                personaltaskActionPerformed(evt);
-            }
-        });
 
         reminder.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         reminder.setText("  Reminder");

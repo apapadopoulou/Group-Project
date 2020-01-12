@@ -150,15 +150,17 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         email.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
 
         day.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        day.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
+        day.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
         );
+        day.setSelectedIndex(-1);
         day.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel10.setText("/");
 
         month.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        month.setSelectedIndex(-1);
         month.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -166,6 +168,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
 
         birthyear.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         birthyear.setModel(new javax.swing.DefaultComboBoxModel(years));
+        birthyear.setSelectedIndex(-1);
         birthyear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N

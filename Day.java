@@ -71,7 +71,6 @@ public class Day {
     	date = null;
     }
   }
-  
 /**
  *Returns the daily program.
  *@return daily program
@@ -86,7 +85,6 @@ public class Day {
  	public void setDailyProgram(ArrayList<Program> dailyProgram) {
  		this.dailyProgram = dailyProgram;
     }
-  
  /**
   *Adds to daily program.
   * @param p
@@ -112,15 +110,12 @@ public void setDate(String date) {
  *Gets the day.
  *@return d 
  */
-
 	public int getID() {
 		return dayID;
 	}
-	
 	public String getEmpID() {
 		return empID;
 	}
-	
 public String getD() {
 	return d;
 }

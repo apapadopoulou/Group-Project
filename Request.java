@@ -30,20 +30,28 @@ public class Request {
     }
     
     /**
-     * Method that gets the comments
-     * @return comments
+     *Returns the accepted field
+     * @return accepted
      */
     public boolean isAccepted(){
         return accepted;
     }
+    /**
+     * Sets the accepted field
+     * @param accepted
+     */
     public void setAccepted(boolean accepted){
         this.accepted = accepted;
     }
+    /**
+     * Returns the comments field
+     * @return
+     */
     public String getComments(){
         return comments;
     }
     /**
-     * Method that sets the comments
+     * Sets the comments field
      * @param comments
      */
     public void setComments(String comments){
@@ -51,7 +59,7 @@ public class Request {
     }
 
     /**
-     * Method that returns the type
+     * Returns the type field
      * @return type
      */
     public String getType() {
@@ -59,7 +67,7 @@ public class Request {
     }
 
     /**
-     * Method that sets the type
+     * Sets the type field
      * @param type
      */
 	public void setType(String type) {
@@ -67,7 +75,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that gets the empId
+	 * Returns the empId field
 	 * @return empId
 	 */
 	public String getEmpId() {
@@ -75,7 +83,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that sets the empID
+	 * Sets the empID field
 	 * @param empId
 	 */
 	public void setEmpId(String empId) {
@@ -83,7 +91,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that gets vacRequests
+	 * Returns the vacRequests field
 	 * @return vacRequests
 	 */
 	public static ArrayList<Request> getVacRequests() {
@@ -91,7 +99,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that sets the vacRequests
+	 * Sets the vacRequests field
 	 * @param vacRequests
 	 */
 	public static void setVacRequests(ArrayList<Request> vacRequests) {
@@ -99,7 +107,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that gets the date
+	 * Returns the date field
 	 * @return date
 	 */
 	public String getDate() {
@@ -107,7 +115,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that sets the date
+	 * Sets the date field
 	 * @param date
 	 */
 	public void setDate(String date) {
@@ -115,7 +123,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that gets the days
+	 * Returns the days field
 	 * @return days
 	 */
 	public int getDays() {
@@ -123,7 +131,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that sets the days
+	 * Sets the days field
 	 * @param days
 	 */
 	public void setDays(int days) {
@@ -131,7 +139,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that gets the description
+	 * Returns the desc field
 	 * @return desc
 	 */
 	public String getDesc() {
@@ -139,7 +147,7 @@ public class Request {
 	}
 
 	/**
-	 * Method that sets the decription
+	 * Sets the desc field
 	 * @param desc
 	 */
 	public void setDesc(String desc) {
@@ -158,3 +166,6 @@ public class Request {
 		return null;
 	}
 }
+/**
+ * End of Request class
+*/

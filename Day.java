@@ -14,8 +14,17 @@ public class Day {
 	private int dayID;
 	private ArrayList<Program> dailyProgram = new ArrayList<Program>();
 	private String date;
+	/**
+	 * d field represents a day
+	 */
 	private String d;
+	/**
+	 * mon field represents a month
+	 */
 	private String mon;
+	/**
+	 * y field represents a year
+	 */
 	private String y;
 	private static final String[] days 
 	=	{"01", "02", "03", "04", "05", 
@@ -105,60 +114,73 @@ public class Day {
 	  return date;
   }
   /**
-   *Sets the date.
+   *Sets the date field.
    *@param date 
    */
   public void setDate(String date) {
 	  this.date = date;
   }
   /**
-   *Gets the day.
-   *@return d 
+   *Gets the dayID field.
+   *@return dayID
    */
   public int getID() {
 	  return dayID;
   }
+  /**
+   * Returns the empID field
+   * @return empID
+   */
   public String getEmpID() {
 	  return empID;
   }
+  /**
+   * Returns the d field
+   * @return d
+   */
   public String getD() {
 	  return d;
   }
   /**
-   *Sets the day.
+   *Sets the d field.
    *@param d 
    */
   public void setD(String d) {
 	  this.d = d;
   }
   /**
-   *Gets the month.
+   *Returns the mon field.
    *@return mon 
    */
   public String getMon() {
 	 return mon;
   }
   /**
-   *Sets the month.
+   *Sets the mon field.
    *@param mon 
    */
   public void setMon(String mon) {
 	  this.mon = mon;
   }
   /**
-   * Gets the year.
+   * Returns the y field.
    * @return y
    */
   public String getY() {
 	  return y;
   }
   /**
-   * Sets the year.
+   * Sets the y field.
    * @param y
    */
   public void setY(String y) {
 	  this.y = y;
   }
+  /**
+   * Checks if a year is leap
+   * @param year
+   * @return leap
+   */
   public static boolean leapYear(int year) {
 	  boolean leap = false;
 	  if (year % 4 == 0) {
@@ -173,7 +195,7 @@ public class Day {
 	  return leap;
   }
   /**
-   * Validates the date
+   * Checks if a date is valid
    * @param date
    * @return true or false
    */

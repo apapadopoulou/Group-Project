@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
  */
 public class Checkers {
 	/**
-	 *This method checks the given email. 
+	 *This method checks if the given email is valid. 
 	 *@param email
 	 *@return pat.matcher(email).matches() or false
 	 */
@@ -25,7 +25,7 @@ public class Checkers {
     }
   
 	/** 
-	 *This method checks the given first name.
+	 *This method checks if the given first name is valid.
 	 *@param firstName 
 	 *@return firstName.matches("[A-Z][a-z]*")
 	 */
@@ -34,7 +34,7 @@ public class Checkers {
 	}
 	   
 	/**
-	 *This method checks the last name.
+	 *This method checks if the last name is valid.
 	 *@param lastName 
 	 *@return lastName.matches("[A-Z][a-z]*")
 	 */
@@ -43,7 +43,7 @@ public class Checkers {
 	}
 
 	/**
-	 *This method checks the given phone number.
+	 *This method checks if the given phone number is valid.
 	 *@param phoneNo 
 	 *@return true or false 
 	 */
@@ -58,7 +58,7 @@ public class Checkers {
 	}
 
 	/**
-	 *This method checks the given password.
+	 *This method checks if the given password is valid.
 	 *@param password
 	 *@return true or false 
 	 */
@@ -76,7 +76,7 @@ public class Checkers {
 		
 	/**
 	 *This method checks the given event title,
-	 * which should be equal to the four event types the application supports.
+	 * which should be equal to one of the four event types the application supports.
 	 *@param type 
 	 *@return type 
 	 */

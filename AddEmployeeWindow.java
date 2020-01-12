@@ -163,23 +163,12 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
                 basicMouseClicked(evt);
             }
         });
-        basic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                basicActionPerformed(evt);
-            }
-        });
-
         middle.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         middle.setText("Middle Manager");
         middle.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         middle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 middleMouseClicked(evt);
-            }
-        });
-        middle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                middleActionPerformed(evt);
             }
         });
 
@@ -189,11 +178,6 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         top.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 topMouseClicked(evt);
-            }
-        });
-        top.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                topActionPerformed(evt);
             }
         });
 

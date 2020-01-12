@@ -133,7 +133,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         DefaultListModel model1 = new DefaultListModel();
         ArrayList<Task> tasks = new ArrayList<Task>();
         if (emp.getCalendar().get(0).getDailyProgram().isEmpty())
-        	 model1.addElement("No Tasks Or Remider for Today");
+        	 model1.addElement("No Tasks for Today");
         else {
 	        for (int i = 0; i < emp.getCalendar().get(0).getDailyProgram().size(); i++){
 	            if (emp.getCalendar().get(0).getDailyProgram().get(i) instanceof Task)
@@ -161,7 +161,7 @@ public final class FirstWindow extends javax.swing.JFrame {
             model2.addElement(eventsList1);
            }
         } else 
-        model2.addElement("No events for today");
+        model2.addElement("No events or reminder for today");
         jLabelTeam = new javax.swing.JLabel();
         if (num != 3 && num != 4) {
             jLabelTeam.setText("");

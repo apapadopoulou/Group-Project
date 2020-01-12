@@ -62,7 +62,7 @@ public final class FirstWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         
-       jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         busyb = new javax.swing.JLabel();
         arrow1 = new javax.swing.JLabel();
@@ -161,7 +161,7 @@ public final class FirstWindow extends javax.swing.JFrame {
             model2.addElement(eventsList1);
            }
         } else 
-        model2.addElement("No events or reminder for today");
+        model2.addElement("No events or reminders for today");
         jLabelTeam = new javax.swing.JLabel();
         if (num != 3 && num != 4) {
             jLabelTeam.setText("");
@@ -510,7 +510,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         }
         DefaultListModel model = new DefaultListModel();
         if (tasks.isEmpty()){
-            model.addElement("No Tasks or Reminders for today");
+            model.addElement("No Tasks for today");
         } else {
             int i;
             if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){

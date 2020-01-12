@@ -381,6 +381,21 @@ public class Task extends Program implements Comparable<Task>{
 	public String toStringSimpleTask() {
 		return "Due Date=" + dueDate + ", Description=" + desc;
 	}
+        
+        public static Task searchTask (String task, ArrayList<Task> tasks){
+            for (Task task1 : tasks) {
+                if (task1.getImportance() == 0 && task1.getDifficulty() == 0) {
+                    if (task1.toStringSimpleTask().equals(task)) {
+                        return task1;
+                    }
+                } else {
+                    if (task1.toStringEvaluatedTask().equals(task)) {
+                        return task1;
+                    }
+                }
+            }
+            return null;
+        }
 
 }
 /**

@@ -33,6 +33,8 @@ public class MyCalendar extends javax.swing.JFrame {
         ShowDate();
         ShowTime();
         dateNot.setVisible(false);
+        doneButton.setVisible(false);
+        help.setVisible(false);
     }
     void ShowDate(){
         Date d = new Date();
@@ -178,7 +180,14 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setText("Sort by:");
         doneButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        doneButton.setText("Done");        
+        doneButton.setText("Done");   
+        doneButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        doneButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                doneButtonMouseClicked(evt);
+            }
+        });
 
         help.setText("Please select every task that is completed and then click Done Button!");
 
@@ -343,6 +352,8 @@ public class MyCalendar extends javax.swing.JFrame {
                 || years.getSelectedItem() == null)
             dateNot.setVisible(true);
         else 
+            doneButton.setVisible(true);
+            help.setVisible(true);
             dateNot.setVisible(false);
             date2 = days.getSelectedItem().toString() + "/" + 
                         month.getSelectedItem().toString() + "/" +
@@ -367,7 +378,10 @@ public class MyCalendar extends javax.swing.JFrame {
                         tasks = Task.sortByImp(tasks);
                     }
                     for (i = 0; i < tasks.size(); i++){
-                        model1.addElement(tasks.get(i));
+                        if (tasks.get(i).getImportance() == 0 && tasks.get(i).getDifficulty() == 0)
+                            model1.addElement(tasks.get(i).toStringSimpleTask());
+                        else 
+                            model1.addElement(tasks.get(i).toStringEvaluatedTask());
                     }
                 }
                 jList1.setModel(model1);
@@ -379,7 +393,48 @@ public class MyCalendar extends javax.swing.JFrame {
                 } else 
                     model2.addElement("No events for today");    
 
-    }       
+    }     
+    private void doneButtonMouseClicked(java.awt.event.MouseEvent evt) { 
+        String date2;
+        date2 = days.getSelectedItem().toString() + "/" + 
+                month.getSelectedItem().toString() + "/" +
+                years.getSelectedItem().toString();
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram()); 
+        Object[] tasksToString = jList1.getSelectedValues();
+        for (Object tasksToString1 : tasksToString) {
+            String s = tasksToString1.toString();
+            Date d = new Date();
+            String compDate = d.getDay() + "/" + d.getMonth() + "/"
+                    + d.getYear();
+            Task.searchTask(s, tasks).setCompletionDate(compDate);
+            Task.searchTask(s, tasks).setStatus(true);
+        }
+        model1.removeAllElements();        
+        dateNot.setVisible(false);                           
+        if (tasks.isEmpty()){
+            model1.addElement("No Tasks or Reminders for today");
+        } else {
+            if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+                tasks = Task.sortByDate(tasks);
+            } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
+                tasks = Task.sortByDesc(tasks);
+            } else {
+                tasks = Task.sortByImp(tasks);
+            }
+            for (Task task : tasks) {
+                if (task.getImportance() == 0 && task.getDifficulty() == 0) {
+                    model1.addElement(task.toStringSimpleTask());
+                } else {
+                    model1.addElement(task.toStringEvaluatedTask());
+                }
+            }
+            }
+            jList1.setModel(model1);        
+    }
+        
+    
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OKButton;

@@ -134,7 +134,7 @@ public class Account {
     }
    
    /**
-     *This method searches Employees' accounts by their email.
+     *This method searches employees' accounts by their email.
      *@param email
      *@return acc
     */ 

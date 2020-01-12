@@ -7,8 +7,6 @@ import java.util.ArrayList;
  * @author BusyB
  */
 public class BasicEmployee extends Employee {
-	
-    private double score = 10;
   
    //Department instance variable.
    
@@ -147,15 +145,6 @@ public class BasicEmployee extends Employee {
 		}
     	return null;
     }
-	
-    
-    /**
-     * Returns the score field.
-     *@return score
-     */
-	public double getScore() {
-	return score;
-}
 
 	/**
 	 *Method that changes the employee's department.

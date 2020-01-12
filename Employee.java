@@ -200,6 +200,14 @@ public abstract class Employee {
   public void setCalendar(ArrayList<Day> calendar) {
 	  this.calendar = calendar;
   }
+  
+  /**
+   * Returns the score field.
+   *@return score
+   */
+	public double getScore() {
+	return DBcon.getEvalAverage(id);
+}
 
 // Method toString including a String format for the given data
   @Override

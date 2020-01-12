@@ -413,7 +413,7 @@ public static void dataEntry() {
              while (run) {
           	   try {
           		   salary = sc.nextDouble();
-          		   sc.nextLine();
+          		   sc.nextLine();//I think the program is getting stuck arround here.
           		   break;
           	   } catch (Exception ex) { 
           		 System.out.println("An error occurred! Please try again!");

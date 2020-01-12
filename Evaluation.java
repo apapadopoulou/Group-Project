@@ -40,6 +40,7 @@ public class Evaluation {
 			scores = evalGroupTask(task);
 			task.setScores(scores);
 			for (int i =0; i < task.getEmpIDs().size(); i++) {
+				//Saves the result of the evaluation on the database.
 				DBcon.saveEvaluation(task.getTaskID(), task.getEmpIDs().get(i), scores[i]);
 			}
 		}

@@ -134,7 +134,7 @@ public class Account {
     }
    
    /**
-     *This method searches Employees' accounts by their email.
+     *This method searches employees' accounts by their email.
      *@param email
      *@return acc
     */ 
@@ -193,7 +193,11 @@ public class Account {
 
     
      
-   //This method generates Employee's password.  
+   
+    /**
+     * This method generates a random password
+     * @return password
+     */
     public static String passwordGenerator() {
         String password = "";
         String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -221,4 +225,5 @@ public class Account {
     }
 }
  
- //End of Account class.
+ /**
+  * End of Account class

@@ -175,6 +175,8 @@ public class BasicEmployee extends Employee {
 
 }
 
- //End of BasicEmployee class.
+ /**
+  * End of BasicEmployee class
+  */
  
  

@@ -97,12 +97,40 @@ public class MyCalendar extends javax.swing.JFrame {
         dateNot = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
-        taskAndRem = new javax.swing.JLabel();	
+        eventsAndRem = new javax.swing.JLabel();	
         jScrollPane1 = new javax.swing.JScrollPane();	
-        jList1 = new javax.swing.JList();	
-        jLabel3 = new javax.swing.JLabel();	
+        eventList = new javax.swing.JList();
+        ArrayList<Event> eventsList = Event.onlyEventsList(emp.getCalendar().get(0).getDailyProgram());
+        eventsList = Event.sortByTime(eventsList);
+        if (!eventsList.isEmpty()){
+            for (Event eventsList1 : eventsList) {
+                model2.addElement(eventsList1);
+            }
+        } else 
+            model2.addElement("No events or reminders for today");
+        tasksLabel = new javax.swing.JLabel();	
         jScrollPane2 = new javax.swing.JScrollPane();	
-        eventsList2 = new javax.swing.JList();	
+        taskList = new javax.swing.JList();	
+        ArrayList<Task> tasks = new ArrayList<Task>();
+        tasks = Task.onlyTasksList(emp.getCalendar().get(0).getDailyProgram());               
+        if (tasks.isEmpty()){
+            model1.addElement("No Tasks for today");
+        } else {
+            int i;
+            if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+                tasks = Task.sortByDate(tasks);
+            } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
+                tasks = Task.sortByDesc(tasks);
+            } else {
+                tasks = Task.sortByImp(tasks);
+            }
+            for (i = 0; i < tasks.size(); i++){
+                if (tasks.get(i).getImportance() == 0 && tasks.get(i).getDifficulty() == 0)
+                    model1.addElement(tasks.get(i).toStringSimpleTask());
+                else 
+                    model1.addElement(tasks.get(i).toStringEvaluatedTask());
+            }
+        }
         doneButton = new javax.swing.JButton();
         help = new javax.swing.JLabel();
         	
@@ -197,14 +225,14 @@ public class MyCalendar extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
         jComboBox1.setSelectedIndex(1);
-        taskAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
-        taskAndRem.setText("Tasks and Reminders");	
-        jList1.setModel(model1);
-        jScrollPane1.setViewportView(jList1);	
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
-        jLabel3.setText("Events");	
-        eventsList2.setModel(model2);	
-        jScrollPane2.setViewportView(eventsList2);
+        eventsAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
+        eventsAndRem.setText("Events and Reminders");	
+        eventList.setModel(model2);
+        jScrollPane1.setViewportView(eventList);	
+        tasksLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
+        tasksLabel.setText("Tasks");	
+        taskList.setModel(model1);	
+        jScrollPane2.setViewportView(taskList);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -252,7 +280,7 @@ public class MyCalendar extends javax.swing.JFrame {
                                                 .addComponent(years, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))	
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()	
                                         .addGap(10, 10, 10)	
-                                        .addComponent(taskAndRem)))	
+                                        .addComponent(eventsAndRem)))	
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)	
                                     .addGroup(jPanel1Layout.createSequentialGroup()	
                                         .addGap(628, 628, 628)	
@@ -267,7 +295,7 @@ public class MyCalendar extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()	
                                 .addGap(10, 10, 10)	
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)	
-                                    .addComponent(jLabel3)	
+                                    .addComponent(tasksLabel)	
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)	
                                         .addGap(32, 32, 32)
@@ -312,7 +340,7 @@ public class MyCalendar extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)	
-                .addComponent(taskAndRem)
+                .addComponent(eventsAndRem)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -323,7 +351,7 @@ public class MyCalendar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(doneButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(tasksLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 426, Short.MAX_VALUE)
@@ -352,12 +380,16 @@ public class MyCalendar extends javax.swing.JFrame {
     
     private void OKButtonMouseClicked(java.awt.event.MouseEvent evt) { 
         String date2;
+        taskList.setVisible(false);
+		jScrollPane2.setVisible(false);
+		tasksLabel.setVisible(false);
+		doneButton.setVisible(false);	
+		help.setVisible(false);
+        Date d = new Date();        
         if (days.getSelectedItem() == null || month.getSelectedItem() == null 
                 || years.getSelectedItem() == null)
             dateNot.setVisible(true);
         else 
-            doneButton.setVisible(true);
-            help.setVisible(true);
             dateNot.setVisible(false);
             date2 = days.getSelectedItem().toString() + "/" + 
                         month.getSelectedItem().toString() + "/" +
@@ -365,37 +397,52 @@ public class MyCalendar extends javax.swing.JFrame {
             if (!Day.validDate(date2))
                 dateNot.setVisible(true);
             else
-                model1.removeAllElements();
-                model2.removeAllElements();
-                dateNot.setVisible(false);
-                ArrayList<Task> tasks = new ArrayList<Task>();
-                tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram());               
-                if (tasks.isEmpty()){
-                    model1.addElement("No Tasks or Reminders for today");
-                } else {
-                    int i;
-                    if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
-                        tasks = Task.sortByDate(tasks);
-                    } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
-                        tasks = Task.sortByDesc(tasks);
-                    } else {
-                        tasks = Task.sortByImp(tasks);
-                    }
-                    for (i = 0; i < tasks.size(); i++){
-                        if (tasks.get(i).getImportance() == 0 && tasks.get(i).getDifficulty() == 0)
-                            model1.addElement(tasks.get(i).toStringSimpleTask());
-                        else 
-                            model1.addElement(tasks.get(i).toStringEvaluatedTask());
-                    }
-                }
-                jList1.setModel(model1);
+            	if (emp.getCalendar().get(0).equals(emp.searchDay(date2))) {
+	                model1.removeAllElements();	                
+	                dateNot.setVisible(false);
+	                ArrayList<Task> tasks = new ArrayList<Task>();
+	                tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram());               
+	                if (tasks.isEmpty()){
+	                    model1.addElement("No Tasks for today");
+	                } else {
+	                    int i;
+	                    if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+	                        tasks = Task.sortByDate(tasks);
+	                    } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
+	                        tasks = Task.sortByDesc(tasks);
+	                    } else {
+	                        tasks = Task.sortByImp(tasks);
+	                    }
+	                    for (i = 0; i < tasks.size(); i++){
+	                        if (tasks.get(i).getImportance() == 0 && tasks.get(i).getDifficulty() == 0)
+	                            model1.addElement(tasks.get(i).toStringSimpleTask());
+	                        else 
+	                            model1.addElement(tasks.get(i).toStringEvaluatedTask());
+	                    }
+	                }
+	                taskList.setModel(model1);
+	                taskList.setVisible(true);
+            		jScrollPane2.setVisible(true);
+            		tasksLabel.setVisible(true);
+            		doneButton.setVisible(true);	
+            		help.setVisible(true);
+            	} else {
+            		taskList.setVisible(false);
+            		jScrollPane2.setVisible(false);
+            		tasksLabel.setVisible(false);
+            		doneButton.setVisible(false);	
+            		help.setVisible(false);
+            	}
+            	model2.removeAllElements();
                 ArrayList<Event> eventsList = Event.onlyEventsList(emp.searchDay(date2).getDailyProgram());
+                eventsList = Event.sortByTime(eventsList);
                 if (!eventsList.isEmpty()){
                     for (Event eventsList1 : eventsList) {
                         model2.addElement(eventsList1);
                     }
                 } else 
-                    model2.addElement("No events for today");    
+                    model2.addElement("No events or reminders for today");
+                eventList.setModel(model2);
 
     }     
     private void doneButtonMouseClicked(java.awt.event.MouseEvent evt) { 
@@ -405,13 +452,12 @@ public class MyCalendar extends javax.swing.JFrame {
                 years.getSelectedItem().toString();
         ArrayList<Task> tasks = new ArrayList<Task>();
         tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram()); 
-        Object[] tasksToString = jList1.getSelectedValues();
+        Object[] tasksToString = eventList.getSelectedValues();
         for (Object tasksToString1 : tasksToString) {
             String s = tasksToString1.toString();
             Date d = new Date();
             String compDate = d.getDay() + "/" + d.getMonth() + "/"
                     + d.getYear();
-            Task.searchTask(s, tasks).setCompletionDate(compDate);
             Task.searchTask(s, tasks).setStatus(true);
         }
         model1.removeAllElements();        
@@ -434,7 +480,7 @@ public class MyCalendar extends javax.swing.JFrame {
                 }
             }
             }
-            jList1.setModel(model1);        
+            eventList.setModel(model1);        
     }
         
     
@@ -461,12 +507,12 @@ public class MyCalendar extends javax.swing.JFrame {
     private javax.swing.JLabel time1;
     private javax.swing.JLabel today;
     private javax.swing.JComboBox years;
-    private javax.swing.JLabel taskAndRem;
+    private javax.swing.JLabel eventsAndRem;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList jList1;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList eventList;
+    private javax.swing.JLabel tasksLabel;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList eventsList2;
+    private javax.swing.JList taskList;
     DefaultListModel model1 = new DefaultListModel();
     DefaultListModel model2 = new DefaultListModel();
     private javax.swing.JButton doneButton;

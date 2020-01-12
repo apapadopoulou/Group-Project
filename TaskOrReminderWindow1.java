@@ -210,16 +210,18 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel3.setText("Due Date:");
 
         due_day.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        due_day.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
+        due_day.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
         );
         due_day.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        due_day.setSelectedIndex(-1);
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel4.setText("/");
 
         due_month.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        due_month.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        due_month.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         due_month.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        due_month.setSelectedIndex(-1);
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel9.setText("/");

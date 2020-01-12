@@ -76,6 +76,12 @@ public class MiddleManager extends Employee {
 			managingDepartments.get(i).setManagerId(getID());
 		}
 	}
+	
+	public void setManagingDepartment(int depID) {
+		managingDepartments.add(Department.searchDepartmentById(depID));
+		Department.searchDepartmentById(depID).setManagerId(getID());
+		
+	}
 
 	/**
 	 * Method that checks if the Manager manages the HR department

@@ -263,7 +263,7 @@ public class Day {
 	  int month = Integer.parseInt(date.substring(3, 5));
 	  int year = Integer.parseInt(date.substring(6));
 	  if(day > 28 && month == 2){
-		  if (Day.leapYear(year))
+		  if (!Day.leapYear(year))
 			  return false;
 		  else {
 			  if (day > 29)

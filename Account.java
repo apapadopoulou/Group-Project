@@ -193,7 +193,11 @@ public class Account {
 
     
      
-   //This method generates Employee's password.  
+   
+    /**
+     * This method generates a random password
+     * @return password
+     */
     public static String passwordGenerator() {
         String password = "";
         String Capital_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

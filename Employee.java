@@ -11,7 +11,7 @@ public abstract class Employee {
   private String id;
   private String birthdate;
   private double salary;
-    private ArrayList<Day> calendar;
+  private ArrayList<Day> calendar;
   public static ArrayList<Employee> employees = new ArrayList<Employee>();
 
   // Constructor
@@ -37,7 +37,7 @@ public abstract class Employee {
   }
 
   /**
-   * Gets the birthDate
+   * Returns the birthdate field
    * @return birthdate
    */
   public String getBirthDate() {
@@ -45,7 +45,7 @@ public abstract class Employee {
   }
 
   /**
-   * Sets the birthDate
+   * Sets the birthdate field
    * @param birthdate
    */
   public void setBirthDate(String birthdate) {
@@ -55,7 +55,7 @@ public abstract class Employee {
   }
 
   /**
-   * Gets the name
+   * Returns the name field
    * @return name
    */
   public String getName() {
@@ -63,7 +63,7 @@ public abstract class Employee {
   }
 
   /**
-   * Sets the name
+   * Sets the name field
    * @param name
    */
   public void setName(String name) {
@@ -73,7 +73,7 @@ public abstract class Employee {
   }
 
   /**
-   * Gets the surname
+   * Returns the surname field
    * @return surname
    */
   public String getSurname() {
@@ -81,7 +81,7 @@ public abstract class Employee {
   }
 
   /**
-   * Sets the surname
+   * Sets the surname field
    * @param surname
    */
   public void setSurname(String surname) {
@@ -91,7 +91,7 @@ public abstract class Employee {
   }
 
   /**
-   * Gets the email
+   * Returns the email field
    * @return email
    */
   public String getEmail() {
@@ -99,7 +99,7 @@ public abstract class Employee {
   }
 
   /**
-   * Sets the email
+   * Sets the email field
    * @param email
    */
   public void setEmail(String email) {
@@ -109,7 +109,7 @@ public abstract class Employee {
   }
 
   /**
-   * Gets the id
+   * Returns the id field
    * @return id
    */
   public String getID() {
@@ -117,7 +117,7 @@ public abstract class Employee {
   }
 
   /**
-   * Sets the id
+   * Sets the id field
    * @param id
    */
   public void setID(String id) {
@@ -125,7 +125,7 @@ public abstract class Employee {
     }
 
   /**
-   * Gets NameSurname
+   * Returns NameSurname which is a combination of the employees' name and surname
    * @return getName()+ " " + getsurname()
    */
   public String getNameSurname() {
@@ -133,7 +133,7 @@ public abstract class Employee {
   }
 
   /**
-   * Gets the salary
+   * Returns the salary field
    * @return salary
    */
   public double getSalary() {
@@ -141,7 +141,7 @@ public abstract class Employee {
   }
 
   /**
-   * Sets the salary
+   * Sets the salary field
    * @param salary
    */
   public void setSalary(double salary) {
@@ -151,7 +151,7 @@ public abstract class Employee {
   }
   
   /**
-   * Searches calendar list by day and returns the calendar object
+   * Searches calendar field by day and returns the calendar object
    * @param date
    * @return calendar.get(i) or calendar.get(calendar.size()-1)
    */
@@ -168,7 +168,7 @@ public abstract class Employee {
   }
 
   /**
-   * Gets the phoneNumber
+   * Returns the phonenumber field
    * @return phonenumber
    */
   public String getPhonenumber() {
@@ -176,7 +176,7 @@ public abstract class Employee {
   }
 
   /**
-   * Sets the phonenumber
+   * Sets the phonenumber field
    * @param phonenumber
    */
   public void setPhonenumber(String phonenumber) {
@@ -186,15 +186,15 @@ public abstract class Employee {
   }
 
   /**
-   * Gets the calendar object 
-   * @return
+   * Returns the calendar field 
+   * @return calendar
    */
   public ArrayList<Day> getCalendar() {
 	  return calendar;
   }
 
   /**
-   * Sets calendar object
+   * Sets the calendar field
    * @param calendar
    */
   public void setCalendar(ArrayList<Day> calendar) {
@@ -213,7 +213,7 @@ public abstract class Employee {
 
   // Returns the employee we searched for
   /**
-   * Searches employees list by id and returns the employee if he exists
+   * Searches employees list by id and returns the employee if he/she exists
    * @param id
    * @return employees.get(i) or null
    */
@@ -240,7 +240,7 @@ public abstract class Employee {
   }
 
   /**
-   * Searches employees list by name and returns the employee we searched for if he exists
+   * Searches an employee by his/her name in employees list and returns the employee that was searched if he/she exists
    * @param name
    * @return employees.get(i) or null
    */
@@ -272,6 +272,10 @@ public abstract class Employee {
       return null;
     }
   }
+  /**
+   * Returns the total sum of the employees' salaries
+   * @return total
+   */
   public static double salariesTotal() {
 	  double total = 0.0;
 	  for (int count = 0; count < employees.size(); count++) {
@@ -280,3 +284,6 @@ public abstract class Employee {
 	  return total;
   }
 }
+/**
+ * End of Employee class
+ */

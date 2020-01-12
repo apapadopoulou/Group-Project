@@ -194,12 +194,6 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         reminder.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         reminder.setText("  Reminder");
         reminder.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        reminder.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reminderActionPerformed(evt);
-            }
-        });
-
         ok_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         ok_button.setText("OK");
         ok_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -255,11 +249,6 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         day.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         day.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
         );
-        day.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dayActionPerformed(evt);
-            }
-        });
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel12.setText("Date:");
@@ -291,11 +280,6 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         event.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         event.setText("  Event");
         event.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        event.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventActionPerformed(evt);
-            }
-        });
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel17.setText("Title:");

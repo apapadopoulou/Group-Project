@@ -56,8 +56,13 @@ public class Evaluation {
 		if (evalAvg == 0.0) {
 			evalAvg = STARTING_EVAL;
 		} 
+		double percentageDiff = -1;
 		//Calculates the percentage difference between the completion date of the task and the total available time to complete the task.
-		double percentageDiff = calculateDateDiff(task.getStartDate(), task.getDueDate(),task.getCompletionDate() );
+		try {
+			percentageDiff = calculateDateDiff(task.getStartDate(), task.getDueDate(),task.getCompletionDate() );
+		} catch (ParseException pex) {
+			pex.getMessage();
+		}
 		//Calculates the Task level based on the difficulty and importance. 
 		double taskLevel = task.getDifficulty() * (1 - IMPORTANCE_RATE) + task.getImportance() * IMPORTANCE_RATE; 
 		//Calls the calculateTimeScore method which calculates and the returns the score of the task based on the remaining time to due date.
@@ -92,8 +97,13 @@ public class Evaluation {
 				evalAvg[j] = STARTING_EVAL;
 			}
 		}
-		//Calculates the percentage difference between the completion date of the task and the total available time to complete the task.
-		double percentageDiff = calculateDateDiff(task.getStartDate(), task.getDueDate(),task.getCompletionDate() );
+		double percentageDiff = -1;
+			try {
+				//Calculates the percentage difference between the completion date of the task and the total available time to complete the task.
+				percentageDiff = calculateDateDiff(task.getStartDate(), task.getDueDate(),task.getCompletionDate() );
+			} catch (ParseException pex) {
+				pex.getMessage();
+			}
 		//Calculates the Task level based on the difficulty and importance. 
 		double taskLevel = task.getDifficulty() * (1 - IMPORTANCE_RATE) + task.getImportance() * IMPORTANCE_RATE; 
 		//Calls the calculateTimeScore method which calculates and the returns the score of the task based on the remaining time to due date.

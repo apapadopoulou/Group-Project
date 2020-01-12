@@ -151,11 +151,11 @@ public abstract class Employee {
   }
   
   private void updateDailyProgram(Task task) {
-	  calendar.get(0).addToDailyProgram2(task);
+	  calendar.get(0).addToDailyProgram(task);
   }
   
   private void updateDailyProgram(Event event) {
-	  searchDay(event.getEventDate()).addToDailyProgram2(event);
+	  searchDay(event.getEventDate()).addToDailyProgram(event);
   }
   
   /**

@@ -98,7 +98,7 @@ public class Day {
   *Adds to daily program.
   * @param p
   */
-  private void addToDailyProgram2(Program p) {
+  public void addToDailyProgram(Program p) {
     dailyProgram.add(p);
   }
   
@@ -106,7 +106,7 @@ public class Day {
    *Adds to daily program.
    * @param p
    */
-  private void addToDailyProgram(ArrayList<Program> p) {
+  public void addToDailyProgram(ArrayList<Program> p) {
 	   for (int i = 0; i < p.size(); i++) {
 		   dailyProgram.add(p.get(i));
 	   }

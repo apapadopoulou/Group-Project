@@ -114,6 +114,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         }
         arrow8 = new javax.swing.JLabel();
         if (num == 4) {
+        	arrow8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N	
             arrow8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
             arrow8.setText("Notifications");
@@ -146,7 +147,6 @@ public final class FirstWindow extends javax.swing.JFrame {
         }
         events = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        eventsList2 = new javax.swing.JList();
         eventsList2 = new javax.swing.JList();        
         ArrayList<String> eventsList = new ArrayList<String>();
         DefaultListModel model2 = new DefaultListModel();
@@ -176,7 +176,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         else {
             jLabelTimeOffs.setFont(new java.awt.Font("Arial", 1, 24));
             jLabelTimeOffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelTimeOffs.setText("Vacation Requests");
+            jLabelTimeOffs.setText("Requests");
         }
         jLabelPayrolls = new javax.swing.JLabel();
         if ( num != 2 && num != 4)
@@ -473,11 +473,10 @@ public final class FirstWindow extends javax.swing.JFrame {
     }                                   
 
     private void arrow5MouseClicked(java.awt.event.MouseEvent evt) {                                    
-        if ( num != 3 && num != 4){
+        if ( num != 3 && num != 4)
             new MyEvaluation(num, emp).setVisible(true);
-        } else {
-            new ShowDepartments(num, emp).setVisible(true);
-            }
+        else 
+            new ShowDepartments(num, emp).setVisible(true);            
         this.setVisible(false);// TODO add your handling code here:
     }                                   
 
@@ -513,10 +512,10 @@ public final class FirstWindow extends javax.swing.JFrame {
             model.addElement("No Tasks for today");
         } else {
             int i;
-            if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){
+            if(jComboBox2.getSelectedIndex() == 0){
                 model.removeAllElements();
                 tasks = Task.sortByDate(tasks);
-            } else if (String.valueOf(jComboBox2.getSelectedItem()).equals("Description")){
+            } else if (jComboBox2.getSelectedIndex() == 1){
                 model.removeAllElements();
                 tasks = Task.sortByDesc(tasks);
             } else {
@@ -524,7 +523,10 @@ public final class FirstWindow extends javax.swing.JFrame {
                 tasks = Task.sortByImp(tasks);
             }
             for (i = 0; i < tasks.size(); i++){
-                model.addElement(tasks.get(i).toString());
+            	if (tasks.get(i).getImportance() == 0 && tasks.get(i).getDifficulty() == 0)
+                    model.addElement(tasks.get(i).toStringSimpleTask());
+                else 
+                    model.addElement(tasks.get(i).toStringEvaluatedTask());
             }
         }
         tasksList.setModel(model);// TODO add your handling code here:
@@ -541,10 +543,12 @@ public final class FirstWindow extends javax.swing.JFrame {
     }                                   
 
     private void arrow7MouseClicked(java.awt.event.MouseEvent evt) {                                    
-        if (num == 4){
+        if (num == 4)
             new EmployeeEditing(num,emp).setVisible(true);
-            this.setVisible(false);
-        }// TODO add your handling code here:
+        else if (num == 3)
+        	new Notifications(emp).setVisible(true);        
+        this.setVisible(false);
+        // TODO add your handling code here:
     }                                   
 
     private void arrow8MouseClicked(java.awt.event.MouseEvent evt) {                                    
@@ -559,41 +563,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         this.setVisible(false);// TODO add your handling code here:
     }                                     
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-      
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FirstWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FirstWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FirstWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FirstWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            Department d = new Department("HR");
-            BasicEmployee e = new BasicEmployee("Kostakis", "Mereos", "6971717171", "hdjshdjes@gmail.com", "19/09/2018",0, 500.0);
-		
-            public void run() {
-                new FirstWindow(e).setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+       // Variables declaration - do not modify//GEN-BEGIN:variables
       private javax.swing.JLabel arrow1;
     private javax.swing.JLabel arrow2;
     private javax.swing.JLabel arrow3;

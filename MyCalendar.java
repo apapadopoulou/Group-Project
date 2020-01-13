@@ -226,7 +226,7 @@ public class MyCalendar extends javax.swing.JFrame {
 
         help.setText("Please select every task that is completed and then click Done Button!");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Description", "Level of importance" }));
         jComboBox1.setSelectedIndex(1);
         eventsAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
         eventsAndRem.setText("Events and Reminders");	
@@ -387,10 +387,9 @@ public class MyCalendar extends javax.swing.JFrame {
 		jScrollPane2.setVisible(false);
 		tasksLabel.setVisible(false);
 		doneButton.setVisible(false);	
-		help.setVisible(false);
-        Date d = new Date();        
-        if (days.getSelectedItem() == null || month.getSelectedItem() == null 
-                || years.getSelectedItem() == null)
+		help.setVisible(false);               
+        if (days.getSelectedIndex() == -1  || month.getSelectedIndex()  == -1
+                || years.getSelectedIndex() == -1)
             dateNot.setVisible(true);
         else 
             dateNot.setVisible(false);
@@ -409,9 +408,9 @@ public class MyCalendar extends javax.swing.JFrame {
 	                    model1.addElement("No Tasks for today");
 	                } else {
 	                    int i;
-	                    if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+	                    if(jComboBox1.getSelectedIndex() == 0){
 	                        tasks = Task.sortByDate(tasks);
-	                    } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
+	                    } else if (jComboBox1.getSelectedIndex() == 1){
 	                        tasks = Task.sortByDesc(tasks);
 	                    } else {
 	                        tasks = Task.sortByImp(tasks);
@@ -461,18 +460,17 @@ public class MyCalendar extends javax.swing.JFrame {
         	taskToString.add(taskList.getModel().getElementAt(tasksIndices[i]).toString());
         }
         for (int i = 0; i < taskToString.size(); i++) {
-            String s = taskToString.get(i);
-            Calendar c = Calendar.getInstance();           
+            String s = taskToString.get(i);                     
             Task.searchTask(s, tasks).setStatus(true);
         }
         model1.removeAllElements();        
         dateNot.setVisible(false);                           
         if (tasks.isEmpty()){
-            model1.addElement("No Tasks or Reminders for today");
+            model1.addElement("No Tasks for today");
         } else {
-            if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+            if(jComboBox1.getSelectedIndex() == 0){
                 tasks = Task.sortByDate(tasks);
-            } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
+            } else if (jComboBox1.getSelectedIndex() == 1){
                 tasks = Task.sortByDesc(tasks);
             } else {
                 tasks = Task.sortByImp(tasks);

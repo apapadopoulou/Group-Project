@@ -1,8 +1,7 @@
-
+package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -85,9 +84,9 @@ public class Notifications extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         taskList1 = new javax.swing.JList();
         DefaultListModel model = new DefaultListModel();
-        Calendar c = Calendar.getInstance();
-        String date = c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" 
-                +c.get(Calendar.YEAR);
+        Date d = new Date();
+        String date = d.getDay() + "/" + d.getMonth() + "/" 
+        + d.getYear();
         for (int i = 0; i < emp.searchDay(date).getDailyProgram().size(); i++){
             if (emp.searchDay(date).getDailyProgram().get(i) instanceof Task){
                 Task t1 = (Task) emp.searchDay(date).getDailyProgram().get(i);

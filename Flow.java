@@ -315,6 +315,12 @@ public static void dataEntry() {
            				   sc.nextLine();
            			   }
            		   }
+           		   MiddleManager emp = new MiddleManager(name, surname,
+                        phoneNumber, email, inputDate, salary);
+                        emp.getManagingDepartments().add(dep);
+                        dep.setManagerId(emp.getID());
+                        System.out.println("Manager "
+                         + "created with id: " + emp.getID());
            	   } else if (ans.equals("Y")) {
            		   System.out.println("Insert Manager's ID: ");
            		   String id;
@@ -334,13 +340,7 @@ public static void dataEntry() {
            			   }
            		   }
            	   }
-             MiddleManager emp = new MiddleManager(name, surname,
-             phoneNumber, email, inputDate, salary);
-             emp.getManagingDepartments().add(dep);
-             dep.setManagerId(emp.getID());
-             System.out.println("Manager "
-              + "created with id: " + emp.getID());
-          }
+             
       } while (!dname.equals("Done"));
       System.out.println("Now, you are going to add Top Managers."
       + " Type 'Done' to terminate.");

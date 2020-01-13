@@ -77,8 +77,9 @@ public class ShowDepartments extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         DefaultListModel model1 = new DefaultListModel();
         for (int i = 1; i < Department.departments.size(); i++) {
-        	if (Department.departments.get(i).getManagerId().equals(emp.getID()))
+        	if (Department.departments.get(i).getManagerId().equals(emp.getID())) {        		
         		model1.addElement(Department.departments.get(i).getName());
+         }
         }
         mmDepartments = new javax.swing.JList(model1);
         jScrollPane2 = new javax.swing.JScrollPane();

@@ -126,8 +126,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         sortBy = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tasksList = new javax.swing.JList();
-        tasksList = new javax.swing.JList();        
+                       
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = formatter.format(date);
@@ -142,9 +141,14 @@ public final class FirstWindow extends javax.swing.JFrame {
 	        }
 	                    tasks = Task.sortByDate(tasks);
            for (Task task : tasks) {
-               model1.addElement(task.toString());
+        	   if (task.getImportance() == 0 && task.getDifficulty() == 0) {
+                   model1.addElement(task.toStringSimpleTask());
+               } else {
+                   model1.addElement(task.toStringEvaluatedTask());
+               }
            }
         }
+        tasksList = new javax.swing.JList(); 
         events = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         eventsList2 = new javax.swing.JList();        
@@ -164,7 +168,7 @@ public final class FirstWindow extends javax.swing.JFrame {
             model2.addElement(eventsList1);
            }
         } else 
-        model2.addElement("No events or reminders for today");
+        model2.addElement("No events or reminders for today");       
         jLabelTeam = new javax.swing.JLabel();
         if (num != 3 && num != 4) {
             jLabelTeam.setText("");

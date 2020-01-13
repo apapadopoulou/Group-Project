@@ -107,7 +107,10 @@ public class MyCalendar extends javax.swing.JFrame {
         eventsList = Event.sortByTime(eventsList);
         if (!eventsList.isEmpty()){
             for (Event eventsList1 : eventsList) {
-                model2.addElement(eventsList1);
+            	if (eventsList1.getType().equals(""))
+            		model2.addElement(eventsList1.toString());
+            	else
+            		model2.addElement(eventsList1.toStringWithType());
             }
         } else 
             model2.addElement("No events or reminders for today");
@@ -440,8 +443,11 @@ public class MyCalendar extends javax.swing.JFrame {
                 eventsList = Event.sortByTime(eventsList);
                 if (!eventsList.isEmpty()){
                     for (Event eventsList1 : eventsList) {
-                        model2.addElement(eventsList1);
-                    }
+                    	if (eventsList1.getType().equals(""))
+                    		model2.addElement(eventsList1.toString());
+                    	else
+                    		model2.addElement(eventsList1.toStringWithType());
+                    }                    
                 } else 
                     model2.addElement("No events or reminders for today");
                 eventList.setModel(model2);

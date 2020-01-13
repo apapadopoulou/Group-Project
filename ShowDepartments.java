@@ -32,7 +32,7 @@ public class ShowDepartments extends javax.swing.JFrame {
         initComponents();
         showDate();
         showTime();
-       this.emp = emp;
+        this.emp = emp;
         depart.setVisible(false);
         employeesOfDepartment.setVisible(false);
         selectEmployee.setVisible(false);
@@ -76,8 +76,8 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DefaultListModel model1 = new DefaultListModel();
-        for (int i = 1; i < Department.departments.size(); i++) {
-        	if (Department.departments.get(i).getManagerId().equals(emp.getID())) {        		
+        for (int i = 1; i < Department.getDepartments().size(); i++) {
+        	if (Department.getDepartments().get(i).getManagerId().equals(emp.getID())) {        		
         		model1.addElement(Department.departments.get(i).getName());
          }
         }

@@ -84,15 +84,18 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         days = new javax.swing.JComboBox();
+        days.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_MONTH);
         days.setSelectedIndex(day-1);
         slash1 = new javax.swing.JLabel();
         month = new javax.swing.JComboBox();
+        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         int month1 = c.get(Calendar.MONTH);
-        month.setSelectedIndex(month1-1);
+        month.setSelectedIndex(month1);
         slash2 = new javax.swing.JLabel();
         years = new javax.swing.JComboBox();
+        years.setModel(new javax.swing.DefaultComboBoxModel(year));
         int year1 = c.get(Calendar.YEAR);
         years.setSelectedItem(String.valueOf(year1));
         jLabel13 = new javax.swing.JLabel();
@@ -178,19 +181,18 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setText("If you want to add Task, Event or Reminder to your Program press");
 
-        days.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
+        
         slash1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         slash1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         slash1.setText("/");
 
-        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        
 
         slash2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         slash2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         slash2.setText("/");
 
-        years.setModel(new javax.swing.DefaultComboBoxModel(year));
+        
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N

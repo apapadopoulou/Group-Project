@@ -139,7 +139,10 @@ public class SalaryWindow extends javax.swing.JFrame {
                 modify_buttonMouseClicked(evt);
             }
         });
+<<<<<<< HEAD
         
+=======
+>>>>>>> a25660a19a8ad5ab5a3f3d54d1f791c982d1c93b
         jTable1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(jTable1);

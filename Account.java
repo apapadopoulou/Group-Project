@@ -150,6 +150,16 @@ public class Account {
         return acc;
     }
     
+    public static Account searchAccountByEmployee(Employee emp) {
+    	Account acc = null;
+        for (int i = 0; i < accounts.size(); i++) {
+            if (accounts.get(i).getEmployee().equals(emp)) {
+            	 acc = accounts.get(i);
+            }
+        }
+        return acc;
+    }
+    
     /**
      *This method is used to check the credentials(email and password).
      *@param email
@@ -160,6 +170,22 @@ public class Account {
     	Account acc = null;
     	for (int i = 0; i < accounts.size(); i++) {
     		if (accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
+    			acc = accounts.get(i);
+    		}
+    	}
+    	return acc;
+    }
+    
+    /**
+     *This method is used to check the credentials(Employee and password).
+     *@param emp
+     *@param password
+     *@return acc 
+     */
+    public static Account checkCredentials(Employee emp, String password) {
+    	Account acc = null;
+    	for (int i = 0; i < accounts.size(); i++) {
+    		if (searchAccountByEmployee(emp).getPassword().equals(password)) {
     			acc = accounts.get(i);
     		}
     	}

@@ -147,17 +147,23 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
         try {
             String pas_emp = password.getText();
             boolean  b = new_password1.getText().equals(new_password2.getText());
-            if(Checkers.isValidPassword(new_password1.getText()) && b){
-                String newPass = new_password1.getText();
-                Account.searchAccountByEmail(emp.getEmail()).setPassword(newPass);
+            if(Account.searchAccountByEmployee(emp).getPassword().equals(pas_emp)) {
+            	if (b) {
+            		if (Checkers.isValidPassword(new_password1.getText())) {
+            			Account.searchAccountByEmployee(emp).setPassword(new_password1.getText());
+            		} else {
+            			warning.setText("Invalid new password. Password's length"+
+                                "must be between 6 and 15.");
+            			warning.setVisible(true);
+            		}
+            	} else {
+            		warning.setText("Invalid inputs");
+                    warning.setVisible(true);
+            	}
             } else {
-                if (!Checkers.isValidEmail(new_password1.getText()))
-                    warning.setText("Invalid new password. Password's length"+
-                        "must be between 6 and 15.");
-                else
-                    warning.setText("Invalid inputs");
+            	warning.setText("Please enter your current password");
                 warning.setVisible(true);
-            }
+            } 
         } catch (NullPointerException e){
             warning.setText("Please enter your current password");
             warning.setVisible(true);

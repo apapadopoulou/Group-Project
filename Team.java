@@ -273,16 +273,12 @@ public class Team extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void homeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeMouseClicked
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FirstWindow(mm).setVisible(true);
-            }
-        });
+        new FirstWindow(mm).setVisible(true);      
         this.dispose();
     }//GEN-LAST:event_homeMouseClicked
 
     private void OKButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OKButtonMouseClicked
-        if (managingDepartments.getSelectedItem() == null) {
+        if (managingDepartments.getSelectedIndex() == -1) {
             depNot.setVisible(true);
         } else {
             depNot.setVisible(false);
@@ -298,32 +294,15 @@ public class Team extends javax.swing.JFrame {
                 model.addRow(row);
             }
             teamScore = Department.departmentScore(department);
-                    
+            table.setModel(model);
+            jLabel5.setText(String.valueOf(teamScore));
+            
         }
     }//GEN-LAST:event_OKButtonMouseClicked
 
     private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_OKButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-       
-
-        /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Team(1).setVisible(true);
-            }
-        });*/
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton OKButton;

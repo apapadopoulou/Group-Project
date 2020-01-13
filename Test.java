@@ -33,6 +33,7 @@ public class Test {
 		emp12.setManagingDepartments(list);
 		MiddleManager emp13 = new MiddleManager("Orestis", "dwuqdqw", "6942796775", "orestis@gmail.com", "25/07/2000", 4345);
 		MiddleManager emp14 = new MiddleManager("Antonis", "pakas", "6942796775", "kfc@gmail.com", "25/07/2000", 2000);
+		list.close();
 		list.add(dep3);
 		emp14.setManagingDepartments(list);
 		

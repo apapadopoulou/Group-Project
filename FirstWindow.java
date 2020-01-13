@@ -154,7 +154,10 @@ public final class FirstWindow extends javax.swing.JFrame {
             for (int i = 0; i < emp.getCalendar().get(0).getDailyProgram().size(); i++){
                 if (emp.getCalendar().get(0).getDailyProgram().get(i) instanceof Event){
                     Event ev = (Event) emp.getCalendar().get(0).getDailyProgram().get(i);
-                    eventsList.add(ev.toString());
+                    if(ev.getType().equals(""))
+                    	eventsList.add(ev.toString());
+                    else
+                    	eventsList.add(ev.toStringWithType());
                 }
             }
            for (String eventsList1 : eventsList) {

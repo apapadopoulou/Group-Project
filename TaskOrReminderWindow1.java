@@ -290,6 +290,12 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         add_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         add_button.setText("Add");
         add_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_buttonMouseClicked(evt);
+            }
+        });
 
         warning.setFont(new java.awt.Font("Arial", 2, 13)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 0, 0));
@@ -609,7 +615,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_ok_buttonActionPerformed
-    private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {
         warning.setVisible(false);
         if (grouptask.isSelected()){            
             ArrayList <String> empls = new ArrayList <String>();

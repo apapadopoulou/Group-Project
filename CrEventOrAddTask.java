@@ -480,6 +480,10 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         employeesList.setVisible(true);        
         jScrollPane2.setVisible(true);
         if (event.isSelected()) {
+        	comboDif.setVisible(false);
+            comboImp.setVisible(false);
+            levOfDif.setVisible(false);
+            levOfimp.setVisible(false);
             addOrCreate.setText("Create event");
             addOrCreate.setVisible(true);
             date1.setText("Date:");
@@ -502,6 +506,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             titleText.setVisible(true);
             typeOfEvent.setVisible(true);
             types.setVisible(true);
+            
         }
         else if (singleTask.isSelected()){
             addOrCreate.setText("Add Task");
@@ -522,8 +527,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             slash2.setVisible(true);
             textArea.setVisible(true);
             years.setVisible(true);
-            jScrollPane1.setVisible(true);
-            
+            jScrollPane1.setVisible(true);            
             time1.setVisible(false);
             title.setVisible(false);
             titleText.setVisible(false);

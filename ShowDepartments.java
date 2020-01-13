@@ -32,7 +32,7 @@ public class ShowDepartments extends javax.swing.JFrame {
         initComponents();
         showDate();
         showTime();
-        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
+        mm = (MiddleManager) emp;
         depart.setVisible(false);
         employeesOfDepartment.setVisible(false);
         selectEmployee.setVisible(false);
@@ -252,7 +252,7 @@ public class ShowDepartments extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void selectDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDepActionPerformed
-       if (mmDepartments.getSelectedValue() == null){
+       if (mmDepartments.getSelectedIndex() == -1){
            depNot.setVisible(true);
        } else {
            depNot.setVisible(false);
@@ -263,54 +263,20 @@ public class ShowDepartments extends javax.swing.JFrame {
     }//GEN-LAST:event_selectDepActionPerformed
 
     private void selectEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectEmployeeMouseClicked
-        if (employeesOfDepartment.getSelectedValue() == null){
+        if (employeesOfDepartment.getSelectedIndex() == -1){
             empNot.setVisible(true);
         } else {        
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new EmployeeOverview(n,BasicEmployee.searchEmployeeByName2(String.
-                            valueOf(employeesOfDepartment.getSelectedValue())))
+                            valueOf(employeesOfDepartment.getModel().getElementAt(employeesOfDepartment
+                            		.getSelectedIndex()))))
                             .setVisible(true);
                 }
             });
         }
                 
     }//GEN-LAST:event_selectEmployeeMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowDepartments.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowDepartments.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowDepartments.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowDepartments.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*ava.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ShowDepartments(3).setVisible(true);
-            }
-        });*/
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date;

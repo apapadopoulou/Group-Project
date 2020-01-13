@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
@@ -32,9 +33,9 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
     public CrEventOrAddTask(int n, Employee emp) {
         this.n = n;
         if (n == 3 || n == 4)
-            mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
+            mm = (MiddleManager) emp;
         else
-            tp = TopManager.searchTopManager(emp.getNameSurname());
+            tp = (TopManager) emp;
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         showDate();
@@ -207,8 +208,9 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         typeOfEvent.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         typeOfEvent.setText("Type of event:");
 
-        types.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Appointment", "Meeting", "Main event", "Other" }));
-
+        types.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Appointment", "Meeting", "Main event", "Other" }));
+        types.setSelectedIndex(-1);
+        
         title.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         title.setText("Title:");
 
@@ -576,48 +578,67 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                         minutes.getSelectedItem().toString();
                 String desc;
                 desc = textArea.getText();
-                Object[] employees = employeesList.getSelectedValues();
                 ArrayList <String> empls = new ArrayList <String>();
-                for (Object employee : employees) {
-                    Employee em = Employee.searchEmployeeByName2((String) employee);
-                    empls.add(em.getNameSurname());
-                    empls.add(em.getID());
+                int[] emloyeesIndices = employeesList.getSelectedIndices();   
+                if (n == 5) {	                                
+	                for (int i = 0; i < emloyeesIndices.length; i++) {
+	                    Employee em = Employee.employees.get(emloyeesIndices[i]);
+	                    empls.add(em.getID());                   
+	                }
+                } else {
+                	for (int i = 0; i < emloyeesIndices.length; i++) {
+                		Employee em = Employee.searchEmployeeByName2(String.valueOf(employeesList
+                				.getModel().getElementAt(emloyeesIndices[i])));
+                		empls.add(em.getID());	
+                	}
                 }
                 new Event(title1, date2, time2, desc, type, empls);
             } catch (Exception e){
                     jLabel1.setVisible(true);
             }
         } else {
-            Date d = new Date();
-            String startDate = d.getDay() + "/" + d.getMonth() + "/" 
-                    + d.getYear();
+        	Calendar c = Calendar.getInstance();
+            String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" 
+                    +c.get(Calendar.YEAR);
             String dueDate = days.getSelectedItem().toString() + "/" + 
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
             String desc;
             desc = textArea.getText();
-            int importance = Integer.parseInt(String.valueOf(comboImp.getSelectedItem()));
-            int difficulty = Integer.parseInt(String.valueOf(comboDif.getSelectedItem()));
+            int importance = comboImp.getSelectedIndex() + 1;
+            int difficulty =  comboDif.getSelectedIndex() + 1;
             if (singleTask.isSelected()){
                 String employeeId = Employee.searchEmployeeByName2(
-                    String.valueOf(employeesList.getSelectedValue())).getID();
+                    String.valueOf(employeesList.getModel().getElementAt(employeesList
+                    		.getSelectedIndex()))).getID();
                 new Task(startDate, dueDate, desc, importance, difficulty, 
                     employeeId);
             } else {
-                Object[] employees = employeesList.getSelectedValues();
-                ArrayList <String> empls = new ArrayList <String>();
-                for (Object employee : employees) {
-                    String em = Employee.searchEmployeeByName2((String) employee).getID();
-                    empls.add(em);
-                }   
+            	ArrayList <String> empls = new ArrayList <String>();
+                int[] emloyeesIndices = employeesList.getSelectedIndices();   
+                if (n == 5) {	                                
+	                for (int i = 0; i < emloyeesIndices.length; i++) {
+	                    Employee em = Employee.employees.get(emloyeesIndices[i]);
+	                    empls.add(em.getID());                   
+	                }
+                } else {
+                	for (int i = 0; i < emloyeesIndices.length; i++) {
+                		Employee em = Employee.searchEmployeeByName2(String.valueOf(employeesList
+                				.getModel().getElementAt(emloyeesIndices[i])));
+                		empls.add(em.getID());	
+                	}
+                }
                 new Task(startDate, dueDate, desc, importance, difficulty,
                     empls);
             }
         }
     }//GEN-LAST:event_addOrCreateMouseClicked
 
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        new FirstWindow(mm).setVisible(true);
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {
+    	if (n == 3 || n ==4)//GEN-FIRST:event_jLabel13MouseClicked
+    		new FirstWindow(mm).setVisible(true);
+    	else
+    		new FirstWindow(tp).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel13MouseClicked
 

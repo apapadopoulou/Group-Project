@@ -2,6 +2,8 @@
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -215,7 +217,6 @@ public final class FirstWindow extends javax.swing.JFrame {
                 arrow1MouseClicked(evt);
             }
         });
-
         arrow2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow2.setText("Add To Program");
@@ -489,7 +490,12 @@ public final class FirstWindow extends javax.swing.JFrame {
 
     private void jLabelTeamMouseClicked(java.awt.event.MouseEvent evt) {                                        
         if (num == 3 || num == 4)
-            new Team(num, emp).setVisible(true);
+        	java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Team(num, emp)
+                            .setVisible(true);
+                }
+            });
         this.setVisible(false);// TODO add your handling code here:
     }                                       
 

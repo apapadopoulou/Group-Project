@@ -392,18 +392,38 @@ public class MyCalendar extends javax.swing.JFrame {
 		jScrollPane2.setVisible(false);
 		tasksLabel.setVisible(false);
 		doneButton.setVisible(false);	
-		help.setVisible(false);               
+		help.setVisible(false);
+		jLabel2.setVisible(false);
+		jComboBox1.setVisible(false);
         if (days.getSelectedIndex() == -1  || month.getSelectedIndex()  == -1
                 || years.getSelectedIndex() == -1)
             dateNot.setVisible(true);
-        else 
+        else {
             dateNot.setVisible(false);
             date2 = days.getSelectedItem().toString() + "/" + 
                         month.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
             if (!Day.validDate(date2))
                 dateNot.setVisible(true);
-            else
+            else {
+            	taskList.setVisible(false);
+        		jScrollPane2.setVisible(false);
+        		tasksLabel.setVisible(false);
+        		doneButton.setVisible(false);	
+        		help.setVisible(false);
+        	    model2.removeAllElements();
+            ArrayList<Event> eventsList = Event.onlyEventsList(emp.searchDay(date2).getDailyProgram());
+            eventsList = Event.sortByTime(eventsList);
+            if (!eventsList.isEmpty()){
+                for (Event eventsList1 : eventsList) {
+                	if (eventsList1.getType().equals(""))
+                		model2.addElement(eventsList1.toString());
+                	else
+                		model2.addElement(eventsList1.toStringWithType());
+                }                    
+            } else 
+                model2.addElement("No events or reminders for today");
+            eventList.setModel(model2);
             	if (emp.getCalendar().get(0).equals(emp.searchDay(date2))) {
 	                model1.removeAllElements();	                
 	                dateNot.setVisible(false);
@@ -433,28 +453,13 @@ public class MyCalendar extends javax.swing.JFrame {
             		tasksLabel.setVisible(true);
             		doneButton.setVisible(true);	
             		help.setVisible(true);
-            	} else {
-            		taskList.setVisible(false);
-            		jScrollPane2.setVisible(false);
-            		tasksLabel.setVisible(false);
-            		doneButton.setVisible(false);	
-            		help.setVisible(false);
             	}
-            	model2.removeAllElements();
-                ArrayList<Event> eventsList = Event.onlyEventsList(emp.searchDay(date2).getDailyProgram());
-                eventsList = Event.sortByTime(eventsList);
-                if (!eventsList.isEmpty()){
-                    for (Event eventsList1 : eventsList) {
-                    	if (eventsList1.getType().equals(""))
-                    		model2.addElement(eventsList1.toString());
-                    	else
-                    		model2.addElement(eventsList1.toStringWithType());
-                    }                    
-                } else 
-                    model2.addElement("No events or reminders for today");
-                eventList.setModel(model2);
+            }
+        }
+    }           		
 
-    }     
+         
+           
     private void doneButtonMouseClicked(java.awt.event.MouseEvent evt) { 
         String date2;
         date2 = days.getSelectedItem().toString() + "/" + 

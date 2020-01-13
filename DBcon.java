@@ -89,7 +89,7 @@ public class DBcon {
 			System.out.println("TABLE BBAccount CREATED");
 
 			stmt.executeUpdate("CREATE TABLE BBTask " 
-					+ "(taskID INT not null," 
+					+ "(taskID INT not null, " 
 					+ "startDate VARCHAR(20) not null,"
 					+ "dueDate VARCHAR(20) not null, " 
 					+ "completionDate VARCHAR(20), "
@@ -1272,7 +1272,7 @@ public class DBcon {
 				tempProgramIDs.add(rs.getInt("taskID"));
 			}
 			for (int i = 0; i < tempProgramIDs.size(); i++) {
-				rs = stmt.executeQuery("SELECT taskID FROM BBTask WHERE taskID = " + tempProgramIDs.get(i) + ", AND completionDate = 'null';");
+				rs = stmt.executeQuery("SELECT taskID FROM BBTask WHERE taskID = " + tempProgramIDs.get(i) + " AND completionDate = 'null';");
 				/* Does a loop for every row (object in this case) it finds. */
 				while (rs.next()) {
 					programIDs.add(rs.getInt("taskID"));

@@ -24,6 +24,8 @@ public class Test {
 		emp4.setManagingDepartment(1);
 		MiddleManager emp5 = new MiddleManager("Orestis", "dwuqdqw", "6942796775", "alcabilone@gmail.com", "25/07/2000", 4345);
 		MiddleManager emp6 = new MiddleManager("Antonis", "pakas", "6942796775", "alcabilone@gmail.com", "25/07/2000", 2000);
+		
+		emp6.setCalendar(Day.createCalendar(emp6.getID(), "13/01/2020"));
 		MiddleManager emp7 = new MiddleManager("Maria", "georgiou", "6942796775", "alcabilone@gmail.com", "25/07/2000", 2300);
 		ArrayList<Department> deps = new ArrayList<Department>();
 		deps.add(dep2);
@@ -34,6 +36,15 @@ public class Test {
 		TopManager emp9 = new TopManager("Mpampis", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 30000);
 		
 		Request reg = new Request("30/10/2020", 3, "i want to take a time off pls!", emp5.getID());
+		
+		Task task1 = new Task("23/02/2020", "29/02/2020", "New simple task asda", 5, 8, emp6.getID());
+		Task task2 = new Task("22/01/2020", "03/02/2020", "New simple task adqwdw", 2, 4, emp6.getID());
+		Task task3 = new Task("27/01/2020", "03/02/2020", "New simple task adqwdw", 5, 9, emp6.getID());
+		Task task4 = new Task("23/02/2020", "29/02/2020", "New sqdqmple task asda", 2, 6, emp6.getID());
+		Task task5 = new Task("27/01/2020", "04/02/2020", "Newdqwle task adqwdw", 4, 8, emp6.getID());
+		Task task6 = new Task("28/01/2020", "05/02/2020", "New simple task adqwdw", 5, 7, emp6.getID());
+		
+		System.out.println(emp6.getCalendar().get(0).getDailyProgram().size());
 		//Sosto mexri edw!
 		/*
 		ArrayList<String> empids = new ArrayList<String>();

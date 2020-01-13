@@ -378,8 +378,7 @@ public class Task extends Program implements Comparable<Task>{
     	return taskList;
     }
 	public String toStringEvaluatedTask() {
-		return "Due Date=" + dueDate + ", Description=" + desc + ", Importance=" + importance + ", Difficulty="
-				+ difficulty;
+		return "Due Date: " + dueDate + ", Description: " + desc;
 	}
 	public String toStringSimpleTask() {
 		return "Due Date=" + dueDate + ", Description=" + desc;

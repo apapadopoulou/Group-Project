@@ -32,9 +32,7 @@ public class MyCalendar extends javax.swing.JFrame {
         initComponents();
         ShowDate();
         ShowTime();
-        dateNot.setVisible(false);
-        doneButton.setVisible(false);
-        help.setVisible(false);
+        dateNot.setVisible(false);        
     }
     void ShowDate(){
         Date d = new Date();
@@ -232,7 +230,7 @@ public class MyCalendar extends javax.swing.JFrame {
         help.setText("Please select every task that is completed and then click Done Button!");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date","Importance" }));
-        jComboBox1.setSelectedIndex(1);
+        jComboBox1.setSelectedIndex(0);
         eventsAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
         eventsAndRem.setText("Events and Reminders");	
         eventList.setModel(model2);
@@ -466,15 +464,17 @@ public class MyCalendar extends javax.swing.JFrame {
                 month.getSelectedItem().toString() + "/" +
                 years.getSelectedItem().toString();
         ArrayList<Task> tasks = new ArrayList<Task>();
-        tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram()); 
-        int[] tasksIndices = taskList.getSelectedIndices();
-        ArrayList<String> taskToString = new ArrayList<String>();
-        for (int i = 0; i < tasksIndices.length; i++) {
-        	taskToString.add(taskList.getModel().getElementAt(tasksIndices[i]).toString());
-        }
-        for (int i = 0; i < taskToString.size(); i++) {
-            String s = taskToString.get(i);                     
-            Task.searchTask(s, tasks).setStatus(true);
+        tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram());
+        if (!tasks.isEmpty()) {
+	        int[] tasksIndices = taskList.getSelectedIndices();
+	        ArrayList<String> taskToString = new ArrayList<String>();
+	        for (int i = 0; i < tasksIndices.length; i++) {
+	        	taskToString.add(taskList.getModel().getElementAt(tasksIndices[i]).toString());
+	        }
+	        for (int i = 0; i < taskToString.size(); i++) {
+	            String s = taskToString.get(i);                     
+	            Task.searchTask(s, tasks).setStatus(true);
+	        }
         }
         model1.removeAllElements();        
         dateNot.setVisible(false);                           

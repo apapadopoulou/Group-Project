@@ -89,7 +89,7 @@ public class ShowDepartments extends javax.swing.JFrame {
         if (!mm.getManagingDepartments().isEmpty()) {
 	        ArrayList<BasicEmployee> employeesOfDep = new ArrayList<BasicEmployee>();
 	        employeesOfDep = Department.searchDepartmentByName(mmDepartments.getSelectedValue().toString()).getEmployeesOfDepartment();
-	        for (int i = 1; i < employeesOfDep.size(); i++){
+	        for (int i = 0; i < employeesOfDep.size(); i++){
 	            model2.addElement(employeesOfDep.get(i).getNameSurname());
 	        }
         }

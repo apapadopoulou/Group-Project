@@ -81,7 +81,7 @@ public class MyEvaluation extends javax.swing.JFrame {
         if (emp.getScore() > avg)
         output.setText("Conglatulations! Your score is above the average score!");
         else
-        output.setText("Your score is beneath the average score");
+        output.setText("Your score is beneath the average score!");
         output1 = new javax.swing.JLabel();
         if (emp.getScore() > avg)
         output1.setText("Hard work pays off!");
@@ -122,7 +122,7 @@ public class MyEvaluation extends javax.swing.JFrame {
         myScore.setText(String.valueOf(emp.getScore()) + "/10");
 
         depScore.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        depScore.setText("Department's score is" + String.valueOf(dep_avg) + "/10");
+        depScore.setText("Department's score is " + String.valueOf(dep_avg) + "/10");
 
         compScore.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         compScore.setText("Company's score is " + String.valueOf(avg) + "/10");

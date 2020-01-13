@@ -134,10 +134,12 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         employeesList = new javax.swing.JList();
         DefaultListModel model1 = new DefaultListModel();
         if (n == 3 || n == 4){
-            for (int i = 0; i < mm.getManagingDepartments().size(); i++){
-                for (int j = 0; i < mm.getManagingDepartments().get(i).getEmployeesOfDepartment().size(); j++){
-                    model1.addElement(mm.getManagingDepartments().get(i).getEmployeesOfDepartment().get(j).getNameSurname());
-                }
+            for (int i = 0; i < Department.departments.size(); i++) {
+            	if (Department.departments.get(i).getManagerId().equals(mm.getID())) {
+            		for (int j = 0; j < Department.departments.get(i).getEmployeesOfDepartment().size(); j++) {
+            			model1.addElement(Department.departments.get(i).getEmployeesOfDepartment().get(j).getNameSurname());
+            		}
+            	}
             }
         } else {
             for (Employee employee : Employee.employees) {

@@ -351,13 +351,13 @@ public final class FirstWindow extends javax.swing.JFrame {
         sortBy.setText("Sort by:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setText("Task and Reminders");
+        jLabel3.setText("Task ");
 
         tasksList.setModel(model1);
         jScrollPane1.setViewportView(tasksList);
 
         events.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        events.setText("Events");
+        events.setText("Events and Reminders");
 
         eventsList2.setModel(model2);
         jScrollPane2.setViewportView(eventsList2);
@@ -490,12 +490,7 @@ public final class FirstWindow extends javax.swing.JFrame {
 
     private void jLabelTeamMouseClicked(java.awt.event.MouseEvent evt) {                                        
         if (num == 3 || num == 4)
-        	java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new Team(num, emp)
-                            .setVisible(true);
-                }
-            });
+        	new Team(num, emp).setVisible(true);             
         this.setVisible(false);// TODO add your handling code here:
     }                                       
 

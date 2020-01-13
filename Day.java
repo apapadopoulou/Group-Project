@@ -170,14 +170,12 @@ public class Day {
   }
   
   public static ArrayList<Day> createCalendar(String empID, String startingDate){
-	  System.out.println("starting Date: " + startingDate);
 	  ArrayList<Day> calendar = new ArrayList<Day>();
 	  Day firstDay = new Day(startingDate);
 	  firstDay.addToDailyProgram(DBcon.loadEventsAndReminders(empID, startingDate));
 	  firstDay.addToDailyProgram(DBcon.loadActiveTasks(empID));
 	  calendar.add(firstDay);
 	  String nextDate = nextDate(startingDate);
-	  System.out.println("next date #1: " + startingDate);
 	  for (int i = 1; i <= 100; i++) {
 		  if (validDate(startingDate)) {
 			  Day day = new Day(nextDate);
@@ -259,18 +257,18 @@ public class Day {
    * @return true or false
    */
   public static boolean validDate(String date){
-	  int day = Integer.parseInt(date.substring(0, 2));
-	  int month = Integer.parseInt(date.substring(3, 5));
-	  int year = Integer.parseInt(date.substring(6));
-	  if(day > 28 && month == 2){
-		  if (!Day.leapYear(year))
+	  String day = date.substring(0, 2);
+	  String month = date.substring(3, 5);
+	  String year = date.substring(6);
+	  if((day.equals("29") || day.equals("30") || day.equals("31")) && month.equals("02")){
+		  if (!Day.leapYear(Integer.parseInt(year)))
 			  return false;
 		  else {
-			  if (day > 29)
+			  if (day.equals("30") || day.equals("31"))
 				  return false;
 		  }    
-	  } else if (day > 30){
-		  if (month == 4 || month == 6 || month == 9 || month == 11){
+	  } else if (day.equals("31")){
+		  if (month.equals("04") || month.equals("06") || month.equals("09") || month.equals("11")){
 			  return false;
 		  }
 	  	}

@@ -130,8 +130,7 @@ public class ChangeEmailWindow extends javax.swing.JFrame {
         if (mail.equals(emp.getEmail())){
             warning.setVisible(false);
             if (Checkers.isValidEmail(new_email.getText())){
-                Account.searchAccountByEmail(emp.getEmail()).setEmail(new_email
-                        .getText());
+                Account.searchAccountByEmployee(emp).setEmail(new_email.getText());
                 emp.setEmail(new_email.getText());                
             } else {
                 warning.setText("The new email you entered is not valid");

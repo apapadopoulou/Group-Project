@@ -142,7 +142,11 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         title = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        people_list = new javax.swing.JList();
+        DefaultListModel model = new DefaultListModel();
+        for (int i = 0; i < Employee.employees.size(); i++) {
+        	model.addElement(Employee.employees.get(i).getNameSurname());
+        }
+        people_list = new javax.swing.JList(model);
         add_button = new javax.swing.JButton();
         warning = new javax.swing.JLabel();
 
@@ -239,8 +243,9 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel11.setText("Description:");
 
         day.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        day.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
+        day.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" })
         );
+        day.setSelectedIndex(-1);
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel12.setText("Date:");
@@ -249,7 +254,8 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel13.setText("/");
 
         month.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        month.setSelectedIndex(-1);
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel14.setText("/");
@@ -261,16 +267,18 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         jLabel15.setText("Time:");
 
         hours.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        hours.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ","00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
-
+        hours.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"}));
+        hours.setSelectedIndex(-1);
+        
         jLabel16.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         jLabel16.setText(":");
 
         minutes.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        minutes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-
+        minutes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        minutes.setSelectedIndex(-1);
+        
         event.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
-        event.setText("  Event");
+        event.setText("Event");
         event.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
@@ -280,16 +288,18 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
         title.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         title.setSelectionColor(new java.awt.Color(0, 0, 0));
 
-        people_list.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        people_list.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         jScrollPane1.setViewportView(people_list);
 
         add_button.setFont(new java.awt.Font("Arial", 0, 20)); // NOI18N
         add_button.setText("Add");
         add_button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add_button.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add_buttonMouseClicked(evt);
+            }
+        });
 
         warning.setFont(new java.awt.Font("Arial", 2, 13)); // NOI18N
         warning.setForeground(new java.awt.Color(255, 0, 0));
@@ -609,16 +619,15 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_ok_buttonActionPerformed
-    private void add_buttonActionPerformed(java.awt.event.ActionEvent evt) {
+        private void add_buttonMouseClicked(java.awt.event.MouseEvent evt) {
         warning.setVisible(false);
-        if (grouptask.isSelected()){
-            ArrayList <String> employees = new ArrayList<String>();
-            Object[] em = people_list.getSelectedValues();
-            for (int i = 0; i < em.length; i++){
-                String emp_id = Employee.searchEmployeeByName2(em[i].toString())
-                        .getID();
-                employees.add(emp_id);
-            }
+        if (grouptask.isSelected()){            
+            ArrayList <String> empls = new ArrayList <String>();
+            int[] emloyeesIndices = people_list.getSelectedIndices();                                           
+            for (int i = 0; i < emloyeesIndices.length; i++) {
+                    Employee em = Employee.employees.get(emloyeesIndices[i]);
+                    empls.add(em.getID());                   
+                }
             String desc = description.getText();
             String date2 = due_day.getSelectedItem().toString() + "/" + 
                         due_month.getSelectedItem().toString() + "/" +
@@ -626,10 +635,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
             if (!Day.validDate(date2))
                 warning.setVisible(true);
             else {
-                Date d = new Date();
-                String startDate = d.getDay() + "/" + d.getMonth() + "/" 
-                        + d.getYear();
-                new Task(startDate, date2, desc, 0, 0, employees);  
+            	Calendar c = Calendar.getInstance();
+                String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + (c.get(Calendar.MONTH) + 1) + "/" 
+                        +c.get(Calendar.YEAR);
+                Task t1 = new Task(startDate, date2, desc, 0, 0, empls);  
             }
         } else if (personaltask.isSelected()){
             String desc = description.getText();
@@ -639,10 +648,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
             if (!Day.validDate(date2))
                 warning.setVisible(true);
             else {
-                Date d = new Date();
-                String startDate = d.getDay() + "/" + d.getMonth() + "/" 
-                        + d.getYear();
-                new Task(startDate, date2, desc, 0, 0, emp.getID());             
+            	Calendar c = Calendar.getInstance();
+                String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + (c.get(Calendar.MONTH) + 1) + "/" 
+                        +c.get(Calendar.YEAR);
+                Task t = new Task(startDate, date2, desc, 0, 0, emp.getID());             
             }
         } else if (reminder.isSelected() || event.isSelected()){
             String desc = description.getText();
@@ -657,10 +666,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
                 ArrayList<String> employee = new ArrayList<String>();
                     employee.add(emp.getID());
                 if (reminder.isSelected()){
-                    new Event(" ", date2, time, desc, "type", employee);
+                    Event e = new Event("", date2, time, desc, "reminder", employee);
                 }
                 else {
-                   new Event (title.getText(), date2, time, desc, "" ,employee);
+                  Event e = new Event (title.getText(), date2, time, desc, "" , employee);
                 }
             }
         } 

@@ -12,13 +12,14 @@ public class BusyB {
   * @param args
   */
   public static void main(String[] args) {
+	  /*
 	java.awt.EventQueue.invokeLater(new Runnable() {
 		@Override
 	    public void run() {
 	         WelcomeWindow welcomeWindow = new WelcomeWindow();
 	         welcomeWindow.setVisible(true);
 		}
-	      });
+	});*/
     if (!args[0].equals("0")) {
       DBcon.deleteTables();
       DBcon.createTables();
@@ -29,7 +30,15 @@ public class BusyB {
     	  System.out.println("An error occured! Try again!");
       }
     } else {
-    DBcon.loadData();
+    	WelcomeWindow welcomeWindow = new WelcomeWindow();
+    	java.awt.EventQueue.invokeLater(new Runnable() {
+    		@Override
+    	    public void run() {
+    	         welcomeWindow.setVisible(true); 
+    		}
+    	});
+    	DBcon.loadData();
+    	welcomeWindow.dispose();
       java.awt.EventQueue.invokeLater(new Runnable() {
         @Override
   public void run() {

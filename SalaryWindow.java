@@ -76,7 +76,22 @@ public class SalaryWindow extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         modify_button = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        String[] col = {"Employee" , "Salary"};
+        DefaultTableModel model = new DefaultTableModel(col, 0){
+
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               //all cells false
+               return false;
+            }
+        };                
+        for (int i = 0; i < Employee.employees.size(); i++) {
+        	String name = Employee.employees.get(i).getNameSurname();
+        	double sal = Employee.employees.get(i).getSalary();
+        	Object[] row = {name, String.valueOf(sal)};
+        	model.addRow(row);
+        }
+        jTable1 = new javax.swing.JTable(model);
         warning = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
@@ -124,24 +139,8 @@ public class SalaryWindow extends javax.swing.JFrame {
                 modify_buttonMouseClicked(evt);
             }
         });
-        modify_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modify_buttonActionPerformed(evt);
-            }
-        });
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Employee", "Salary"
-            }
-        ));
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setViewportView(jTable1);
 

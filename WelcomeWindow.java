@@ -47,7 +47,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel1.setText("Welcome!");
+        jLabel1.setText("Welcome!, please wait while loading...");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/big logo.PNG"))); // NOI18N
 
@@ -123,7 +123,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         /* Create and display the form */
          java.awt.EventQueue.invokeLater(new Runnable() {
         	 public void run() {
-        		 new WelcomeWindow().setVisible(true);
+        		new WelcomeWindow().setVisible(true);
         	 }
          	});  
     	}

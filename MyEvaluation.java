@@ -125,7 +125,7 @@ public class MyEvaluation extends javax.swing.JFrame {
         depScore.setText("Department's score is" + String.valueOf(dep_avg) + "/10");
 
         compScore.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        compScore.setText("Company's score is" + String.valueOf(avg) + "/10");
+        compScore.setText("Company's score is " + String.valueOf(avg) + "/10");
 
         output.setFont(new java.awt.Font("Bookman Old Style", 1, 20)); // NOI18N
 

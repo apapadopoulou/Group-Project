@@ -124,12 +124,6 @@ public class SalaryWindow extends javax.swing.JFrame {
                 modify_buttonMouseClicked(evt);
             }
         });
-        modify_button.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modify_buttonActionPerformed(evt);
-            }
-        });
-
         jTable1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -159,17 +159,7 @@ public class Task extends Program implements Comparable<Task>{
 	 * Returns the done field
 	 * @return done
 	 */
-    public boolean getDone(){
-    	return done;
-    }
-    /**
-     * Sets the done field
-     * @param done
-     */
-    public void setDone(boolean done){
-    	this.done = done;
-    }
-
+    
 	/**
 	 * Returns the startDate field
 	 * @return startDate

@@ -9,24 +9,32 @@ public class Test {
 		DBcon.deleteTables();
 		DBcon.createTables();
 		
-		Department dep0 = new Department("Sales");
-		Department dep1 = new Department("Accounting");
+		Department dep0 = new Department("Admin");
+		Department dep1 = new Department("HR");
 		Department dep2 = new Department("IT");
 		Department dep3 = new Department("R&D");
 		
-		Employee emp0 = new BasicEmployee("vasilis", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 1);
-		Employee emp1 = new BasicEmployee("Tasos", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 2);
-		Employee emp2 = new BasicEmployee("Aggeliki", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 3);
-		Employee emp3 = new BasicEmployee("Giorgos", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 4);
+		BasicEmployee emp0 = new BasicEmployee("vasilis", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 1, 3222);
+		BasicEmployee emp1 = new BasicEmployee("Tasos", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 2, 700);
+		BasicEmployee emp2 = new BasicEmployee("Aggeliki", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 3, 1200);
+		BasicEmployee emp3 = new BasicEmployee("Giorgos", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 3, 4000);
 		
-		Employee emp4 = new MiddleManager("Katerina", "wefsq", "6942796775", "alcabilone@gmail.com", "05/07/1998");
-		Employee emp5 = new MiddleManager("Orestis", "dwuqdqw", "6942796775", "alcabilone@gmail.com", "25/07/2000");
-		Employee emp6 = new MiddleManager("Antonis", "pakas", "6942796775", "alcabilone@gmail.com", "25/07/2000");
-		Employee emp7 = new MiddleManager("Maria", "georgiou", "6942796775", "alcabilone@gmail.com", "25/07/2000");
+		MiddleManager emp4 = new MiddleManager("Katerina", "wefsq", "6942796775", "alcabilone@gmail.com", "05/07/1998", 32322);
+		emp4.setManagingDepartment(1);
+		MiddleManager emp5 = new MiddleManager("Orestis", "dwuqdqw", "6942796775", "alcabilone@gmail.com", "25/07/2000", 4345);
+		MiddleManager emp6 = new MiddleManager("Antonis", "pakas", "6942796775", "alcabilone@gmail.com", "25/07/2000", 2000);
+		MiddleManager emp7 = new MiddleManager("Maria", "georgiou", "6942796775", "alcabilone@gmail.com", "25/07/2000", 2300);
+		ArrayList<Department> deps = new ArrayList<Department>();
+		deps.add(dep2);
+		deps.add(dep3);
+		emp7.setManagingDepartments(deps);
 		
-		Employee emp8 = new TopManager("Tasos", "yesaras", "6942796775", "tasos@gmail.com", "25/07/2000");
-		Employee emp9 = new TopManager("Mpampis", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000");
+		TopManager emp8 = new TopManager("Tasos", "yesaras", "6942796775", "tasos@gmail.com", "25/07/2000", 22332);
+		TopManager emp9 = new TopManager("Mpampis", "yesaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 30000);
+		
+		Request reg = new Request("30/10/2020", 3, "i want to take a time off pls!", emp5.getID());
 		//Sosto mexri edw!
+		/*
 		ArrayList<String> empids = new ArrayList<String>();
 		empids.add("atef0");
 		empids.add("4ioif0");

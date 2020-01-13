@@ -42,19 +42,15 @@ public class Request {
      * @param desc
      * @param empId
      */
-     public Request(String date, int days, String desc, String empId, int accepted, int requestID) {
-    	 if (accepted == 0) {
-    		 this.accepted = false; 
-    	 } else if (accepted == 1) {
-    		 this.accepted = true;
-    	 }
+     public Request(String date, int days, String desc, String empId, boolean accepted, int requestID) {
+    	 this.accepted = accepted;
     	 this.date = date;
     	 this.days = days;
     	 this.desc = desc;
     	 this.empId = empId;
-    	 requestID = counter++;
+    	 this.requestID = requestID;
+    	 counter = requestID + 1;
     	 vacRequests.add(this);
-    	 DBcon.saveRequest(this);
      }
     
      public int getRequestID(){

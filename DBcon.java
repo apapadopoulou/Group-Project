@@ -131,7 +131,7 @@ public class DBcon {
 					+ "empID VARCHAR(20), "
 					+ "date VARCHAR(15), "
 					+ "days INT, "
-					+ "desc VARCHAR(200), "
+					+ "description VARCHAR(150), "
 					+ "accepted INT, "
 					+ "PRIMARY KEY (requestID), "
 					+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
@@ -163,6 +163,7 @@ public class DBcon {
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
 			/* Executes the given statement that saves the object's. */
+			stmt.executeUpdate("DROP TABLE BBRequest;");
 			stmt.executeUpdate("DROP TABLE BBAssignedToEvent;");
 			stmt.executeUpdate("DROP TABLE BBAssignedToTask;");
 			stmt.executeUpdate("DROP TABLE BBEvent;");
@@ -172,7 +173,6 @@ public class DBcon {
 			stmt.executeUpdate("DROP TABLE BBBasicEmployee;");
 			stmt.executeUpdate("DROP TABLE BBDepartment;");
 			stmt.executeUpdate("DROP TABLE BBMiddleManager;");
-			stmt.executeUpdate("DROP TABLE BBRequest;");
 			System.out.println("SUCCESFULLY DELETED TABLES");
 			stmt.close();
 			dbcon.close();
@@ -1314,9 +1314,15 @@ public class DBcon {
 			dbcon = DriverManager.getConnection(url);
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
-			stmt.executeUpdate("INSERT INTO BBRequest (requestID, date, days, desc, empID, accepted) VALUES ("
+			int newAccepted = 0;
+			if (request.isAccepted()) {
+	    		 newAccepted = 1; 
+	    	 } else if (!request.isAccepted()) {
+	    		 newAccepted = 0;
+	    	 }
+			stmt.executeUpdate("INSERT INTO BBRequest (requestID, date, days, description, empID, accepted) VALUES ("
 					+ request.getRequestID() + ", '" + request.getDate() + "', " + request.getDays() + ", '"
-					+ request.getDesc() + "', '" + request.getEmpId() + "', " + request.isAccepted() + ");");
+					+ request.getDesc() + "', '" + request.getEmpId() + "', " + newAccepted + ");");
 			stmt.close(); // Closes the Statement resource.
 			dbcon.close(); // Closes the DataBase conenction resource.
 			/*
@@ -1351,16 +1357,16 @@ public class DBcon {
 				int requestID = rs.getInt("requestID");
 				String date = rs.getString("date");
 				int days = rs.getInt("days");
-				String desc = rs.getString("desc");
+				String desc = rs.getString("description");
 				String empID = rs.getString("empID");
 				int accepted = rs.getInt("accepted");
-				boolean newAccepted;
+				boolean newAccepted = false;
 				if (accepted == 0) {
 		    		 newAccepted = false; 
 		    	 } else if (accepted == 1) {
 		    		 newAccepted = true;
 		    	 }
-				Request request = new Request(date, days, desc, empID, accepted, requestID);
+				Request request = new Request(date, days, desc, empID, newAccepted, requestID);
 			}
 			rs.close();
 			stmt.close();

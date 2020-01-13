@@ -76,16 +76,22 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DefaultListModel model1 = new DefaultListModel();
-        for (int i = 0; i < mm.getManagingDepartments().size(); i++){
-            model1.addElement(mm.getManagingDepartments().get(i).getName());
+        if (mm.getManagingDepartments().isEmpty())
+        	model1.addElement("No departments");
+        else {
+	        for (int i = 0; i < mm.getManagingDepartments().size(); i++){
+	            model1.addElement(mm.getManagingDepartments().get(i).getName());
+	        }
         }
-        mmDepartments = new javax.swing.JList();
+        mmDepartments = new javax.swing.JList(model1);
         jScrollPane2 = new javax.swing.JScrollPane();
         DefaultListModel model2 = new DefaultListModel();
-        ArrayList<BasicEmployee> employeesOfDep = new ArrayList<BasicEmployee>();
-        employeesOfDep = Department.searchDepartmentByName(mmDepartments.getSelectedValue().toString()).getEmployeesOfDepartment();
-        for (int i = 1; i < employeesOfDep.size(); i++){
-            model2.addElement(employeesOfDep.get(i).getNameSurname());
+        if (!mm.getManagingDepartments().isEmpty()) {
+	        ArrayList<BasicEmployee> employeesOfDep = new ArrayList<BasicEmployee>();
+	        employeesOfDep = Department.searchDepartmentByName(mmDepartments.getSelectedValue().toString()).getEmployeesOfDepartment();
+	        for (int i = 1; i < employeesOfDep.size(); i++){
+	            model2.addElement(employeesOfDep.get(i).getNameSurname());
+	        }
         }
         employeesOfDepartment = new javax.swing.JList();
         depart = new javax.swing.JLabel();
@@ -117,7 +123,7 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel4.setText("Managing departments:");
 
-        mmDepartments.setModel(model1);
+        
         mmDepartments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(mmDepartments);
 
@@ -252,8 +258,16 @@ public class ShowDepartments extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void selectDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDepActionPerformed
-       if (mmDepartments.getSelectedIndex() == -1){
+    	depNot.setVisible(false);
+    	if (mmDepartments.getSelectedIndex() == -1 ){
+    	   depNot.setText("Please select a department!");
            depNot.setVisible(true);
+       } else if (mm.getManagingDepartments().isEmpty()){
+    	   employeesOfDepartment.setVisible(false);
+    	   jScrollPane2.setVisible(false);
+    	   selectEmployee.setVisible(false);
+    	   depNot.setText("No available departments");
+    	   depNot.setVisible(true);
        } else {
            depNot.setVisible(false);
             depart.setVisible(true);

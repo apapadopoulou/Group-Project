@@ -130,8 +130,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         levOfimp = new javax.swing.JLabel();
         comboImp = new javax.swing.JComboBox();
         comboDif = new javax.swing.JComboBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        employeesList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();        
         DefaultListModel model1 = new DefaultListModel();
         if (n == 3 || n == 4){
             for (int i = 1; i < Department.departments.size(); i++) {
@@ -146,6 +145,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 model1.addElement(employee.getNameSurname());
             }
         }
+        employeesList = new javax.swing.JList(model1);
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
@@ -490,7 +490,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             slash1.setVisible(true);
             slash2.setVisible(true);
             description.setVisible(true);
-            employeesList.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            employeesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             time1.setVisible(true);
             hours.setVisible(true);
             twoDots.setVisible(true);
@@ -543,7 +543,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             description.setVisible(true);            
             levOfDif.setVisible(true);
             levOfimp.setVisible(true);
-            employeesList.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            employeesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             months.setVisible(true);
             select.setVisible(true);
             slash1.setVisible(true);

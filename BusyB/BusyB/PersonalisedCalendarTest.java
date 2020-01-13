@@ -13,9 +13,6 @@ public class PersonalisedCalendarTest extends TestCase {
 		assertEquals(ans, val);
 	}
 	
-	 public void testAddToCalendar() {
-	        .add("Banana");
-	        assertEquals("Adding 1 more fruit to list", 4, lstTest.size());
-	    }
+
 
 }

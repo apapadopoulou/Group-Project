@@ -172,12 +172,14 @@ public class Day {
   }
   
   public static ArrayList<Day> createCalendar(String empID, String startingDate){
+	  System.out.println("starting Date: " + startingDate);
 	  ArrayList<Day> calendar = new ArrayList<Day>();
 	  Day firstDay = new Day(startingDate);
 	  firstDay.addToDailyProgram(DBcon.loadEventsAndReminders(empID, startingDate));
 	  firstDay.addToDailyProgram(DBcon.loadActiveTasks(empID));
 	  calendar.add(firstDay);
 	  String nextDate = nextDate(startingDate);
+	  System.out.println("next date #1: " + startingDate);
 	  for (int i = 1; i <= 100; i++) {
 		  if (validDate(startingDate)) {
 			  Day day = new Day(nextDate);
@@ -247,9 +249,9 @@ public class Day {
 			  if (year % 400 == 0) {
 				  leap = true;
 			  }
-		  }else {
+		  } else {
 			  	leap = true;
-		  	} 
+		  	}
 	  }
 	  return leap;
   }

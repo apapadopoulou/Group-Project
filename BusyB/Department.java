@@ -7,7 +7,7 @@ public class Department {
 
 	private int id;
 	private String name;
-	private static int counter = 1; /** counter*/
+	private static int counter = 0; /** counter*/
 	private String managerId;
 	private ArrayList<BasicEmployee> employeesOfDepartment = new ArrayList<BasicEmployee>(); 
 	/** A list that contains the employees of each department separately*/
@@ -17,6 +17,7 @@ public class Department {
 	/**
 	 * Basic constructor for class Department.
 	 * Use this constructor if you want to create a new Department.
+	 * @param name
 	 */
 	public Department(String name) {
 		id = counter++;
@@ -29,6 +30,8 @@ public class Department {
 	 * Database constructor for class Department.
 	 * This constructor is used to load Departments from the database
 	 * when the program opens.
+	 * Sets the counter to the current id to be used for
+	 * new objects that are being created.
 	 * @param name
 	 * @param id
 	 * @param managerId
@@ -42,15 +45,15 @@ public class Department {
 		/*Sets the counter to the current id to be used for
 		new objects that are being created.*/
 
-		/**Sets the counter to the current id to be used for
-		*new objects that are being created.
-		*/
+		
 
 		counter = ++id;
 	}
 
 	/**
-	 *@return dep
+	 * Returns a department from departments field
+	 * @param id
+	 * @return
 	 */
 	public static Department getDepartment(int id) {
 		Department dep = null;
@@ -62,7 +65,7 @@ public class Department {
 		return dep;
 	}
 	/**
-	 *Gets the departments.
+	 *Returns the departments field
 	 *@return departments
 	 */
 
@@ -71,14 +74,14 @@ public class Department {
 	}
 
 	/**
-	 *Gets the id.
+	 *Returns the id field
 	 *@return id
 	 */
 	public int getId() {
 		return id;
 	}
 	/**
-	 *Gets the name.
+	 *Returns the name field.
 	 *@return name
 	 */
 
@@ -86,41 +89,49 @@ public class Department {
 		return name;
 	}
 	/**
-	 *Sets the name.
+	 * Sets the name field.
+	 * @param name
 	 */
 
 	public void setName(String name) {
 		this.name = name;
+		DBcon.updateDepartmentVar("name", name, this.id);
 	}
 	
-/**
- *Sets the manager id.
- */
+	/**
+	 * Sets the id field
+	 * @param id
+	 */
 	public void setManagerId(String id) {
 		managerId = id;
 		DBcon.updateDepartmentVar("managerId", managerId, this.id);
 	}
 	/**
-	 *Gets the manager id.
-	 *@return manager id
+	 *Returns the id field
+	 *@return managerId
 	 */
 
 	public String getManagerId() {
 		return managerId;
 	}
     /**
-     *Gets the employees of department.
-     *@return employees of department
+     *Returns the employees of a department
+     *@return employeesOfDepartment
      */
 	public ArrayList<BasicEmployee> getEmployeesOfDepartment() {
 	  return employeesOfDepartment;
 	}
-
+	/**
+	 * Adds the employee to employeesOfDepartment field
+	 * @param employee
+	 */
 	public void addEmployee(BasicEmployee employee) {
 		employeesOfDepartment.add(employee);
 	}
     /**
-     *@return employees of department by name or null
+     * Searches an employee by his name in employeesOfDepartment list 
+     * @param name
+     * @return employeesOfDepartment.get(i) or null
      */
 	public BasicEmployee searchEmployeeByName(String name) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
@@ -134,10 +145,11 @@ public class Department {
 		return null;
 	} 
 	
-	/** 
-	 *A search method that search the employee list of the department to find a specific employee using his name.
-	 *@return employees of department by id or null
-	  */
+	/**
+	 * Searches an employee by his id in employeesOfDepartment list 
+	 * @param id
+	 * @return employeesOfDepartment.get(i) or null
+	 */
 	public Employee searchEmployeeById(String id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
 			if (employeesOfDepartment.get(i).getID().equals(id)) {
@@ -150,8 +162,9 @@ public class Department {
 		return null;
 	}
 
-	/** 
-	 *A search method that searches the employee list of the department to find a specific employee using his id.
+	/**
+	 * Searches an employee by his/her name in employeesOfDepartment list and deletes him if he/she exists 
+	 * @param name
 	 */
 	public void deleteEmployeeByName(String name) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
@@ -164,9 +177,10 @@ public class Department {
 		}
     }
 	
-	/** 
-	 *A method that deletes a specific employee from a department's arraylist using his/her name to find him/her.
-	*/
+	/**
+	 * Searches an employee by his/her id in employeesOfDepartment list and deletes him if he/she exists 
+	 * @param id
+	 */
 	public void deleteEmployeeById(String id) {
 		for (int i = 0; i < employeesOfDepartment.size(); i++) {
 			if (employeesOfDepartment.get(i).getID().equals(id)) {
@@ -187,6 +201,7 @@ public class Department {
 		return str_1;
 	}
   /**
+   * Searches departments list by the department's id and returns the department if it exists.
    *@return department or null 
    */
 	public static Department searchDepartmentById(int id) {
@@ -197,7 +212,11 @@ public class Department {
 	    }
 	  return null;
 	}
-	
+	/**
+	 * Searches departments list  by the department's name and returns the department if it exists.
+	 * @param name
+	 * @return department or null
+	 */
 	public static Department searchDepartmentByName(String name) {
 		for (int i = 0; i < departments.size(); i++) {
 			if (departments.get(i).getName() == name) {
@@ -206,6 +225,19 @@ public class Department {
 	    }
 	  return null;
 	}
+        
+        public static double departmentScore(Department dept){
+            double avg = 0;
+            for (BasicEmployee employeesOfDepartment1 : dept.employeesOfDepartment) {
+                avg += employeesOfDepartment1.getScore();
+            }
+            avg += MiddleManager.searchMiddleManagerById(dept.getManagerId())
+                    .getScore();
+            if (dept.employeesOfDepartment.size() + 1 == 0)
+                return 0;
+            avg = avg / (dept.employeesOfDepartment.size() + 1 );
+            return avg;                
+        }
 }
 
 /**

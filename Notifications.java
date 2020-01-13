@@ -88,10 +88,10 @@ public class Notifications extends javax.swing.JFrame {
         Calendar c = Calendar.getInstance();
         String date = c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" 
                 +c.get(Calendar.YEAR);
-        for (int i = 0; i < emp.searchDay(date).getDailyProgram().size(); i++){
-            if (emp.searchDay(date).getDailyProgram().get(i) instanceof Task){
-                Task t1 = (Task) emp.searchDay(date).getDailyProgram().get(i);
-                if (t1.getDone()){
+        for (int i = 0; i < Program.allPrograms.size(); i++){
+            if (Program.allPrograms.get(i) instanceof Task){
+                Task t1 = (Task) Program.allPrograms.get(i);
+                if (t1.getStatus() && t1.getEmpID().equals(emp.getID())){
                     String st = "You have completed the Task " + t1.getDesc() + "in time!";
                     model.addElement(st);
                 }        

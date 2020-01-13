@@ -123,11 +123,11 @@ public class MyCalendar extends javax.swing.JFrame {
             model1.addElement("No Tasks for today");
         } else {
             int i;
-            if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+            if(jComboBox1.getSelectedIndex() == 0) {
+            	model1.removeAllElements();
                 tasks = Task.sortByDate(tasks);
-            } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
-                tasks = Task.sortByDesc(tasks);
-            } else {
+            } else if (jComboBox1.getSelectedIndex() == 1){
+            	model1.removeAllElements();
                 tasks = Task.sortByImp(tasks);
             }
             for (i = 0; i < tasks.size(); i++){
@@ -229,7 +229,7 @@ public class MyCalendar extends javax.swing.JFrame {
 
         help.setText("Please select every task that is completed and then click Done Button!");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Description", "Level of importance" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date","Importance" }));
         jComboBox1.setSelectedIndex(1);
         eventsAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
         eventsAndRem.setText("Events and Reminders");	
@@ -412,10 +412,10 @@ public class MyCalendar extends javax.swing.JFrame {
 	                } else {
 	                    int i;
 	                    if(jComboBox1.getSelectedIndex() == 0){
+	                    	model1.removeAllElements();
 	                        tasks = Task.sortByDate(tasks);
 	                    } else if (jComboBox1.getSelectedIndex() == 1){
-	                        tasks = Task.sortByDesc(tasks);
-	                    } else {
+	                    	model1.removeAllElements();
 	                        tasks = Task.sortByImp(tasks);
 	                    }
 	                    for (i = 0; i < tasks.size(); i++){

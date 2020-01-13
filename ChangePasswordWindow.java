@@ -144,13 +144,22 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
 
     private void ok_buttonMouseClicked(java.awt.event.MouseEvent evt) {
         warning.setVisible(false);
-        try {
-            String pas_emp = password.getText();
-            boolean  b = new_password1.getText().equals(new_password2.getText());
-            if(Account.searchAccountByEmployee(emp).getPassword().equals(pas_emp)) {
+        try {        	
+            char[] pas_emp = password.getPassword();            
+            String pass = "";
+            for (int i = 0; i < pas_emp.length; i++) {
+            	pass += pas_emp[i];
+            }
+            boolean b = new_password1.getPassword().equals(new_password2.getPassword());
+            char[] new_pass_emp = new_password1.getPassword();
+            String new_password = "";
+            for (int i = 0; i < new_pass_emp.length; i++ ) {
+            	new_password += new_pass_emp[i];
+            }
+            if(Account.searchAccountByEmployee(emp).getPassword().equals(pass)) {
             	if (b) {
-            		if (Checkers.isValidPassword(new_password1.getText())) {
-            			Account.searchAccountByEmployee(emp).setPassword(new_password1.getText());
+            		if (Checkers.isValidPassword(new_password)) {
+            			Account.searchAccountByEmployee(emp).setPassword(new_password);
             		} else {
             			warning.setText("Invalid new password. Password's length"+
                                 "must be between 6 and 15.");
@@ -164,6 +173,7 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
             	warning.setText("Please enter your current password");
                 warning.setVisible(true);
             } 
+
         } catch (NullPointerException e){
             warning.setText("Please enter your current password");
             warning.setVisible(true);

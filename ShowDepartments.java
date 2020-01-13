@@ -32,7 +32,7 @@ public class ShowDepartments extends javax.swing.JFrame {
         initComponents();
         showDate();
         showTime();
-        mm = (MiddleManager) emp;
+        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
         depart.setVisible(false);
         employeesOfDepartment.setVisible(false);
         selectEmployee.setVisible(false);

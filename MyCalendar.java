@@ -455,12 +455,14 @@ public class MyCalendar extends javax.swing.JFrame {
                 years.getSelectedItem().toString();
         ArrayList<Task> tasks = new ArrayList<Task>();
         tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram()); 
-        Object[] tasksToString = eventList.getSelectedValues();
-        for (Object tasksToString1 : tasksToString) {
-            String s = tasksToString1.toString();
-            Date d = new Date();
-            String compDate = d.getDay() + "/" + d.getMonth() + "/"
-                    + d.getYear();
+        int[] tasksIndices = taskList.getSelectedIndices();
+        ArrayList<String> taskToString = new ArrayList<String>();
+        for (int i = 0; i < tasksIndices.length; i++) {
+        	taskToString.add(taskList.getModel().getElementAt(tasksIndices[i]).toString());
+        }
+        for (int i = 0; i < taskToString.size(); i++) {
+            String s = taskToString.get(i);
+            Calendar c = Calendar.getInstance();           
             Task.searchTask(s, tasks).setStatus(true);
         }
         model1.removeAllElements();        

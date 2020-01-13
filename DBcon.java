@@ -103,7 +103,7 @@ public class DBcon {
 					+ "(eventID INT not null," 
 					+ "eventDate VARCHAR(13) not null,"
 					+ "eventTime VARCHAR(13)not null," 
-					+ "type INT," 
+					+ "type VARCHAR(20)," 
 					+ "title VARCHAR(50),"
 					+ "description VARCHAR(300),"
 					+ "PRIMARY KEY (eventID));");
@@ -125,6 +125,17 @@ public class DBcon {
 					+ "FOREIGN KEY (empID) REFERENCES BBAccount,"
 					+ "FOREIGN KEY (taskID) REFERENCES BBTask);");
 			System.out.println("TABLE BBAssignedToTask CREATED");
+			
+			stmt.executeUpdate("CREATE TABLE BBRequest " 
+					+ "(requestID INT not null, "
+					+ "empID VARCHAR(20), "
+					+ "date VARCHAR(15), "
+					+ "days INT, "
+					+ "description VARCHAR(150), "
+					+ "accepted INT, "
+					+ "PRIMARY KEY (requestID), "
+					+ "FOREIGN KEY (empID) REFERENCES BBAccount);");
+			System.out.println("TABLE BBRequest CREATED");
 		
 			/* Catch block if an exception occurs and the specified driver is not found. */
 		} catch (Exception e) {
@@ -152,6 +163,7 @@ public class DBcon {
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
 			/* Executes the given statement that saves the object's. */
+			stmt.executeUpdate("DROP TABLE BBRequest;");
 			stmt.executeUpdate("DROP TABLE BBAssignedToEvent;");
 			stmt.executeUpdate("DROP TABLE BBAssignedToTask;");
 			stmt.executeUpdate("DROP TABLE BBEvent;");
@@ -184,6 +196,8 @@ public class DBcon {
 		System.out.println("Succesfully Loaded Tasks.");
 		DBcon.loadEvents();
 		System.out.println("Succesfully Loaded Events.");
+		DBcon.loadRequests();
+		System.out.println("Succesfully Loaded Requests.");
 	}
 	
 	// Method to save Accounts to DB.
@@ -985,7 +999,7 @@ public class DBcon {
 			stmt = dbcon.createStatement();
 			stmt.executeUpdate("INSERT INTO BBEvent (eventID, title, eventDate, eventTime, description, type) VALUES ("
 					+ event.getProgramID() + ", '" + event.getTitle() + "', '" + event.getEventDate() + "', '"
-					+ event.getEventTime() + "', '" + event.getDesc() + "', " + event.getType() + ");");
+					+ event.getEventTime() + "', '" + event.getDesc() + "', '" + event.getType() + "');");
 			stmt.close(); // Closes the Statement resource.
 			dbcon.close(); // Closes the DataBase conenction resource.
 			/*
@@ -1283,6 +1297,87 @@ public class DBcon {
 			System.out.println("SQLException: " + e.getMessage());
 		}
 		return dailyProgram;
+	}
+	
+	public static void saveRequest(Request request) {
+		Connection dbcon;
+		Statement stmt;
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/* Try block for making the DB connection and executing the given statement. */
+		try {
+			/* Makes the actual connection with the server. */
+			dbcon = DriverManager.getConnection(url);
+			/* Creates the statement */
+			stmt = dbcon.createStatement();
+			int newAccepted = 0;
+			if (request.isAccepted()) {
+	    		 newAccepted = 1; 
+	    	 } else if (!request.isAccepted()) {
+	    		 newAccepted = 0;
+	    	 }
+			stmt.executeUpdate("INSERT INTO BBRequest (requestID, date, days, description, empID, accepted) VALUES ("
+					+ request.getRequestID() + ", '" + request.getDate() + "', " + request.getDays() + ", '"
+					+ request.getDesc() + "', '" + request.getEmpId() + "', " + newAccepted + ");");
+			stmt.close(); // Closes the Statement resource.
+			dbcon.close(); // Closes the DataBase conenction resource.
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
+	}
+	
+	public static void loadRequests() {
+		/* Try block for trying to find the correct Driver to make the DB connection. */
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			/* Catch block if an exception occurs and the specified driver is not found. */
+		} catch (java.lang.ClassNotFoundException e) {
+			System.out.print("test: ");
+			System.out.println(e.getMessage());
+		}
+		/* Try block for making the DB connection and executing the given statement. */
+		try {
+			ResultSet rs;
+			/* Makes the actual connection with the server. */
+			dbcon = DriverManager.getConnection(url);
+			/* Creates the statement */
+			stmt = dbcon.createStatement();
+			/* Executes the given statement that saves the object's. */
+			rs = stmt.executeQuery("SELECT requestID, date, days, desc, empID, accepted FROM BBRequests");
+			/* Does a loop for every row (object in this case) it finds. */
+			while (rs.next()) {
+				int requestID = rs.getInt("requestID");
+				String date = rs.getString("date");
+				int days = rs.getInt("days");
+				String desc = rs.getString("description");
+				String empID = rs.getString("empID");
+				int accepted = rs.getInt("accepted");
+				boolean newAccepted = false;
+				if (accepted == 0) {
+		    		 newAccepted = false; 
+		    	 } else if (accepted == 1) {
+		    		 newAccepted = true;
+		    	 }
+				Request request = new Request(date, days, desc, empID, newAccepted, requestID);
+			}
+			rs.close();
+			stmt.close();
+			dbcon.close();
+			/*
+			 * Catch block if an exception occurs while making the connection and executing
+			 * the statement.
+			 */
+		} catch (SQLException e) {
+			System.out.println("SQLException: " + e.getMessage());
+		}
 	}
 	
 	public static void deleteEmployee(Employee emp) {

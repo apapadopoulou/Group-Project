@@ -572,34 +572,35 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
 
     private void addOrCreateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addOrCreateMouseClicked
         if (event.isSelected()){
-            try {
+            
                 String type =  types.getSelectedItem().toString();
                 String title1;
                 title1 = titleText.getText();
                 String date2 = days.getSelectedItem().toString() + "/" + 
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
-                String time2;
-                time2 = hours.getSelectedItem().toString() + ":" +
-                        minutes.getSelectedItem().toString();
-                String desc;
-                desc = textArea.getText();
-                ArrayList <String> empls = new ArrayList <String>();
-                int[] emloyeesIndices = employeesList.getSelectedIndices();   
-                if (n == 5) {	                                
-	                for (int i = 0; i < emloyeesIndices.length; i++) {
-	                    Employee em = Employee.employees.get(emloyeesIndices[i]);
-	                    empls.add(em.getID());                   
+	                if (!Day.validDate(date2)) {
+	                String time2;
+	                time2 = hours.getSelectedItem().toString() + ":" +
+	                        minutes.getSelectedItem().toString();
+	                String desc;
+	                desc = textArea.getText();
+	                ArrayList <String> empls = new ArrayList <String>();
+	                int[] emloyeesIndices = employeesList.getSelectedIndices();   
+	                if (n == 5) {	                                
+		                for (int i = 0; i < emloyeesIndices.length; i++) {
+		                    Employee em = Employee.employees.get(emloyeesIndices[i]);
+		                    empls.add(em.getID());                   
+		                }
+	                } else {
+	                	for (int i = 0; i < emloyeesIndices.length; i++) {
+	                		Employee em = Employee.searchEmployeeByName2(String.valueOf(employeesList
+	                				.getModel().getElementAt(emloyeesIndices[i])));
+	                		empls.add(em.getID());	
+	                	}
 	                }
-                } else {
-                	for (int i = 0; i < emloyeesIndices.length; i++) {
-                		Employee em = Employee.searchEmployeeByName2(String.valueOf(employeesList
-                				.getModel().getElementAt(emloyeesIndices[i])));
-                		empls.add(em.getID());	
-                	}
-                }
-                new Event(title1, date2, time2, desc, type, empls);
-            } catch (Exception e){
+	                new Event(title1, date2, time2, desc, type, empls);
+            } else{
                     jLabel1.setVisible(true);
             }
         } else {

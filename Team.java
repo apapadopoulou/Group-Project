@@ -30,15 +30,7 @@ public class Team extends javax.swing.JFrame {
     private double teamScore;
     public Team(int n, Employee emp) {
         mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
-        numberOfdepartments = mm.getManagingDepartments().size();
-        if (numberOfdepartments == 1) {
-            selectDepartments.setVisible(false);
-            managingDepartments.setVisible(false);
-            OKButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-            OKButton.setVisible(false);
-            depNot.setVisible(false);
-            nameOfDepartment.setText(mm.getManagingDepartments().get(0).getName());
-        }
+        
         this.n = n;
         teamScore = 0.0;
         depNot.setVisible(false);
@@ -92,28 +84,19 @@ public class Team extends javax.swing.JFrame {
                return false;
             }
         };
-;
+
         table = new javax.swing.JTable(model);
         JTableHeader Theader = table.getTableHeader();
         Theader.setFont(new Font("Arial",Font.BOLD, 18));
 
-        int i;
-        if (numberOfdepartments == 1) {
-            for (i = 0; i < mm.getManagingDepartments().get(0).getEmployeesOfDepartment().size(); i++){
-                String name = mm.getManagingDepartments().get(0).getEmployeesOfDepartment().get(i).getNameSurname();
-                double score = mm.getManagingDepartments().get(0).getEmployeesOfDepartment().get(i).getScore();
-                teamScore += score;
-                Object[] row = {name, String.valueOf(score)};
-                model.addRow(row);
-            }
-            teamScore = teamScore / (i + 1);    
-        }
+        int i;        
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         selectDepartments = new javax.swing.JLabel();
         managingDepartments = new javax.swing.JComboBox();
-        for (i = 0; i < mm.getManagingDepartments().size(); i++){
-            managingDepartments.addItem(mm.getManagingDepartments().get(i).getName());
+        for (i = 1; i < Department.departments.size(); i++){
+        	if (Department.departments.get(i).getManagerId().equals(mm.getID()))
+        		managingDepartments.addItem(Department.departments.get(i).getName());
         }
         OKButton = new javax.swing.JToggleButton();
         depNot = new javax.swing.JLabel();
@@ -292,10 +275,9 @@ public class Team extends javax.swing.JFrame {
                 double score = department.getEmployeesOfDepartment().get(i).getScore();
                 Object[] row = {name, String.valueOf(score)};
                 model.addRow(row);
-            }
-            teamScore = Department.departmentScore(department);
+            }            
             table.setModel(model);
-            jLabel5.setText(String.valueOf(teamScore));
+            jLabel5.setText(String.valueOf(Department.departmentScore(department)));
             
         }
     }//GEN-LAST:event_OKButtonMouseClicked

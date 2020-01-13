@@ -29,13 +29,12 @@ public class Team extends javax.swing.JFrame {
     private MiddleManager mm;
     private double teamScore;
     public Team(int n, Employee emp) {
-        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
-        
+        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());        
         this.n = n;
-        teamScore = 0.0;
-        depNot.setVisible(false);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        teamScore = 0.0;        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);        
         initComponents();
+        depNot.setVisible(false);
         ShowDate();
         ShowTime();
     }

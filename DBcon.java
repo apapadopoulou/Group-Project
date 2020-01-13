@@ -1351,7 +1351,7 @@ public class DBcon {
 			/* Creates the statement */
 			stmt = dbcon.createStatement();
 			/* Executes the given statement that saves the object's. */
-			rs = stmt.executeQuery("SELECT requestID, date, days, desc, empID, accepted FROM BBRequests");
+			rs = stmt.executeQuery("SELECT requestID, date, days, description, empID, accepted FROM BBRequest");
 			/* Does a loop for every row (object in this case) it finds. */
 			while (rs.next()) {
 				int requestID = rs.getInt("requestID");

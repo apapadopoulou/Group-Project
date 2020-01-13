@@ -167,8 +167,8 @@ public final class FirstWindow extends javax.swing.JFrame {
            for (String eventsList1 : eventsList) {
             model2.addElement(eventsList1);
            }
-        } else 
-        model2.addElement("No events or reminders for today");       
+        } else if (eventsList.isEmpty())
+        	model2.addElement("No events or reminders for today");       
         jLabelTeam = new javax.swing.JLabel();
         if (num != 3 && num != 4) {
             jLabelTeam.setText("");

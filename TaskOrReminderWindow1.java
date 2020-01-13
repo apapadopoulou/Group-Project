@@ -25,6 +25,10 @@ import javax.swing.Timer;
 public class TaskOrReminderWindow1 extends javax.swing.JFrame {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Creates new form TaskOrReminderWindow1
      */
     private final String[] years = years();

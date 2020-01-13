@@ -579,7 +579,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 String date2 = days.getSelectedItem().toString() + "/" + 
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
-	                if (!Day.validDate(date2)) {
+	           if (Day.validDate(date2)) {
 	                String time2;
 	                time2 = hours.getSelectedItem().toString() + ":" +
 	                        minutes.getSelectedItem().toString();
@@ -600,7 +600,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
 	                	}
 	                }
 	                new Event(title1, date2, time2, desc, type, empls);
-            } else{
+            } else {
                     jLabel1.setVisible(true);
             }
         } else {

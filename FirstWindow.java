@@ -382,7 +382,7 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Description", "Level Of importance" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Importance" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -523,9 +523,6 @@ public final class FirstWindow extends javax.swing.JFrame {
                 model.removeAllElements();
                 tasks = Task.sortByDate(tasks);
             } else if (jComboBox2.getSelectedIndex() == 1){
-                model.removeAllElements();
-                tasks = Task.sortByDesc(tasks);
-            } else {
                 model.removeAllElements();
                 tasks = Task.sortByImp(tasks);
             }

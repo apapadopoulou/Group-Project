@@ -91,7 +91,7 @@ public class DBcon {
 			stmt.executeUpdate("CREATE TABLE BBTask " 
 					+ "(taskID INT not null," 
 					+ "startDate VARCHAR(20) not null,"
-					+ "dueDate DATE not null, " 
+					+ "dueDate VARCHAR(20) not null, " 
 					+ "completionDate VARCHAR(20), "
 					+ "description VARCHAR(100) not null,"
 					+ "importance INT not null," 

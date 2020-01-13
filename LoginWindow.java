@@ -255,7 +255,6 @@ public class LoginWindow extends javax.swing.JFrame {
             acc.getEmployee().setCalendar(Day.createCalendar(acc
              		.getEmployee().getID(), strDate));
             n = Account.typeOfEmployee(acc.getEmployee());
-            //I dont understand this. Please explain it.
             acc.setHasDefaultPass(acc.getHasDefaultPass());
             if (acc.getHasDefaultPass() == 0){       
                    java.awt.EventQueue.invokeLater(new Runnable() {

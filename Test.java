@@ -5,8 +5,8 @@ import java.text.DateFormat;
 
 public class Test {
 	public static void main(String args []) {
-		DBcon.loadData();
-		/*
+		//DBcon.loadData();
+		
 		DBcon.deleteTables();
 		DBcon.createTables();
 		

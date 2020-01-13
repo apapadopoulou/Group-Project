@@ -628,7 +628,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
             	Calendar c = Calendar.getInstance();
                 String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" 
                         +c.get(Calendar.YEAR);
-                new Task(startDate, date2, desc, 0, 0, empls);  
+               Task task = new Task(startDate, date2, desc, 0, 0, empls);  
             }
         } else if (personaltask.isSelected()){
             String desc = description.getText();
@@ -641,7 +641,7 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
             	Calendar c = Calendar.getInstance();
                 String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" 
                         +c.get(Calendar.YEAR);
-                new Task(startDate, date2, desc, 0, 0, emp.getID());             
+                Task task = new Task(startDate, date2, desc, 0, 0, emp.getID());             
             }
         } else if (reminder.isSelected() || event.isSelected()){
             String desc = description.getText();
@@ -656,10 +656,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
                 ArrayList<String> employee = new ArrayList<String>();
                     employee.add(emp.getID());
                 if (reminder.isSelected()){
-                    new Event("", date2, time, desc, "reminder", employee);
+                    Event event = new Event("", date2, time, desc, "reminder", employee);
                 }
                 else {
-                   new Event (title.getText(), date2, time, desc, "" ,employee);
+                  Event event = new Event (title.getText(), date2, time, desc, "" ,employee);
                 }
             }
         } 

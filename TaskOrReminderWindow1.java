@@ -626,9 +626,9 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
                 warning.setVisible(true);
             else {
             	Calendar c = Calendar.getInstance();
-                String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" 
+                String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + (c.get(Calendar.MONTH) + 1) + "/" 
                         +c.get(Calendar.YEAR);
-               Task task = new Task(startDate, date2, desc, 0, 0, empls);  
+                new Task(startDate, date2, desc, 0, 0, empls);  
             }
         } else if (personaltask.isSelected()){
             String desc = description.getText();
@@ -639,9 +639,9 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
                 warning.setVisible(true);
             else {
             	Calendar c = Calendar.getInstance();
-                String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + c.get(Calendar.MONTH) + "/" 
+                String startDate = c.get(Calendar.DAY_OF_MONTH) + "/" + (c.get(Calendar.MONTH) + 1) + "/" 
                         +c.get(Calendar.YEAR);
-                Task task = new Task(startDate, date2, desc, 0, 0, emp.getID());             
+                new Task(startDate, date2, desc, 0, 0, emp.getID());             
             }
         } else if (reminder.isSelected() || event.isSelected()){
             String desc = description.getText();
@@ -656,10 +656,10 @@ public class TaskOrReminderWindow1 extends javax.swing.JFrame {
                 ArrayList<String> employee = new ArrayList<String>();
                     employee.add(emp.getID());
                 if (reminder.isSelected()){
-                    Event event = new Event("", date2, time, desc, "reminder", employee);
+                    new Event("", date2, time, desc, "reminder", employee);
                 }
                 else {
-                  Event event = new Event (title.getText(), date2, time, desc, "" ,employee);
+                   new Event (title.getText(), date2, time, desc, "" ,employee);
                 }
             }
         } 

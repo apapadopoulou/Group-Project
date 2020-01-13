@@ -156,10 +156,10 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
             for (int i = 0; i < new_pass_emp.length; i++ ) {
             	new_password += new_pass_emp[i];
             }
-            if(Account.searchAccountByEmail(emp.getEmail()).getPassword().equals(pass)) {
+            if(Account.searchAccountByEmployee(emp).getPassword().equals(pass)) {
             	if (b) {
             		if (Checkers.isValidPassword(new_password)) {
-            			Account.searchAccountByEmail(emp.getEmail()).setPassword(new_password);
+            			Account.searchAccountByEmployee(emp).setPassword(new_password);
             		} else {
             			warning.setText("Invalid new password. Password's length"+
                                 "must be between 6 and 15.");
@@ -172,7 +172,8 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
             } else {
             	warning.setText("Please enter your current password");
                 warning.setVisible(true);
-            }            
+            } 
+
         } catch (NullPointerException e){
             warning.setText("Please enter your current password");
             warning.setVisible(true);

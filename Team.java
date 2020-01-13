@@ -97,6 +97,7 @@ public class Team extends javax.swing.JFrame {
         	if (Department.departments.get(i).getManagerId().equals(mm.getID()))
         		managingDepartments.addItem(Department.departments.get(i).getName());
         }
+        managingDepartments.setSelectedIndex(-1);
         OKButton = new javax.swing.JToggleButton();
         depNot = new javax.swing.JLabel();
         nameOfDepartment = new javax.swing.JLabel();

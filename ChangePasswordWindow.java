@@ -150,16 +150,21 @@ public class ChangePasswordWindow extends javax.swing.JFrame {
             for (int i = 0; i < pas_emp.length; i++) {
             	pass += pas_emp[i];
             }
-            boolean b = new_password1.getPassword().equals(new_password2.getPassword());
-            char[] new_pass_emp = new_password1.getPassword();
-            String new_password = "";
-            for (int i = 0; i < new_pass_emp.length; i++ ) {
-            	new_password += new_pass_emp[i];
+            char[] new_pass_emp1 = new_password1.getPassword();
+            String new_password1 = "";
+            for (int i = 0; i < new_pass_emp1.length; i++ ) {
+            	new_password1 += new_pass_emp1[i];
             }
+            char[] new_pass_emp2 = new_password2.getPassword();
+            String new_password2 = "";
+            for (int i = 0; i < new_pass_emp2.length; i++ ) {
+            	new_password2 += new_pass_emp2[i];
+            }
+            boolean b = new_password1.equals(new_password2);
             if(Account.searchAccountByEmployee(emp).getPassword().equals(pass)) {
             	if (b) {
-            		if (Checkers.isValidPassword(new_password)) {
-            			Account.searchAccountByEmployee(emp).setPassword(new_password);
+            		if (Checkers.isValidPassword(new_password1)) {
+            			Account.searchAccountByEmployee(emp).setPassword(new_password1);
             		} else {
             			warning.setText("Invalid new password. Password's length"+
                                 "must be between 6 and 15.");

@@ -1,4 +1,5 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,9 +33,7 @@ public class MyCalendar extends javax.swing.JFrame {
         initComponents();
         ShowDate();
         ShowTime();
-        dateNot.setVisible(false);
-        doneButton.setVisible(false);
-        help.setVisible(false);
+        dateNot.setVisible(false);        
     }
     void ShowDate(){
         Date d = new Date();
@@ -84,15 +83,18 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         days = new javax.swing.JComboBox();
+        days.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DAY_OF_MONTH);
         days.setSelectedIndex(day-1);
         slash1 = new javax.swing.JLabel();
         month = new javax.swing.JComboBox();
+        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         int month1 = c.get(Calendar.MONTH);
-        month.setSelectedIndex(month1-1);
+        month.setSelectedIndex(month1);
         slash2 = new javax.swing.JLabel();
         years = new javax.swing.JComboBox();
+        years.setModel(new javax.swing.DefaultComboBoxModel(year));
         int year1 = c.get(Calendar.YEAR);
         years.setSelectedItem(String.valueOf(year1));
         jLabel13 = new javax.swing.JLabel();
@@ -107,7 +109,10 @@ public class MyCalendar extends javax.swing.JFrame {
         eventsList = Event.sortByTime(eventsList);
         if (!eventsList.isEmpty()){
             for (Event eventsList1 : eventsList) {
-                model2.addElement(eventsList1);
+            	if (eventsList1.getType().equals(""))
+            		model2.addElement(eventsList1.toString());
+            	else
+            		model2.addElement(eventsList1.toStringWithType());
             }
         } else 
             model2.addElement("No events or reminders for today");
@@ -120,11 +125,11 @@ public class MyCalendar extends javax.swing.JFrame {
             model1.addElement("No Tasks for today");
         } else {
             int i;
-            if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+            if(jComboBox1.getSelectedIndex() == 0) {
+            	model1.removeAllElements();
                 tasks = Task.sortByDate(tasks);
-            } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
-                tasks = Task.sortByDesc(tasks);
-            } else {
+            } else if (jComboBox1.getSelectedIndex() == 1){
+            	model1.removeAllElements();
                 tasks = Task.sortByImp(tasks);
             }
             for (i = 0; i < tasks.size(); i++){
@@ -175,19 +180,18 @@ public class MyCalendar extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel7.setText("If you want to add Task, Event or Reminder to your Program press");
 
-        days.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-
+        
         slash1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         slash1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         slash1.setText("/");
 
-        month.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        
 
         slash2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         slash2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         slash2.setText("/");
 
-        years.setModel(new javax.swing.DefaultComboBoxModel(year));
+        
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/home.png"))); // NOI18N
@@ -226,8 +230,8 @@ public class MyCalendar extends javax.swing.JFrame {
 
         help.setText("Please select every task that is completed and then click Done Button!");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Title", "Level of importance" }));
-        jComboBox1.setSelectedIndex(1);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date","Importance" }));
+        jComboBox1.setSelectedIndex(0);
         eventsAndRem.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N	
         eventsAndRem.setText("Events and Reminders");	
         eventList.setModel(model2);
@@ -388,18 +392,37 @@ public class MyCalendar extends javax.swing.JFrame {
 		tasksLabel.setVisible(false);
 		doneButton.setVisible(false);	
 		help.setVisible(false);
-        Date d = new Date();        
-        if (days.getSelectedItem() == null || month.getSelectedItem() == null 
-                || years.getSelectedItem() == null)
+		jLabel2.setVisible(false);
+		jComboBox1.setVisible(false);
+        if (days.getSelectedIndex() == -1  || month.getSelectedIndex()  == -1
+                || years.getSelectedIndex() == -1)
             dateNot.setVisible(true);
-        else 
+        else {
             dateNot.setVisible(false);
             date2 = days.getSelectedItem().toString() + "/" + 
                         month.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
             if (!Day.validDate(date2))
                 dateNot.setVisible(true);
-            else
+            else {
+            	taskList.setVisible(false);
+        		jScrollPane2.setVisible(false);
+        		tasksLabel.setVisible(false);
+        		doneButton.setVisible(false);	
+        		help.setVisible(false);
+        	    model2.removeAllElements();
+            ArrayList<Event> eventsList = Event.onlyEventsList(emp.searchDay(date2).getDailyProgram());
+            eventsList = Event.sortByTime(eventsList);
+            if (!eventsList.isEmpty()){
+                for (Event eventsList1 : eventsList) {
+                	if (eventsList1.getType().equals(""))
+                		model2.addElement(eventsList1.toString());
+                	else
+                		model2.addElement(eventsList1.toStringWithType());
+                }                    
+            } else 
+                model2.addElement("No events or reminders for today");
+            eventList.setModel(model2);
             	if (emp.getCalendar().get(0).equals(emp.searchDay(date2))) {
 	                model1.removeAllElements();	                
 	                dateNot.setVisible(false);
@@ -409,11 +432,11 @@ public class MyCalendar extends javax.swing.JFrame {
 	                    model1.addElement("No Tasks for today");
 	                } else {
 	                    int i;
-	                    if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+	                    if(jComboBox1.getSelectedIndex() == 0){
+	                    	model1.removeAllElements();
 	                        tasks = Task.sortByDate(tasks);
-	                    } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
-	                        tasks = Task.sortByDesc(tasks);
-	                    } else {
+	                    } else if (jComboBox1.getSelectedIndex() == 1){
+	                    	model1.removeAllElements();
 	                        tasks = Task.sortByImp(tasks);
 	                    }
 	                    for (i = 0; i < tasks.size(); i++){
@@ -429,50 +452,39 @@ public class MyCalendar extends javax.swing.JFrame {
             		tasksLabel.setVisible(true);
             		doneButton.setVisible(true);	
             		help.setVisible(true);
-            	} else {
-            		taskList.setVisible(false);
-            		jScrollPane2.setVisible(false);
-            		tasksLabel.setVisible(false);
-            		doneButton.setVisible(false);	
-            		help.setVisible(false);
             	}
-            	model2.removeAllElements();
-                ArrayList<Event> eventsList = Event.onlyEventsList(emp.searchDay(date2).getDailyProgram());
-                eventsList = Event.sortByTime(eventsList);
-                if (!eventsList.isEmpty()){
-                    for (Event eventsList1 : eventsList) {
-                        model2.addElement(eventsList1);
-                    }
-                } else 
-                    model2.addElement("No events or reminders for today");
-                eventList.setModel(model2);
+            }
+        }
+    }           		
 
-    }     
+         
+           
     private void doneButtonMouseClicked(java.awt.event.MouseEvent evt) { 
         String date2;
         date2 = days.getSelectedItem().toString() + "/" + 
                 month.getSelectedItem().toString() + "/" +
                 years.getSelectedItem().toString();
         ArrayList<Task> tasks = new ArrayList<Task>();
-        tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram()); 
-        int[] tasksIndices = taskList.getSelectedIndices();
-        ArrayList<String> taskToString = new ArrayList<String>();
-        for (int i = 0; i < tasksIndices.length; i++) {
-        	taskToString.add(taskList.getModel().getElementAt(tasksIndices[i]).toString());
-        }
-        for (int i = 0; i < taskToString.size(); i++) {
-            String s = taskToString.get(i);
-            Calendar c = Calendar.getInstance();           
-            Task.searchTask(s, tasks).setStatus(true);
+        tasks = Task.onlyTasksList(emp.searchDay(date2).getDailyProgram());
+        if (!tasks.isEmpty()) {
+	        int[] tasksIndices = taskList.getSelectedIndices();
+	        ArrayList<String> taskToString = new ArrayList<String>();
+	        for (int i = 0; i < tasksIndices.length; i++) {
+	        	taskToString.add(taskList.getModel().getElementAt(tasksIndices[i]).toString());
+	        }
+	        for (int i = 0; i < taskToString.size(); i++) {
+	            String s = taskToString.get(i);                     
+	            Task.searchTask(s, tasks).setStatus(true);
+	        }
         }
         model1.removeAllElements();        
         dateNot.setVisible(false);                           
         if (tasks.isEmpty()){
-            model1.addElement("No Tasks or Reminders for today");
+            model1.addElement("No Tasks for today");
         } else {
-            if(String.valueOf(jComboBox1.getSelectedItem()).equals("Date")){
+            if(jComboBox1.getSelectedIndex() == 0){
                 tasks = Task.sortByDate(tasks);
-            } else if (String.valueOf(jComboBox1.getSelectedItem()).equals("Description")){
+            } else if (jComboBox1.getSelectedIndex() == 1){
                 tasks = Task.sortByDesc(tasks);
             } else {
                 tasks = Task.sortByImp(tasks);

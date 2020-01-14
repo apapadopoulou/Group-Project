@@ -79,6 +79,3 @@ public abstract class Program {
 		return programID;
 	}
 }
-/**
- * End of Program class
-*/

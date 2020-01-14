@@ -122,7 +122,7 @@ public class ShowDepartments extends javax.swing.JFrame {
         jScrollPane2.setViewportView(employeesOfDepartment);
 
         depart.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        depart.setText(mmDepartments.getSelectedValue().toString());
+        
 
         selectEmployee.setText("Select Employee");
         selectEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -253,6 +253,7 @@ public class ShowDepartments extends javax.swing.JFrame {
     	   depNot.setText("Please select a department!");
            depNot.setVisible(true);
        } else {
+    	   depart.setText(mmDepartments.getSelectedValue().toString());
     	   DefaultListModel model2 = new DefaultListModel();
     	   Department d = Department.searchDepartmentByName(mmDepartments.getSelectedValue().toString());
            for (int i = 0; i < d.getEmployeesOfDepartment().size(); i++){

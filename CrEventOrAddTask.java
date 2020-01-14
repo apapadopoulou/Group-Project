@@ -606,20 +606,10 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
 	                		empls.add(em.getID());	
 	                	}
 	                }
-<<<<<<< HEAD
-                } else {
-                	for (int i = 0; i < emloyeesIndices.length; i++) {
-                		Employee em = Employee.searchEmployeeByName2(String.valueOf(employeesList
-                				.getModel().getElementAt(emloyeesIndices[i])));
-                		empls.add(em.getID());	
-                	}
-                }
                Event event = new Event(title1, date2, time2, desc, type, empls);
-            } catch (Exception e){
-=======
-	                new Event(title1, date2, time2, desc, type, empls);
+            
             } else {
->>>>>>> eb4c8fbf6b8795b334b3e1de7169455dda91cd6f
+
                     jLabel1.setVisible(true);
             }
         } else {

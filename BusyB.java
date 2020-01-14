@@ -1,5 +1,4 @@
 import java.util.Timer;
-
 /**
  * This is the main class of the application. User runs the app for the first time from the command line, 
  * using an argument.
@@ -12,20 +11,12 @@ public class BusyB {
   * @param args
   */
   public static void main(String[] args) {
-	  /*
-	java.awt.EventQueue.invokeLater(new Runnable() {
-		@Override
-	    public void run() {
-	         WelcomeWindow welcomeWindow = new WelcomeWindow();
-	         welcomeWindow.setVisible(true);
-		}
-	});*/
     if (!args[0].equals("0")) {
       DBcon.deleteTables();
       DBcon.createTables();
       Flow.adminSettingsEntry();
       try {
-    	  Flow.dataEntry();
+    	Flow.dataEntry();
       } catch (Exception e) {
     	  System.out.println("An error occured! Try again!");
       }
@@ -34,7 +25,7 @@ public class BusyB {
     	java.awt.EventQueue.invokeLater(new Runnable() {
     		@Override
     	    public void run() {
-    	         welcomeWindow.setVisible(true); 
+    	       welcomeWindow.setVisible(true);
     		}
     	});
     	DBcon.loadData();
@@ -48,7 +39,3 @@ public class BusyB {
     }
   }
 }
-
-/** 
-*End of BusyB class.
-*/

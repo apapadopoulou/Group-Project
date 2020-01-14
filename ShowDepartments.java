@@ -35,9 +35,11 @@ public class ShowDepartments extends javax.swing.JFrame {
         showTime();       
         depart.setVisible(false);
         employeesOfDepartment.setVisible(false);
+        jScrollPane2.setVisible(false);
         selectEmployee.setVisible(false);
         depNot.setVisible(false);
         empNot.setVisible(false);
+        
     }
      void showDate() {
         Date d = new Date();
@@ -262,6 +264,7 @@ public class ShowDepartments extends javax.swing.JFrame {
            employeesOfDepartment.setModel(model2);
            depNot.setVisible(false);
             depart.setVisible(true);
+            jScrollPane2.setVisible(true);
             employeesOfDepartment.setVisible(true);
             selectEmployee.setVisible(true);           
        }

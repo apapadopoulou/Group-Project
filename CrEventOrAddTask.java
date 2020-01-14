@@ -135,7 +135,9 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         DefaultListModel model1 = new DefaultListModel();
         if (n == 3 || n == 4){
             for (int i = 0; i < mm.getManagingDepartments().size(); i++){
+            	System.out.println("mamaging departments size " + mm.getManagingDepartments().size());
                 for (int j = 0; i < mm.getManagingDepartments().get(i).getEmployeesOfDepartment().size(); j++){
+                	System.out.println(mm.getManagingDepartments().get(i).getEmployeesOfDepartment().get(j).getNameSurname());
                     model1.addElement(mm.getManagingDepartments().get(i).getEmployeesOfDepartment().get(j).getNameSurname());
                 }
             }
@@ -592,7 +594,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 		empls.add(em.getID());	
                 	}
                 }
-                new Event(title1, date2, time2, desc, type, empls);
+               Event event = new Event(title1, date2, time2, desc, type, empls);
             } catch (Exception e){
                     jLabel1.setVisible(true);
             }
@@ -611,7 +613,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 String employeeId = Employee.searchEmployeeByName2(
                     String.valueOf(employeesList.getModel().getElementAt(employeesList
                     		.getSelectedIndex()))).getID();
-                new Task(startDate, dueDate, desc, importance, difficulty, 
+                Task task = new Task(startDate, dueDate, desc, importance, difficulty, 
                     employeeId);
             } else {
             	ArrayList <String> empls = new ArrayList <String>();
@@ -628,7 +630,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 		empls.add(em.getID());	
                 	}
                 }
-                new Task(startDate, dueDate, desc, importance, difficulty,
+                Task task = new Task(startDate, dueDate, desc, importance, difficulty,
                     empls);
             }
         }

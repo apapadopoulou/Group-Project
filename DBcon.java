@@ -860,7 +860,6 @@ public class DBcon {
 					}
 					Task task = new Task(taskID, startDate, dueDate, completionDate, desc, importance, difficulty,
 							empIds, scores);
-					
 				}
 			}
 			rs.close();

@@ -1,4 +1,5 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -90,9 +91,13 @@ public class VacationRequests extends javax.swing.JFrame {
         month = new javax.swing.JLabel();
         year = new javax.swing.JLabel();
         DefaultListModel model = new DefaultListModel();
-        for (int i = 0; i < Request.vacRequests.size(); i++) {
-        	String employee = Employee.searchEmployeeById(Request.vacRequests.get(i).getEmpId()).getNameSurname();
-        	model.addElement(employee);
+        if (Request.vacRequests.isEmpty())
+        	model.addElement("No requests");
+        else {			
+	        for (int i = 0; i < Request.vacRequests.size(); i++) {
+	        	String employee = Employee.searchEmployeeById(Request.vacRequests.get(i).getEmpId()).getNameSurname();
+	        	model.addElement(employee);
+	        }
         }
         
 
@@ -134,15 +139,9 @@ public class VacationRequests extends javax.swing.JFrame {
         requests.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         requests.setSelectionBackground(new java.awt.Color(0, 0, 0));
         requests.addListSelectionListener(new ListSelectionListener() {
-           public void valueChanged(ListSelectionEvent e) {
-                Employee emp = Employee.searchEmployeeByName2(requests.getSelectedValue().toString());
-                Request req = Request.searchRequest(emp.getID());
-                day.setText(req.getDate().substring(0, 2));
-                month.setText(req.getDate().substring(3, 5));
-                year.setText(req.getDate().substring(6));
-                days.setText(String.valueOf(req.getDays()));
-                comments.setText(req.getDesc()); 
-            }
+        	public void valueChanged(ListSelectionEvent evt) {
+                requestsValueChanged(evt);
+              }
         });
         jScrollPane1.setViewportView(requests);
 
@@ -340,7 +339,7 @@ public class VacationRequests extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_jLabel3MouseClicked
-    private void requestsActionPerformed(java.awt.event.ActionEvent evt) {
+    private void requestsValueChanged(ListSelectionEvent evt) {
     	Employee emp = Employee.searchEmployeeByName2(requests.getSelectedValue().toString());
     	Request req = Request.searchRequest(emp.getID());
     	day.setText(req.getDate().substring(0, 2));
@@ -362,41 +361,6 @@ public class VacationRequests extends javax.swing.JFrame {
     	Request req = Request.searchRequest(emp.getID());
     	req.setAccepted(true);
     	req.setDesc(comment_field.getText()); 
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VacationRequests.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VacationRequests.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VacationRequests.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VacationRequests.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-       /* java.awt.EventQueue.invokeLater(new Runnable() {
-         public void run() {
-         new VacationRequests(2).setVisible(true);
-         }
-         }); */
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

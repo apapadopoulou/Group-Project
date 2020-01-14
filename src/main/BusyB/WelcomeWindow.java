@@ -1,4 +1,5 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
@@ -123,7 +124,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         /* Create and display the form */
          java.awt.EventQueue.invokeLater(new Runnable() {
         	 public void run() {
-        		 new WelcomeWindow().setVisible(true);
+        		new WelcomeWindow().setVisible(true);
         	 }
          	});  
     	}

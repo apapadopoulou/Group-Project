@@ -336,7 +336,7 @@ public class Evaluation {
 			//Calculates the completion time difference in minutes.
 			long completionDiffMins =completionDiff / (60 * 1000) % 60;
 			// Calculates the percentage difference between total time to complete the task and completion time.
-			percentageDiff = completionDiffMins / startDiffMins;
+			percentageDiff = (double)completionDiffMins / startDiffMins;
 			//Returns the percentage difference.
 			return percentageDiff;
 		} catch (ParseException ex) {

@@ -390,7 +390,7 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
             return;
         }
         try {
-            double sal = Double.parseDouble(salary.getText());
+            Double.parseDouble(salary.getText());
         } catch (NumberFormatException e){
             warning.setText("Please enter a valid salary");
             warning.setVisible(true);
@@ -409,11 +409,13 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         } else if (middle.isSelected()){
             MiddleManager middleManager = new MiddleManager(empName, empSurname, 
                     empPhonenumber, empEmail, birthdate, empSal);
-            Object[] dep = departments.getSelectedValues();
-            for (Object dep1 : dep) {
-                Department.searchDepartmentByName(dep1.toString())
-                        .setManagerId(middleManager.getID());                
-            }                
+            ArrayList <String> deps = new ArrayList <String>();
+            int[] depsIndices = departments.getSelectedIndices();                                            
+            for (int i = 0; i < depsIndices.length; i++) {
+                    Department.departments.get(depsIndices[i])
+                    	.setManagerId(middleManager.getID());;
+                                       
+                }                            
         } else if(top.isSelected()){
             new TopManager(empName, empSurname, 
                     empPhonenumber, empEmail, birthdate, empSal);
@@ -423,40 +425,6 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddEmployeeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddEmployeeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddEmployeeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddEmployeeWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddEmployeeWindow().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add_button;
@@ -490,4 +458,3 @@ public class AddEmployeeWindow extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 }
 //End of AddEmployeeWindow class.
-

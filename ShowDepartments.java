@@ -25,14 +25,14 @@ public class ShowDepartments extends javax.swing.JFrame {
      * Creates new form ShowDepartments
      */
     private int n;
-    private Employee emp;
+    private MiddleManager mm;
     public ShowDepartments(int n, Employee emp) {
         this.n = n;
+        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         showDate();
-        showTime();
-        this.emp = emp;
+        showTime();       
         depart.setVisible(false);
         employeesOfDepartment.setVisible(false);
         selectEmployee.setVisible(false);
@@ -76,10 +76,9 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DefaultListModel model1 = new DefaultListModel();
-        for (int i = 1; i < Department.getDepartments().size(); i++) {
-        	if (Department.getDepartments().get(i).getManagerId().equals(emp.getID())) {        		
+        for (int i = 1; i < Department.departments.size(); i++){
+        	if (Department.departments.get(i).getManagerId().equals(mm.getID()))
         		model1.addElement(Department.departments.get(i).getName());
-         }
         }
         mmDepartments = new javax.swing.JList(model1);
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -244,7 +243,7 @@ public class ShowDepartments extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        new FirstWindow(emp).setVisible(true);
+        new FirstWindow(mm).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel13MouseClicked
 

@@ -8,8 +8,8 @@ public class DayTest {
 
 	@Test
 	public void testNextDate() {
-		String starting_date = "31/12/2017";
-		String expected  = "01/01/2018";
+		String starting_date = "01/01/2017";
+		String expected  = "02/01/2017";
 		String given = Day.nextDate(starting_date);
 		assertEquals(expected, given);
 	}

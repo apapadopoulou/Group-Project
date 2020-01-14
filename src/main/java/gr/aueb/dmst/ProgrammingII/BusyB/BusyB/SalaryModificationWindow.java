@@ -1,4 +1,4 @@
-
+package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
@@ -67,7 +67,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         jLabel1.setText("Employee's name:");
 
         employee.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        employee.setText(emp.getNameSurname());
+        employee.setText("gg");
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jLabel4.setText("Old salary:");
@@ -76,7 +76,7 @@ public class SalaryModificationWindow extends javax.swing.JFrame {
         jLabel5.setText("New salary:");
 
         salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        salary.setText(String.valueOf(emp.getSalary()));
+        salary.setText(" g");
 
         new_salary.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         new_salary.setSelectionColor(new java.awt.Color(0, 0, 0));

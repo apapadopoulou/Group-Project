@@ -16,7 +16,7 @@ public class Account {
     private Employee employee;
     private String email;
     private String password;
-    public static ArrayList<Account> accounts = new ArrayList<Account>();
+    private static ArrayList<Account> accounts = new ArrayList<Account>();
     private int hasDefaultPass;   
     
     /**
@@ -28,9 +28,15 @@ public class Account {
     public Account(Employee emp) {
         hasDefaultPass = 0;
         employee = emp;
-        email = employee.getEmail();
+        String email = emp.getEmail();
+        System.out.println(email);
         password = passwordGenerator();
-        accounts.add(this); //Account object entered on accounts ArrayList.
+         
+        /**
+          * Account object entered on accounts ArrayList.
+          */ 
+        
+        accounts.add(this);
         DBcon.saveAccount(this);
     }
 
@@ -47,35 +53,35 @@ public class Account {
         employee = Employee.searchEmployeeById(empId);
         email = employee.getEmail();
         this.password = password;
-        accounts.add(this); //Account object entered on accounts ArrayList.
+
+         /**
+          *Account object entered on accounts ArrayList.
+          */
+        accounts.add(this);
     }
 
-    
-     //Getters and Setters.
-     
+    /**
+     *Getters and Setters.
+     */
     
     /** 
-     * Returns the hasDefaultPass field.
+     * Gets the hasDefaultPass.
      *@return hasDefaultPass  
      */
     public int getHasDefaultPass() {
         return hasDefaultPass;
     }
     
-    
-     /**
-      *Sets the setHasDefaultPass field.
-      *@param dp 
-      */
-     
+    /**
+     *Sets the hasDefaultPass. 
+     */
 
     public void setHasDefaultPass(int dp) {
         hasDefaultPass = dp;
-        DBcon.updateAccountVar("hasDefaultPass", dp, getEmployee().getID());
     }
     
     /**
-     *Returns the employee field.
+     *Gets the employee.
      *@return employee
      */
   
@@ -83,18 +89,15 @@ public class Account {
         return employee;
     }
     
-    
-     /**
-      *Sets the employee field.
-      *@param employee
-      */
-    
+    /**
+     *Sets the employee. 
+     */
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
     /**
-     *Returns the email field.
+     *Gets the email.
      *@return email
      */
 
@@ -102,19 +105,16 @@ public class Account {
         return email;
     }
     
-    
-     /**
-      *Sets the email field.
-      *@param email 
-      */
-     
+    /**
+     *Sets the email.
+     */
 
     public void setEmail(String email) {
         this.email = email;
     }
     
     /**
-     *Returns the password field.
+     *Gets the password.
      *@return password
      */
 
@@ -122,83 +122,61 @@ public class Account {
         return password;
     }
     
-    
-     /**
-      *Sets the password field.
-      *@param password
-      */
-     
+    /**
+     *Sets the password.
+     */
 
     public void setPassword(String password) {
         this.password = password;
-        DBcon.updateAccountVar("password", password, getEmployee().getID());
-        setHasDefaultPass(1);
     }
    
    /**
-     *This method searches employees' accounts by their email.
-     *@param email
-     *@return acc
+     *This method searches Employees' accounts by their email.
+     *@return account if true or null if false
     */ 
     public static Account searchAccountByEmail(String email) {
-    	Account acc = null;
-        for (int i = 0; i < accounts.size(); i++) {
+        boolean exists = false;
+        for (int i = 0; i < accounts.size();) {
             if (accounts.get(i).getEmail().equals(email)) {
-            	 acc = accounts.get(i);
+                exists = true;
+                break;
+            }
+            if (exists == true) {
+                return accounts.get(i);
             }
         }
-        return acc;
-    }
-    
-    /**
-     *This method is used to check the credentials(email and password).
-     *@param email
-     *@param password
-     *@return acc 
-     */
-    public static Account checkCredentials(String email, String password) {
-    	Account acc = null;
-    	for (int i = 0; i < accounts.size(); i++) {
-    		if (accounts.get(i).getEmail().equals(email) && accounts.get(i).getPassword().equals(password)) {
-    			acc = accounts.get(i);
-    		}
-    	}
-    	return acc;
+        return null;
     }
      
     /** This method returns 1 if the employee is a BasicEmployee, 2 if the 
     * employee is a BasicEmployee who works in HR department, 3 if the employee
     * is a MiddleManager, 4 if the employee is a MiddleManager who works in the 
     * HR department and 5 if the employee is a TopManager.
-    * @param emp
     * @return 1 or 2 or 3 or 4 or 5
     */
     public static int typeOfEmployee(Employee emp) {
         if (emp instanceof BasicEmployee) {
-        	BasicEmployee be = (BasicEmployee) emp;
-            if (BasicEmployee.isHREmployee(be) == true) {
+            if (BasicEmployee.HREmployee(emp.getName()) == true)
                 return 2;
-            } else {
+            else if (BasicEmployee.HREmployee(emp.getSurname()) == true)
+                return 2;
+            else
                 return 1;
-            }
         } else if (emp instanceof MiddleManager) {
-        	MiddleManager midman = (MiddleManager) emp;
-            if (MiddleManager.managingHR(midman) == true) {
+            if (MiddleManager.HREmployee(emp.getName()) == true)
                 return 4;
-            } else {
+            else if (MiddleManager.HREmployee(emp.getSurname()) == true)
+                return 4;
+            else 
                 return 3;
-            }
         } else {
             return 5;
         }
+
     }
 
-    
-     
-   
     /**
-     * This method generates a random password
-     * @return password
+     *  This method generates Employee's password.
      */
     public static String passwordGenerator() {
         String password = "";
@@ -208,25 +186,34 @@ public class Account {
         String symbols = "!@#$%^&*_=+-/.?<>)";
         String values = Capital_chars + Small_chars
                 + numbers + symbols;
-          //Using Random method.
+
+        /** 
+         * Using Random method.
+         */
         Random ran = new Random();
         char[] psw = new char[8];
 
         for (int i = 0; i < 8; i++) {
-            
-              //Use of charAt() method : to get character value.
-             //Use of nextInt() as it is scanning the value as int.
-             
+            /**
+             * Use of charAt() method : to get character value.
+             */
+        	
+            /**
+             * Use of nextInt() as it is scanning the value as int.
+             */
             psw[i]  = values.charAt(ran.nextInt(values.length()));
 
         }
+        
+        /**
+         *@return password 
+         */
         for (int i = 0; i < 8; i++) {
             password += psw[i];
         }
         return password;
     }
 }
- 
- /**
-  * End of Account class
-*/
+/** 
+ * End of Account class.
+ */

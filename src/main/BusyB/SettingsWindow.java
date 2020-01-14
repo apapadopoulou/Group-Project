@@ -1,4 +1,5 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -277,8 +278,7 @@ public class SettingsWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_change_pActionPerformed
 
     private void change_eActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_eActionPerformed
-        // TODO add your handling code here:
-        new ChangePasswordWindow(emp).setVisible(true);
+        // TODO add your handling code here:       
         new ChangeEmailWindow(emp).setVisible(true);
     }//GEN-LAST:event_change_eActionPerformed
 

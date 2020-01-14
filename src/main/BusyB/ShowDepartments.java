@@ -1,4 +1,5 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,16 +29,18 @@ public class ShowDepartments extends javax.swing.JFrame {
     private MiddleManager mm;
     public ShowDepartments(int n, Employee emp) {
         this.n = n;
+        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         showDate();
-        showTime();
-        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
+        showTime();       
         depart.setVisible(false);
         employeesOfDepartment.setVisible(false);
+        jScrollPane2.setVisible(false);
         selectEmployee.setVisible(false);
         depNot.setVisible(false);
         empNot.setVisible(false);
+        
     }
      void showDate() {
         Date d = new Date();
@@ -76,17 +79,13 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DefaultListModel model1 = new DefaultListModel();
-        for (int i = 1; i < mm.getManagingDepartments().size(); i++){
-            model1.addElement(mm.getManagingDepartments().get(i).getName());
+        for (int i = 1; i < Department.departments.size(); i++){
+        	if (Department.departments.get(i).getManagerId().equals(mm.getID()))
+        		model1.addElement(Department.departments.get(i).getName());
         }
-        mmDepartments = new javax.swing.JList();
+        mmDepartments = new javax.swing.JList(model1);
         jScrollPane2 = new javax.swing.JScrollPane();
-        DefaultListModel model2 = new DefaultListModel();
-        ArrayList<BasicEmployee> employeesOfDep = new ArrayList<BasicEmployee>();
-        employeesOfDep = Department.searchDepartmentByName(mmDepartments.getSelectedValue().toString()).getEmployeesOfDepartment();
-        for (int i = 1; i < employeesOfDep.size(); i++){
-            model2.addElement(employeesOfDep.get(i).getNameSurname());
-        }
+        DefaultListModel model2 = new DefaultListModel();       
         employeesOfDepartment = new javax.swing.JList();
         depart = new javax.swing.JLabel();
         selectEmployee = new javax.swing.JToggleButton();
@@ -117,16 +116,16 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel4.setText("Managing departments:");
 
-        mmDepartments.setModel(model1);
+        
         mmDepartments.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(mmDepartments);
 
-        employeesOfDepartment.setModel(model2);
+        
         employeesOfDepartment.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(employeesOfDepartment);
 
         depart.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        depart.setText(mmDepartments.getSelectedValue().toString());
+        
 
         selectEmployee.setText("Select Employee");
         selectEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -252,65 +251,41 @@ public class ShowDepartments extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void selectDepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectDepActionPerformed
-       if (mmDepartments.getSelectedValue() == null){
+    	depNot.setVisible(false);
+    	if (mmDepartments.getSelectedIndex() == -1 ){
+    	   depNot.setText("Please select a department!");
            depNot.setVisible(true);
        } else {
+    	   depart.setText(mmDepartments.getSelectedValue().toString());
+    	   DefaultListModel model2 = new DefaultListModel();
+    	   Department d = Department.searchDepartmentByName(mmDepartments.getSelectedValue().toString());
+           for (int i = 0; i < d.getEmployeesOfDepartment().size(); i++){
+   	            model2.addElement(d.getEmployeesOfDepartment().get(i).getNameSurname());
+   	        }
+           employeesOfDepartment.setModel(model2);
            depNot.setVisible(false);
             depart.setVisible(true);
+            jScrollPane2.setVisible(true);
             employeesOfDepartment.setVisible(true);
             selectEmployee.setVisible(true);           
        }
     }//GEN-LAST:event_selectDepActionPerformed
 
     private void selectEmployeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectEmployeeMouseClicked
-        if (employeesOfDepartment.getSelectedValue() == null){
+        if (employeesOfDepartment.getSelectedIndex() == -1){
             empNot.setVisible(true);
         } else {        
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new EmployeeOverview(n,BasicEmployee.searchEmployeeByName2(String.
-                            valueOf(employeesOfDepartment.getSelectedValue())))
+                            valueOf(employeesOfDepartment.getModel().getElementAt(employeesOfDepartment
+                            		.getSelectedIndex()))))
                             .setVisible(true);
                 }
             });
         }
                 
     }//GEN-LAST:event_selectEmployeeMouseClicked
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowDepartments.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowDepartments.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowDepartments.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowDepartments.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        /*ava.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ShowDepartments(3).setVisible(true);
-            }
-        });*/
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel date;

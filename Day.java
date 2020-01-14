@@ -1,13 +1,7 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import javax.swing.*;
-
 /**
- *@author BusyB 
+ *@author BusyB
  */
-
 public class Day {
 	private ArrayList<Program> dailyProgram = new ArrayList<Program>();
 	private String date;

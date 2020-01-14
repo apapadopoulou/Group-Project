@@ -1,4 +1,5 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+
 import java.awt.Toolkit;
 
 
@@ -111,6 +112,7 @@ public class DeleteEmployee extends javax.swing.JFrame {
             MiddleManager.middleManagers.remove((MiddleManager) emp);
         else
             TopManager.topManagers.remove((TopManager) emp);
+        this.dispose();
     } /**GEN-LAST:event_jToggleButton1ActionPerformed */
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) { /**GEN-FIRST:event_jToggleButton2ActionPerformed*/

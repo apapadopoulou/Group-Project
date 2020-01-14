@@ -25,19 +25,21 @@ public class ShowDepartments extends javax.swing.JFrame {
      * Creates new form ShowDepartments
      */
     private int n;
-    private Employee emp;
+    private MiddleManager mm;
     public ShowDepartments(int n, Employee emp) {
         this.n = n;
+        mm = MiddleManager.searchMiddleManager(emp.getNameSurname());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         initComponents();
         showDate();
-        showTime();
-        this.emp = emp;
+        showTime();       
         depart.setVisible(false);
         employeesOfDepartment.setVisible(false);
+        jScrollPane2.setVisible(false);
         selectEmployee.setVisible(false);
         depNot.setVisible(false);
         empNot.setVisible(false);
+        
     }
      void showDate() {
         Date d = new Date();
@@ -76,10 +78,9 @@ public class ShowDepartments extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         DefaultListModel model1 = new DefaultListModel();
-        for (int i = 1; i < Department.getDepartments().size(); i++) {
-        	if (Department.getDepartments().get(i).getManagerId().equals(emp.getID())) {        		
+        for (int i = 1; i < Department.departments.size(); i++){
+        	if (Department.departments.get(i).getManagerId().equals(mm.getID()))
         		model1.addElement(Department.departments.get(i).getName());
-         }
         }
         mmDepartments = new javax.swing.JList(model1);
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -123,7 +124,7 @@ public class ShowDepartments extends javax.swing.JFrame {
         jScrollPane2.setViewportView(employeesOfDepartment);
 
         depart.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        depart.setText(mmDepartments.getSelectedValue().toString());
+        
 
         selectEmployee.setText("Select Employee");
         selectEmployee.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -244,7 +245,7 @@ public class ShowDepartments extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
-        new FirstWindow(emp).setVisible(true);
+        new FirstWindow(mm).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel13MouseClicked
 
@@ -254,6 +255,7 @@ public class ShowDepartments extends javax.swing.JFrame {
     	   depNot.setText("Please select a department!");
            depNot.setVisible(true);
        } else {
+    	   depart.setText(mmDepartments.getSelectedValue().toString());
     	   DefaultListModel model2 = new DefaultListModel();
     	   Department d = Department.searchDepartmentByName(mmDepartments.getSelectedValue().toString());
            for (int i = 0; i < d.getEmployeesOfDepartment().size(); i++){
@@ -262,6 +264,7 @@ public class ShowDepartments extends javax.swing.JFrame {
            employeesOfDepartment.setModel(model2);
            depNot.setVisible(false);
             depart.setVisible(true);
+            jScrollPane2.setVisible(true);
             employeesOfDepartment.setVisible(true);
             selectEmployee.setVisible(true);           
        }

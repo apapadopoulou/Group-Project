@@ -6,6 +6,8 @@ package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
 import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JFrame;
 
@@ -33,7 +35,7 @@ public class LoginWindow extends javax.swing.JFrame {
     }
 
     /**
-     * This method constructs all the objects needed for the construction.
+     * This method construst all the object needed for the construstion.
      * It also defines the action listeners for every button 
       */                       
   
@@ -248,8 +250,12 @@ public class LoginWindow extends javax.swing.JFrame {
              passwordField.setText("");
              emailField.requestFocus();
          } else {
+        	Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String strDate = formatter.format(date);
+            acc.getEmployee().setCalendar(Day.createCalendar(acc
+             		.getEmployee().getID(), strDate));
             n = Account.typeOfEmployee(acc.getEmployee());
-            //I dont understand this. Please explain it.
             acc.setHasDefaultPass(acc.getHasDefaultPass());
             if (acc.getHasDefaultPass() == 0){       
                    java.awt.EventQueue.invokeLater(new Runnable() {

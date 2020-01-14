@@ -1,7 +1,10 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -114,6 +117,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         }
         arrow8 = new javax.swing.JLabel();
         if (num == 4) {
+        	arrow8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png")));
             arrow8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N	
             arrow8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));	
             arrow8.setText("Notifications");
@@ -125,8 +129,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         sortBy = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tasksList = new javax.swing.JList();
-        tasksList = new javax.swing.JList();        
+                       
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = formatter.format(date);
@@ -141,12 +144,16 @@ public final class FirstWindow extends javax.swing.JFrame {
 	        }
 	                    tasks = Task.sortByDate(tasks);
            for (Task task : tasks) {
-               model1.addElement(task.toString());
+        	   if (task.getImportance() == 0 && task.getDifficulty() == 0) {
+                   model1.addElement(task.toStringSimpleTask());
+               } else {
+                   model1.addElement(task.toStringEvaluatedTask());
+               }
            }
         }
+        tasksList = new javax.swing.JList(); 
         events = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        eventsList2 = new javax.swing.JList();
         eventsList2 = new javax.swing.JList();        
         ArrayList<String> eventsList = new ArrayList<String>();
         DefaultListModel model2 = new DefaultListModel();
@@ -154,14 +161,17 @@ public final class FirstWindow extends javax.swing.JFrame {
             for (int i = 0; i < emp.getCalendar().get(0).getDailyProgram().size(); i++){
                 if (emp.getCalendar().get(0).getDailyProgram().get(i) instanceof Event){
                     Event ev = (Event) emp.getCalendar().get(0).getDailyProgram().get(i);
-                    eventsList.add(ev.toString());
+                    if(ev.getType().equals(""))
+                    	eventsList.add(ev.toString());
+                    else
+                    	eventsList.add(ev.toStringWithType());
                 }
             }
            for (String eventsList1 : eventsList) {
             model2.addElement(eventsList1);
            }
-        } else 
-        model2.addElement("No events or reminders for today");
+        } else if (eventsList.isEmpty())
+        	model2.addElement("No events or reminders for today");       
         jLabelTeam = new javax.swing.JLabel();
         if (num != 3 && num != 4) {
             jLabelTeam.setText("");
@@ -176,7 +186,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         else {
             jLabelTimeOffs.setFont(new java.awt.Font("Arial", 1, 24));
             jLabelTimeOffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-            jLabelTimeOffs.setText("Vacation Requests");
+            jLabelTimeOffs.setText("Requests");
         }
         jLabelPayrolls = new javax.swing.JLabel();
         if ( num != 2 && num != 4)
@@ -208,7 +218,6 @@ public final class FirstWindow extends javax.swing.JFrame {
                 arrow1MouseClicked(evt);
             }
         });
-
         arrow2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         arrow2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/arrow_right.png"))); // NOI18N
         arrow2.setText("Add To Program");
@@ -343,13 +352,13 @@ public final class FirstWindow extends javax.swing.JFrame {
         sortBy.setText("Sort by:");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setText("Task and Reminders");
+        jLabel3.setText("Task ");
 
         tasksList.setModel(model1);
         jScrollPane1.setViewportView(tasksList);
 
         events.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        events.setText("Events");
+        events.setText("Events and Reminders");
 
         eventsList2.setModel(model2);
         jScrollPane2.setViewportView(eventsList2);
@@ -375,7 +384,7 @@ public final class FirstWindow extends javax.swing.JFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Description", "Level Of importance" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Date", "Importance" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -473,17 +482,16 @@ public final class FirstWindow extends javax.swing.JFrame {
     }                                   
 
     private void arrow5MouseClicked(java.awt.event.MouseEvent evt) {                                    
-        if ( num != 3 && num != 4){
+        if ( num != 3 && num != 4)
             new MyEvaluation(num, emp).setVisible(true);
-        } else {
-            new ShowDepartments(num, emp).setVisible(true);
-            }
+        else 
+            new ShowDepartments(num, emp).setVisible(true);            
         this.setVisible(false);// TODO add your handling code here:
     }                                   
 
     private void jLabelTeamMouseClicked(java.awt.event.MouseEvent evt) {                                        
         if (num == 3 || num == 4)
-            new Team(num, emp).setVisible(true);
+        	new Team(num, emp).setVisible(true);             
         this.setVisible(false);// TODO add your handling code here:
     }                                       
 
@@ -513,18 +521,18 @@ public final class FirstWindow extends javax.swing.JFrame {
             model.addElement("No Tasks for today");
         } else {
             int i;
-            if(String.valueOf(jComboBox2.getSelectedItem()).equals("Date")){
+            if(jComboBox2.getSelectedIndex() == 0){
                 model.removeAllElements();
                 tasks = Task.sortByDate(tasks);
-            } else if (String.valueOf(jComboBox2.getSelectedItem()).equals("Description")){
-                model.removeAllElements();
-                tasks = Task.sortByDesc(tasks);
-            } else {
+            } else if (jComboBox2.getSelectedIndex() == 1){
                 model.removeAllElements();
                 tasks = Task.sortByImp(tasks);
             }
             for (i = 0; i < tasks.size(); i++){
-                model.addElement(tasks.get(i).toString());
+            	if (tasks.get(i).getImportance() == 0 && tasks.get(i).getDifficulty() == 0)
+                    model.addElement(tasks.get(i).toStringSimpleTask());
+                else 
+                    model.addElement(tasks.get(i).toStringEvaluatedTask());
             }
         }
         tasksList.setModel(model);// TODO add your handling code here:
@@ -541,10 +549,12 @@ public final class FirstWindow extends javax.swing.JFrame {
     }                                   
 
     private void arrow7MouseClicked(java.awt.event.MouseEvent evt) {                                    
-        if (num == 4){
+        if (num == 4)
             new EmployeeEditing(num,emp).setVisible(true);
-            this.setVisible(false);
-        }// TODO add your handling code here:
+        else if (num == 3)
+        	new Notifications(emp).setVisible(true);        
+        this.setVisible(false);
+        // TODO add your handling code here:
     }                                   
 
     private void arrow8MouseClicked(java.awt.event.MouseEvent evt) {                                    
@@ -559,41 +569,7 @@ public final class FirstWindow extends javax.swing.JFrame {
         this.setVisible(false);// TODO add your handling code here:
     }                                     
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-      
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FirstWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FirstWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FirstWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FirstWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            Department d = new Department("HR");
-            BasicEmployee e = new BasicEmployee("Kostakis", "Mereos", "6971717171", "hdjshdjes@gmail.com", "19/09/2018",0, 500.0);
-		
-            public void run() {
-                new FirstWindow(e).setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+       // Variables declaration - do not modify//GEN-BEGIN:variables
       private javax.swing.JLabel arrow1;
     private javax.swing.JLabel arrow2;
     private javax.swing.JLabel arrow3;

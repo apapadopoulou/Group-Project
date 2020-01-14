@@ -1,9 +1,10 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+/**
 * DBcon Class
-* Used for testing the Database connection.
-* 
-* @author Vasilis Xifaras
-*/
+ * Used for testing the Database connection.
+ * 
+ * @author Vasilis Xifaras
+ */
 
 /*Im not sure if we need that.*/
 import java.io.*;

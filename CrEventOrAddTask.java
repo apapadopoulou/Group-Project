@@ -130,22 +130,29 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         levOfimp = new javax.swing.JLabel();
         comboImp = new javax.swing.JComboBox();
         comboDif = new javax.swing.JComboBox();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        employeesList = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();        
         DefaultListModel model1 = new DefaultListModel();
         if (n == 3 || n == 4){
+        	/*
             for (int i = 0; i < mm.getManagingDepartments().size(); i++){
             	System.out.println("mamaging departments size " + mm.getManagingDepartments().size());
                 for (int j = 0; i < mm.getManagingDepartments().get(i).getEmployeesOfDepartment().size(); j++){
                 	System.out.println(mm.getManagingDepartments().get(i).getEmployeesOfDepartment().get(j).getNameSurname());
                     model1.addElement(mm.getManagingDepartments().get(i).getEmployeesOfDepartment().get(j).getNameSurname());
-                }
+                }*/
+            for (int i = 1; i < Department.departments.size(); i++) {
+            	if (Department.departments.get(i).getManagerId().equals(mm.getID())) {
+            		for (int j = 0; j < Department.departments.get(i).getEmployeesOfDepartment().size(); j++) {
+            			model1.addElement(Department.departments.get(i).getEmployeesOfDepartment().get(j).getNameSurname());
+            		}
+            	}
             }
         } else {
             for (Employee employee : Employee.employees) {
                 model1.addElement(employee.getNameSurname());
             }
         }
+        employeesList = new javax.swing.JList(model1);
         jLabel1 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
 
@@ -480,6 +487,10 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
         employeesList.setVisible(true);        
         jScrollPane2.setVisible(true);
         if (event.isSelected()) {
+        	comboDif.setVisible(false);
+            comboImp.setVisible(false);
+            levOfDif.setVisible(false);
+            levOfimp.setVisible(false);
             addOrCreate.setText("Create event");
             addOrCreate.setVisible(true);
             date1.setText("Date:");
@@ -490,7 +501,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             slash1.setVisible(true);
             slash2.setVisible(true);
             description.setVisible(true);
-            employeesList.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            employeesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             time1.setVisible(true);
             hours.setVisible(true);
             twoDots.setVisible(true);
@@ -502,6 +513,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             titleText.setVisible(true);
             typeOfEvent.setVisible(true);
             types.setVisible(true);
+            
         }
         else if (singleTask.isSelected()){
             addOrCreate.setText("Add Task");
@@ -522,8 +534,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             slash2.setVisible(true);
             textArea.setVisible(true);
             years.setVisible(true);
-            jScrollPane1.setVisible(true);
-            
+            jScrollPane1.setVisible(true);            
             time1.setVisible(false);
             title.setVisible(false);
             titleText.setVisible(false);
@@ -543,7 +554,7 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
             description.setVisible(true);            
             levOfDif.setVisible(true);
             levOfimp.setVisible(true);
-            employeesList.setSelectionMode(DefaultListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+            employeesList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
             months.setVisible(true);
             select.setVisible(true);
             slash1.setVisible(true);
@@ -568,25 +579,34 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
 
     private void addOrCreateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addOrCreateMouseClicked
         if (event.isSelected()){
-            try {
+            
                 String type =  types.getSelectedItem().toString();
                 String title1;
                 title1 = titleText.getText();
                 String date2 = days.getSelectedItem().toString() + "/" + 
                         months.getSelectedItem().toString() + "/" +
                         years.getSelectedItem().toString();
-                String time2;
-                time2 = hours.getSelectedItem().toString() + ":" +
-                        minutes.getSelectedItem().toString();
-                String desc;
-                desc = textArea.getText();
-                ArrayList <String> empls = new ArrayList <String>();
-                int[] emloyeesIndices = employeesList.getSelectedIndices();   
-                if (n == 5) {	                                
-	                for (int i = 0; i < emloyeesIndices.length; i++) {
-	                    Employee em = Employee.employees.get(emloyeesIndices[i]);
-	                    empls.add(em.getID());                   
+	           if (Day.validDate(date2)) {
+	                String time2;
+	                time2 = hours.getSelectedItem().toString() + ":" +
+	                        minutes.getSelectedItem().toString();
+	                String desc;
+	                desc = textArea.getText();
+	                ArrayList <String> empls = new ArrayList <String>();
+	                int[] emloyeesIndices = employeesList.getSelectedIndices();   
+	                if (n == 5) {	                                
+		                for (int i = 0; i < emloyeesIndices.length; i++) {
+		                    Employee em = Employee.employees.get(emloyeesIndices[i]);
+		                    empls.add(em.getID());                   
+		                }
+	                } else {
+	                	for (int i = 0; i < emloyeesIndices.length; i++) {
+	                		Employee em = Employee.searchEmployeeByName2(String.valueOf(employeesList
+	                				.getModel().getElementAt(emloyeesIndices[i])));
+	                		empls.add(em.getID());	
+	                	}
 	                }
+<<<<<<< HEAD
                 } else {
                 	for (int i = 0; i < emloyeesIndices.length; i++) {
                 		Employee em = Employee.searchEmployeeByName2(String.valueOf(employeesList
@@ -596,6 +616,10 @@ public class CrEventOrAddTask extends javax.swing.JFrame {
                 }
                Event event = new Event(title1, date2, time2, desc, type, empls);
             } catch (Exception e){
+=======
+	                new Event(title1, date2, time2, desc, type, empls);
+            } else {
+>>>>>>> eb4c8fbf6b8795b334b3e1de7169455dda91cd6f
                     jLabel1.setVisible(true);
             }
         } else {

@@ -43,6 +43,8 @@ public class BasicEmployee extends Employee {
 		 
 		this.department = Department.getDepartment(depID);
 		
+		department.addEmployee(this);
+		
 		String id = String.valueOf(department.getId()) + name.substring(0,2)
 			+ surname.substring(0,2) 
 			+ String.valueOf(department.getEmployeesOfDepartment().size());
@@ -83,6 +85,8 @@ public class BasicEmployee extends Employee {
 	   //Gets the Department object using the Department id.
 	   
 	    this.department = Department.getDepartment(depID); 
+	    
+		department.addEmployee(this);
 	  
 	   //Adds the object in the ArrayList of BasicEmployees.
 	   

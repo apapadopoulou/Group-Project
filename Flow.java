@@ -315,6 +315,16 @@ public static void dataEntry() {
            				   sc.nextLine();
            			   }
            		   }
+           		   MiddleManager emp = new MiddleManager(name, surname,
+                        phoneNumber, email, inputDate, salary);
+           		   		ArrayList<Department> arrDep = new ArrayList<Department>();
+           		   		arrDep.add(dep);
+           		   		emp.setManagingDepartments(arrDep);
+                        emp.getManagingDepartments().add(dep);
+                        arrDep.clear();
+                        dep.setManagerId(emp.getID());
+                        System.out.println("Manager "
+                         + "created with id: " + emp.getID());
            	   } else if (ans.equals("Y")) {
            		   System.out.println("Insert Manager's ID: ");
            		   String id;
@@ -330,16 +340,13 @@ public static void dataEntry() {
         		   }
            		   for (int count = 0; count < MiddleManager.middleManagers.size(); count++) {
            			   if (MiddleManager.middleManagers.get(count).getID().equals(id)){
-           				MiddleManager.middleManagers.get(count).getManagingDepartments().add(dep);
+           				   ArrayList<Department> arrDep = MiddleManager.middleManagers.get(count).getManagingDepartments();
+           				   arrDep.add(dep);
+           				   MiddleManager.middleManagers.get(count).setManagingDepartments(arrDep);
+           				   arrDep.clear();
            			   }
            		   }
            	   }
-             MiddleManager emp = new MiddleManager(name, surname,
-             phoneNumber, email, inputDate, salary);
-             emp.getManagingDepartments().add(dep);
-             dep.setManagerId(emp.getID());
-             System.out.println("Manager "
-              + "created with id: " + emp.getID());
           }
       } while (!dname.equals("Done"));
       System.out.println("Now, you are going to add Top Managers."

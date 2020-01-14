@@ -47,7 +47,7 @@ public class WelcomeWindow extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
-        jLabel1.setText("Welcome!, please wait while loading...");
+        jLabel1.setText("Welcome!");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/big logo.PNG"))); // NOI18N
 

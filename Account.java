@@ -104,7 +104,6 @@ public class Account {
       */
     public void setPassword(String password) {
         this.password = password;
-        System.out.println(password + ": new pass");
         DBcon.updateAccountVar("password", password, getEmployee().getID());
         setHasDefaultPass(1);
     }

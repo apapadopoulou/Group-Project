@@ -1,10 +1,6 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -160,17 +156,7 @@ public class Task extends Program implements Comparable<Task>{
 	 * Returns the done field
 	 * @return done
 	 */
-    public boolean getDone(){
-    	return done;
-    }
-    /**
-     * Sets the done field
-     * @param done
-     */
-    public void setDone(boolean done){
-    	this.done = done;
-    }
-
+    
 	/**
 	 * Returns the startDate field
 	 * @return startDate
@@ -379,8 +365,7 @@ public class Task extends Program implements Comparable<Task>{
     	return taskList;
     }
 	public String toStringEvaluatedTask() {
-		return "Due Date=" + dueDate + ", Description=" + desc + ", Importance=" + importance + ", Difficulty="
-				+ difficulty;
+		return "Due Date: " + dueDate + ", Description: " + desc;
 	}
 	public String toStringSimpleTask() {
 		return "Due Date=" + dueDate + ", Description=" + desc;

@@ -107,16 +107,4 @@ public class BasicEmployee extends Employee {
 		}
     	return null;
     }
-	/**
-	 *Method that changes the employee's department.
-	 *@param empName
-	 *@param depId
-	 */
-	public void changeDepartmentAndId(String empName, int depId) {
-		BasicEmployee e = BasicEmployee.searchEmployeeByName2(empName);
-		e.getDepartment().deleteEmployeeByName(empName);
-		e.setDepartment(depId);
-		Department.searchDepartmentById(depId).addEmployee(e);
-		e.setID(String.valueOf(depId) + e.getName().substring(1,2) + e.getSurname().substring(1,2) + String.valueOf(Department.searchDepartmentById(depId).getEmployeesOfDepartment().size()));
-	}
 }

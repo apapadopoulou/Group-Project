@@ -20,7 +20,30 @@ import javax.swing.Timer;
  * @author User
  */
 public class EmployeeOverview extends javax.swing.JFrame {
-
+	 private javax.swing.JLabel date;
+	    private javax.swing.JLabel home;
+	    private javax.swing.JLabel today;
+	    private javax.swing.JLabel name;
+	    private javax.swing.JLabel surname;
+	    private javax.swing.JLabel phonenumber;
+	    private javax.swing.JLabel salary;
+	    private javax.swing.JLabel email;
+	    private javax.swing.JLabel jLabelId;
+	    private javax.swing.JLabel id;
+	    private javax.swing.JLabel jLabelScore;
+	    private javax.swing.JLabel score;
+	    private javax.swing.JLabel busyb;
+	    private javax.swing.JLabel jLabelName;
+	    private javax.swing.JLabel back;
+	    private javax.swing.JLabel manageDep;
+	    private javax.swing.JLabel jLabelBirthdate;
+	    private javax.swing.JLabel jLabelSalary;
+	    private javax.swing.JLabel jLabelPhonenumber;
+	    private javax.swing.JLabel jLabelEmail;
+	    private javax.swing.JLabel jLabelSurname;
+	    private javax.swing.JLabel birthdate;
+	    private javax.swing.JPanel jPanel1;
+	    private javax.swing.JLabel time;
     /**
      * Creates new form EmployeeOverview
      */
@@ -299,29 +322,6 @@ public class EmployeeOverview extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel20MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel date;
-    private javax.swing.JLabel home;
-    private javax.swing.JLabel today;
-    private javax.swing.JLabel name;
-    private javax.swing.JLabel surname;
-    private javax.swing.JLabel phonenumber;
-    private javax.swing.JLabel salary;
-    private javax.swing.JLabel email;
-    private javax.swing.JLabel jLabelId;
-    private javax.swing.JLabel id;
-    private javax.swing.JLabel jLabelScore;
-    private javax.swing.JLabel score;
-    private javax.swing.JLabel busyb;
-    private javax.swing.JLabel jLabelName;
-    private javax.swing.JLabel back;
-    private javax.swing.JLabel manageDep;
-    private javax.swing.JLabel jLabelBirthdate;
-    private javax.swing.JLabel jLabelSalary;
-    private javax.swing.JLabel jLabelPhonenumber;
-    private javax.swing.JLabel jLabelEmail;
-    private javax.swing.JLabel jLabelSurname;
-    private javax.swing.JLabel birthdate;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel time;
+   
     // End of variables declaration//GEN-END:variables
 }

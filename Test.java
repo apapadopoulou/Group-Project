@@ -11,8 +11,7 @@ public class Test {
 		DBcon.createTables();
 		
 		Department dep0 = new Department("Admin");
-		Department dep1 = new Department("HR");
-		Department dep2 = new Department("IT");
+		Department dep2 = new Department("HR");
 		Department dep3 = new Department("R&D");
 		
 		BasicEmployee emp0 = new BasicEmployee("vasilis", "Xifaras", "6942796775", "alcabilone@gmail.com", "25/07/2000", 1, 3222);
@@ -23,17 +22,17 @@ public class Test {
 		BasicEmployee emp5 = new BasicEmployee("Maria", "yesaras", "6942796775", "erbil@gmail.com", "25/07/2000", 2, 700);
 		BasicEmployee emp6 = new BasicEmployee("Aliki", "Xifaras", "6942796775", "strawberry@gmail.com", "25/07/2000", 2, 1200);
 		BasicEmployee emp7 = new BasicEmployee("Thanos", "Xifaras", "6942796775", "alcapone@gmail.com", "25/07/2000", 2, 4000);
-		BasicEmployee emp8 = new BasicEmployee("Panagiota", "Xifaras", "6942796775", "mekong@gmail.com", "25/07/2000", 3, 3222);
-		BasicEmployee emp9 = new BasicEmployee("Christos", "yesaras", "6942796775", "christos@gmail.com", "25/07/2000", 3, 700);
-		BasicEmployee emp10 = new BasicEmployee("Sismane", "Xifaras", "6942796775", "gman227@gmail.com", "25/07/2000", 3, 1200);
-		BasicEmployee emp11 = new BasicEmployee("Kostas", "Atheridis", "6942796775", "arcane@gmail.com", "25/07/2000", 3, 4000);
+		BasicEmployee emp8 = new BasicEmployee("Panagiota", "Xifaras", "6942796775", "mekong@gmail.com", "25/07/2000", 2, 3222);
+		BasicEmployee emp9 = new BasicEmployee("Christos", "yesaras", "6942796775", "christos@gmail.com", "25/07/2000", 2, 700);
+		BasicEmployee emp10 = new BasicEmployee("Sismane", "Xifaras", "6942796775", "gman227@gmail.com", "25/07/2000", 1, 1200);
+		BasicEmployee emp11 = new BasicEmployee("Kostas", "Atheridis", "6942796775", "arcane@gmail.com", "25/07/2000", 1, 4000);
 		ArrayList<Department> list = new ArrayList<Department>();
 		list.add(dep2);
 		MiddleManager emp12 = new MiddleManager("Katerina", "wefsq", "6942796775", "trebela@gmail.com", "05/07/1998", 32322);
 		emp12.setManagingDepartments(list);
 		MiddleManager emp13 = new MiddleManager("Orestis", "dwuqdqw", "6942796775", "orestis@gmail.com", "25/07/2000", 4345);
 		MiddleManager emp14 = new MiddleManager("Antonis", "pakas", "6942796775", "kfc@gmail.com", "25/07/2000", 2000);
-		list.close();
+		list.clear();
 		list.add(dep3);
 		emp14.setManagingDepartments(list);
 		

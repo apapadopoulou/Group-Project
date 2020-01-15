@@ -1,8 +1,9 @@
 package gr.aueb.dmst.ProgrammingII.BusyB.BusyB;
+/**
 * DBcon Class
 * Used for testing the Database connection.
 * 
-* @author Vasilis Xifaras
+* @author BusyB
 */
 
 /*Im not sure if we need that.*/

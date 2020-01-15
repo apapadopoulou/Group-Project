@@ -10,13 +10,13 @@ import java.util.Date;
 
 import javax.swing.JFrame;
 
-/*
+/**
  * This class contains the code for the construction of the login window
  */
 
 /**
  *
- * @author Eirini Maria Nikolakopoulou
+ * @author BusyB
  */
 public class LoginWindow extends javax.swing.JFrame {
 
@@ -32,12 +32,6 @@ public class LoginWindow extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
-    /**
-     * This method construst all the object needed for the construstion.
-     * It also defines the action listeners for every button 
-      */                       
-  
     private void initComponents() {
         /** The font behind the username and the pasword fields. */
         lowerBackground = new javax.swing.JPanel();
@@ -256,7 +250,7 @@ public class LoginWindow extends javax.swing.JFrame {
              		.getEmployee().getID(), strDate));
             n = Account.typeOfEmployee(acc.getEmployee());
             acc.setHasDefaultPass(acc.getHasDefaultPass());
-            if (acc.getHasDefaultPass() == 0){       
+            if (acc.getHasDefaultPass() == 0) {
                    java.awt.EventQueue.invokeLater(new Runnable() {
                    public void run() {
                         new DefaultPassword(acc.getEmployee()).setVisible(true);
@@ -270,17 +264,13 @@ public class LoginWindow extends javax.swing.JFrame {
                 }
             });
            this.dispose();
-            
             }
-         } 
-    }                 
+         }
+    }
 
     /**
      * @param args the command line arguments
      */
-   
-
-    // Variables declaration - do not modify                     
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel busyBicon;
     private javax.swing.JLabel loginTitle;
@@ -292,5 +282,4 @@ public class LoginWindow extends javax.swing.JFrame {
     private javax.swing.JPanel upperBackground;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField emailField;
-    // End of variables declaration                   
 }

@@ -8,8 +8,9 @@ import java.util.Date;
 import java.util.Scanner;
 import java.lang.Exception;
 import java.util.InputMismatchException;
- /* Class Flow manages the main flow of the application and
-  * supports data entry and first connection to the database." */
+ /** Class Flow manages the main flow of the application and
+  * supports data entry and first connection to the database.
+  * @author BusyB */
 public class Flow {
 	public static final boolean run = true;
 	public static void adminSettingsEntry() {
